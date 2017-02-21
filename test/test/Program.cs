@@ -12,7 +12,7 @@ namespace test
         {
             for(int i = 0; i < 1000; i++)
             {
-                Console.WriteLine("BURN THE WORLD BURN IT ALL");
+                Console.WriteLine("BURN THE WORLD BURN IT ALL AGAIN!!!");
             }
         }
     }
