@@ -12,6 +12,7 @@ namespace GamePrototype.Classes.Objects
 {
     class GameObject
     {
+        private bool enabled;
         private Texture2D sprite;
         private Vector2 position;
         private Rectangle hitBox;
@@ -30,14 +31,20 @@ namespace GamePrototype.Classes.Objects
             hitBox = sprite.Bounds;
         }
 
-        public void Update(GameTime gameTime)
+        // TODO: Update function, might not do much for base objects/furniture but needs to be overridden by special cases
+        public virtual void Update(GameTime gameTime)
         {
 
         }
         //TODO: Needs accessor properties for Sprite and Position
+        public Boolean Enabled
+        {
+            get { return enabled; }
+            set { enabled = value; }
+        }
         public Texture2D Sprite
         {
-
+            get { return sprite; }
         }
         
     }
