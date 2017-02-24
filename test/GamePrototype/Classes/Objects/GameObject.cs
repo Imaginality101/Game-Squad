@@ -15,7 +15,7 @@ namespace GamePrototype.Classes.Objects
         private Texture2D sprite;
         private Vector2 position;
         private Rectangle hitBox;
-
+        
         public GameObject()
         {
             sprite = null;
@@ -27,9 +27,18 @@ namespace GamePrototype.Classes.Objects
         {
             sprite = txtr;
             position = strtPs;
+            hitBox = sprite.Bounds;
+        }
+
+        public void Update(GameTime gameTime)
+        {
 
         }
         //TODO: Needs accessor properties for Sprite and Position
+        public Texture2D Sprite
+        {
 
+        }
+        
     }
 }

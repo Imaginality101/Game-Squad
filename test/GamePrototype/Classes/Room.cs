@@ -15,8 +15,26 @@ namespace GamePrototype.Classes
         private SpriteBatch spritesToDraw;
         private GameObject[] objectsInRoom;
 
-        // TODO: Parameterized constructor, we need to be able to add/remove objects from the room
+        // TODO: Parameterized constructor, needs to take a collection of GameObjects as a param
+        public Room(List<GameObject> roomObjs, GraphicsDevice graphics)
+        {
+            spritesToDraw = new SpriteBatch(graphics);
+            objectsInRoom = roomObjs.ToArray();
+        }
+        // TODO: Update function, should go through the array of GameObjects and call all their update functions
+        public void Update()
+        {
 
-        // TODO: 
+        }
+        // TODO: Draw method, should use spritesToDraw to Draw sprites for all enabled gameObjects in the room
+        public void Draw()
+        {
+
+        }
+        // TODO: Initialize method, cross-reference a list of booleans (save data?) and use it to get the state of objects
+        public void Initialize()
+        {
+
+        }
     }
 }
