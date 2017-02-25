@@ -30,6 +30,35 @@ namespace GamePrototype.Classes.Objects
 
         }
         //TODO: Needs accessor properties for Sprite and Position
+        //NOTE: CALEB - I'll try - I assume read only for sprite, and I will see id I
+        // can have a set for Position that only affects the player
+        
+        // read only sprite property
+        public Texture2D Sprite
+        {
+            get
+            {
+                return sprite;
+            }
+        }
+
+        // property for position; can only be set if GameObject is player
+        public Vector2 Position
+        {
+            get
+            {
+                return position;
+            }
+            set
+            {
+                // TODO: once the Player class is added, include this if statement:
+                // if (this is Player)
+                //{
+                position = value;
+                //} 
+            }
+        }
+
 
     }
 }

@@ -12,11 +12,9 @@ namespace GamePrototype.Classes
 {
     class Room
     {
-        private SpriteBatch spritesToDraw;
-        private GameObject[] objectsInRoom;
+        private SpriteBatch spritesToDrawInYoMama;
+        private GameObject[] objectsInYoMama;
 
-        // TODO: Parameterized constructor, we need to be able to add/remove objects from the room
 
-        // TODO: 
     }
 }
