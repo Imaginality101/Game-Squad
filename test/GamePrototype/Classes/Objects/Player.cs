@@ -23,7 +23,9 @@ namespace GamePrototype.Classes.Objects
 
         public void LoadFrames()
         {
-            throw new NotImplementedException();
+            // TODO: This method will need to be set up differently depending on individual images or spritesheets.
+            // If we use sprite sheets we need it to take values for the number of animation sets, the number of frames in each set, and the pixel dimensions of each frame being pulled.
+
         }
     }
 }

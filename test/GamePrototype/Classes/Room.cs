@@ -25,9 +25,12 @@ namespace GamePrototype.Classes
             viewBounds = new Rectangle(); // make this rectangle a default one for now, we'll assign a proper identity to it in updating
         }
         // TODO: Update function, should go through the array of GameObjects and call all their update functions
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-
+            foreach(GameObject obj in objectsInRoom)
+            {
+                obj.Update(gameTime);
+            }
         }
         // TODO: Draw method, should use spritesToDraw to Draw sprites for all enabled gameObjects in the room
         public void Draw()
@@ -37,7 +40,7 @@ namespace GamePrototype.Classes
             {
                 if(obj.Enabled)
                 {
-
+                    // draw object here: we want to use a specific overload of the Draw function especially if with spritesheets, will elaborate when we get here
                 }
             }
         }
