@@ -44,7 +44,7 @@ namespace GamePrototype.Classes
                 }
             }
         }
-        // TODO: Initialize method, cross-reference a list of booleans (save data?) and use it to get the state of objects
+        // TODO: Initialize method, should be used to tell which objects in the room are in what state after they're all loaded in using the constructor
         public void Initialize()
         {
 

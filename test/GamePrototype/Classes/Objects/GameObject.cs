@@ -32,6 +32,7 @@ namespace GamePrototype.Classes.Objects
         }
 
         // TODO: Update function, might not do much for base objects/furniture but needs to be overridden by special cases
+        // for cosmetic changes like the blacklight lamp, this method should check if blacklight mode is on and switch the sprite (we'll get there)
         public virtual void Update(GameTime gameTime)
         {
 

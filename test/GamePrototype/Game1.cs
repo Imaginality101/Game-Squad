@@ -72,11 +72,12 @@ namespace GamePrototype
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            // NOTE: If we want to use Esc as the menu key this is pretty important to remove
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-
+            // TODO: The game's update function should primarily call the Update function of the active Room. That should run through inside the Room and update all the objects in it.
+            // TODO: Check if menus are open or the open button has been pressed, and if so update them
             base.Update(gameTime);
         }
 
@@ -88,9 +89,26 @@ namespace GamePrototype
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Call the Draw Command of the active Room here
+            // TODO: Call the Draw Command of the active Room here, we'll have it handle drawing just to keep the code in a more relevant place
             //activeRoom.Draw(); // this will blow up until we have the rooms initializing property, so be careful
+
+            // TODO: Check if menus are open, and draw them after the room if they are so that the room itself stays visible
             base.Draw(gameTime);
+        }
+
+        // TODO: Save method, should go through the process to store important information.
+        // Each room should probably have its own binary file, we mainly want those to have booleans for the active states of objects in the room
+        // There should also be a file more specific to the overall game, with info on player's active room, position and any modifiers
+        public void Save()
+        {
+
+        }
+
+        // TODO: Load method, needs to read the binary files from the Save command and read them in. Should then use that info to set up stuff
+        public void Load()
+        {
+            // NOTE: the Room class has an initialize function, if you do the individual loading code with a fed parameter for the information collections/variables
+            // that should be easier since you can then just call Initialize for each Room in here
         }
     }
 }
