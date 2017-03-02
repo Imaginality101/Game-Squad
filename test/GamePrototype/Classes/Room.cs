@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 using GamePrototype.Classes.Objects;
+
 
 namespace GamePrototype.Classes
 {
@@ -23,6 +25,7 @@ namespace GamePrototype.Classes
             spritesToDraw = new SpriteBatch(graphics);
             objectsInRoom = roomObjs.ToArray();
             viewBounds = new Rectangle(); // make this rectangle a default one for now, we'll assign a proper identity to it in updating
+
         }
         // TODO: Update function, should go through the array of GameObjects and call all their update functions
         public void Update(GameTime gameTime)
@@ -47,7 +50,7 @@ namespace GamePrototype.Classes
         // TODO: Initialize method, should be used to tell which objects in the room are in what state after they're all loaded in using the constructor
         public void Initialize()
         {
-
+            
         }
     }
 }

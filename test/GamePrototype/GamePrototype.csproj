@@ -38,8 +38,13 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Classes\Clue.cs" />
     <Compile Include="Classes\Menu\Menu.cs" />
+    <Compile Include="Classes\Menu\MenuObject.cs" />
+    <Compile Include="Classes\Objects\ClueObject.cs" />
+    <Compile Include="Classes\Objects\Door.cs" />
     <Compile Include="Classes\Objects\GameObject.cs" />
+    <Compile Include="Classes\Objects\Interactable.cs" />
     <Compile Include="Classes\Objects\Player.cs" />
     <Compile Include="Classes\Room.cs" />
     <Compile Include="Classes\Tools\IAnimated.cs" />

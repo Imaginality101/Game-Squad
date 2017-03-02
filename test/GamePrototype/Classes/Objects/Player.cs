@@ -9,7 +9,7 @@ namespace GamePrototype.Classes.Objects
 {
     class Player : GameObject, Tools.IAnimated, Tools.IControlled
     {
-        private Rectangle[] animFrames; // source rectangles to be used in drawing the player
+        private Rectangle[][] animFrames; // source rectangles to be used in drawing the player
         private Vector2 moveQueue;
         
         // TODO: Player constructor, should take the same sort of information as well as potentially a Menu object. We'd feed the overall Game's Menu into that.
@@ -21,6 +21,7 @@ namespace GamePrototype.Classes.Objects
         public void GetFrame()
         {
             // TODO: Method should figure out which frame rectangle is supposed to be active and pass it to an attribute rect, which will need a property or accessor method
+
         }
 
         public void LoadFrames()
@@ -33,14 +34,27 @@ namespace GamePrototype.Classes.Objects
 
         public void CheckInput()
         {
+            
             // TODO: This method should be called by the update function, this is where keyboard state checking should go.
         }
 
-        public void CheckProximity()
+        public void CheckProximity(GameObject target)
         {
             // TODO: Not sure this is the best way to go about it so this may be moved or altered, but this would be used to figure out if
             // the player is close enough to a usable object to interact with it. If there are multiple close by, whichever is closer should be
             // the one interacted with.
+        }
+
+        public Boolean CheckBounds(Rectangle roomBounds)
+        {
+            // TODO: This method should check whether or not the player's collision rectangle is entirely inside
+            // the accepted param rect roomBounds.
+            return true;
+        }
+
+        public Boolean isColliding(GameObject target)
+        {
+            return true;
         }
     }
 }

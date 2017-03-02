@@ -18,7 +18,9 @@ namespace GamePrototype
         // create attribute components specifically purposed for this class here
         GraphicsDeviceManager graphics;
         SpriteBatch uSpriteBatch; // this
-        Room activeRoom;
+
+        Room activeRoom; // NOTE: This will be replaced with an enum or two for gamestate. We'll just use a switch in the update function like in PE9.
+
         Rectangle viewBounds; // I want to try to work it out so that the game changes resolution cleanly so we'll be using this for graphx
 
         // any rooms will be defined here as we get them added
