@@ -42,6 +42,9 @@ namespace GamePrototype
         {
             // TODO: Add your initialization logic here
 
+            // LIST OF GAME OBJECTS FOR THE BEDROOM
+
+
             base.Initialize();
         }
 
@@ -89,7 +92,7 @@ namespace GamePrototype
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Call the Draw Command of the active Room here, we'll have it handle drawing just to keep the code in a more relevant place
             //activeRoom.Draw(); // this will blow up until we have the rooms initializing property, so be careful

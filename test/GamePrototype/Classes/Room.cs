@@ -41,7 +41,8 @@ namespace GamePrototype.Classes
             spritesToDraw.Begin();
             foreach(GameObject obj in objectsInRoom)
             {
-                if(obj.Enabled)
+
+                if (obj.Enabled)
                 {
                     
                     // draw object here: we want to use a specific overload of the Draw function especially if with spritesheets, will elaborate when we get here
