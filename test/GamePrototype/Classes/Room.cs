@@ -43,6 +43,7 @@ namespace GamePrototype.Classes
             {
                 if(obj.Enabled)
                 {
+                    
                     // draw object here: we want to use a specific overload of the Draw function especially if with spritesheets, will elaborate when we get here
                 }
             }
