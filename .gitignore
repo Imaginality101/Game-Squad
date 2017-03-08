@@ -243,3 +243,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/test/GamePrototype/ClassDiagram2.cd

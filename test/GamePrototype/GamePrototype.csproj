@@ -47,6 +47,7 @@
     <Compile Include="Classes\Objects\Interactable.cs" />
     <Compile Include="Classes\Objects\Player.cs" />
     <Compile Include="Classes\Room.cs" />
+    <Compile Include="Classes\Tools\GameSound.cs" />
     <Compile Include="Classes\Tools\IAnimated.cs" />
     <Compile Include="Classes\Tools\IControlled.cs" />
     <Compile Include="Classes\Tools\ObjectSetup.cs" />
