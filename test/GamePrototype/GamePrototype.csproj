@@ -38,12 +38,19 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Classes\Clue.cs" />
     <Compile Include="Classes\Menu\Menu.cs" />
+    <Compile Include="Classes\Menu\MenuObject.cs" />
+    <Compile Include="Classes\Objects\ClueObject.cs" />
+    <Compile Include="Classes\Objects\Door.cs" />
     <Compile Include="Classes\Objects\GameObject.cs" />
+    <Compile Include="Classes\Objects\Interactable.cs" />
     <Compile Include="Classes\Objects\Player.cs" />
     <Compile Include="Classes\Room.cs" />
+    <Compile Include="Classes\Tools\GameSound.cs" />
     <Compile Include="Classes\Tools\IAnimated.cs" />
     <Compile Include="Classes\Tools\IControlled.cs" />
+    <Compile Include="Classes\Tools\ObjectSetup.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,9 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

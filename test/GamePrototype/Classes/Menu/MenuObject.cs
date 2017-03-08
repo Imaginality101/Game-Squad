@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace test
+namespace GamePrototype.Classes.Menu
 {
-    class Program
+    class MenuObject
     {
-        static void Main(string[] args)
-        {
-           
-        }
+        // May need to be separated into multiple other classes
+        
     }
 }

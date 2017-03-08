@@ -14,21 +14,18 @@ namespace GamePrototype.Classes.Objects
     {
         private bool enabled;
         private Texture2D sprite;
-        private Vector2 position;
-        private Rectangle hitBox;
+        private Rectangle positionRect;
         
         public GameObject()
         {
             sprite = null;
-            position = new Vector2(0, 0);
-            
+            positionRect = new Rectangle();
         }
 
-        public GameObject(Texture2D txtr, Vector2 strtPs)
+        public GameObject(Texture2D txtr, Point pos)
         {
             sprite = txtr;
-            position = strtPs;
-            hitBox = sprite.Bounds;
+            positionRect = new Rectangle(pos.X, pos.Y, sprite.Width, sprite.Height);
         }
 
         // TODO: Update function, might not do much for base objects/furniture but needs to be overridden by special cases
@@ -37,6 +34,9 @@ namespace GamePrototype.Classes.Objects
         {
 
         }
+
+        // TODO: Kat - Draw method taking in a SpriteBatch param, just like how it was handled in HW2
+
         //TODO: Needs accessor properties for Sprite and Position
         public Boolean Enabled
         {
@@ -48,5 +48,27 @@ namespace GamePrototype.Classes.Objects
             get { return sprite; }
         }
         
+        // Position properties
+        public int X
+        {
+            get { return positionRect.X; }
+            set { positionRect.X = value; }
+        }
+
+        public int Y
+        {
+            get { return positionRect.Y; }
+            set { positionRect.Y = value; }
+        }
+
+        public Rectangle GlobalBounds
+        {
+            get { return positionRect; }
+        }
+        // Origin property - will help with proximity checks for interactable objects, returns the global position of the sprite's center
+        public Vector2 SpriteOrigin
+        {
+            get { return new Vector2(positionRect.X + sprite.Width / 2, positionRect.Y + sprite.Height / 2); }
+        }
     }
 }
