@@ -18,7 +18,7 @@ namespace GamePrototype.Classes
         private SpriteBatch spritesToDraw;
         private GameObject[] objectsInRoom;
         private Rectangle viewBounds;
-
+        
         // TODO: Parameterized constructor, needs to take a collection of GameObjects as a param
         public Room(List<GameObject> roomObjs, GraphicsDevice graphics)
         {
