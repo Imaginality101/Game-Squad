@@ -14,14 +14,14 @@ namespace GamePrototype.Classes
     {
         private Rectangle roomBounds;
         private SpriteBatch spritesToDraw;
-        private GameObject[] objectsInRoom;
+        private List<GameObject> objectsInRoom;
         private Rectangle viewBounds;
 
         // TODO: Parameterized constructor, needs to take a collection of GameObjects as a param
-        public Room(List<GameObject> roomObjs, GraphicsDevice graphics)
+        public Room(GameObject[] roomObjs, GraphicsDevice graphics)
         {
             spritesToDraw = new SpriteBatch(graphics);
-            objectsInRoom = roomObjs.ToArray();
+            objectsInRoom = roomObjs.ToList<GameObject>();
             viewBounds = new Rectangle(); // make this rectangle a default one for now, we'll assign a proper identity to it in updating
         }
         // TODO: Update function, should go through the array of GameObjects and call all their update functions
