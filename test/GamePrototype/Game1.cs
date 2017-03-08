@@ -44,9 +44,8 @@ namespace GamePrototype
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
-            // LIST OF GAME OBJECTS FOR THE BEDROOM
-
+            // bedRoom = new Room(); <-- initilizes the bedroom, need to fill in parameters when they are gotten
+            activeRoom = bedRoom;
 
             base.Initialize();
         }
