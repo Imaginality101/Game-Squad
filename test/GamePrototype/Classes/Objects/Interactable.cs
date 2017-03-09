@@ -8,13 +8,15 @@ namespace GamePrototype.Classes.Objects
 {
     abstract class Interactable : GameObject
     {
+        
         // TODO: This is an abstract class which will be inherited from by the Door and ClueObject classes
         // attributes - should have a Clue that the player needs to access it
         Clue keyRequired;
+        Boolean flaggedForUse;
 
         public Interactable():base()
         {
-            
+            flaggedForUse = false;
         }
 
         public abstract void Interact(GameObject user); // Interaction, check if player has the requisite clue

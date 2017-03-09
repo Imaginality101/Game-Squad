@@ -2,6 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using GamePrototype.Classes;
+using GamePrototype.Classes.Objects;
+using GamePrototype.Classes.Tools;
+
 namespace GamePrototype
 {
     /// <summary>
@@ -12,19 +15,20 @@ namespace GamePrototype
         // Anything you don't see where it should be, feel free to ask me but it'll probably be coming through the pipeline along the way
         // as I have more time. If you see something relevant to whatever was assigned for you to do, feel free to do it.
         // Go nuts - Tom
-
+        
     // enums for use in program, we need a GameState and a CurrentRoom
     enum GameState { MainMenu, Game, GMenu, Win}
     enum CurrentRoom { Bedroom } // We'll start with just Bedroom for now, when we expand to more rooms add them to the end of the state list
     public class Game1 : Game
     {
+        // define enums
+        GameState gameState;
+        CurrentRoom activeRoom;
         // create attribute components specifically purposed for this class here
         GraphicsDeviceManager graphics;
         SpriteBatch uSpriteBatch; // this
 
-        Room activeRoom; // NOTE: This will be replaced with an enum or two for gamestate. We'll just use a switch in the update function like in PE9.
-
-        Rectangle viewBounds; // I want to try to work it out so that the game changes resolution cleanly so we'll be using this for graphx
+        // Rectangle viewBounds; // I want to try to work it out so that the game changes resolution cleanly so we'll be using this for graphx
 
         // any rooms will be defined here as we get them added
         Room bedRoom;
@@ -43,8 +47,10 @@ namespace GamePrototype
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            // initialize enums
+            gameState = GameState.MainMenu;
+            activeRoom = CurrentRoom.Bedroom;
+            
             // LIST OF GAME OBJECTS FOR THE BEDROOM
 
 
@@ -61,7 +67,10 @@ namespace GamePrototype
             // Create a new SpriteBatch, which can be used to draw textures.
             uSpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            // TODO: Kat - Load texture sprites in here. What I'd recommend doing to make it easier to pass over to Declan is the use
+            // of a Dictionary, with strings for the key and values being Texture2Ds. If you do decide to do it that way just add it to the
+            // attributes.
+            
         }
 
         /// <summary>

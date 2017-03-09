@@ -14,5 +14,6 @@ namespace GamePrototype.Classes
         Texture2D clueImg; // the clue itself to be displayed on screen
         String flavorText;
 
+
     }
 }

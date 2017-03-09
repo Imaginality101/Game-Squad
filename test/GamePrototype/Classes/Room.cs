@@ -20,9 +20,8 @@ namespace GamePrototype.Classes
         // private Rectangle viewBounds; // Doesn't necessarily need to be used unless we go for resolution scalability
                
         // TODO: Parameterized constructor, needs to take a collection of GameObjects as a param
-        public Room(List<GameObject> roomObjs, Rectangle bounds, Texture2D bg)
+        public Room(Rectangle bounds, Texture2D bg)
         {
-            objectsInRoom = roomObjs;
             roomBounds = bounds; // Declan - If you're setting up stuff, this
         }
         // TODO: Update function, should go through the array of GameObjects and call all their update functions
@@ -42,6 +41,14 @@ namespace GamePrototype.Classes
         public void Initialize()
         {
             
+        }
+
+        // NOTE: Declan - This was moved from the constructor, so when you initialize the Room(s) make sure you remember
+        // to then 
+        public List<GameObject> Objects
+        {
+            get { return objectsInRoom; }
+            set { objectsInRoom = value; }
         }
     }
 }
