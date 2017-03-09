@@ -35,8 +35,6 @@ namespace GamePrototype.Classes.Objects
 
         }
 
-        // TODO: Kat - Draw method taking in a SpriteBatch param, just like how it was handled in HW2
-
         //TODO: Needs accessor properties for Sprite and Position
         public Boolean Enabled
         {
@@ -69,6 +67,13 @@ namespace GamePrototype.Classes.Objects
         public Vector2 SpriteOrigin
         {
             get { return new Vector2(positionRect.X + sprite.Width / 2, positionRect.Y + sprite.Height / 2); }
+        }
+
+        // TODO: Kat - Draw method taking in a SpriteBatch param, just like how it was handled in HW2
+        public void Draw(SpriteBatch sprtBtch)
+        {
+            // draws the object
+            sprtBtch.Draw(sprite, positionRect, null, Color.White, 0f, SpriteOrigin, SpriteEffects.None, 0f);
         }
     }
 }
