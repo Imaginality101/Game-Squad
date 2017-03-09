@@ -57,7 +57,7 @@ namespace GamePrototype.Classes.Objects
 
         public Boolean isColliding(GameObject target)
         {
-            if ((target != this && (GlobalBounds.Intersects(target.GlobalBounds)))
+            if ((target != this && (GlobalBounds.Intersects(target.GlobalBounds))))
             {
                 return true;
             }
