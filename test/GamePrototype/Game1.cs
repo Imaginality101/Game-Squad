@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using GamePrototype.Classes;
 using GamePrototype.Classes.Objects;
 using GamePrototype.Classes.Tools;
+using System;
 
 namespace GamePrototype
 {
@@ -32,29 +33,14 @@ namespace GamePrototype
 
         // any rooms will be defined here as we get them added
         Room bedRoom;
+
+        //
+        Texture2D bedRoomTexture;
         
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-        }
-
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
-        protected override void Initialize()
-        {
-            // initialize enums
-            gameState = GameState.MainMenu;
-            activeRoom = CurrentRoom.Bedroom;
-            
-            // LIST OF GAME OBJECTS FOR THE BEDROOM
-
-
-            base.Initialize();
         }
 
         // NOTE: this method will be long AF so it needs to be moved down to the bottom of the class
@@ -70,7 +56,30 @@ namespace GamePrototype
             // TODO: Kat - Load texture sprites in here. What I'd recommend doing to make it easier to pass over to Declan is the use
             // of a Dictionary, with strings for the key and values being Texture2Ds. If you do decide to do it that way just add it to the
             // attributes.
+
+            // loads the bedroom texture
+            bedRoomTexture = Content.Load<Texture2D>("bdroom bckground");
+            bedRoom = new Room(new Rectangle(50, 50, GraphicsDevice.Viewport.Width - 90, GraphicsDevice.Viewport.Height - 5), bedRoomTexture);
+
+        }
+
+        /// <summary>
+        /// Allows the game to perform any initialization it needs to before starting to run.
+        /// This is where it can query for any required services and load any non-graphic
+        /// related content.  Calling base.Initialize will enumerate through any components
+        /// and initialize them as well.
+        /// </summary>
+        protected override void Initialize()
+        {
+            // initialize enums
+            gameState = GameState.MainMenu;
+            activeRoom = CurrentRoom.Bedroom;
+
+            // initializes the bedroom
             
+
+            base.Initialize();
+           
         }
 
         /// <summary>
@@ -104,10 +113,19 @@ namespace GamePrototype
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Blue);
+            GraphicsDevice.Clear(Color.Black); 
 
             // TODO: Call the Draw Command of the active Room here, we'll have it handle drawing just to keep the code in a more relevant place
             //activeRoom.Draw(); // this will blow up until we have the rooms initializing property, so be careful
+
+            // begin spritebatch
+            uSpriteBatch.Begin();
+
+            // calls the bedroom draw command
+            bedRoom.Draw(uSpriteBatch);
+
+            // end spritebatch
+            uSpriteBatch.End();
 
             // TODO: Check if menus are open, and draw them after the room if they are so that the room itself stays visible
             base.Draw(gameTime);
