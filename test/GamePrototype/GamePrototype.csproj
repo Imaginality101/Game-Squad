@@ -54,6 +54,7 @@
     <Compile Include="Classes\Tools\IAnimated.cs" />
     <Compile Include="Classes\Tools\IControlled.cs" />
     <Compile Include="Classes\Tools\ObjectSetup.cs" />
+    <Compile Include="Classes\Tools\SaveData.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

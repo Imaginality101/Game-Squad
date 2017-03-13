@@ -15,7 +15,8 @@ namespace GamePrototype.Classes.Objects
         private bool enabled;
         private Texture2D sprite;
         private Rectangle positionRect;
-        
+        // holds  name of texture; will be used later in Game1.LoadContent()
+        string spriteName;
         public GameObject()
         {
             sprite = null;
@@ -25,6 +26,14 @@ namespace GamePrototype.Classes.Objects
         public GameObject(Texture2D txtr, Point pos)
         {
             sprite = txtr;
+            positionRect = new Rectangle(pos.X, pos.Y, sprite.Width, sprite.Height);
+            enabled = true;
+        }
+        // Caleb - GameObject constructor with boolean "enabled"
+        public GameObject(bool isEnabled, string txtrName, Point pos)
+        {
+            enabled = isEnabled;
+            spriteName = txtrName;
             positionRect = new Rectangle(pos.X, pos.Y, sprite.Width, sprite.Height);
         }
 
