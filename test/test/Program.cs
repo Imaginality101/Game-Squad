@@ -12,8 +12,8 @@ namespace test
         {
             for(int i = 0; i < 1000; i++)
             {
-                Console.WriteLine("BURN THE WORLD BURN IT ALL AGAIN!!! EXCEPT FOR CALEB THAT GUY'S AWESOME!!!!!");
-                Console.WriteLine("aesthetic");
+                //Console.WriteLine("BURN THE WORLD BURN IT ALL AGAIN!!! EXCEPT FOR CALEB THAT GUY'S AWESOME!!!!!");
+                //Console.WriteLine("aesthetic");
                 // Imaginality
             }
         }
