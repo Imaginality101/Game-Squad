@@ -14,18 +14,16 @@ namespace GamePrototype.Classes
 {
     class Room
     {
-        private Rectangle roomBounds;
-        private SpriteBatch spritesToDraw;
-        private GameObject[] objectsInRoom;
-        private Rectangle viewBounds;
-        
+        private Texture2D roomBG; // Texture for the room itself, draw this before any of the objects in it
+        private Rectangle roomBounds; // The size of the room, will be used for bounds checks
+        private List<GameObject> objectsInRoom; // as requested, list format
+        // private Rectangle viewBounds; // Doesn't necessarily need to be used unless we go for resolution scalability
+               
         // TODO: Parameterized constructor, needs to take a collection of GameObjects as a param
-        public Room(List<GameObject> roomObjs, GraphicsDevice graphics)
+        public Room(List<GameObject> roomObjs, Rectangle bounds, Texture2D bg)
         {
-            spritesToDraw = new SpriteBatch(graphics);
-            objectsInRoom = roomObjs.ToArray();
-            viewBounds = new Rectangle(); // make this rectangle a default one for now, we'll assign a proper identity to it in updating
-
+            objectsInRoom = roomObjs;
+            roomBounds = bounds; // Declan - If you're setting up stuff, this
         }
         // TODO: Update function, should go through the array of GameObjects and call all their update functions
         public void Update(GameTime gameTime)
@@ -35,19 +33,10 @@ namespace GamePrototype.Classes
                 obj.Update(gameTime);
             }
         }
-        // TODO: Draw method, should use spritesToDraw to Draw sprites for all enabled gameObjects in the room
+        // TODO: Kat - Draw method, take a SpriteBatch param and draw any enabled objects in the room by calling their draw methods with it
         public void Draw()
         {
-            spritesToDraw.Begin();
-            foreach(GameObject obj in objectsInRoom)
-            {
 
-                if (obj.Enabled)
-                {
-                    
-                    // draw object here: we want to use a specific overload of the Draw function especially if with spritesheets, will elaborate when we get here
-                }
-            }
         }
         // TODO: Initialize method, should be used to tell which objects in the room are in what state after they're all loaded in using the constructor
         public void Initialize()

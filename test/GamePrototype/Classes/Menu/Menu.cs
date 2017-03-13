@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Microsoft.Xna.Framework.Input;
 
 namespace GamePrototype.Classes.Menu
 {
@@ -13,10 +14,21 @@ namespace GamePrototype.Classes.Menu
         
         Clue openedClue; // so the menu knows if the player's chosen a clue to look at
         Dictionary<Clue, Boolean> clueList;
+
+
         public void CheckInput()
         {
             
         }
+
+        public KeyboardState KeyBoard
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
     }
 
     // TODO: Menu class will need an update and draw method, should check for input

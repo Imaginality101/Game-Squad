@@ -17,6 +17,13 @@ namespace GamePrototype.Classes.Objects
             
         }
 
-        public abstract void Interact(); // Interaction, check if player has the requisite clue
+        public abstract void Interact(GameObject user); // Interaction, check if player has the requisite clue
+
+        // property for required clue
+        public Clue RequiredClue
+        {
+            get { return keyRequired; }
+
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace GamePrototype.Classes.Objects
     class ClueObject : Interactable
     {
         // TODO: 
-        public override void Interact()
+        public override void Interact(GameObject user)
         {
             
         }

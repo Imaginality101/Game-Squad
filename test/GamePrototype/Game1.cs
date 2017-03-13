@@ -7,12 +7,15 @@ namespace GamePrototype
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    /*NOTE: This is primarily intended for me planning/doing structure and feasibility tests where we don't want to risk messing something up in authentic/official code.
-    * If you guys are taking a look through here and think you can figure out how to do something I mark as a todo, start your comment the way I started this set with a NOTE marker and colon.
-    * I can search through with the task list (you can open it from View) and see anything you comment about it.
-    * With that said we do want to avoid fatally messing this bad boy up, so try to avoid actually adding lines of code too much. I'll do my best to take care of
-    * basic stuff we need to connect classes
-    */
+    
+        // NOTE: As of whenever this gets pushed most of the program (or at least enough to get going) is planned out.
+        // Anything you don't see where it should be, feel free to ask me but it'll probably be coming through the pipeline along the way
+        // as I have more time. If you see something relevant to whatever was assigned for you to do, feel free to do it.
+        // Go nuts - Tom
+
+    // enums for use in program, we need a GameState and a CurrentRoom
+    enum GameState { MainMenu, Game, GMenu, Win}
+    enum CurrentRoom { Bedroom } // We'll start with just Bedroom for now, when we expand to more rooms add them to the end of the state list
     public class Game1 : Game
     {
         // create attribute components specifically purposed for this class here
