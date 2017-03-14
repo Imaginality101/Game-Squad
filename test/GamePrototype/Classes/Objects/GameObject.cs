@@ -99,9 +99,10 @@ namespace GamePrototype.Classes.Objects
         public void Draw(SpriteBatch sprtBtch)
         {
             // draws the object
-            // TODO: Change Rectangle param back to positionRect, reinstate original Draw()
+            // TODO: Reinstate original Draw()
             //sprtBtch.Draw(sprite, positionRect, null, Color.White, 0f, SpriteOrigin, SpriteEffects.None, 0f);
-            sprtBtch.Draw(sprite, positionRect, Color.White);
+            sprtBtch.Draw(sprite, new Rectangle(sprite.Width, sprite.Height, pos.X, pos.Y), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+            //sprtBtch.Draw(sprite, positionRect, Color.White);
         }
     }
 }
