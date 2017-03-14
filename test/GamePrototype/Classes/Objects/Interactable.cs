@@ -27,5 +27,6 @@ namespace GamePrototype.Classes.Objects
             get { return keyRequired; }
 
         }
+
     }
 }
