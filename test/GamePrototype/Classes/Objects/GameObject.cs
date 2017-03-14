@@ -15,6 +15,7 @@ namespace GamePrototype.Classes.Objects
         private bool enabled;
         private Texture2D sprite;
         private Rectangle positionRect;
+        Point pos;
         // holds  name of texture; will be used later in Game1.LoadContent()
         string spriteName;
         public GameObject()
@@ -23,18 +24,20 @@ namespace GamePrototype.Classes.Objects
             positionRect = new Rectangle();
         }
 
-        public GameObject(Texture2D txtr, Point pos)
+        public GameObject(Texture2D txtr, Point posParam)
         {
             sprite = txtr;
+            pos = posParam;
             positionRect = new Rectangle(pos.X, pos.Y, sprite.Width, sprite.Height);
             enabled = true;
         }
         // Caleb - GameObject constructor with boolean "enabled"
-        public GameObject(bool isEnabled, string txtrName, Point pos)
+        public GameObject(bool isEnabled, string txtrName, Point posParam)
         {
             enabled = isEnabled;
             spriteName = txtrName;
-            positionRect = new Rectangle(pos.X, pos.Y, sprite.Width, sprite.Height);
+            pos = posParam;
+            //positionRect = new Rectangle(posParam.X, posParam.Y, sprite.Width, sprite.Height); // removed because sprite is null at this point
         }
 
         // TODO: Update function, might not do much for base objects/furniture but needs to be overridden by special cases
@@ -42,6 +45,12 @@ namespace GamePrototype.Classes.Objects
         public virtual void Update(GameTime gameTime)
         {
 
+        }
+        // TODO: LoadContent method, would be useful to load sprites after a GameObject is created
+        public virtual void LoadContent(Texture2D spr)
+        {
+            sprite = spr;
+            positionRect = new Rectangle(pos.X, pos.Y, sprite.Width, sprite.Height);
         }
 
         //TODO: Needs accessor properties for Sprite and Position
@@ -78,6 +87,14 @@ namespace GamePrototype.Classes.Objects
             get { return new Vector2(positionRect.X + sprite.Width / 2, positionRect.Y + sprite.Height / 2); }
         }
 
+        // property for sprite name; Game1.LoadContent will get this, pass it to Content.Load, then will pass the sprite to this.LoadContent
+        public string SpriteName
+        {
+            get
+            {
+                return spriteName;
+            }
+        }
         // TODO: Kat - Draw method taking in a SpriteBatch param, just like how it was handled in HW2
         public void Draw(SpriteBatch sprtBtch)
         {
