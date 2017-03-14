@@ -39,8 +39,8 @@ namespace GamePrototype.Classes.Tools
             // name of texture to load
             bedRoomDataWriter.Write("BlueGuy");
             // vector components
-            bedRoomDataWriter.Write(0);
-            bedRoomDataWriter.Write(20);
+            bedRoomDataWriter.Write(50);
+            bedRoomDataWriter.Write(50);
             // end the file
             bedRoomDataWriter.Write("END");
             bedRoomDataWriter.Close();
@@ -58,11 +58,13 @@ namespace GamePrototype.Classes.Tools
             do
             {
                 string className = bedRoomDataReader.ReadString();
+                // if end of file, terminate method
                 if (className == "END")
                 {
                     bedRoomDataReader.Close();
                     return result;
                 }
+                // read data, pass it to a GameObject constructor, add the GameObject to the result list
                 else if (className == "GameObject")
                 {
                     bool isActivated;
