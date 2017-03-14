@@ -28,37 +28,27 @@ namespace GamePrototype.Classes.Tools
 
         }
         // writes to the file
-        public void Write()
+        public void WriteBedroom()
         {
-            bedRoomWriteStream = File.OpenWrite(BEDROOM_PATH);
+            bedRoomWriteStream = File.Open(BEDROOM_PATH, FileMode.Create);
             bedRoomDataWriter = new BinaryWriter(bedRoomWriteStream);
-            /* class name
-            bedRoomDataWriter.Write("Interactable");
+            // string class name
+            bedRoomDataWriter.Write("GameObject");
             // bool isActivated
-            bedRoomDataWriter.Write(false);
+            bedRoomDataWriter.Write(true);
             // name of texture to load
             bedRoomDataWriter.Write("BlueGuy");
             // vector components
-            bedRoomDataWriter.Write(0.0);
-            bedRoomDataWriter.Write(20.0);
-            // start again
-            // class name
-            bedRoomDataWriter.Write("Interactable");
-            // bool isActivated
-            bedRoomDataWriter.Write(false);
-            // name of texture to load
-            bedRoomDataWriter.Write("GreenGuy");
-            // vector components
-            bedRoomDataWriter.Write(400.0);
-            bedRoomDataWriter.Write(20.0);
+            bedRoomDataWriter.Write(50);
+            bedRoomDataWriter.Write(50);
             // end the file
             bedRoomDataWriter.Write("END");
             bedRoomDataWriter.Close();
-            */
+            
         }
 
         // reads the data
-        public List<GameObject> Read()
+        public List<GameObject> ReadBedroom()
         {
             // the list to return
             List<GameObject> result = new List<GameObject>();
@@ -68,11 +58,13 @@ namespace GamePrototype.Classes.Tools
             do
             {
                 string className = bedRoomDataReader.ReadString();
+                // if end of file, terminate method
                 if (className == "END")
                 {
                     bedRoomDataReader.Close();
                     return result;
                 }
+                // read data, pass it to a GameObject constructor, add the GameObject to the result list
                 else if (className == "GameObject")
                 {
                     bool isActivated;
@@ -98,7 +90,7 @@ namespace GamePrototype.Classes.Tools
             {
                 result.Add(settingsReader.ReadBoolean());
             }
-            catch (EndOfStreamException e)
+            catch (EndOfStreamException)
             {
 
             }

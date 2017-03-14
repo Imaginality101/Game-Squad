@@ -5,6 +5,10 @@ using GamePrototype.Classes;
 using GamePrototype.Classes.Objects;
 using GamePrototype.Classes.Tools;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace GamePrototype
 {
@@ -28,9 +32,10 @@ namespace GamePrototype
         // create attribute components specifically purposed for this class here
         GraphicsDeviceManager graphics;
         SpriteBatch uSpriteBatch; // this
-        // Keyboard states
-        KeyboardState kbState;
-        KeyboardState prevKbState;
+        // Caleb - new attribute for reading data
+        SaveData data;
+        // Caleb - List<GameObject> attribute that will be assigned the the contents of the save files - we will use the rooms later
+        List<GameObject> objects;
         // Rectangle viewBounds; // I want to try to work it out so that the game changes resolution cleanly so we'll be using this for graphx
 
         // any rooms will be defined here as we get them added
@@ -59,6 +64,12 @@ namespace GamePrototype
             // of a Dictionary, with strings for the key and values being Texture2Ds. If you do decide to do it that way just add it to the
             // attributes.
 
+            // Caleb - this is a temporary solution to loading sprites until we have a dictionary
+            foreach (GameObject go in objects)
+            {
+                go.LoadContent(Content.Load<Texture2D>(go.SpriteName));
+            }
+
             // loads the bedroom texture
             bedRoomTexture = Content.Load<Texture2D>("bdroom bckground");
             bedRoom = new Room(new Rectangle(50, 50, GraphicsDevice.Viewport.Width - 90, GraphicsDevice.Viewport.Height - 5), bedRoomTexture);
@@ -76,10 +87,12 @@ namespace GamePrototype
             // initialize enums
             gameState = GameState.MainMenu;
             activeRoom = CurrentRoom.Bedroom;
-
+            data = new SaveData();
             // initializes the bedroom
-            
-
+            // Caleb - writes appropriate data to file, will save later
+            data.WriteBedroom();
+            // Caleb - reads GameObjects from the file, stores it in objects
+            objects = data.ReadBedroom();
             base.Initialize();
            
         }
@@ -166,6 +179,11 @@ namespace GamePrototype
             // calls the bedroom draw command
             bedRoom.Draw(uSpriteBatch);
 
+            // TODO: Caleb - draws objects; is temporary
+            foreach (GameObject go in objects)
+            {
+                go.Draw(uSpriteBatch);
+            }
             // end spritebatch
             uSpriteBatch.End();
 
