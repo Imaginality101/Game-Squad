@@ -23,7 +23,7 @@ namespace GamePrototype
         
     // enums for use in program, we need a GameState and a CurrentRoom
     enum GameState { MainMenu, Game, GMenu, Win}
-    enum CurrentRoom { Bedroom } // We'll start with just Bedroom for now, when we expand to more rooms add them to the end of the state list
+    enum CurrentRoom { Bedroom, Closet, Bathroom } // We'll start with just Bedroom for now, when we expand to more rooms add them to the end of the state list
     public class Game1 : Game
     {
         // define enums
@@ -43,6 +43,9 @@ namespace GamePrototype
 
         //
         Texture2D bedRoomTexture;
+        // Keyboard states
+        KeyboardState kbState;
+        KeyboardState prevKbState;
         
         public Game1()
         {
@@ -119,6 +122,46 @@ namespace GamePrototype
 
             // TODO: The game's update function should primarily call the Update function of the active Room. That should run through inside the Room and update all the objects in it.
             // TODO: Check if menus are open or the open button has been pressed, and if so update them
+            kbState = Keyboard.GetState();
+            switch (gameState)
+            {
+                case GameState.MainMenu:
+                    // TODO: May have buttons in main menu, the Enter key is just temporary
+                    if (kbState.IsKeyDown(Keys.Enter) && !prevKbState.IsKeyDown(Keys.Enter))
+                    {
+                        gameState = GameState.Game;
+                    }
+                    break;
+                case GameState.Game:
+                    // switch between rooms, update the right room
+                    switch (activeRoom)
+                    {
+                        case CurrentRoom.Bedroom:
+                            bedRoom.Update(gameTime);
+                            break;
+                        case CurrentRoom.Closet:
+                            // TODO: update closet
+                            break;
+                        case CurrentRoom.Bathroom:
+                            // TODO: update bathroom
+                            break;
+                    }
+                    if (kbState.IsKeyDown(Keys.Escape) && !prevKbState.IsKeyDown(Keys.Escape))
+                    {
+                        gameState = GameState.GMenu;
+                    }
+                    break;
+                case GameState.GMenu:
+                    // TODO: update the phone menu
+                    break;
+                case GameState.Win:
+                    // TODO: same with main menu, press enter to continue
+                    if (kbState.IsKeyDown(Keys.Enter) && !prevKbState.IsKeyDown(Keys.Enter))
+                    {
+                        gameState = GameState.MainMenu;
+                    }
+                    break;
+            }
             base.Update(gameTime);
         }
 

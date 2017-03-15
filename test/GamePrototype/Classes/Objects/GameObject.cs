@@ -100,9 +100,7 @@ namespace GamePrototype.Classes.Objects
         {
             // draws the object
             // TODO: Reinstate original Draw()
-            //sprtBtch.Draw(sprite, positionRect, null, Color.White, 0f, SpriteOrigin, SpriteEffects.None, 0f);
             sprtBtch.Draw(sprite, positionRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
-            //sprtBtch.Draw(sprite, positionRect, Color.White);
         }
     }
 }
