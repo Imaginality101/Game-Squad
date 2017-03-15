@@ -43,6 +43,9 @@ namespace GamePrototype
 
         //
         Texture2D bedRoomTexture;
+        // Keyboard states
+        KeyboardState kbState;
+        KeyboardState prevKbState;
         
         public Game1()
         {
