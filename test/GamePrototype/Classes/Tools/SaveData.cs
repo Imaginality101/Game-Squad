@@ -39,7 +39,7 @@ namespace GamePrototype.Classes.Tools
             // name of texture to load
             bedRoomDataWriter.Write("BlueGuy");
             // vector components
-            bedRoomDataWriter.Write(50);
+            bedRoomDataWriter.Write(100);
             bedRoomDataWriter.Write(50);
             // end the file
             bedRoomDataWriter.Write("END");
