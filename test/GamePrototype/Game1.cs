@@ -179,41 +179,6 @@ namespace GamePrototype
                 case GameState.GMenu:
                     {
                         // TODO: update the phone menu
-                        // kat draws menu things 
-                        if (gameState == GameState.GMenu)
-                        {
-                            // main menu
-                            uSpriteBatch.Draw(startingPhoneState, new Rectangle(0, 0, 100, 100), Color.White);
-
-                            if (kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
-                            {
-                                // journal menu
-                                uSpriteBatch.Draw(textPhoneState, new Rectangle(0, 0, 100, 100), Color.White);
-                            }
-
-                            if (kbState.IsKeyDown(Keys.D2) && !prevKbState.IsKeyDown(Keys.D2))
-                            {
-                                // photo menu
-                                uSpriteBatch.Draw(imagePhoneState, new Rectangle(0, 0, 100, 100), Color.White);
-                            }
-
-                            if (kbState.IsKeyDown(Keys.D3) && !prevKbState.IsKeyDown(Keys.D3))
-                            {
-                                // settings menu
-                            }
-
-                            if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4))
-                            {
-                                // exit game code
-                            }
-
-                            if (kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
-                            {
-                                // close menu
-                                gameState = GameState.Game;
-                            }
-
-                        }
                         break;
                     }
                 case GameState.Win:
@@ -254,6 +219,43 @@ namespace GamePrototype
 
             // end spritebatch
             bedRoom.Draw(uSpriteBatch);
+
+            // kat draws menu things 
+            if (gameState == GameState.GMenu)
+            {
+                // main menu
+                uSpriteBatch.Draw(startingPhoneState, new Rectangle(0, 0, 100, 100), Color.White);
+
+                if (kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
+                {
+                    // journal menu
+                    uSpriteBatch.Draw(textPhoneState, new Rectangle(0, 0, 100, 100), Color.White);
+                }
+
+                if (kbState.IsKeyDown(Keys.D2) && !prevKbState.IsKeyDown(Keys.D2))
+                {
+                    // photo menu
+                    uSpriteBatch.Draw(imagePhoneState, new Rectangle(0, 0, 100, 100), Color.White);
+                }
+
+                if (kbState.IsKeyDown(Keys.D3) && !prevKbState.IsKeyDown(Keys.D3))
+                {
+                    // settings menu
+                }
+
+                if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4))
+                {
+                    // exit game code
+                }
+
+                if (kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
+                {
+                    // close menu
+                    gameState = GameState.Game;
+                }
+
+            }
+
             uSpriteBatch.End();
 
             // TODO: Check if menus are open, and draw them after the room if they are so that the room itself stays visible
