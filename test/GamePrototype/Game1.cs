@@ -56,6 +56,7 @@ namespace GamePrototype
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            content = Content;
         }
 
         // NOTE: this method will be long AF so it needs to be moved down to the bottom of the class
@@ -135,76 +136,84 @@ namespace GamePrototype
             switch (gameState)
             {
                 case GameState.MainMenu:
-                    // TODO: May have buttons in main menu, the Enter key is just temporary
-                    if (kbState.IsKeyDown(Keys.Enter) && !prevKbState.IsKeyDown(Keys.Enter))
                     {
-                        gameState = GameState.Game;
-                    }
-                    break;
-                case GameState.Game:
-                    // switch between rooms, update the right room
-                    switch (activeRoom)
-                    {
-                        case CurrentRoom.Bedroom:
-                            bedRoom.Update(gameTime);
-                            break;
-                        case CurrentRoom.Closet:
-                            // TODO: update closet
-                            break;
-                        case CurrentRoom.Bathroom:
-                            // TODO: update bathroom
-                            break;
-                    }
-                    if (kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
-                    {
-                        gameState = GameState.GMenu;
-                    }
-                    break;
-                case GameState.GMenu:
-                    // TODO: update the phone menu
-                    // kat draws menu things 
-                    if (gameState == GameState.GMenu)
-                    {
-                        // main menu
-                        uSpriteBatch.Draw(startingPhoneState, new Rectangle(0, 0, 100, 100), Color.White);
-
-                        if (kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
+                        // TODO: May have buttons in main menu, the Enter key is just temporary
+                        if (kbState.IsKeyDown(Keys.Enter) && !prevKbState.IsKeyDown(Keys.Enter))
                         {
-                            // journal menu
-                            uSpriteBatch.Draw(textPhoneState, new Rectangle(0, 0, 100, 100), Color.White);
-                        }
-
-                        if (kbState.IsKeyDown(Keys.D2) && !prevKbState.IsKeyDown(Keys.D2))
-                        {
-                            // photo menu
-                            uSpriteBatch.Draw(imagePhoneState, new Rectangle(0, 0, 100, 100), Color.White);
-                        }
-
-                        if (kbState.IsKeyDown(Keys.D3) && !prevKbState.IsKeyDown(Keys.D3))
-                        {
-                            // settings menu
-                        }
-
-                        if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4))
-                        {
-                            // exit game code
-                        }
-
-                        if (kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
-                        {
-                            // close menu
                             gameState = GameState.Game;
                         }
-
+                        break;
                     }
-                    break;
-                case GameState.Win:
-                    // TODO: same with main menu, press enter to continue
-                    if (kbState.IsKeyDown(Keys.Enter) && !prevKbState.IsKeyDown(Keys.Enter))
+                case GameState.Game:
                     {
-                        gameState = GameState.MainMenu;
+                        // switch between rooms, update the right room
+                        switch (activeRoom)
+                        {
+                            case CurrentRoom.Bedroom:
+                                bedRoom.Update(gameTime);
+                                break;
+                            case CurrentRoom.Closet:
+                                // TODO: update closet
+                                break;
+                            case CurrentRoom.Bathroom:
+                                // TODO: update bathroom
+                                break;
+                        }
+                        if (kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
+                        {
+                            gameState = GameState.GMenu;
+                        }
+                        break;
                     }
-                    break;
+                case GameState.GMenu:
+                    {
+                        // TODO: update the phone menu
+                        // kat draws menu things 
+                        if (gameState == GameState.GMenu)
+                        {
+                            // main menu
+                            uSpriteBatch.Draw(startingPhoneState, new Rectangle(0, 0, 100, 100), Color.White);
+
+                            if (kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
+                            {
+                                // journal menu
+                                uSpriteBatch.Draw(textPhoneState, new Rectangle(0, 0, 100, 100), Color.White);
+                            }
+
+                            if (kbState.IsKeyDown(Keys.D2) && !prevKbState.IsKeyDown(Keys.D2))
+                            {
+                                // photo menu
+                                uSpriteBatch.Draw(imagePhoneState, new Rectangle(0, 0, 100, 100), Color.White);
+                            }
+
+                            if (kbState.IsKeyDown(Keys.D3) && !prevKbState.IsKeyDown(Keys.D3))
+                            {
+                                // settings menu
+                            }
+
+                            if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4))
+                            {
+                                // exit game code
+                            }
+
+                            if (kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
+                            {
+                                // close menu
+                                gameState = GameState.Game;
+                            }
+
+                        }
+                        break;
+                    }
+                case GameState.Win:
+                    {
+                        // TODO: same with main menu, press enter to continue
+                        if (kbState.IsKeyDown(Keys.Enter) && !prevKbState.IsKeyDown(Keys.Enter))
+                        {
+                            gameState = GameState.MainMenu;
+                        }
+                        break;
+                    }
             }
             base.Update(gameTime);
         }
@@ -227,10 +236,10 @@ namespace GamePrototype
             bedRoom.Draw(uSpriteBatch);
 
             // TODO: Caleb - draws objects; is temporary 
-           //foreach (GameObject go in objects)
-           // {
-           //     go.Draw(uSpriteBatch);
-           // }
+           /*foreach (GameObject go in objects)
+            {
+                go.Draw(uSpriteBatch);
+            }*/
 
             // end spritebatch
             uSpriteBatch.End();

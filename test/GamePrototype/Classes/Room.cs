@@ -36,7 +36,6 @@ namespace GamePrototype.Classes
         // TODO: Update function, should go through the array of GameObjects and call all their update functions
         public void Update(GameTime gameTime)
         {
-            // if the room is nonempty, update it
             if (objectsInRoom != null)
             {
                 foreach (GameObject obj in objectsInRoom)
@@ -44,29 +43,27 @@ namespace GamePrototype.Classes
                     obj.Update(gameTime);
                 }
             }
-            
         }
         // TODO: Kat - Draw method, take a SpriteBatch param and draw any enabled objects in the room by calling their draw methods with it
-             public void Draw(SpriteBatch sprtBtch)
-             {
-                 // draws the room texture image/background
-                 sprtBtch.Draw(roomBG, roomBounds, Color.White); 
+        public void Draw(SpriteBatch sprtBtch)
+        {
+            // draws the room texture image/background
+            sprtBtch.Draw(roomBG, roomBounds, Color.White);
 
-                 // foreach gameobject in the list of the objects in the room, if objectsInRoomis not null
-                 if (objectsInRoom != null)
-                 {
-                    foreach (GameObject gmBjct in objectsInRoom)
+            // foreach gameobject in the list of the objects in the room
+            if (objectsInRoom != null)
+            {
+                foreach (GameObject gmBjct in objectsInRoom)
+                {
+                    // if the GameObject is enabled
+                    if (gmBjct.Enabled == true)
                     {
-                        // if the GameObject is enabled
-                        if (gmBjct.Enabled == true)
-                        {
-                            // calls the objects draw method
-                            gmBjct.Draw(sprtBtch);
-                        }
+                        // calls the objects draw method
+                        gmBjct.Draw(sprtBtch);
                     }
-                 }
-                 
-             }
+                }
+            }
+        }
         // TODO: Initialize method, should be used to tell which objects in the room are in what state after they're all loaded in using the constructor
         public void Initialize()
         {
