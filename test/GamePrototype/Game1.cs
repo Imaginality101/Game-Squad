@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Content;
 
 namespace GamePrototype
 {
@@ -31,6 +32,7 @@ namespace GamePrototype
         CurrentRoom activeRoom;
         // create attribute components specifically purposed for this class here
         GraphicsDeviceManager graphics;
+        ContentManager content; // added kat
         SpriteBatch uSpriteBatch; // this
         // Caleb - new attribute for reading data
         SaveData data;
@@ -41,8 +43,11 @@ namespace GamePrototype
         // any rooms will be defined here as we get them added
         Room bedRoom;
 
-        //
-        
+        // phone menu
+        Texture2D startingPhoneState;
+        Texture2D imagePhoneState;
+        Texture2D textPhoneState;
+
         // Keyboard states
         KeyboardState kbState;
         KeyboardState prevKbState;
@@ -66,6 +71,11 @@ namespace GamePrototype
             // TODO: Kat - Load texture sprites in here. What I'd recommend doing to make it easier to pass over to Declan is the use
             // of a Dictionary, with strings for the key and values being Texture2Ds. If you do decide to do it that way just add it to the
             // attributes.
+
+            // phone menu
+            startingPhoneState = content.Load<Texture2D>("phoneMain0");
+            imagePhoneState = content.Load<Texture2D>("phoneMain5");
+            textPhoneState = content.Load<Texture2D>("phoneMain7");
 
             // Caleb - this is a temporary solution to loading sprites until we have a dictionary
             foreach (GameObject go in objects)
@@ -94,6 +104,7 @@ namespace GamePrototype
             data.WriteBedroom();
             // Caleb - reads GameObjects from the file, stores it in objects
             objects = data.ReadBedroom();
+
             base.Initialize();
            
         }
@@ -144,13 +155,48 @@ namespace GamePrototype
                             // TODO: update bathroom
                             break;
                     }
-                    if (kbState.IsKeyDown(Keys.Escape) && !prevKbState.IsKeyDown(Keys.Escape))
+                    if (kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
                     {
                         gameState = GameState.GMenu;
                     }
                     break;
                 case GameState.GMenu:
                     // TODO: update the phone menu
+                    // kat draws menu things 
+                    if (gameState == GameState.GMenu)
+                    {
+                        // main menu
+                        uSpriteBatch.Draw(startingPhoneState, new Rectangle(0, 0, 100, 100), Color.White);
+
+                        if (kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
+                        {
+                            // journal menu
+                            uSpriteBatch.Draw(textPhoneState, new Rectangle(0, 0, 100, 100), Color.White);
+                        }
+
+                        if (kbState.IsKeyDown(Keys.D2) && !prevKbState.IsKeyDown(Keys.D2))
+                        {
+                            // photo menu
+                            uSpriteBatch.Draw(imagePhoneState, new Rectangle(0, 0, 100, 100), Color.White);
+                        }
+
+                        if (kbState.IsKeyDown(Keys.D3) && !prevKbState.IsKeyDown(Keys.D3))
+                        {
+                            // settings menu
+                        }
+
+                        if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4))
+                        {
+                            // exit game code
+                        }
+
+                        if (kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
+                        {
+                            // close menu
+                            gameState = GameState.Game;
+                        }
+
+                    }
                     break;
                 case GameState.Win:
                     // TODO: same with main menu, press enter to continue
@@ -177,14 +223,15 @@ namespace GamePrototype
             // begin spritebatch
             uSpriteBatch.Begin();
 
-            // calls the bedroom draw command
+            // calls the bedroom draw command - kat
             bedRoom.Draw(uSpriteBatch);
 
-            // TODO: Caleb - draws objects; is temporary
+            // TODO: Caleb - draws objects; is temporary 
            foreach (GameObject go in objects)
             {
                 go.Draw(uSpriteBatch);
             }
+
             // end spritebatch
             uSpriteBatch.End();
 

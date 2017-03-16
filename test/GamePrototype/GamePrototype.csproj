@@ -95,6 +95,15 @@
     <Content Include="Content\outdoorFULL.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\phoneMain0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\phoneMain5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\phoneMain7.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\sidetableFULL.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
