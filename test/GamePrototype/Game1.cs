@@ -73,9 +73,9 @@ namespace GamePrototype
             // attributes.
 
             // phone menu
-            startingPhoneState = content.Load<Texture2D>("phoneMain0");
-            imagePhoneState = content.Load<Texture2D>("phoneMain5");
-            textPhoneState = content.Load<Texture2D>("phoneMain7");
+            startingPhoneState = Content.Load<Texture2D>("phoneMain0");
+            imagePhoneState = Content.Load<Texture2D>("phoneMain5");
+            textPhoneState = Content.Load<Texture2D>("phoneMain7");
 
             // Caleb - this is a temporary solution to loading sprites until we have a dictionary
             foreach (GameObject go in objects)
@@ -227,10 +227,10 @@ namespace GamePrototype
             bedRoom.Draw(uSpriteBatch);
 
             // TODO: Caleb - draws objects; is temporary 
-           foreach (GameObject go in objects)
-            {
-                go.Draw(uSpriteBatch);
-            }
+           //foreach (GameObject go in objects)
+           // {
+           //     go.Draw(uSpriteBatch);
+           // }
 
             // end spritebatch
             uSpriteBatch.End();
