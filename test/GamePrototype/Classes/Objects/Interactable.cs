@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace GamePrototype.Classes.Objects
 {
@@ -14,7 +16,7 @@ namespace GamePrototype.Classes.Objects
         Clue keyRequired;
         Boolean flaggedForUse;
 
-        public Interactable():base()
+        public Interactable(Texture2D txtr, Point posParam):base()
         {
             flaggedForUse = false;
         }
@@ -25,7 +27,7 @@ namespace GamePrototype.Classes.Objects
         public Clue RequiredClue
         {
             get { return keyRequired; }
-
+            set { keyRequired = value; }
         }
 
     }

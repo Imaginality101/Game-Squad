@@ -75,7 +75,6 @@ namespace GamePrototype
 
             // loads the bedroom texture by giving the room the ability to go it locally
             bedRoom = new Room(GraphicsDevice,Content);
-
         }
 
         /// <summary>
