@@ -48,7 +48,7 @@ namespace GamePrototype.Classes
                  sprtBtch.Draw(roomBG, roomBounds, Color.White); 
 
                  // foreach gameobject in the list of the objects in the room
-                /* foreach(GameObject gmBjct in objectsInRoom)
+                 foreach(GameObject gmBjct in objectsInRoom)
                  {
                      // if the GameObject is enabled
                      if (gmBjct.Enabled == true)
@@ -56,7 +56,7 @@ namespace GamePrototype.Classes
                          // calls the objects draw method
                          gmBjct.Draw(sprtBtch);
                      }
-                 } */
+                 } 
              }
         // TODO: Initialize method, should be used to tell which objects in the room are in what state after they're all loaded in using the constructor
         public void Initialize()

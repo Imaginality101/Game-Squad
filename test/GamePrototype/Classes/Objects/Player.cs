@@ -5,15 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GamePrototype.Classes.Objects
 {
+    enum PlayerDir { FaceDown, FaceUp, FaceLeft, FaceRight}
+    enum PlayerState { Still, Moving, Touching}
     class Player : GameObject, Tools.IAnimated, Tools.IControlled
     {
         private Rectangle[][] animFrames; // source rectangles to be used in drawing the player
         private Vector2 moveQueue;
+        private PlayerDir playerDirection; // get direction the player is facing
+        private PlayerState playerState; // what the player is doing
 
         // TODO: Player constructor, should take the same sort of information as well as potentially a Menu object. We'd feed the overall Game's Menu into that.
+        public Player(Texture2D spriteSheet, Point startingPos):base(spriteSheet, startingPos)
+        {
+            moveQueue = Vector2.Zero; // initialize moveQueue to a zero vector
+            playerDirection = PlayerDir.FaceDown; // start out facing downwards for now
+            playerState = PlayerState.Still; // not moving at first
+        }
         // TODO: Update method override, should check player input and movement
         public override void Update(GameTime gameTime)
         {
@@ -36,9 +47,10 @@ namespace GamePrototype.Classes.Objects
 
         public void CheckInput()
         {
-            
-            // TODO: This method should be called by the update function, this is where keyboard state checking should go.
 
+            // TODO: This method should be called by the update function, this is where keyboard state checking should go.
+            KeyboardState kbState = Keyboard.GetState();
+            
         }
 
         public void CheckProximity(GameObject target)
@@ -64,15 +76,6 @@ namespace GamePrototype.Classes.Objects
             else
             {
                 return false;
-            }
-        }
-
-        // implementation of keyboard property
-        public KeyboardState KeyBoard
-        {
-            get
-            {
-                return Keyboard.GetState();
             }
         }
 

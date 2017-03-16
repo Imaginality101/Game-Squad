@@ -10,6 +10,5 @@ namespace GamePrototype.Classes.Tools
     interface IControlled
     {
         void CheckInput();
-        KeyboardState KeyBoard { get; }
     }
 }

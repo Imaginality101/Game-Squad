@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GamePrototype.Classes.Menu
 {
@@ -21,14 +22,10 @@ namespace GamePrototype.Classes.Menu
             
         }
 
-        public KeyboardState KeyBoard
+        public void Draw(SpriteBatch spriteBatch)
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
 
+        }
     }
 
     // TODO: Menu class will need an update and draw method, should check for input
