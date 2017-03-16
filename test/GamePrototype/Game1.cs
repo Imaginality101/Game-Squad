@@ -99,6 +99,17 @@ namespace GamePrototype
             // initialize enums
             gameState = GameState.Game;//<---------------------------------HEY LOOK AT ME----------IM CHANGED FOR TESTING------------
             activeRoom = CurrentRoom.Bedroom;
+
+            // TODO: Screen sizes here
+            graphics.PreferredBackBufferWidth = 1728;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 972;   // set this value to the desired height of your window
+            //graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
+           // graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
+
+            //set the GraphicsDeviceManager's fullscreen property
+            //graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
+
             data = new SaveData();
             // initializes the bedroom
             // Caleb - writes appropriate data to file, will save later
@@ -233,15 +244,16 @@ namespace GamePrototype
             uSpriteBatch.Begin();
 
             // calls the bedroom draw command - kat
-            bedRoom.Draw(uSpriteBatch);
+
 
             // TODO: Caleb - draws objects; is temporary 
-           /*foreach (GameObject go in objects)
-            {
-                go.Draw(uSpriteBatch);
-            }*/
+            /*foreach (GameObject go in objects)
+             {
+                 go.Draw(uSpriteBatch);
+             }*/
 
             // end spritebatch
+            bedRoom.Draw(uSpriteBatch);
             uSpriteBatch.End();
 
             // TODO: Check if menus are open, and draw them after the room if they are so that the room itself stays visible
