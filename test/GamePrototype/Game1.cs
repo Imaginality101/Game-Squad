@@ -37,7 +37,7 @@ namespace GamePrototype
         // Caleb - new attribute for reading data
         SaveData data;
         // Caleb - List<GameObject> attribute that will be assigned the the contents of the save files - we will use the rooms later
-        List<GameObject> objects;
+        //List<GameObject> objects;
         // Rectangle viewBounds; // I want to try to work it out so that the game changes resolution cleanly so we'll be using this for graphx
 
         // any rooms will be defined here as we get them added
@@ -79,10 +79,10 @@ namespace GamePrototype
             textPhoneState = Content.Load<Texture2D>("phoneMain7");
 
             // Caleb - this is a temporary solution to loading sprites until we have a dictionary
-            foreach (GameObject go in objects)
+            /*foreach (GameObject go in objects)
             {
                 go.LoadContent(Content.Load<Texture2D>(go.SpriteName));
-            }
+            }*/
 
             // loads the bedroom texture by giving the room the ability to go it locally
             bedRoom = new Room(GraphicsDevice,Content);
@@ -104,7 +104,7 @@ namespace GamePrototype
             // Caleb - writes appropriate data to file, will save later
             data.WriteBedroom();
             // Caleb - reads GameObjects from the file, stores it in objects
-            objects = data.ReadBedroom();
+            //objects = data.ReadBedroom();
 
             base.Initialize();
            
