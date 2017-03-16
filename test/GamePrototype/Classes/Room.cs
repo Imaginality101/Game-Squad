@@ -19,13 +19,19 @@ namespace GamePrototype.Classes
         Texture2D roomBG; // Texture for the room itself, draw this before any of the objects in it
         private Rectangle roomBounds; // The size of the room, will be used for bounds checks
         private List<GameObject> objectsInRoom; // as requested, list format
+        Vector2 origin; //added: Delcan //Use: using this to center the texture of the room. I dont want to use the viewport bounds because it would scale the texture based on the window size. Id like to have the bg relatively static and then have the furniture relative to this texture.
+        GraphicsDevice graphics;//Added: Declan //Uses: allows referanced to the graphics bounds
+        ContentManager content;//Added Delcan //Uses: Allows for the room clas to load the content locally so that the main Game1 doen't become overrun with texture loading
         // private Rectangle viewBounds; // Doesn't necessarily need to be used unless we go for resolution scalability
 
         // TODO: Parameterized constructor, needs to take a collection of GameObjects as a param
-        public Room(Rectangle bounds, Texture2D bg)
+        public Room(GraphicsDevice gd, ContentManager ctm)
         {
-            roomBounds = bounds; // Declan - If you're setting up stuff, this
-            roomBG = bg;
+            content = ctm;
+            graphics = gd;
+            origin = new Vector2(graphics.Viewport.Width / 2, graphics.Viewport.Height / 2);
+            roomBG = content.Load<Texture2D>("backgroundFULL");
+            roomBounds = new Rectangle((int)origin.X - (1382 / 2), (int)origin.Y - (972 / 2), 1382, 972);
         }
         // TODO: Update function, should go through the array of GameObjects and call all their update functions
         public void Update(GameTime gameTime)

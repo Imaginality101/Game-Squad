@@ -42,7 +42,7 @@ namespace GamePrototype
         Room bedRoom;
 
         //
-        Texture2D bedRoomTexture;
+        
         // Keyboard states
         KeyboardState kbState;
         KeyboardState prevKbState;
@@ -73,9 +73,8 @@ namespace GamePrototype
                 go.LoadContent(Content.Load<Texture2D>(go.SpriteName));
             }
 
-            // loads the bedroom texture
-            bedRoomTexture = Content.Load<Texture2D>("bdroom bckground");
-            bedRoom = new Room(new Rectangle(50, 50, GraphicsDevice.Viewport.Width - 90, GraphicsDevice.Viewport.Height - 5), bedRoomTexture);
+            // loads the bedroom texture by giving the room the ability to go it locally
+            bedRoom = new Room(GraphicsDevice,Content);
 
         }
 
@@ -88,7 +87,7 @@ namespace GamePrototype
         protected override void Initialize()
         {
             // initialize enums
-            gameState = GameState.MainMenu;
+            gameState = GameState.Game;//<---------------------------------HEY LOOK AT ME----------IM CHANGED FOR TESTING------------
             activeRoom = CurrentRoom.Bedroom;
             data = new SaveData();
             // initializes the bedroom
@@ -183,7 +182,7 @@ namespace GamePrototype
             bedRoom.Draw(uSpriteBatch);
 
             // TODO: Caleb - draws objects; is temporary
-            foreach (GameObject go in objects)
+           foreach (GameObject go in objects)
             {
                 go.Draw(uSpriteBatch);
             }
