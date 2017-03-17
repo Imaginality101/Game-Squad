@@ -63,7 +63,7 @@ namespace GamePrototype.Classes.Tools
             bathdoor = content.Load<Texture2D>("bathroomdoorFULL");              bathdoorRect = new Rectangle((int)origin.X + 350, (int)origin.Y - 530, 172, 172);
             closetdoor = content.Load<Texture2D>("closetdoorFULL");                 closterdoorRect = new Rectangle((int)origin.X - 685, (int)origin.Y + 230, 172, 172);
             //background = content.Load<Texture2D>("backgroundFULL");               backgroundRect = new Rectangle((int)origin.X - (1382 / 2), (int)origin.Y - (972 / 2), 1382, 972);
-            furnatureDict.Add(bed, bedRect);
+            /*furnatureDict.Add(bed, bedRect);
             furnatureDict.Add(tv, tvRect);
             furnatureDict.Add(sidetab1, sidetab1Rect);
             furnatureDict.Add(sidetab2, sidetab2Rect);
@@ -72,6 +72,7 @@ namespace GamePrototype.Classes.Tools
             furnatureDict.Add(outdoor, outdoorRect);
             furnatureDict.Add(bathdoor, bathdoorRect);
             furnatureDict.Add(closetdoor, closterdoorRect);
+            */
         }
         public void DrawBedroom()
         {

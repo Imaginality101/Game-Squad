@@ -146,6 +146,7 @@ namespace GamePrototype
 
             // TODO: The game's update function should primarily call the Update function of the active Room. That should run through inside the Room and update all the objects in it.
             // TODO: Check if menus are open or the open button has been pressed, and if so update them
+            prevKbState = kbState;
             kbState = Keyboard.GetState();
             switch (gameState)
             {
@@ -182,6 +183,41 @@ namespace GamePrototype
                 case GameState.GMenu:
                     {
                         // TODO: update the phone menu
+                        // kat draws menu things 
+                        if (gameState == GameState.GMenu)
+                        {
+                            // main menu
+                            uSpriteBatch.Draw(startingPhoneState, new Rectangle(0, 0, 100, 100), Color.White);
+
+                            if (kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
+                            {
+                                // journal menu
+                                uSpriteBatch.Draw(textPhoneState, new Rectangle(0, 0, 100, 100), Color.White);
+                            }
+
+                            if (kbState.IsKeyDown(Keys.D2) && !prevKbState.IsKeyDown(Keys.D2))
+                            {
+                                // photo menu
+                                uSpriteBatch.Draw(imagePhoneState, new Rectangle(0, 0, 100, 100), Color.White);
+                            }
+
+                            if (kbState.IsKeyDown(Keys.D3) && !prevKbState.IsKeyDown(Keys.D3))
+                            {
+                                // settings menu
+                            }
+
+                            if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4))
+                            {
+                                // exit game code
+                            }
+
+                            if (kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
+                            {
+                                // close menu
+                                gameState = GameState.Game;
+                            }
+
+                        }
                         break;
                     }
                 case GameState.Win:
@@ -212,7 +248,7 @@ namespace GamePrototype
             uSpriteBatch.Begin();
 
             // calls the bedroom draw command - kat
-
+            bedRoom.Draw(uSpriteBatch);
 
             // TODO: Caleb - draws objects; is temporary 
             /*foreach (GameObject go in objects)
@@ -220,45 +256,9 @@ namespace GamePrototype
                  go.Draw(uSpriteBatch);
              }*/
 
+            //furnatureSet.DrawBedroom(); //kat commented out for now
+
             // end spritebatch
-            bedRoom.Draw(uSpriteBatch);
-            furnatureSet.DrawBedroom();
-            // kat draws menu things 
-            if (gameState == GameState.GMenu)
-            {
-                // main menu
-                uSpriteBatch.Draw(startingPhoneState, new Rectangle(0, 0, 100, 100), Color.White);
-
-                if (kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
-                {
-                    // journal menu
-                    uSpriteBatch.Draw(textPhoneState, new Rectangle(0, 0, 100, 100), Color.White);
-                }
-
-                if (kbState.IsKeyDown(Keys.D2) && !prevKbState.IsKeyDown(Keys.D2))
-                {
-                    // photo menu
-                    uSpriteBatch.Draw(imagePhoneState, new Rectangle(0, 0, 100, 100), Color.White);
-                }
-
-                if (kbState.IsKeyDown(Keys.D3) && !prevKbState.IsKeyDown(Keys.D3))
-                {
-                    // settings menu
-                }
-
-                if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4))
-                {
-                    // exit game code
-                }
-
-                if (kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
-                {
-                    // close menu
-                    gameState = GameState.Game;
-                }
-
-            }
-
             uSpriteBatch.End();
 
             // TODO: Check if menus are open, and draw them after the room if they are so that the room itself stays visible
