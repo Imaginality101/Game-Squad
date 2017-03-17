@@ -62,15 +62,15 @@ namespace GamePrototype.Classes
             // more kat trying things
             textureList = new List<Texture2D>();
             rectangleList = new List<Rectangle>();
-            textureList.Add(bed); rectangleList.Add(bedRect);
-            textureList.Add(tv); rectangleList.Add(tvRect);
-            textureList.Add(sidetab1); rectangleList.Add(sidetab1Rect);
-            textureList.Add(sidetab2); rectangleList.Add(sidetab2Rect);
-            textureList.Add(book); rectangleList.Add(bookRect);
-            textureList.Add(dress); rectangleList.Add(dressRect);
             textureList.Add(outdoor); rectangleList.Add(outdoorRect);
             textureList.Add(bathdoor); rectangleList.Add(bathdoorRect);
             textureList.Add(closetdoor); rectangleList.Add(closetdoorRect);
+            textureList.Add(tv); rectangleList.Add(tvRect);
+            textureList.Add(sidetab2); rectangleList.Add(sidetab2Rect);
+            textureList.Add(bed); rectangleList.Add(bedRect);
+            textureList.Add(sidetab1); rectangleList.Add(sidetab1Rect);
+            textureList.Add(book); rectangleList.Add(bookRect);
+            textureList.Add(dress); rectangleList.Add(dressRect);
         }
 
         // TODO: Initialize method, should be used to tell which objects in the room are in what state after they're all loaded in using the constructor
