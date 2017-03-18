@@ -9,17 +9,50 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GamePrototype.Classes.Menu
 {
+    enum Category { Main, Journal, Clues, Settings }
+    enum SelectedEntry { TopLeft, TopRight, BotLeft, BotRight, Upper, Lower }
+
     class Menu : Tools.IControlled
     {
-        enum Category { Main, Journal, Clues, Settings}
-        
+
+        private Category activeMenu;
+        private SelectedEntry selectedEntry;
         Clue openedClue; // so the menu knows if the player's chosen a clue to look at
         Dictionary<Clue, Boolean> clueList;
 
+        public Menu()
+        {
+            activeMenu = Category.Main;
+            selectedEntry = SelectedEntry.TopRight;
+        }
+
+        public void Update()
+        {
+            CheckInput();
+        }
 
         public void CheckInput()
         {
-            
+            KeyboardState kbState = Keyboard.GetState();
+            switch(selectedEntry)
+            {
+                case SelectedEntry.TopLeft:
+                    {
+                        break;
+                    }
+                case SelectedEntry.TopRight:
+                    {
+                        break;
+                    }
+                case SelectedEntry.BotLeft:
+                    {
+                        break;
+                    }
+                case SelectedEntry.BotRight:
+                    {
+                        break;
+                    }
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

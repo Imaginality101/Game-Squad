@@ -12,6 +12,7 @@ namespace GamePrototype.Classes.Objects
     enum PlayerDir { FaceDown, WalkDown, FaceUp, WalkUp, FaceLeft, WalkLeft, FaceRight, WalkRight}
     class Player : GameObject, Tools.IAnimated, Tools.IControlled
     {
+        KeyboardState kbState;
         private Rectangle[][] animFrames; // source rectangles to be used in drawing the player
         private Rectangle moveBounds;
         private Vector2 moveQueue;
@@ -53,7 +54,7 @@ namespace GamePrototype.Classes.Objects
 
             moveQueue = Vector2.Zero; // reset moveQueue every update
 
-            KeyboardState kbState = Keyboard.GetState();
+            kbState = Keyboard.GetState();
             if (kbState.IsKeyDown(Keys.Up))
             {
                 moveQueue.Y -= 10;
