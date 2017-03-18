@@ -44,10 +44,31 @@ namespace GamePrototype
         Room bedRoom;
         ObjectSetup furnatureSet;
 
-        // phone menu
+        // phone menu - kat
         Texture2D startingPhoneState;
         Texture2D imagePhoneState;
         Texture2D textPhoneState;
+
+        // playerdir variable for walking - kat
+        PlayerDir playerDirection;
+
+        // player - kat
+        Texture2D faceUp;
+        Texture2D faceDown;
+        Texture2D faceRight;
+        Texture2D faceRight1;
+        Texture2D faceRight2;
+        Texture2D faceRight3;
+        Texture2D faceRight4;
+        Texture2D faceRight5;
+        Texture2D faceRight6;
+        Texture2D faceRight7;
+        Texture2D faceRight8;
+        Rectangle protagRect;
+        Vector2 playerCenter;
+        List<Texture2D> protagTextureRight;
+        double timer;
+        int i;
 
         // Keyboard states
         KeyboardState kbState;
@@ -74,10 +95,36 @@ namespace GamePrototype
             // of a Dictionary, with strings for the key and values being Texture2Ds. If you do decide to do it that way just add it to the
             // attributes.
 
-            // phone menu
+            // phone menu - kat
             startingPhoneState = Content.Load<Texture2D>("phoneMain0");
             imagePhoneState = Content.Load<Texture2D>("phoneMain5");
             textPhoneState = Content.Load<Texture2D>("phoneMain7");
+
+            // protag - kat
+            faceUp = content.Load<Texture2D>("backStationary");
+            faceDown = content.Load<Texture2D>("frontStationary");
+            faceRight = content.Load<Texture2D>("profileStationary");
+            faceRight1 = content.Load<Texture2D>("profile1");
+            faceRight2 = content.Load<Texture2D>("profile2");
+            faceRight3 = content.Load<Texture2D>("profile3");
+            faceRight4 = content.Load<Texture2D>("profile4");
+            faceRight5 = content.Load<Texture2D>("profile5");
+            faceRight6 = content.Load<Texture2D>("profile6");
+            faceRight7 = content.Load<Texture2D>("profile7");
+            faceRight8 = content.Load<Texture2D>("profile8");
+            protagRect = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 50, graphics.PreferredBackBufferHeight / 2 - 50, 192, 192);
+            protagTextureRight = new List<Texture2D>();
+            protagTextureRight.Add(faceRight1);
+            protagTextureRight.Add(faceRight2);
+            protagTextureRight.Add(faceRight3);
+            protagTextureRight.Add(faceRight4);
+            protagTextureRight.Add(faceRight5);
+            protagTextureRight.Add(faceRight6);
+            protagTextureRight.Add(faceRight7);
+            protagTextureRight.Add(faceRight8);
+            playerCenter = new Vector2(faceUp.Width / 2, faceUp.Height / 2);
+            timer = .1;
+            i = 0;
 
             // Caleb - this is a temporary solution to loading sprites until we have a dictionary
             /*foreach (GameObject go in objects)
@@ -161,6 +208,9 @@ namespace GamePrototype
                     }
                 case GameState.Game:
                     {
+                        // timer for animation
+                        timer -= gameTime.ElapsedGameTime.TotalSeconds;
+
                         // switch between rooms, update the right room
                         switch (activeRoom)
                         {
@@ -177,6 +227,59 @@ namespace GamePrototype
                         if (kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
                         {
                             gameState = GameState.GMenu;
+                        }
+                        // kat get person state
+                        if (kbState.IsKeyDown(Keys.W) && !prevKbState.IsKeyDown(Keys.W))
+                        {
+                            playerDirection = PlayerDir.FaceUp;
+                        }
+                        if (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyDown(Keys.W))
+                        {
+                            playerDirection = PlayerDir.WalkUp;
+                            protagRect = new Rectangle(protagRect.X, protagRect.Y - 2, faceUp.Width, faceUp.Height);
+                        }
+                        if (!kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyDown(Keys.W))
+                        {
+                            playerDirection = PlayerDir.FaceUp;
+                        }
+                        if (kbState.IsKeyDown(Keys.A) && !prevKbState.IsKeyDown(Keys.A))
+                        {
+                            playerDirection = PlayerDir.FaceLeft;
+                        }
+                        if (kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyDown(Keys.A))
+                        {
+                            playerDirection = PlayerDir.WalkLeft;
+                            protagRect = new Rectangle(protagRect.X - 2, protagRect.Y, faceUp.Width, faceUp.Height);
+                        }
+                        if (!kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyDown(Keys.A))
+                        {
+                            playerDirection = PlayerDir.FaceLeft;
+                        }
+                        if (kbState.IsKeyDown(Keys.S) && !prevKbState.IsKeyDown(Keys.S))
+                        {
+                            playerDirection = PlayerDir.FaceDown;
+                        }
+                        if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyDown(Keys.S))
+                        {
+                            playerDirection = PlayerDir.WalkDown;
+                            protagRect = new Rectangle(protagRect.X, protagRect.Y + 2, faceUp.Width, faceUp.Height);
+                        }
+                        if (!kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyDown(Keys.S))
+                        {
+                            playerDirection = PlayerDir.FaceDown;
+                        }
+                        if (kbState.IsKeyDown(Keys.D) && !prevKbState.IsKeyDown(Keys.D))
+                        {
+                            playerDirection = PlayerDir.FaceRight;
+                        }
+                        if (kbState.IsKeyDown(Keys.D) && prevKbState.IsKeyDown(Keys.D))
+                        {
+                            playerDirection = PlayerDir.WalkRight;
+                            protagRect = new Rectangle(protagRect.X + 2, protagRect.Y, faceUp.Width, faceUp.Height);
+                        }
+                        if (!kbState.IsKeyDown(Keys.D) && prevKbState.IsKeyDown(Keys.D))
+                        {
+                            playerDirection = PlayerDir.FaceRight;
                         }
                         break;
                     }
@@ -249,6 +352,58 @@ namespace GamePrototype
 
             // calls the bedroom draw command - kat
             bedRoom.Draw(uSpriteBatch);
+
+            // player walking stuff - kat
+            if (playerDirection == PlayerDir.FaceUp)
+            {
+                uSpriteBatch.Draw(faceUp, protagRect, Color.White);
+            }
+            if (playerDirection == PlayerDir.WalkUp)
+            {
+                uSpriteBatch.Draw(faceUp, protagRect, Color.White);
+            }
+            if (playerDirection == PlayerDir.FaceLeft)
+            {
+                uSpriteBatch.Draw(faceRight, protagRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
+            }
+            if (playerDirection == PlayerDir.WalkLeft)
+            {
+                if (timer == 0 || timer < 0)
+                {
+                    i++;
+                    timer = .1;
+                    if (i >= protagTextureRight.Count)
+                    {
+                        i = 0;
+                    }
+                }
+                uSpriteBatch.Draw(protagTextureRight[i], protagRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
+            }
+            if (playerDirection == PlayerDir.FaceDown)
+            {
+                uSpriteBatch.Draw(faceDown, protagRect, Color.White);
+            }
+            if (playerDirection == PlayerDir.WalkDown)
+            {
+                uSpriteBatch.Draw(faceDown, protagRect, Color.White);
+            }
+            if (playerDirection == PlayerDir.FaceRight)
+            {
+                uSpriteBatch.Draw(faceRight, protagRect, Color.White);
+            }
+            if (playerDirection == PlayerDir.WalkRight)
+            {
+                if (timer == 0 || timer < 0)
+                {
+                    i++;
+                    timer = .1;
+                    if (i >= protagTextureRight.Count)
+                    {
+                        i = 0;
+                    }
+                }
+                uSpriteBatch.Draw(protagTextureRight[i], protagRect, Color.White);
+            }
 
             // TODO: Caleb - draws objects; is temporary 
             /*foreach (GameObject go in objects)
