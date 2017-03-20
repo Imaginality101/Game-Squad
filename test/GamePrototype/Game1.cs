@@ -196,6 +196,7 @@ namespace GamePrototype
             // TODO: Check if menus are open or the open button has been pressed, and if so update them
             prevKbState = kbState;
             kbState = Keyboard.GetState();
+            uSpriteBatch.Begin();
             switch (gameState)
             {
                 case GameState.MainMenu:
@@ -225,7 +226,7 @@ namespace GamePrototype
                                 // TODO: update bathroom
                                 break;
                         }
-                        if (kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
+                        if (kbState.IsKeyDown(Keys.Tab))// && !prevKbState.IsKeyDown(Keys.Tab))
                         {
                             gameState = GameState.GMenu;
                         }
@@ -315,7 +316,7 @@ namespace GamePrototype
                                 // exit game code
                             }
 
-                            if (kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
+                            if (kbState.IsKeyDown(Keys.R) && !prevKbState.IsKeyDown(Keys.R))
                             {
                                 // close menu
                                 gameState = GameState.Game;
@@ -334,6 +335,7 @@ namespace GamePrototype
                         break;
                     }
             }
+            uSpriteBatch.End();
             base.Update(gameTime);
         }
 
