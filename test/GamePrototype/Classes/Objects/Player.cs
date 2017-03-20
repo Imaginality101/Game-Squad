@@ -9,14 +9,15 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GamePrototype.Classes.Objects
 {
-    enum PlayerDir { FaceDown, FaceUp, FaceLeft, FaceRight}
+    enum PlayerDir { FaceDown, WalkDown, FaceUp, WalkUp, FaceLeft, WalkLeft, FaceRight, WalkRight}
     class Player : GameObject, Tools.IAnimated, Tools.IControlled
     {
+        KeyboardState kbState;
         private Rectangle[][] animFrames; // source rectangles to be used in drawing the player
         private Rectangle moveBounds;
         private Vector2 moveQueue;
         private PlayerDir playerDirection; // get direction the player is facing
-        
+
         // TODO: Player constructor, should take the same sort of information as well as potentially a Menu object. We'd feed the overall Game's Menu into that.
         public Player(Texture2D spriteSheet, Point startingPos, Rectangle bounds):base(spriteSheet, startingPos)
         {
@@ -53,7 +54,7 @@ namespace GamePrototype.Classes.Objects
 
             moveQueue = Vector2.Zero; // reset moveQueue every update
 
-            KeyboardState kbState = Keyboard.GetState();
+            kbState = Keyboard.GetState();
             if (kbState.IsKeyDown(Keys.Up))
             {
                 moveQueue.Y -= 10;
