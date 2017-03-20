@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Content;
+using System.Threading;
 
 namespace GamePrototype
 {
@@ -156,20 +157,21 @@ namespace GamePrototype
                         break;
                     }
                 case GameState.Game:
+                {
+                    // switch between rooms, update the right room
+                    switch (activeRoom)
                     {
-                        // switch between rooms, update the right room
-                        switch (activeRoom)
-                        {
-                            case CurrentRoom.Bedroom:
-                                bedRoom.Update(gameTime);
-                                break;
-                            case CurrentRoom.Closet:
-                                // TODO: update closet
-                                break;
-                            case CurrentRoom.Bathroom:
-                                // TODO: update bathroom
-                                break;
-                        }
+                        case CurrentRoom.Bedroom:
+                            bedRoom.Update(gameTime);
+                            break;
+                        case CurrentRoom.Closet:
+                            // TODO: update closet
+                            break;
+                        case CurrentRoom.Bathroom:
+                            // TODO: update bathroom
+                            break;
+                    }
+                        // if Tab is pressed once, swtich to GMenu
                         if (kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
                         {
                             gameState = GameState.GMenu;
@@ -179,12 +181,17 @@ namespace GamePrototype
                 case GameState.GMenu:
                     {
                         // TODO: update the phone menu
+                        // if R is pressed onnce, go to Game
+                        if (kbState.IsKeyDown(Keys.R) && prevKbState.IsKeyUp(Keys.R))
+                        {
+                            gameState = GameState.Game;
+                        }
                         break;
                     }
                 case GameState.Win:
                     {
                         // TODO: same with main menu, press enter to continue
-                        if (kbState.IsKeyDown(Keys.Enter) && !prevKbState.IsKeyDown(Keys.Enter))
+                        if (kbState.IsKeyDown(Keys.Enter) && prevKbState.IsKeyUp(Keys.Enter))
                         {
                             gameState = GameState.MainMenu;
                         }
@@ -248,11 +255,11 @@ namespace GamePrototype
                     // exit game code
                 }
 
-                if (kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
+                /*if (kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
                 {
                     // close menu
                     gameState = GameState.Game;
-                }
+                }*/
 
             }
 
