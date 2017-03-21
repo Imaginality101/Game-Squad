@@ -30,7 +30,8 @@ namespace GamePrototype.Classes.Objects
         {
             CheckInput(); // first get input to adjust movement queueing
             Move(gameTime);
-            
+            CheckBounds(moveBounds);
+
             base.Update(gameTime);
         }
         public void GetFrame()

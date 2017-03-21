@@ -34,10 +34,12 @@ namespace GamePrototype.Classes.Menu
         public void CheckInput()
         {
             KeyboardState kbState = Keyboard.GetState();
-            switch(selectedEntry)
+            
+            switch (selectedEntry)
             {
                 case SelectedEntry.TopLeft:
                     {
+
                         break;
                     }
                 case SelectedEntry.TopRight:
@@ -52,7 +54,7 @@ namespace GamePrototype.Classes.Menu
                     {
                         break;
                     }
-            }
+            }  
         }
 
         public void Draw(SpriteBatch spriteBatch)
