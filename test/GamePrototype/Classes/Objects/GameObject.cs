@@ -15,6 +15,8 @@ namespace GamePrototype.Classes.Objects
         private bool enabled;
         private Texture2D sprite;
         private Rectangle positionRect;
+        //private enum Direction { North, South, East, West };
+        //Direction dir;
         Point pos;
         // holds  name of texture; will be used later in Game1.LoadContent()
         string spriteName;
@@ -102,5 +104,40 @@ namespace GamePrototype.Classes.Objects
             // TODO: Reinstate original Draw()
             sprtBtch.Draw(sprite, positionRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
         }
+
+        // TODO: Caleb - I will try and handle collisions with these methods
+        // Called when the rectangles are intersecting
+        public void Collide(Player player)
+        {
+            // the difference between the centers of the player and GameObject; turn it into a unit vector
+            //Vector2 centerToCenter;
+            //centerToCenter = (this.positionRect.Center - playerRect.Center).ToVector2();
+            Rectangle playerRect = player.positionRect;
+            // if Player is above and to the right of object
+            if (playerRect.Y > this.positionRect.Y && playerRect.X > this.positionRect.X)
+            {
+                player.BlockUp();
+                player.BlockRight();
+            }
+            // if player is above and to the left of object
+            if (playerRect.Y > this.positionRect.Y && playerRect.X < this.positionRect.X)
+            {
+                player.BlockUp();
+                player.BlockLeft();
+            }
+            // if player is below and to the left of object
+            if (playerRect.Y < this.positionRect.Y && playerRect.X < this.positionRect.X)
+            {
+                player.BlockDown();
+                player.BlockLeft();
+            }
+            // if player is below and to the right of object
+            if (playerRect.Y < this.positionRect.Y && playerRect.X > this.positionRect.X)
+            {
+                player.BlockUp();
+                player.BlockLeft();
+            }
+        }
+
     }
 }

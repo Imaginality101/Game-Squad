@@ -94,6 +94,7 @@ namespace GamePrototype.Classes.Objects
             if (GlobalBounds.Left < roomBounds.Left)
             {
                 X += (roomBounds.Left - GlobalBounds.Left + 5);
+                Console.WriteLine("Left");
             }
             else if (GlobalBounds.Right > roomBounds.Right)
             {
@@ -121,6 +122,24 @@ namespace GamePrototype.Classes.Objects
             {
                 return false;
             }
+        }
+
+        // methods to block player from moving in the cardinal directions. Useful if collisions end up not being handled by the player class
+        public void BlockUp()
+        {
+            Y += 10;
+        }
+        public void BlockDown()
+        {
+            Y -= 10;
+        }
+        public void BlockLeft()
+        {
+            X += 10;
+        }
+        public void BlockRight()
+        {
+            X -= 10;
         }
 
     }
