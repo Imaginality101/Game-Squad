@@ -43,7 +43,7 @@ namespace GamePrototype
 
         // any rooms will be defined here as we get them added
         Room bedRoom;
-        ObjectSetup furnatureSet;
+        ObjectSetup furnitureSet;
 
         // phone menu - kat
         Texture2D startingPhoneState;
@@ -135,8 +135,8 @@ namespace GamePrototype
 
             // loads the bedroom texture by giving the room the ability to go it locally
             bedRoom = new Room(GraphicsDevice,Content);
-            furnatureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
-            furnatureSet.BedroomSetup();
+            furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
+            furnitureSet.BedroomSetup();
         }
 
         /// <summary>
@@ -414,7 +414,7 @@ namespace GamePrototype
                  go.Draw(uSpriteBatch);
              }*/
 
-            //furnatureSet.DrawBedroom(); //kat commented out for now
+            //furnitureSet.DrawBedroom(); //kat commented out for now
 
             // end spritebatch
             uSpriteBatch.End();
