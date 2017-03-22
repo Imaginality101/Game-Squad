@@ -138,7 +138,7 @@ namespace GamePrototype
             // loads the bedroom texture by giving the room the ability to go it locally
             bedRoom = new Room(GraphicsDevice,Content);
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
-            furnitureSet.BedroomSetup();
+            bedRoom.Objects = furnitureSet.BedroomSetup();
         }
 
         /// <summary>
