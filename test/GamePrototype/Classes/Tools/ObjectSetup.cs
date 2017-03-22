@@ -70,19 +70,19 @@ namespace GamePrototype.Classes.Tools
             outdoor = content.Load<Texture2D>("outdoorFULL");                          outdoorRect = new Rectangle((int)origin.X - 96, (int)origin.Y - 530, 172, 172);
             bathdoor = content.Load<Texture2D>("bathroomdoorFULL");              bathdoorRect = new Rectangle((int)origin.X + 350, (int)origin.Y - 530, 172, 172);
             closetdoor = content.Load<Texture2D>("closetdoorFULL");                 closetdoorRect = new Rectangle((int)origin.X - 685, (int)origin.Y + 230, 172, 172);
-            stickynote = content.Load<Texture2D>("stickynoteFull");                    stickynoteRect = new Rectangle((int)origin.X - 565,(int)origin.Y - 110, 86,86);
+            stickynote = content.Load<Texture2D>("stickynoteFull");                    stickynoteRect = new Rectangle((int)origin.X - 490,(int)origin.Y +13 0, 56,56);
 
             //adding them all to the gameobjectlist
-            objs.Add(new ClueObject(bed, bedRect,Clue.Clues["TenantDiary2"]));
-            objs.Add(new GameObject(tv, tvRect));
-            objs.Add(new ClueObject(sidetab1, sidetab1Rect,Clue.Clues["OldPhoto1"]));
-            objs.Add(new ClueObject(sidetab2, sidetab2Rect,Clue.Clues["News2"]));
-            objs.Add(new ClueObject(book, bookRect,Clue.Clues["TenantDiary1"]));
-            objs.Add(new GameObject(dress, dressRect));
             objs.Add(new GameObject(outdoor, outdoorRect));
             objs.Add(new GameObject(bathdoor, bathdoorRect));
-            objs.Add(new GameObject(closetdoor, closetdoorRect)); 
-            //objs.Add(new ClueObject(stickynote,stickynoteRect,Clue.Clues["Stickynote"]))
+            objs.Add(new GameObject(closetdoor, closetdoorRect));
+            objs.Add(new GameObject(tv, tvRect));
+            objs.Add(new ClueObject(sidetab2, sidetab2Rect, Clue.Clues["News2"]));
+            objs.Add(new ClueObject(bed, bedRect, Clue.Clues["TenantDiary2"]));
+            objs.Add(new ClueObject(sidetab1, sidetab1Rect, Clue.Clues["OldPhoto1"]));
+            objs.Add(new ClueObject(book, bookRect,Clue.Clues["TenantDiary1"]));
+            objs.Add(new GameObject(dress, dressRect));
+            objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false));
             return objs;
         }
     }
