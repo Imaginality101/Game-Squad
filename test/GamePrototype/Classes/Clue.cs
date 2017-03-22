@@ -53,7 +53,7 @@ namespace GamePrototype.Classes
             {"JaggedKnife", new Clue("Stained knife found in the bathtub. It's seems like a modified kitchen knife") },
             {"SpaCoupon", new Clue("It's an expired spa coupon... too bad.") },
             {"MedicineBottle", new Clue("It's a prescription for something called ”ARIPIPRAZOLE” the rest of the sicker is ripped.") },
-            {"StickyNote", new Clue("It has some phone numbers on it some are scribbled out.") }
+            {"StickyNote", new Clue("It has some phone numbers on it. Some are scribbled out.") }
         };
 
         // accessor property for dictionary, call this in setups
