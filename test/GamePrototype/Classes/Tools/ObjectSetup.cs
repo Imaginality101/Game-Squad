@@ -70,7 +70,7 @@ namespace GamePrototype.Classes.Tools
             outdoor = content.Load<Texture2D>("outdoorFULL");                          outdoorRect = new Rectangle((int)origin.X - 96, (int)origin.Y - 530, 172, 172);
             bathdoor = content.Load<Texture2D>("bathroomdoorFULL");              bathdoorRect = new Rectangle((int)origin.X + 350, (int)origin.Y - 530, 172, 172);
             closetdoor = content.Load<Texture2D>("closetdoorFULL");                 closetdoorRect = new Rectangle((int)origin.X - 685, (int)origin.Y + 230, 172, 172);
-            stickynote = content.Load<Texture2D>("stickynoteFull");                    stickynoteRect = new Rectangle((int)origin.X - 490,(int)origin.Y +13 0, 56,56);
+            stickynote = content.Load<Texture2D>("stickynoteFull");                    stickynoteRect = new Rectangle((int)origin.X - 490,(int)origin.Y +130, 56,56);
 
             //adding them all to the gameobjectlist
             objs.Add(new GameObject(outdoor, outdoorRect));
