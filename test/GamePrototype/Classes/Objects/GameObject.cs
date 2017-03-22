@@ -15,6 +15,7 @@ namespace GamePrototype.Classes.Objects
         private bool enabled;
         private Texture2D sprite;
         private Rectangle positionRect;
+        private bool collides;
         //private enum Direction { North, South, East, West };
         //Direction dir;
         Point pos;
@@ -32,6 +33,15 @@ namespace GamePrototype.Classes.Objects
             pos = psRct.Location;
             positionRect = psRct;
             enabled = true;
+            collides = true;
+        }
+        public GameObject(Texture2D txtr, Rectangle psRct, Boolean cl)
+        {
+            sprite = txtr;
+            pos = psRct.Location;
+            positionRect = psRct;
+            enabled = true;
+            collides = cl;
         }
         public GameObject(Texture2D txtr, Point posParam)
         {
@@ -39,6 +49,7 @@ namespace GamePrototype.Classes.Objects
             pos = posParam;
             positionRect = new Rectangle(pos.X, pos.Y, sprite.Width, sprite.Height);
             enabled = true;
+            collides = true;
         }
         // Caleb - GameObject constructor with boolean "enabled"
         public GameObject(bool isEnabled, string txtrName, Point posParam)
@@ -46,6 +57,7 @@ namespace GamePrototype.Classes.Objects
             enabled = isEnabled;
             spriteName = txtrName;
             pos = posParam;
+            collides = true;
             //positionRect = new Rectangle(posParam.X, posParam.Y, sprite.Width, sprite.Height); // removed because sprite is null at this point
         }
 
@@ -112,6 +124,11 @@ namespace GamePrototype.Classes.Objects
             sprtBtch.Draw(sprite, positionRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
         }
 
+        public Boolean Tangible // Accessor property to tell if the object should collide or not
+        {
+            get { return collides; }
+            set { collides = value; }
+        }
         // TODO: Caleb - I will try and handle collisions with these methods
         // Called when the rectangles are intersecting
         public void Collide(Player player)

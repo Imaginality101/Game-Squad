@@ -17,6 +17,10 @@ namespace GamePrototype.Classes.Objects
             givenClue = clGvn;
         }
 
+        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean collision) : base(txtr, psRct, collision)
+        {
+            givenClue = clGvn;
+        }
         // TODO: Interaction method
         public override void Interact(GameObject user)
         {
