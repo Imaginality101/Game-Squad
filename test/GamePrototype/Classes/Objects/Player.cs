@@ -13,6 +13,7 @@ namespace GamePrototype.Classes.Objects
     class Player : GameObject, Tools.IAnimated, Tools.IControlled
     {
         KeyboardState kbState;
+        GameObject flaggedInteractable;
         private Rectangle[][] animFrames; // source rectangles to be used in drawing the player
         private Rectangle moveBounds;
         private Vector2 moveQueue;
@@ -104,11 +105,13 @@ namespace GamePrototype.Classes.Objects
                     else if (((Interactable)obj).Usable == true)
                     {
                         ((Interactable)obj).Usable = false;
+                        flaggedInteractable = null;
                     }
                 }
                 if (closest != null && minDistance <= ((Sprite.Height / 2) + 20)) // if something was found in a reasonable proximity
                 {
                     closest.Usable = true;
+                    flaggedInteractable = closest;
                 }
             }
         }

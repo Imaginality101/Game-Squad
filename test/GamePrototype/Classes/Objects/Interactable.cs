@@ -25,7 +25,7 @@ namespace GamePrototype.Classes.Objects
         {
             flaggedForUse = false;
         }
-        public abstract void Interact(GameObject user); // Interaction, check if player has the requisite clue
+        public abstract void Interact(Player user); // Interaction, check if player has the requisite clue
 
         // property for required clue
         public Clue RequiredClue
