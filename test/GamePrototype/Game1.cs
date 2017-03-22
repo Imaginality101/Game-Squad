@@ -25,12 +25,14 @@ namespace GamePrototype
         
     // enums for use in program, we need a GameState and a CurrentRoom
     enum GameState { MainMenu, Game, GMenu, Win}
+    enum MenuState { Main, Journal, Photos, Settings, Power} // kat
     enum CurrentRoom { Bedroom, Closet, Bathroom } // We'll start with just Bedroom for now, when we expand to more rooms add them to the end of the state list
     public class Game1 : Game
     {
         // define enums
         GameState gameState;
         CurrentRoom activeRoom;
+        MenuState menuState; // kat
         // create attribute components specifically purposed for this class here
         GraphicsDeviceManager graphics;
         ContentManager content; // added kat
@@ -150,6 +152,7 @@ namespace GamePrototype
             // initialize enums
             gameState = GameState.Game;//<---------------------------------HEY LOOK AT ME----------IM CHANGED FOR TESTING------------
             activeRoom = CurrentRoom.Bedroom;
+            menuState = MenuState.Main; // kat
 
             // TODO: Screen sizes here
             graphics.PreferredBackBufferWidth = 1728;  // set this value to the desired width of your window
@@ -291,34 +294,42 @@ namespace GamePrototype
                         // kat draws menu things 
                         if (gameState == GameState.GMenu)
                         {
-                            // main menu
-                            uSpriteBatch.Draw(startingPhoneState, new Rectangle(0, 0, 100, 100), Color.White);
-
                             if (kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
                             {
                                 // journal menu
-                                uSpriteBatch.Draw(textPhoneState, new Rectangle(0, 0, 100, 100), Color.White);
+                                menuState = MenuState.Journal;
                             }
 
                             if (kbState.IsKeyDown(Keys.D2) && !prevKbState.IsKeyDown(Keys.D2))
                             {
                                 // photo menu
-                                uSpriteBatch.Draw(imagePhoneState, new Rectangle(0, 0, 100, 100), Color.White);
+                                menuState = MenuState.Photos;
                             }
 
                             if (kbState.IsKeyDown(Keys.D3) && !prevKbState.IsKeyDown(Keys.D3))
                             {
                                 // settings menu
+                                menuState = MenuState.Settings;
                             }
 
                             if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4))
                             {
                                 // exit game code
+                                menuState = MenuState.Power;
                             }
 
-                            if (kbState.IsKeyDown(Keys.R) && !prevKbState.IsKeyDown(Keys.R))
+                            /* NOT WORKING RIGHT NOW
+                            if (menuState == MenuState.Journal || menuState == MenuState.Photos || menuState == MenuState.Settings && kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
+                            {
+                                // back to main menu
+                                menuState = MenuState.Main;
+                            }
+                            */
+
+                            if (kbState.IsKeyDown(Keys.LeftShift) && !prevKbState.IsKeyDown(Keys.LeftShift)) // would like to make tab later but wasnt working
                             {
                                 // close menu
+                                menuState = MenuState.Main;
                                 gameState = GameState.Game;
                             }
 
@@ -406,6 +417,28 @@ namespace GamePrototype
                     }
                 }
                 uSpriteBatch.Draw(protagTextureRight[i], protagRect, Color.White);
+            }
+
+            // menu stuff kat
+            if (gameState == GameState.GMenu && menuState == MenuState.Main)
+            {
+                uSpriteBatch.Draw(startingPhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
+            }
+            if (gameState == GameState.GMenu &&  menuState == MenuState.Journal)
+            {
+                uSpriteBatch.Draw(textPhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
+            }
+            if (gameState == GameState.GMenu && menuState == MenuState.Photos)
+            {
+                uSpriteBatch.Draw(imagePhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
+            }
+            if (gameState == GameState.GMenu && menuState == MenuState.Settings)
+            {
+
+            }
+            if (gameState == GameState.GMenu && menuState == MenuState.Power)
+            {
+
             }
 
             // TODO: Caleb - draws objects; is temporary 
