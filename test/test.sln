@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{74A44C57-E688-4552-B9C1-EB60200E6DEF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamePrototype", "GamePrototype\GamePrototype.csproj", "{BA05E9E2-9A11-40CD-9FA4-889B1210A7C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalTool", "ExternalTool\ExternalTool.csproj", "{E94ED197-F37F-49D4-BE7C-E56A55D2CA6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,14 @@ Global
 		{BA05E9E2-9A11-40CD-9FA4-889B1210A7C1}.Release|Any CPU.ActiveCfg = Release|x86
 		{BA05E9E2-9A11-40CD-9FA4-889B1210A7C1}.Release|x86.ActiveCfg = Release|x86
 		{BA05E9E2-9A11-40CD-9FA4-889B1210A7C1}.Release|x86.Build.0 = Release|x86
+		{E94ED197-F37F-49D4-BE7C-E56A55D2CA6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E94ED197-F37F-49D4-BE7C-E56A55D2CA6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E94ED197-F37F-49D4-BE7C-E56A55D2CA6D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E94ED197-F37F-49D4-BE7C-E56A55D2CA6D}.Debug|x86.Build.0 = Debug|Any CPU
+		{E94ED197-F37F-49D4-BE7C-E56A55D2CA6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E94ED197-F37F-49D4-BE7C-E56A55D2CA6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E94ED197-F37F-49D4-BE7C-E56A55D2CA6D}.Release|x86.ActiveCfg = Release|Any CPU
+		{E94ED197-F37F-49D4-BE7C-E56A55D2CA6D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

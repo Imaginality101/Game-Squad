@@ -16,7 +16,7 @@ namespace GamePrototype.Classes.Objects
         Clue keyRequired;
         Boolean flaggedForUse;
 
-        public Interactable(Texture2D txtr, Point posParam):base()
+        public Interactable(Texture2D txtr, Rectangle psRct) : base(txtr, psRct)
         {
             flaggedForUse = false;
         }
@@ -30,5 +30,11 @@ namespace GamePrototype.Classes.Objects
             set { keyRequired = value; }
         }
 
+        // property for flagged
+        public Boolean Usable
+        {
+            get { return flaggedForUse; }
+            set { flaggedForUse = value; }
+        }
     }
 }
