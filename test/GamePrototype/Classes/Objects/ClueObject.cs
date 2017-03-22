@@ -11,11 +11,13 @@ namespace GamePrototype.Classes.Objects
     class ClueObject : Interactable
     {
         Clue givenClue;
-        public ClueObject(Texture2D txtr, Point posParam, Clue clGvn):base(txtr, posParam)
+
+        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn) : base(txtr, psRct)
         {
             givenClue = clGvn;
         }
-        // TODO: 
+
+        // TODO: Interaction method
         public override void Interact(GameObject user)
         {
             

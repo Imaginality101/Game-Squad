@@ -80,7 +80,6 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new GameObject(outdoor, outdoorRect));
             objs.Add(new GameObject(bathdoor, bathdoorRect));
             objs.Add(new GameObject(closetdoor, closetdoorRect)); 
-
             return objs;
         }
     }
