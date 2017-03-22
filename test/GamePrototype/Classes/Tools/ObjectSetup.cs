@@ -36,11 +36,12 @@ namespace GamePrototype.Classes.Tools
         Texture2D bathdoor;                Rectangle bathdoorRect;
         Texture2D closetdoor;              Rectangle closterdoorRect;
         //Texture2D background;             Rectangle backgroundRect;
+
         ContentManager content;
         SpriteBatch spriteBatch;
         GraphicsDevice graphics;
         Vector2 origin;
-        Dictionary<Texture2D, Rectangle> furnatureDict;
+        Dictionary<Texture2D, Rectangle> furnitureDict;
         // Texture2D bed, Texture2D tv, Texture2D sidetab1, Texture2D sidetab2, Texture2D book, Texture2D dress, Texture2D outdoor, Texture2D bathdoor, Texture2D closetdoor
         public ObjectSetup(ContentManager ctm, SpriteBatch sbt, GraphicsDevice gd)
         {
@@ -48,11 +49,14 @@ namespace GamePrototype.Classes.Tools
             spriteBatch = sbt;
             graphics = gd;
             origin = new Vector2(graphics.Viewport.Width / 2, graphics.Viewport.Height / 2);
-            furnatureDict = new Dictionary<Texture2D, Rectangle>();
+            furnitureDict = new Dictionary<Texture2D, Rectangle>();
 
         }
-        public void BedroomSetup()
+        public List<GameObject> BedroomSetup()
         {
+            // GameObject List for return
+            List<GameObject> objs = new List<GameObject>();
+
             bed = content.Load<Texture2D>("bedFULL");                                       bedRect = new Rectangle((int)origin.X + 100, (int)origin.Y - 40, 518, 346);
             tv = content.Load<Texture2D>("tvFULL");                                             tvRect = new Rectangle((int)origin.X - 570, (int)origin.Y - 110, 172, 346);
             sidetab1 = content.Load<Texture2D>("sidetableFULL");                       sidetab1Rect = new Rectangle((int)origin.X + 380, (int)origin.Y + 260, 172, 172);
@@ -63,20 +67,14 @@ namespace GamePrototype.Classes.Tools
             bathdoor = content.Load<Texture2D>("bathroomdoorFULL");              bathdoorRect = new Rectangle((int)origin.X + 350, (int)origin.Y - 530, 172, 172);
             closetdoor = content.Load<Texture2D>("closetdoorFULL");                 closterdoorRect = new Rectangle((int)origin.X - 685, (int)origin.Y + 230, 172, 172);
             //background = content.Load<Texture2D>("backgroundFULL");               backgroundRect = new Rectangle((int)origin.X - (1382 / 2), (int)origin.Y - (972 / 2), 1382, 972);
-            /*furnatureDict.Add(bed, bedRect);
-            furnatureDict.Add(tv, tvRect);
-            furnatureDict.Add(sidetab1, sidetab1Rect);
-            furnatureDict.Add(sidetab2, sidetab2Rect);
-            furnatureDict.Add(book, bookRect);
-            furnatureDict.Add(dress, dressRect);
-            furnatureDict.Add(outdoor, outdoorRect);
-            furnatureDict.Add(bathdoor, bathdoorRect);
-            furnatureDict.Add(closetdoor, closterdoorRect);
-            */
+
+            objs.Add(new GameObject(bed, bedRect));
+
+            return objs;
         }
         public void DrawBedroom()
         {
-            foreach (KeyValuePair<Texture2D,Rectangle> furn in furnatureDict)
+            foreach (KeyValuePair<Texture2D,Rectangle> furn in furnitureDict)
             {
                 spriteBatch.Draw(furn.Key, furn.Value, Color.White);
             }

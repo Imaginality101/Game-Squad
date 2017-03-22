@@ -26,6 +26,13 @@ namespace GamePrototype.Classes.Objects
             positionRect = new Rectangle();
         }
 
+        public GameObject(Texture2D txtr, Rectangle psRct)
+        {
+            sprite = txtr;
+            pos = psRct.Location;
+            positionRect = psRct;
+            enabled = true;
+        }
         public GameObject(Texture2D txtr, Point posParam)
         {
             sprite = txtr;
