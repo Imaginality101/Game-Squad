@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Content;
 using System.Threading;
+using System.Diagnostics;
+using System.IO;
 
 namespace GamePrototype
 {
@@ -77,10 +79,18 @@ namespace GamePrototype
         double timer;
         int i;
 
+        // mainmenu - kat
+        Texture2D mainMenu;
+        Rectangle mainMenuRect;
+
         // Keyboard states
         KeyboardState kbState;
         KeyboardState prevKbState;
-        
+        // path to the external tool
+        const string PATH = "..\\..\\..\\..\\..\\ExternalTool\\bin\\Debug\\ExternalTool.exe";
+        List<object> settingsData;
+        bool bobRossMode;
+        bool timerMode;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -103,6 +113,10 @@ namespace GamePrototype
             // TODO: Kat - Load texture sprites in here. What I'd recommend doing to make it easier to pass over to Declan is the use
             // of a Dictionary, with strings for the key and values being Texture2Ds. If you do decide to do it that way just add it to the
             // attributes.
+
+            // main menu - kat
+            mainMenu = Content.Load<Texture2D>("mainmenumaayybe.");
+            mainMenuRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
             // phone menu - kat
             startingPhoneState = Content.Load<Texture2D>("phoneMain0");
@@ -157,7 +171,7 @@ namespace GamePrototype
         protected override void Initialize()
         {
             // initialize enums
-            gameState = GameState.Game;//<---------------------------------HEY LOOK AT ME----------IM CHANGED FOR TESTING------------
+            gameState = GameState.MainMenu;
             activeRoom = CurrentRoom.Bedroom;
             menuState = MenuState.Main; // kat
 
@@ -170,14 +184,16 @@ namespace GamePrototype
             //set the GraphicsDeviceManager's fullscreen property
             //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
-
             data = new SaveData();
             // initializes the bedroom
             // Caleb - writes appropriate data to file, will save later
             data.WriteBedroom();
             // Caleb - reads GameObjects from the file, stores it in objects
             //objects = data.ReadBedroom();
-
+            settingsData = data.ReadSettings();
+            timerMode = (bool)settingsData[0];
+            bobRossMode = (bool)settingsData[1];
+            Console.WriteLine(timerMode + "" + bobRossMode);
             base.Initialize();
            
         }
@@ -377,8 +393,17 @@ namespace GamePrototype
             // begin spritebatch
             uSpriteBatch.Begin();
 
+            // draws the mainmenu - kat
+            if (gameState == GameState.MainMenu)
+            {
+                uSpriteBatch.Draw(mainMenu, mainMenuRect, Color.White);
+            }
+
             // calls the bedroom draw command - kat
-            bedRoom.Draw(uSpriteBatch);
+            if (gameState == GameState.Game)
+            {
+                bedRoom.Draw(uSpriteBatch);
+            }
 
             // player walking stuff - kat
             /*if (playerDirection == PlayerDir.FaceUp)
