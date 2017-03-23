@@ -11,7 +11,7 @@ namespace GamePrototype.Classes.Objects
 
     class Door : Interactable
     {
-        public Door(Texture2D txtr, Point posParam) : base(txtr, posParam)
+        public Door(Texture2D txtr, Rectangle psRct) : base(txtr, psRct)
         {
         }
 

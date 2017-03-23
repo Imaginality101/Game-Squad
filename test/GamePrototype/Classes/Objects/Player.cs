@@ -98,13 +98,39 @@ namespace GamePrototype.Classes.Objects
             //Console.WriteLine(moveQueue.ToString());
             CheckBounds(moveBounds);
         }
-        public void CheckProximity(GameObject target)
+        public float CheckProximity(GameObject target)
         {
-            // TODO: Not sure this is the best way to go about it so this may be moved or altered, but this would be used to figure out if
-            // the player is close enough to a usable object to interact with it. If there are multiple close by, whichever is closer should be
-            // the one interacted with.
+            // This method will return the length of a vector between the two objects' global origin coordinates
+            Vector2 difference = SpriteOrigin - target.SpriteOrigin;
+            return Math.Abs(difference.Length());
         }
 
+        public void FlagInteractables(GameObject[] targets)
+        {
+            Interactable closest = null; // use this temporary instance of the object to track which interactable in the room is closest to the player
+            float minDistance = moveBounds.Right; // ideally nothing should be interactable beyond the width of how far the player can move so use this as the default
+            foreach(GameObject obj in targets)
+            {
+                if(obj is Interactable) // if the object is usable check its proximity
+                {
+                    if (minDistance >= CheckProximity(obj)) // looping through this will find which interactable is the closest to the player
+                    {
+                        minDistance = CheckProximity(obj);
+                        closest = (Interactable)obj;
+                    }
+                    else if (((Interactable)obj).Usable == true)
+                    {
+                        ((Interactable)obj).Usable = false;
+                        flaggedInteractable = null;
+                    }
+                }
+                if (closest != null && minDistance <= ((Sprite.Height / 2) + 20)) // if something was found in a reasonable proximity
+                {
+                    closest.Usable = true;
+                    flaggedInteractable = closest;
+                }
+            }
+        }
         public void CheckBounds(Rectangle roomBounds)
         {
             // TODO: This method should check whether or not the player's collision rectangle is entirely inside

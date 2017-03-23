@@ -97,12 +97,12 @@ namespace GamePrototype.Classes
             sprtBtch.Draw(roomBG, roomBounds, Color.White);
 
             // foreach gameobject in the list of the objects in the room
-            if (textureList != null)
+            if (objectsInRoom != null)
             {
                 // kat trying a different way
-                for (int i = 0; i < textureList.Count; i++)
+                for (int i = 0; i < objectsInRoom.Count; i++)
                 {
-                    sprtBtch.Draw(textureList[i], rectangleList[i], Color.White);
+                    objectsInRoom[i].Draw(sprtBtch);
                 }
             }
         }
