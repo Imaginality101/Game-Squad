@@ -14,6 +14,7 @@ namespace GamePrototype.Classes.Objects
     {
         KeyboardState kbState;
         KeyboardState prevKbState;
+        GameObject flaggedInteractable;
         //private Rectangle[][] animFrames; // source rectangles to be used in drawing the player
         private Rectangle moveBounds;
         private Rectangle playerRect;
