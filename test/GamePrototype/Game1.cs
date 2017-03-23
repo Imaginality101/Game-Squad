@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Content;
 using System.Threading;
+using System.Diagnostics;
+using System.IO;
 
 namespace GamePrototype
 {
@@ -77,7 +79,11 @@ namespace GamePrototype
         // Keyboard states
         KeyboardState kbState;
         KeyboardState prevKbState;
-        
+        // path to the external tool
+        const string PATH = "..\\..\\..\\..\\..\\ExternalTool\\bin\\Debug\\ExternalTool.exe";
+        List<object> settingsData;
+        bool bobRossMode;
+        bool timerMode;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -165,14 +171,16 @@ namespace GamePrototype
             //set the GraphicsDeviceManager's fullscreen property
             //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
-
             data = new SaveData();
             // initializes the bedroom
             // Caleb - writes appropriate data to file, will save later
             data.WriteBedroom();
             // Caleb - reads GameObjects from the file, stores it in objects
             //objects = data.ReadBedroom();
-
+            settingsData = data.ReadSettings();
+            timerMode = (bool)settingsData[0];
+            bobRossMode = (bool)settingsData[1];
+            Console.WriteLine(timerMode + "" + bobRossMode);
             base.Initialize();
            
         }
