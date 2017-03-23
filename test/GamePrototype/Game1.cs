@@ -39,6 +39,9 @@ namespace GamePrototype
         GraphicsDeviceManager graphics;
         ContentManager content; // added kat
         SpriteBatch uSpriteBatch; // this
+        //Declan - this is for sounds
+        GameSound music;
+        GameSound intro;
         // Caleb - new attribute for reading data
         SaveData data;
         // Caleb - List<GameObject> attribute that will be assigned the the contents of the save files - we will use the rooms later
@@ -104,6 +107,8 @@ namespace GamePrototype
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             uSpriteBatch = new SpriteBatch(GraphicsDevice);
+            intro = new GameSound("spook3-thebegining", content);
+            music = new GameSound("spook3-theloop ", content);
 
             // TODO: Kat - Load texture sprites in here. What I'd recommend doing to make it easier to pass over to Declan is the use
             // of a Dictionary, with strings for the key and values being Texture2Ds. If you do decide to do it that way just add it to the
@@ -240,6 +245,11 @@ namespace GamePrototype
                     {
                         // timer for animation
                         timer -= gameTime.ElapsedGameTime.TotalSeconds;
+                        intro.PlayIntro(.5f);
+                        if (intro.IsPlayed == true)
+                        {
+                            music.PlayAsMusic(.5f);
+                        }
 
                         // switch between rooms, update the right room
                         switch (activeRoom)

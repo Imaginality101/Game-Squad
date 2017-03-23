@@ -18,6 +18,10 @@ namespace GamePrototype.Classes.Tools
         //Attributes
         SoundEffect singleEffect;
         SoundEffectInstance singleEffectInst;
+        bool isPlayed = false;
+
+        //Proporties
+        public bool IsPlayed { get { return isPlayed; } }
         //Constructor
         public GameSound(string filename, ContentManager content)
         {
@@ -41,6 +45,19 @@ namespace GamePrototype.Classes.Tools
             {
                 singleEffectInst.Play();
                 singleEffectInst.Volume = volume0to1f;
+            }
+        }
+        //PlayIntro Method - Takes a float volume as a parameter
+        public void PlayIntro(float volume0to1f)
+        {
+            if (isPlayed == false)
+            {
+                singleEffectInst.Play();
+                singleEffectInst.Volume = volume0to1f;
+                if (singleEffectInst.State == SoundState.Stopped)
+                {
+                    isPlayed = true;
+                }
             }
         }
         //EndMusic Method - stops the music
