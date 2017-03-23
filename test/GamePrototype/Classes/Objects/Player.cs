@@ -212,6 +212,14 @@ namespace GamePrototype.Classes.Objects
             {
                 playerDirection = PlayerDir.FaceRight;
             }
+            if (playerDirection == PlayerDir.WalkRight && kbState.IsKeyUp(Keys.D))
+            {
+                playerDirection = PlayerDir.FaceRight;
+            }
+            if (playerDirection == PlayerDir.WalkLeft && kbState.IsKeyUp(Keys.A))
+            {
+                playerDirection = PlayerDir.FaceLeft;
+            }
         }
 
         public Boolean isColliding(GameObject target)

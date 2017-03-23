@@ -89,6 +89,7 @@ namespace GamePrototype.Classes.Tools
             try
             {
                 result.Add(settingsReader.ReadBoolean());
+                result.Add(settingsReader.ReadBoolean());
             }
             catch (EndOfStreamException)
             {
