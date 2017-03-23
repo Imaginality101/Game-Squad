@@ -110,7 +110,7 @@ namespace GamePrototype
             // attributes.
 
             // main menu - kat
-            if (bossRossMode == true)
+            if (bobRossMode == true)
             {
                 mainMenu = Content.Load<Texture2D>("d6twRar");
             }
