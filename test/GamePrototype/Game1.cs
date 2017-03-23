@@ -104,7 +104,14 @@ namespace GamePrototype
             // attributes.
 
             // main menu - kat
-            mainMenu = Content.Load<Texture2D>("mainmenumaayybe.");
+            if (bossRossMode == true)
+            {
+                mainMenu = Content.Load<Texture2D>("d6twRar");
+            }
+            else
+            {
+                mainMenu = Content.Load<Texture2D>("mainmenumaayybe.");
+            }
             mainMenuRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
             // phone menu - kat
