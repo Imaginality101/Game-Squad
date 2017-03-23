@@ -76,6 +76,10 @@ namespace GamePrototype
         double timer;
         int i;
 
+        // mainmenu - kat
+        Texture2D mainMenu;
+        Rectangle mainMenuRect;
+
         // Keyboard states
         KeyboardState kbState;
         KeyboardState prevKbState;
@@ -104,6 +108,10 @@ namespace GamePrototype
             // TODO: Kat - Load texture sprites in here. What I'd recommend doing to make it easier to pass over to Declan is the use
             // of a Dictionary, with strings for the key and values being Texture2Ds. If you do decide to do it that way just add it to the
             // attributes.
+
+            // main menu - kat
+            mainMenu = Content.Load<Texture2D>("mainmenumaayybe.");
+            mainMenuRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
             // phone menu - kat
             startingPhoneState = Content.Load<Texture2D>("phoneMain0");
@@ -158,7 +166,7 @@ namespace GamePrototype
         protected override void Initialize()
         {
             // initialize enums
-            gameState = GameState.Game;//<---------------------------------HEY LOOK AT ME----------IM CHANGED FOR TESTING------------
+            gameState = GameState.MainMenu;
             activeRoom = CurrentRoom.Bedroom;
             menuState = MenuState.Main; // kat
 
@@ -375,8 +383,17 @@ namespace GamePrototype
             // begin spritebatch
             uSpriteBatch.Begin();
 
+            // draws the mainmenu - kat
+            if (gameState == GameState.MainMenu)
+            {
+                uSpriteBatch.Draw(mainMenu, mainMenuRect, Color.White);
+            }
+
             // calls the bedroom draw command - kat
-            bedRoom.Draw(uSpriteBatch);
+            if (gameState == GameState.Game)
+            {
+                bedRoom.Draw(uSpriteBatch);
+            }
 
             // player walking stuff - kat
             /*if (playerDirection == PlayerDir.FaceUp)
