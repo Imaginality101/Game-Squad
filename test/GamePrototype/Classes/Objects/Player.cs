@@ -24,9 +24,10 @@ namespace GamePrototype.Classes.Objects
         private Texture2D faceRightSprite;
         private Texture2D faceUpSprite;
         private Texture2D faceDownSprite;
+
         // variables for animation
         double timer = .1;
-        int i = 0;
+        int currentFrame = 0;
 
         // TODO: Player constructor, should take the same sort of information as well as potentially a Menu object. We'd feed the overall Game's Menu into that.
         public Player(Texture2D faceRight, List<Texture2D> walkRight, Texture2D faceUp, Texture2D faceDown, Rectangle bounds, Rectangle pRect):base()
@@ -262,14 +263,14 @@ namespace GamePrototype.Classes.Objects
             {
                 if (timer == 0 || timer < 0)
                 {
-                    i++;
+                    currentFrame++;
                     timer = .1;
-                    if (i >= walkRightSprites.Count)
+                    if (currentFrame >= walkRightSprites.Count)
                     {
-                        i = 0;
+                        currentFrame = 0;
                     }
                 }
-                sprtBtch.Draw(walkRightSprites[i], playerRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
+                sprtBtch.Draw(walkRightSprites[currentFrame], playerRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
             }
             if (playerDirection == PlayerDir.FaceDown)
             {
@@ -287,14 +288,14 @@ namespace GamePrototype.Classes.Objects
             {
                 if (timer == 0 || timer < 0)
                 {
-                    i++;
+                    currentFrame++;
                     timer = .1;
-                    if (i >= walkRightSprites.Count)
+                    if (currentFrame >= walkRightSprites.Count)
                     {
-                        i = 0;
+                        currentFrame = 0;
                     }
                 }
-                sprtBtch.Draw(walkRightSprites[i], playerRect, Color.White);
+                sprtBtch.Draw(walkRightSprites[currentFrame], playerRect, Color.White);
             }
 
         }

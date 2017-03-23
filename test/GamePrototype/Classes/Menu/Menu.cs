@@ -24,6 +24,11 @@ namespace GamePrototype.Classes.Menu
         {
             activeMenu = Category.Main;
             selectedEntry = SelectedEntry.TopRight;
+            clueList = new Dictionary<Clue, Boolean>();
+            foreach(Clue cl in Clue.Clues.Values)
+            {
+                clueList.Add(cl, false);
+            }
         }
 
         public void Update()
