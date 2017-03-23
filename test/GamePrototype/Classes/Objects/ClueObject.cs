@@ -22,7 +22,7 @@ namespace GamePrototype.Classes.Objects
             givenClue = clGvn;
         }
         // TODO: Interaction method
-        public override void Interact(GameObject user)
+        public override void Interact(Player user)
         {
             
         }
