@@ -54,6 +54,7 @@ namespace GamePrototype
         PlayerDir playerDirection;
 
         // player - kat
+        Player player;
         Texture2D faceUp;
         Texture2D faceDown;
         Texture2D faceRight;
@@ -137,6 +138,10 @@ namespace GamePrototype
             bedRoom = new Room(GraphicsDevice,Content);
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
             furnitureSet.BedroomSetup();
+            player = new Player(faceRight, protagTextureRight, faceUp, faceDown, 
+                new Rectangle(GraphicsDevice.Viewport.Width/2, GraphicsDevice.Viewport.Height/2, 
+                GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), protagRect);
+
         }
 
         /// <summary>
@@ -230,8 +235,9 @@ namespace GamePrototype
                         {
                             gameState = GameState.GMenu;
                         }
+                        player.Update(gameTime);
                         // kat get person state
-                        if (kbState.IsKeyDown(Keys.W) && !prevKbState.IsKeyDown(Keys.W))
+                        /*if (kbState.IsKeyDown(Keys.W) && !prevKbState.IsKeyDown(Keys.W))
                         {
                             playerDirection = PlayerDir.FaceUp;
                         }
@@ -282,7 +288,7 @@ namespace GamePrototype
                         if (!kbState.IsKeyDown(Keys.D) && prevKbState.IsKeyDown(Keys.D))
                         {
                             playerDirection = PlayerDir.FaceRight;
-                        }
+                        }*/
                         break;
                     }
                 case GameState.GMenu:
@@ -357,7 +363,7 @@ namespace GamePrototype
             bedRoom.Draw(uSpriteBatch);
 
             // player walking stuff - kat
-            if (playerDirection == PlayerDir.FaceUp)
+            /*if (playerDirection == PlayerDir.FaceUp)
             {
                 uSpriteBatch.Draw(faceUp, protagRect, Color.White);
             }
@@ -406,7 +412,8 @@ namespace GamePrototype
                     }
                 }
                 uSpriteBatch.Draw(protagTextureRight[i], protagRect, Color.White);
-            }
+            }*/
+            player.Draw(uSpriteBatch);
 
             // TODO: Caleb - draws objects; is temporary 
             /*foreach (GameObject go in objects)

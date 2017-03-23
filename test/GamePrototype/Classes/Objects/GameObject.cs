@@ -98,7 +98,7 @@ namespace GamePrototype.Classes.Objects
             }
         }
         // TODO: Kat - Draw method taking in a SpriteBatch param, just like how it was handled in HW2
-        public void Draw(SpriteBatch sprtBtch)
+        public virtual void Draw(SpriteBatch sprtBtch)
         {
             // draws the object
             // TODO: Reinstate original Draw()
