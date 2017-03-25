@@ -42,13 +42,14 @@ namespace GamePrototype.Classes.Objects
             faceDownSprite = faceDown;
         }
         // TODO: Update method override, should check player input and movement
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, List<GameObject> objects)
         {
             timer -= gameTime.ElapsedGameTime.TotalSeconds;
             CheckInput(); // first get input to adjust movement queueing
             Move(gameTime);
             CheckBounds(moveBounds);
             ChangeDirection();
+            //FlagInteractables(objects.ToArray());
 
             base.Update(gameTime);
         }
@@ -103,17 +104,38 @@ namespace GamePrototype.Classes.Objects
         public float CheckProximity(GameObject target)
         {
             // This method will return the length of a vector between the two objects' global origin coordinates
-            Vector2 difference = SpriteOrigin - target.SpriteOrigin;
+            Vector2 difference = PLayerOrigin - target.SpriteOrigin;
             return Math.Abs(difference.Length());
         }
-
-        public void FlagInteractables(GameObject[] targets)
+        // TODO: Change the return type of FlagInteractables back to void
+        public string FlagInteractables(GameObject[] targets)
         {
-            Interactable closest = null; // use this temporary instance of the object to track which interactable in the room is closest to the player
+            GameObject closestGameObj = new GameObject();
+            float closestDistance = float.MaxValue;
+            foreach (GameObject go in targets)
+            {
+                //if (!(go is ClueObject))
+                //{
+                    if ((CheckProximity(go) < closestDistance) && (CheckProximity(go) < 200))
+                    {
+                        closestDistance = CheckProximity(go);
+                        closestGameObj = go;
+                    }
+                //}
+            }
+            if (closestDistance == float.MaxValue)
+            {
+                return "";
+            }
+            else
+            {
+                return "You are interacting with: " + closestGameObj.Name;
+            }
+            /*Interactable closest = null; // use this temporary instance of the object to track which interactable in the room is closest to the player
             float minDistance = moveBounds.Right; // ideally nothing should be interactable beyond the width of how far the player can move so use this as the default
             foreach(GameObject obj in targets)
             {
-                if(obj is Interactable) // if the object is usable check its proximity
+                if (obj is Interactable) // if the object is usable check its proximity
                 {
                     if (minDistance >= CheckProximity(obj)) // looping through this will find which interactable is the closest to the player
                     {
@@ -131,7 +153,7 @@ namespace GamePrototype.Classes.Objects
                     closest.Usable = true;
                     flaggedInteractable = closest;
                 }
-            }
+            }*/
         }
         public void CheckBounds(Rectangle roomBounds)
         {
@@ -231,6 +253,14 @@ namespace GamePrototype.Classes.Objects
             else
             {
                 return false;
+            }
+        }
+
+        public Vector2 PLayerOrigin
+        {
+            get
+            {
+                return playerRect.Center.ToVector2();
             }
         }
 

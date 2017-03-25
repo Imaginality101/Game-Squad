@@ -74,17 +74,18 @@ namespace GamePrototype.Classes.Tools
             news1 = content.Load<Texture2D>("NewspaperFULL");                        news1Rect = new Rectangle((int)origin.X - 300, (int)origin.Y - 350, 72, 72);
 
             //adding them all to the gameobjectlist
-            objs.Add(new GameObject(outdoor, outdoorRect));
-            objs.Add(new GameObject(bathdoor, bathdoorRect));
-            objs.Add(new GameObject(closetdoor, closetdoorRect));
-            objs.Add(new GameObject(tv, tvRect));
-            objs.Add(new ClueObject(sidetab2, sidetab2Rect, Clue.Clues["News2"]));
-            objs.Add(new ClueObject(bed, bedRect, Clue.Clues["TenantDiary2"]));
-            objs.Add(new ClueObject(sidetab1, sidetab1Rect, Clue.Clues["OldPhoto1"]));
-            objs.Add(new ClueObject(book, bookRect,Clue.Clues["TenantDiary1"]));
-            objs.Add(new ClueObject(news1, news1Rect, Clue.Clues["News1"], false));
-            objs.Add(new GameObject(dress, dressRect));
-            objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false));
+            // Caleb - adding a temporary name string to the constructor which is to demo interaction
+            objs.Add(new GameObject(outdoor, outdoorRect, "End door"));
+            objs.Add(new GameObject(bathdoor, bathdoorRect, "Bathroom door"));
+            objs.Add(new GameObject(closetdoor, closetdoorRect, "Closet door"));
+            objs.Add(new GameObject(tv, tvRect, "TV"));
+            objs.Add(new ClueObject(sidetab2, sidetab2Rect, Clue.Clues["News2"], "Side table 2"));
+            objs.Add(new ClueObject(bed, bedRect, Clue.Clues["TenantDiary2"], "Bed"));
+            objs.Add(new ClueObject(sidetab1, sidetab1Rect, Clue.Clues["OldPhoto1"], "Side table 1"));
+            objs.Add(new ClueObject(book, bookRect,Clue.Clues["TenantDiary1"], "Book"));
+            objs.Add(new ClueObject(news1, news1Rect, Clue.Clues["News1"], false, "News 1"));
+            objs.Add(new GameObject(dress, dressRect, "Dresser"));
+            objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false, "Sticky Note"));
             return objs;
         }
     }
