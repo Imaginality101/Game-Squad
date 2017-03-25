@@ -159,22 +159,23 @@ namespace GamePrototype.Classes.Objects
         {
             // TODO: This method should check whether or not the player's collision rectangle is entirely inside
             // the accepted param bounds roomBounds. Correct any discrepancies.
-            if (GlobalBounds.Left < roomBounds.Left)
+            if (playerRect.Left < roomBounds.Left)
             {
-                X += (roomBounds.Left - GlobalBounds.Left + 5);
+                //X += (roomBounds.Left - GlobalBounds.Left + 5);
+                BlockLeft();
             }
-            else if (GlobalBounds.Right > roomBounds.Right)
+            else if (playerRect.Right > roomBounds.Right - playerRect.Width)
             {
-                X += (roomBounds.Right - GlobalBounds.Right - 5);
+                BlockRight();
             }
             
-            if (GlobalBounds.Top < roomBounds.Top)
+            if (playerRect.Top < roomBounds.Top)
             {
-                Y += (roomBounds.Top - GlobalBounds.Top + 5);
+                BlockUp();
             }
-            else if (GlobalBounds.Bottom > roomBounds.Bottom)
+            else if (playerRect.Bottom > roomBounds.Bottom)
             {
-                Y += (roomBounds.Bottom - GlobalBounds.Bottom - 5);
+                BlockDown();
             }
 
         }
@@ -267,19 +268,21 @@ namespace GamePrototype.Classes.Objects
         // methods to block player from moving in the cardinal directions. Useful if collisions end faceUp not being handled by the player class
         public void BlockUp()
         {
-            Y += 10;
+            playerRect = new Rectangle(playerRect.X, playerRect.Y + 2, playerRect.Width, playerRect.Height);
         }
         public void BlockDown()
         {
-            Y -= 10;
+            playerRect = new Rectangle(playerRect.X, playerRect.Y - 2, playerRect.Width, playerRect.Height);
+
         }
         public void BlockLeft()
         {
-            X += 10;
+            //X += 10;
+            playerRect = new Rectangle(playerRect.X + 2, playerRect.Y, playerRect.Width, playerRect.Height);
         }
         public void BlockRight()
         {
-            X -= 10;
+            playerRect = new Rectangle(playerRect.X - 2, playerRect.Y, playerRect.Width, playerRect.Height);
         }
 
         public override void Draw(SpriteBatch sprtBtch)
