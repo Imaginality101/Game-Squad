@@ -137,22 +137,22 @@ namespace GamePrototype.Classes.Objects
         {
             // TODO: This method should check whether or not the player's collision rectangle is entirely inside
             // the accepted param bounds roomBounds. Correct any discrepancies.
-            if (GlobalBounds.Left < roomBounds.Left)
+            if (playerRect.Left < roomBounds.Left)
             {
-                X += (roomBounds.Left - GlobalBounds.Left + 5);
+                playerRect.X += (roomBounds.Left - playerRect.Left + 10);
             }
-            else if (GlobalBounds.Right > roomBounds.Right)
+            else if (playerRect.Right > roomBounds.Right)
             {
-                X += (roomBounds.Right - GlobalBounds.Right - 5);
+                playerRect.X += (roomBounds.Right - playerRect.Right - 10);
             }
             
-            if (GlobalBounds.Top < roomBounds.Top)
+            if (playerRect.Top < roomBounds.Top)
             {
-                Y += (roomBounds.Top - GlobalBounds.Top + 5);
+                playerRect.Y += (roomBounds.Top - playerRect.Top + 10);
             }
-            else if (GlobalBounds.Bottom > roomBounds.Bottom)
+            else if (playerRect.Bottom > roomBounds.Bottom)
             {
-                Y += (roomBounds.Bottom - GlobalBounds.Bottom - 5);
+                playerRect.Y += (roomBounds.Bottom - playerRect.Bottom - 10);
             }
 
         }
