@@ -19,6 +19,7 @@ namespace GamePrototype.Classes
     {
         Texture2D roomBG; // Texture for the room itself, draw this before any of the objects in it
         private Rectangle roomBounds; // The size of the room, will be used for bounds checks
+        private Rectangle roomColl;// collision box for the room
         private List<GameObject> objectsInRoom; // as requested, list format
         Vector2 origin; //added: Delcan //Use: using this to center the texture of the room. I dont want to use the viewport bounds because it would scale the texture based on the window size. Id like to have the bg relatively static and then have the furniture relative to this texture.
         GraphicsDevice graphics;//Added: Declan //Uses: allows referanced to the graphics bounds
@@ -47,7 +48,8 @@ namespace GamePrototype.Classes
             origin = new Vector2(graphics.Viewport.Width / 2, graphics.Viewport.Height / 2);
             roomBG = content.Load<Texture2D>("backgroundFULL");
             roomBounds = new Rectangle((int)origin.X - (1382 / 2), (int)origin.Y - (972 / 2), 1382, 972);
-
+            roomColl = new Rectangle(roomBounds.X+110, roomBounds.Y+30, roomBounds.Width-30, roomBounds.Height-50);//Perf room bounds
+            /*
             // kat moved from objectsetup
             bed = content.Load<Texture2D>("bedFULL"); bedRect = new Rectangle((int)origin.X + 100, (int)origin.Y - 40, 518, 346);
             tv = content.Load<Texture2D>("tvFULL"); tvRect = new Rectangle((int)origin.X - 570, (int)origin.Y - 110, 172, 346);
@@ -71,6 +73,7 @@ namespace GamePrototype.Classes
             textureList.Add(sidetab1); rectangleList.Add(sidetab1Rect);
             textureList.Add(book); rectangleList.Add(bookRect);
             textureList.Add(dress); rectangleList.Add(dressRect);
+            */
         }
 
         // TODO: Initialize method, should be used to tell which objects in the room are in what state after they're all loaded in using the constructor
@@ -118,6 +121,10 @@ namespace GamePrototype.Classes
         public Rectangle Bounds
         {
             get { return roomBounds; }
+        }
+        public Rectangle CollisionBounds
+        {
+            get { return roomColl; }
         }
     }
 }

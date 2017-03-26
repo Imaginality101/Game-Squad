@@ -8,11 +8,13 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
-
+/*Declan Behan
+ * DisasterPiece Games
+ * GameSound Class
+ */
 namespace GamePrototype.Classes.Tools
 {
     //TODO: This class handles the sound effect building and the backround music for the game
-    //Declan Behan
     class GameSound
     {
         //Attributes

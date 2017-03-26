@@ -10,7 +10,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
-
+/*Declan Behan
+ * DisasterPiece Games
+ * ObjectSetup Class
+ */
 namespace GamePrototype.Classes.Tools
 {
     class ObjectSetup
@@ -29,10 +32,12 @@ namespace GamePrototype.Classes.Tools
         Texture2D closetdoor;              Rectangle closetdoorRect;
         Texture2D stickynote;             Rectangle stickynoteRect;
         Texture2D news1;                    Rectangle news1Rect;
+
         //fields to hold the constuctor stuff
         ContentManager content;
         SpriteBatch spriteBatch;
         GraphicsDevice graphics;
+
         //draw origin
         Vector2 origin;
 
