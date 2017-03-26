@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
-
+/*Workers: Caleb, Tom
+ * DisasterPiece Games
+ * Clue Class
+ */
 namespace GamePrototype.Classes
 {
     class Clue

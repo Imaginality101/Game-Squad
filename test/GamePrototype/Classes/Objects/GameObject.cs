@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
+/*Workers: Caleb, Tom
+ * DisasterPiece Games
+ * GameObject Class
+ */
 
 namespace GamePrototype.Classes.Objects
 {

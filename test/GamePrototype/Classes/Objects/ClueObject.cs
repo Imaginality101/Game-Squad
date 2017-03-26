@@ -5,7 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-
+/*Workers: Caleb, Tom
+ * DisasterPiece Games
+ * ClueObject Class
+ */
 namespace GamePrototype.Classes.Objects
 {
     class ClueObject : Interactable

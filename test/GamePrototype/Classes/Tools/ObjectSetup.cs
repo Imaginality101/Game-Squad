@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
-/*Declan Behan
+/*Workers: Declan, Tom, Caleb
  * DisasterPiece Games
  * ObjectSetup Class
  */

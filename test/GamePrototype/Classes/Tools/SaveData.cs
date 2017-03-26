@@ -8,7 +8,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.IO;
 using GamePrototype.Classes.Objects;
-
+/*Workers: Caleb
+ * DisasterPiece Games
+ * SaveDate Class
+ */
 namespace GamePrototype.Classes.Tools
 {
     class SaveData
