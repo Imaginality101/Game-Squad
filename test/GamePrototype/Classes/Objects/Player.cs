@@ -111,6 +111,9 @@ namespace GamePrototype.Classes.Objects
             return Math.Abs(difference.Length());
         }
         // TODO: Change the return type of FlagInteractables back to void
+        // NOTE: I guess this works as a way of showing the methodology works for now, but I coded this method originally to register with the closest interactable
+        // that it's usable so we can flag it with some visual marker like a button prompt. Absolutely works for the purposes of Milestone II until we have this set up better,
+        // but I'd like to migrate this to the original planned setup later on. - Tom
         public string FlagInteractables(GameObject[] targets)
         {
             GameObject closestGameObj = new GameObject();
@@ -167,7 +170,7 @@ namespace GamePrototype.Classes.Objects
                 //X += (roomBounds.Left - GlobalBounds.Left + 5);
                 BlockLeft();
             }
-            else if (playerRect.Right > roomBounds.Right)
+            else if (playerRect.Right > (roomBounds.Right - playerRect.Width))
             {
                 BlockRight();
             }
