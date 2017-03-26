@@ -249,7 +249,7 @@ namespace GamePrototype
                     }
                 case GameState.Game:
                     {
-                        // timer for animation
+                        // timer for animation - kat
                         timer -= gameTime.ElapsedGameTime.TotalSeconds;
                         intro.PlayIntro(.5f);
                         if (intro.IsPlayed == true)
@@ -491,23 +491,26 @@ namespace GamePrototype
             // menu stuff kat
             if (gameState == GameState.GMenu && menuState == MenuState.Main)
             {
+                bedRoom.Draw(uSpriteBatch);
                 uSpriteBatch.Draw(startingPhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
             }
             if (gameState == GameState.GMenu &&  menuState == MenuState.Journal)
             {
+                bedRoom.Draw(uSpriteBatch);
                 uSpriteBatch.Draw(textPhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
             }
             if (gameState == GameState.GMenu && menuState == MenuState.Photos)
             {
+                bedRoom.Draw(uSpriteBatch);
                 uSpriteBatch.Draw(imagePhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
             }
             if (gameState == GameState.GMenu && menuState == MenuState.Settings)
             {
-
+                bedRoom.Draw(uSpriteBatch);
             }
             if (gameState == GameState.GMenu && menuState == MenuState.Power)
             {
-
+                bedRoom.Draw(uSpriteBatch);
             }
 
             // TODO: Caleb - draws objects; is temporary 
