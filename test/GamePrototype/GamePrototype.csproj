@@ -95,6 +95,9 @@
     <Content Include="Content\closetdoorFULL.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\d6twRar.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\dresserFULL.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -180,6 +183,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\phone-selection.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Arial.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Content\phoneMain0.xnb" />

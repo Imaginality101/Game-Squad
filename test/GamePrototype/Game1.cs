@@ -90,7 +90,13 @@ namespace GamePrototype
         const string PATH = "..\\..\\..\\..\\..\\ExternalTool\\bin\\Debug\\ExternalTool.exe";
         List<object> settingsData;
         bool bobRossMode;
+        // this is for timed mode
         bool timerMode;
+        int gameTimerSeconds = 15 * 60;
+        float elapsedTime = 0;
+        // Caleb - used for displaying text: is temporary
+        SpriteFont font;
+        bool drawInteractText = false;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -109,13 +115,21 @@ namespace GamePrototype
             uSpriteBatch = new SpriteBatch(GraphicsDevice);
             intro = new GameSound("spook3-thebegining", content);
             music = new GameSound("spook3-theloop ", content);
+            font = Content.Load<SpriteFont>("Arial");
 
             // TODO: Kat - Load texture sprites in here. What I'd recommend doing to make it easier to pass over to Declan is the use
             // of a Dictionary, with strings for the key and values being Texture2Ds. If you do decide to do it that way just add it to the
             // attributes.
 
             // main menu - kat
-            mainMenu = Content.Load<Texture2D>("mainmenumaayybe.");
+            if (bobRossMode == true)
+            {
+                mainMenu = Content.Load<Texture2D>("d6twRar");
+            }
+            else
+            {
+                mainMenu = Content.Load<Texture2D>("mainmenumaayybe.");
+            }
             mainMenuRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
             // phone menu - kat
@@ -159,7 +173,7 @@ namespace GamePrototype
             bedRoom = new Room(GraphicsDevice,Content);
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
             bedRoom.Objects = furnitureSet.BedroomSetup();
-            player = new Player(faceRight, protagTextureRight, faceUp, faceDown, new Rectangle(),  protagRect);
+            player = new Player(faceRight, protagTextureRight, faceUp, faceDown, bedRoom.Bounds,  protagRect);
         }
 
         /// <summary>
@@ -193,7 +207,7 @@ namespace GamePrototype
             settingsData = data.ReadSettings();
             timerMode = (bool)settingsData[0];
             bobRossMode = (bool)settingsData[1];
-            Console.WriteLine(timerMode + "" + bobRossMode);
+            Console.WriteLine("Timer mode: " + timerMode + " Bob Ross mode: " + bobRossMode);
             base.Initialize();
            
         }
@@ -222,7 +236,6 @@ namespace GamePrototype
             // TODO: Check if menus are open or the open button has been pressed, and if so update them
             prevKbState = kbState;
             kbState = Keyboard.GetState();
-            uSpriteBatch.Begin();
             switch (gameState)
             {
                 case GameState.MainMenu:
@@ -236,14 +249,23 @@ namespace GamePrototype
                     }
                 case GameState.Game:
                     {
-                        // timer for animation
+                        // timer for animation - kat
                         timer -= gameTime.ElapsedGameTime.TotalSeconds;
                         intro.PlayIntro(.5f);
                         if (intro.IsPlayed == true)
                         {
                             music.PlayAsMusic(.5f);
                         }
-
+                        // Caleb - game timer code
+                        if (timerMode)
+                        {
+                            elapsedTime += gameTime.ElapsedGameTime.Milliseconds;
+                            if (elapsedTime > 1000)
+                            {
+                                elapsedTime = 0;
+                                gameTimerSeconds--;
+                            }
+                        }
                         // switch between rooms, update the right room
                         switch (activeRoom)
                         {
@@ -261,7 +283,16 @@ namespace GamePrototype
                         {
                             gameState = GameState.GMenu;
                         }
-                        player.Update(gameTime);
+                        player.Update(gameTime, bedRoom.Objects);
+                        // Caleb - handles drawing interaction text
+                        if (kbState.IsKeyDown(Keys.E) && prevKbState.IsKeyUp(Keys.E))
+                        {
+                            drawInteractText = true;
+                        }
+                        if (kbState.IsKeyUp(Keys.E) && prevKbState.IsKeyDown(Keys.E))
+                        {
+                            drawInteractText = false;
+                        }
                         // kat get person state
                         /*if (kbState.IsKeyDown(Keys.W) && !prevKbState.IsKeyDown(Keys.W))
                         {
@@ -375,7 +406,6 @@ namespace GamePrototype
                         break;
                     }
             }
-            uSpriteBatch.End();
             base.Update(gameTime);
         }
 
@@ -461,23 +491,26 @@ namespace GamePrototype
             // menu stuff kat
             if (gameState == GameState.GMenu && menuState == MenuState.Main)
             {
+                bedRoom.Draw(uSpriteBatch);
                 uSpriteBatch.Draw(startingPhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
             }
             if (gameState == GameState.GMenu &&  menuState == MenuState.Journal)
             {
+                bedRoom.Draw(uSpriteBatch);
                 uSpriteBatch.Draw(textPhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
             }
             if (gameState == GameState.GMenu && menuState == MenuState.Photos)
             {
+                bedRoom.Draw(uSpriteBatch);
                 uSpriteBatch.Draw(imagePhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
             }
             if (gameState == GameState.GMenu && menuState == MenuState.Settings)
             {
-
+                bedRoom.Draw(uSpriteBatch);
             }
             if (gameState == GameState.GMenu && menuState == MenuState.Power)
             {
-
+                bedRoom.Draw(uSpriteBatch);
             }
 
             // TODO: Caleb - draws objects; is temporary 
@@ -488,6 +521,17 @@ namespace GamePrototype
 
             //furnitureSet.DrawBedroom(); //kat commented out for now
 
+            // Caleb - draw interact text
+            if (drawInteractText)
+            {
+                uSpriteBatch.DrawString(font, player.FlagInteractables(bedRoom.Objects.ToArray()), Vector2.Zero, Color.White);
+                //drawInteractText = false;
+            }
+            // draw timer if enabled
+            if (timerMode)
+            {
+                uSpriteBatch.DrawString(font, string.Format("{0}:{1}", gameTimerSeconds / 60, gameTimerSeconds % 60), new Vector2(0, 50), Color.White);
+            }
             // end spritebatch
             uSpriteBatch.End();
 

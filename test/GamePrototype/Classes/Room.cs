@@ -76,7 +76,7 @@ namespace GamePrototype.Classes
         // TODO: Initialize method, should be used to tell which objects in the room are in what state after they're all loaded in using the constructor
         public void Initialize()
         {
-            
+
         }
 
         // TODO: Update function, should go through the array of GameObjects and call all their update functions
@@ -108,11 +108,16 @@ namespace GamePrototype.Classes
         }
 
         // NOTE: Declan - This was moved from the constructor, so when you initialize the Room(s) make sure you remember
-        // to then 
+        // to then
         public List<GameObject> Objects
         {
             get { return objectsInRoom; }
             set { objectsInRoom = value; }
+        }
+
+        public Rectangle Bounds
+        {
+            get { return roomBounds; }
         }
     }
 }

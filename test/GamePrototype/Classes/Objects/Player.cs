@@ -24,9 +24,10 @@ namespace GamePrototype.Classes.Objects
         private Texture2D faceRightSprite;
         private Texture2D faceUpSprite;
         private Texture2D faceDownSprite;
+
         // variables for animation
         double timer = .1;
-        int i = 0;
+        int currentFrame = 0;
 
         // TODO: Player constructor, should take the same sort of information as well as potentially a Menu object. We'd feed the overall Game's Menu into that.
         public Player(Texture2D faceRight, List<Texture2D> walkRight, Texture2D faceUp, Texture2D faceDown, Rectangle bounds, Rectangle pRect):base()
@@ -41,13 +42,14 @@ namespace GamePrototype.Classes.Objects
             faceDownSprite = faceDown;
         }
         // TODO: Update method override, should check player input and movement
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, List<GameObject> objects)
         {
             timer -= gameTime.ElapsedGameTime.TotalSeconds;
             CheckInput(); // first get input to adjust movement queueing
             Move(gameTime);
             CheckBounds(moveBounds);
             ChangeDirection();
+            //FlagInteractables(objects.ToArray());
 
             base.Update(gameTime);
         }
@@ -102,17 +104,38 @@ namespace GamePrototype.Classes.Objects
         public float CheckProximity(GameObject target)
         {
             // This method will return the length of a vector between the two objects' global origin coordinates
-            Vector2 difference = SpriteOrigin - target.SpriteOrigin;
+            Vector2 difference = PLayerOrigin - target.SpriteOrigin;
             return Math.Abs(difference.Length());
         }
-
-        public void FlagInteractables(GameObject[] targets)
+        // TODO: Change the return type of FlagInteractables back to void
+        public string FlagInteractables(GameObject[] targets)
         {
-            Interactable closest = null; // use this temporary instance of the object to track which interactable in the room is closest to the player
+            GameObject closestGameObj = new GameObject();
+            float closestDistance = float.MaxValue;
+            foreach (GameObject go in targets)
+            {
+                //if (!(go is ClueObject))
+                //{
+                    if ((CheckProximity(go) < closestDistance) && (CheckProximity(go) < 200))
+                    {
+                        closestDistance = CheckProximity(go);
+                        closestGameObj = go;
+                    }
+                //}
+            }
+            if (closestDistance == float.MaxValue)
+            {
+                return "";
+            }
+            else
+            {
+                return "You are interacting with: " + closestGameObj.Name;
+            }
+            /*Interactable closest = null; // use this temporary instance of the object to track which interactable in the room is closest to the player
             float minDistance = moveBounds.Right; // ideally nothing should be interactable beyond the width of how far the player can move so use this as the default
             foreach(GameObject obj in targets)
             {
-                if(obj is Interactable) // if the object is usable check its proximity
+                if (obj is Interactable) // if the object is usable check its proximity
                 {
                     if (minDistance >= CheckProximity(obj)) // looping through this will find which interactable is the closest to the player
                     {
@@ -130,33 +153,34 @@ namespace GamePrototype.Classes.Objects
                     closest.Usable = true;
                     flaggedInteractable = closest;
                 }
-            }
+            }*/
         }
         public void CheckBounds(Rectangle roomBounds)
         {
             // TODO: This method should check whether or not the player's collision rectangle is entirely inside
             // the accepted param bounds roomBounds. Correct any discrepancies.
-            if (GlobalBounds.Left < roomBounds.Left)
+            if (playerRect.Left < roomBounds.Left)
             {
-                X += (roomBounds.Left - GlobalBounds.Left + 5);
+                //X += (roomBounds.Left - GlobalBounds.Left + 5);
+                BlockLeft();
             }
-            else if (GlobalBounds.Right > roomBounds.Right)
+            else if (playerRect.Right > roomBounds.Right - playerRect.Width)
             {
-                X += (roomBounds.Right - GlobalBounds.Right - 5);
+                BlockRight();
             }
             
-            if (GlobalBounds.Top < roomBounds.Top)
+            if (playerRect.Top < roomBounds.Top)
             {
-                Y += (roomBounds.Top - GlobalBounds.Top + 5);
+                BlockUp();
             }
-            else if (GlobalBounds.Bottom > roomBounds.Bottom)
+            else if (playerRect.Bottom > roomBounds.Bottom)
             {
-                Y += (roomBounds.Bottom - GlobalBounds.Bottom - 5);
+                BlockDown();
             }
 
         }
 
-        // changes the PlayerDir enum based on input
+        // Caleb - changes the PlayerDir enum based on input
         private void ChangeDirection()
         {
             if (kbState.IsKeyDown(Keys.W) && !prevKbState.IsKeyDown(Keys.W))
@@ -233,22 +257,32 @@ namespace GamePrototype.Classes.Objects
             }
         }
 
-        // methods to block player from moving in the cardinal directions. Useful if collisions end faceUp not being handled by the player class
+        public Vector2 PLayerOrigin
+        {
+            get
+            {
+                return playerRect.Center.ToVector2();
+            }
+        }
+
+        // Caleb - methods to block player from moving in the cardinal directions. Useful if collisions end faceUp not being handled by the player class
         public void BlockUp()
         {
-            Y += 10;
+            playerRect = new Rectangle(playerRect.X, playerRect.Y + 2, playerRect.Width, playerRect.Height);
         }
         public void BlockDown()
         {
-            Y -= 10;
+            playerRect = new Rectangle(playerRect.X, playerRect.Y - 2, playerRect.Width, playerRect.Height);
+
         }
         public void BlockLeft()
         {
-            X += 10;
+            //X += 10;
+            playerRect = new Rectangle(playerRect.X + 2, playerRect.Y, playerRect.Width, playerRect.Height);
         }
         public void BlockRight()
         {
-            X -= 10;
+            playerRect = new Rectangle(playerRect.X - 2, playerRect.Y, playerRect.Width, playerRect.Height);
         }
 
         public override void Draw(SpriteBatch sprtBtch)
@@ -270,14 +304,14 @@ namespace GamePrototype.Classes.Objects
             {
                 if (timer == 0 || timer < 0)
                 {
-                    i++;
+                    currentFrame++;
                     timer = .1;
-                    if (i >= walkRightSprites.Count)
+                    if (currentFrame >= walkRightSprites.Count)
                     {
-                        i = 0;
+                        currentFrame = 0;
                     }
                 }
-                sprtBtch.Draw(walkRightSprites[i], playerRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
+                sprtBtch.Draw(walkRightSprites[currentFrame], playerRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
             }
             if (playerDirection == PlayerDir.FaceDown)
             {
@@ -295,14 +329,14 @@ namespace GamePrototype.Classes.Objects
             {
                 if (timer == 0 || timer < 0)
                 {
-                    i++;
+                    currentFrame++;
                     timer = .1;
-                    if (i >= walkRightSprites.Count)
+                    if (currentFrame >= walkRightSprites.Count)
                     {
-                        i = 0;
+                        currentFrame = 0;
                     }
                 }
-                sprtBtch.Draw(walkRightSprites[i], playerRect, Color.White);
+                sprtBtch.Draw(walkRightSprites[currentFrame], playerRect, Color.White);
             }
 
         }

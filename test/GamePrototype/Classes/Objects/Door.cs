@@ -15,8 +15,8 @@ namespace GamePrototype.Classes.Objects
         {
         }
 
-        // TODO: Class needs fleshing out, but its primary difference is that interacting
-        // with it should somehow prompt the game to switch to another room. Custom event handlers maybe?
+        // TODO: Class needs fleshing out, but its primary difference is that interacting?
+        // with it should somehow prompt the game to switch to another room. Custom event handlers
         public override void Interact(Player user)
         {
             
