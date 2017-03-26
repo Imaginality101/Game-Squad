@@ -180,7 +180,7 @@ namespace GamePrototype.Classes.Objects
 
         }
 
-        // changes the PlayerDir enum based on input
+        // Caleb - changes the PlayerDir enum based on input
         private void ChangeDirection()
         {
             if (kbState.IsKeyDown(Keys.W) && !prevKbState.IsKeyDown(Keys.W))
@@ -265,7 +265,7 @@ namespace GamePrototype.Classes.Objects
             }
         }
 
-        // methods to block player from moving in the cardinal directions. Useful if collisions end faceUp not being handled by the player class
+        // Caleb - methods to block player from moving in the cardinal directions. Useful if collisions end faceUp not being handled by the player class
         public void BlockUp()
         {
             playerRect = new Rectangle(playerRect.X, playerRect.Y + 2, playerRect.Width, playerRect.Height);

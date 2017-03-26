@@ -207,7 +207,7 @@ namespace GamePrototype
             settingsData = data.ReadSettings();
             timerMode = (bool)settingsData[0];
             bobRossMode = (bool)settingsData[1];
-            Console.WriteLine(timerMode + "" + bobRossMode);
+            Console.WriteLine("Timer mode: " + timerMode + " Bob Ross mode: " + bobRossMode);
             base.Initialize();
            
         }
@@ -256,7 +256,7 @@ namespace GamePrototype
                         {
                             music.PlayAsMusic(.5f);
                         }
-                        // game timer code
+                        // Caleb - game timer code
                         if (timerMode)
                         {
                             elapsedTime += gameTime.ElapsedGameTime.Milliseconds;
@@ -284,7 +284,7 @@ namespace GamePrototype
                             gameState = GameState.GMenu;
                         }
                         player.Update(gameTime, bedRoom.Objects);
-                        // handles drawing interaction text
+                        // Caleb - handles drawing interaction text
                         if (kbState.IsKeyDown(Keys.E) && prevKbState.IsKeyUp(Keys.E))
                         {
                             drawInteractText = true;

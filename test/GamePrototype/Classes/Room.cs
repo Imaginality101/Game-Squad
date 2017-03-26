@@ -108,7 +108,7 @@ namespace GamePrototype.Classes
         }
 
         // NOTE: Declan - This was moved from the constructor, so when you initialize the Room(s) make sure you remember
-        // to then 
+        // to then
         public List<GameObject> Objects
         {
             get { return objectsInRoom; }
