@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
-/*Workers: Kat, Tom
+/*Workers: Kat, Tom, Caleb
  * DisasterPiece Games
  * Player Class
  */
