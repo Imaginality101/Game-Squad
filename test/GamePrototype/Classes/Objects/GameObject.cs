@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
+/*Workers: Caleb, Tom
+ * DisasterPiece Games
+ * GameObject Class
+ */
 
 namespace GamePrototype.Classes.Objects
 {
@@ -21,6 +24,8 @@ namespace GamePrototype.Classes.Objects
         Point pos;
         // holds  name of texture; will be used later in Game1.LoadContent()
         string spriteName;
+        // temporary string for the name of an object. Displays on screen when the player interacts with it
+        string name;
         public GameObject()
         {
             sprite = null;
@@ -34,6 +39,16 @@ namespace GamePrototype.Classes.Objects
             positionRect = psRct;
             enabled = true;
             collides = true;
+        }
+        // Caleb - temporary constructor. It is like the above constructor, but with a string param for interacting with objects for the Milestone 2
+        public GameObject(Texture2D txtr, Rectangle psRct, string nm)
+        {
+            sprite = txtr;
+            pos = psRct.Location;
+            positionRect = psRct;
+            enabled = true;
+            collides = true;
+            name = nm;
         }
         public GameObject(Texture2D txtr, Rectangle psRct, Boolean cl)
         {
@@ -128,6 +143,14 @@ namespace GamePrototype.Classes.Objects
         {
             get { return collides; }
             set { collides = value; }
+        }
+        // property for temporary name property
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
         }
         // TODO: Caleb - I will try and handle collisions with these methods
         // Called when the rectangles are intersecting

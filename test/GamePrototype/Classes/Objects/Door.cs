@@ -5,7 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+/*Workers: Tom
+ * DisasterPiece Games
+ * Door Class
+ */
 namespace GamePrototype.Classes.Objects
 {
 

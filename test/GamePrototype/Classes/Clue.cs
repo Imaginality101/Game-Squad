@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
-
+/*Workers: Caleb, Tom
+ * DisasterPiece Games
+ * Clue Class
+ */
 namespace GamePrototype.Classes
 {
     class Clue
@@ -25,7 +28,7 @@ namespace GamePrototype.Classes
             flavorText = text;
         }
 
-        // TODO: Clue Dictionary should go here, it will be static
+        // TODO: Caleb - Clue Dictionary should go here, it will be static
         private static Dictionary<string, Clue> clues = new Dictionary<string, Clue>
         {
             {"News1", new Clue("Details revealed about the disappearance of the wealthy widow Olivia Afton.")},
@@ -56,7 +59,7 @@ namespace GamePrototype.Classes
             {"StickyNote", new Clue("It has some phone numbers on it. Some are scribbled out.") }
         };
 
-        // accessor property for dictionary, call this in setups
+        // Caleb accessor property for dictionary, call this in setups
         public static Dictionary<string, Clue> Clues
         {
             get { return clues; }

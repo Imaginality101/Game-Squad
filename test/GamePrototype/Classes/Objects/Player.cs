@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
-
+/*Workers: Kat, Tom
+ * DisasterPiece Games
+ * Player Class
+ */
 namespace GamePrototype.Classes.Objects
 {
     enum PlayerDir { FaceDown, WalkDown, FaceUp, WalkUp, FaceLeft, WalkLeft, FaceRight, WalkRight}
@@ -42,13 +45,14 @@ namespace GamePrototype.Classes.Objects
             faceDownSprite = faceDown;
         }
         // TODO: Update method override, should check player input and movement
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, List<GameObject> objects)
         {
             timer -= gameTime.ElapsedGameTime.TotalSeconds;
             CheckInput(); // first get input to adjust movement queueing
             Move(gameTime);
             CheckBounds(moveBounds);
             ChangeDirection();
+            //FlagInteractables(objects.ToArray());
 
             base.Update(gameTime);
         }
@@ -103,17 +107,38 @@ namespace GamePrototype.Classes.Objects
         public float CheckProximity(GameObject target)
         {
             // This method will return the length of a vector between the two objects' global origin coordinates
-            Vector2 difference = SpriteOrigin - target.SpriteOrigin;
+            Vector2 difference = PLayerOrigin - target.SpriteOrigin;
             return Math.Abs(difference.Length());
         }
-
-        public void FlagInteractables(GameObject[] targets)
+        // TODO: Change the return type of FlagInteractables back to void
+        public string FlagInteractables(GameObject[] targets)
         {
-            Interactable closest = null; // use this temporary instance of the object to track which interactable in the room is closest to the player
+            GameObject closestGameObj = new GameObject();
+            float closestDistance = float.MaxValue;
+            foreach (GameObject go in targets)
+            {
+                //if (!(go is ClueObject))
+                //{
+                    if ((CheckProximity(go) < closestDistance) && (CheckProximity(go) < 200))
+                    {
+                        closestDistance = CheckProximity(go);
+                        closestGameObj = go;
+                    }
+                //}
+            }
+            if (closestDistance == float.MaxValue)
+            {
+                return "";
+            }
+            else
+            {
+                return "You are interacting with: " + closestGameObj.Name;
+            }
+            /*Interactable closest = null; // use this temporary instance of the object to track which interactable in the room is closest to the player
             float minDistance = moveBounds.Right; // ideally nothing should be interactable beyond the width of how far the player can move so use this as the default
             foreach(GameObject obj in targets)
             {
-                if(obj is Interactable) // if the object is usable check its proximity
+                if (obj is Interactable) // if the object is usable check its proximity
                 {
                     if (minDistance >= CheckProximity(obj)) // looping through this will find which interactable is the closest to the player
                     {
@@ -131,7 +156,7 @@ namespace GamePrototype.Classes.Objects
                     closest.Usable = true;
                     flaggedInteractable = closest;
                 }
-            }
+            }*/
         }
         public void CheckBounds(Rectangle roomBounds)
         {
@@ -139,25 +164,26 @@ namespace GamePrototype.Classes.Objects
             // the accepted param bounds roomBounds. Correct any discrepancies.
             if (playerRect.Left < roomBounds.Left)
             {
-                playerRect.X += (roomBounds.Left - playerRect.Left + 10);
+                //X += (roomBounds.Left - GlobalBounds.Left + 5);
+                BlockLeft();
             }
             else if (playerRect.Right > roomBounds.Right)
             {
-                playerRect.X += (roomBounds.Right - playerRect.Right - 10);
+                BlockRight();
             }
             
             if (playerRect.Top < roomBounds.Top)
             {
-                playerRect.Y += (roomBounds.Top - playerRect.Top + 10);
+                BlockUp();
             }
             else if (playerRect.Bottom > roomBounds.Bottom)
             {
-                playerRect.Y += (roomBounds.Bottom - playerRect.Bottom - 10);
+                BlockDown();
             }
 
         }
 
-        // changes the PlayerDir enum based on input
+        // Caleb - changes the PlayerDir enum based on input
         private void ChangeDirection()
         {
             if (kbState.IsKeyDown(Keys.W) && !prevKbState.IsKeyDown(Keys.W))
@@ -234,22 +260,32 @@ namespace GamePrototype.Classes.Objects
             }
         }
 
-        // methods to block player from moving in the cardinal directions. Useful if collisions end faceUp not being handled by the player class
+        public Vector2 PLayerOrigin
+        {
+            get
+            {
+                return playerRect.Center.ToVector2();
+            }
+        }
+
+        // Caleb - methods to block player from moving in the cardinal directions. Useful if collisions end faceUp not being handled by the player class
         public void BlockUp()
         {
-            Y += 10;
+            playerRect = new Rectangle(playerRect.X, playerRect.Y + 2, playerRect.Width, playerRect.Height);
         }
         public void BlockDown()
         {
-            Y -= 10;
+            playerRect = new Rectangle(playerRect.X, playerRect.Y - 2, playerRect.Width, playerRect.Height);
+
         }
         public void BlockLeft()
         {
-            X += 10;
+            //X += 10;
+            playerRect = new Rectangle(playerRect.X + 2, playerRect.Y, playerRect.Width, playerRect.Height);
         }
         public void BlockRight()
         {
-            X -= 10;
+            playerRect = new Rectangle(playerRect.X - 2, playerRect.Y, playerRect.Width, playerRect.Height);
         }
 
         public override void Draw(SpriteBatch sprtBtch)

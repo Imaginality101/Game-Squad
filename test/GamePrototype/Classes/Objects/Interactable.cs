@@ -5,7 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-
+/*Workers: Caleb, Tom
+ * DisasterPiece Games
+ * Interactable Class
+ */
 namespace GamePrototype.Classes.Objects
 {
     abstract class Interactable : GameObject
@@ -20,8 +23,18 @@ namespace GamePrototype.Classes.Objects
         {
             flaggedForUse = false;
         }
+        // Caleb - temporary constructor for interaction demo for milestone 2
+        public Interactable(Texture2D txtr, Rectangle psRct, string nm) : base(txtr, psRct, nm)
+        {
+            flaggedForUse = false;
+        }
 
         public Interactable(Texture2D txtr, Rectangle psRct, Boolean collision):base(txtr, psRct)
+        {
+            flaggedForUse = false;
+        }
+        // Caleb - Another temporary constructor for interaction demo
+        public Interactable(Texture2D txtr, Rectangle psRct, Boolean collision, string nm) : base(txtr, psRct, nm)
         {
             flaggedForUse = false;
         }

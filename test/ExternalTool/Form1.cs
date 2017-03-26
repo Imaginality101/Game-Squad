@@ -16,10 +16,16 @@ namespace ExternalTool
         const string PATH = "..\\..\\..\\GamePrototype\\bin\\DesktopGL\\x86\\Debug\\Settings"; 
         //"C:\\Users\\Caleb\\My Documents\\Visual Studio 2015\\Projects\\InteractionAttempt\\InteractionAttempt\\bin\\DesktopGL\\x86\\Debug\\Settings";
         //"C:\\Users\\Caleb\\Source\\Repos\\Game-Squad\\test\\GamePrototype\\bin\\DesktopGL\\x86\\Debug\\SaveFile"
+        // writes values the user enters
         BinaryWriter writer;
+        // writes default values if the user does not enter any values
+        BinaryWriter defaultWriter;
         public Form1()
         {
-            writer = new BinaryWriter(File.Open(PATH, FileMode.Create));
+            defaultWriter = new BinaryWriter(File.Open(PATH, FileMode.OpenOrCreate));
+            defaultWriter.Write(false);
+            defaultWriter.Write(false);
+            defaultWriter.Close();
             InitializeComponent();
         }
         // IGNORE THIS
@@ -30,6 +36,7 @@ namespace ExternalTool
 
         private void runGame_Click(object sender, EventArgs e)
         {
+            writer = new BinaryWriter(File.Open(PATH, FileMode.OpenOrCreate));
             if (timerBox.Checked)
             {
                 writer.Write(true);
@@ -46,6 +53,7 @@ namespace ExternalTool
             {
                 writer.Write(false);
             }
+            writer.Close();
             Close();
         }
 
