@@ -10,7 +10,7 @@ using System.IO;
 using GamePrototype.Classes.Objects;
 /*Workers: Caleb
  * DisasterPiece Games
- * SaveDate Class
+ * SaveData Class
  */
 namespace GamePrototype.Classes.Tools
 {

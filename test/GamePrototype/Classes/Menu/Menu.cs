@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 using System.IO;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
-
+/*Workers: Kat
+ * DisasterPiece Games
+ * Menu Class
+ */
 namespace GamePrototype.Classes.Menu
 {
     enum Category { Main, Journal, Clues, Settings }
