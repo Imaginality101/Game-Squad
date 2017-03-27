@@ -71,7 +71,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="GamePrototype.Classes.Tools.GameSound">
-    <Position X="13.5" Y="0.5" Width="1.5" />
+    <Position X="9.25" Y="3.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
@@ -82,7 +82,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="GamePrototype.Classes.Tools.ObjectSetup">
-    <Position X="11.75" Y="0.5" Width="1.5" />
+    <Position X="7.5" Y="3.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -92,7 +92,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="GamePrototype.Classes.Tools.SaveData">
-    <Position X="11.75" Y="2.25" Width="1.5" />
+    <Position X="7.5" Y="5" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
