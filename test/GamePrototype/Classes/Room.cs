@@ -10,9 +10,11 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using GamePrototype.Classes.Objects;
 using Microsoft.Xna.Framework.Content;
-/*Workers: Kat, Tom, Declan
+/*Workers: Kat, Tom, Declan, Caleb
  * DisasterPiece Games
  * Room Class
+ * Note: Right now since our objective for Milestone 2 was a single room with the basic functionality, this class ended up more specialized towards that one room. For Milestone 3 that should be moved out of the class' intrinsic properties
+ * and into the space of things we set up as we go for the sake of scaling up to 3 rooms.
  */
 
 namespace GamePrototype.Classes
@@ -29,18 +31,6 @@ namespace GamePrototype.Classes
         ContentManager content;//Added Delcan //Uses: Allows for the room clas to load the content locally so that the main Game1 doen't become overrun with texture loading
         // private Rectangle viewBounds; // Doesn't necessarily need to be used unless we go for resolution scalability
 
-        // kat testing something
-        /*
-        Texture2D bed; Rectangle bedRect;
-        Texture2D tv; Rectangle tvRect;
-        Texture2D sidetab1; Rectangle sidetab1Rect;
-        Texture2D sidetab2; Rectangle sidetab2Rect;
-        Texture2D book; Rectangle bookRect;
-        Texture2D dress; Rectangle dressRect;
-        Texture2D outdoor; Rectangle outdoorRect;
-        Texture2D bathdoor; Rectangle bathdoorRect;
-        Texture2D closetdoor; Rectangle closetdoorRect;
-        */
         SpriteBatch spriteBatch;
         List<Texture2D> textureList;
         List<Rectangle> rectangleList;

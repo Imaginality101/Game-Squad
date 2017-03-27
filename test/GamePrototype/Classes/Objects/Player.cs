@@ -59,12 +59,13 @@ namespace GamePrototype.Classes.Objects
         public void GetFrame()
         {
             // TODO: Kat - Method should figure out which frame rectangle is supposed to be active and pass it to an attribute bounds, which will need a property or accessor method
-            
+            // NOTE: As of milestone 2, both this and the LoadFrames method have their basic function fulfilled in other ways. Leaving them here in case we want to clean those methods up a bit, but the intended
+            // function of the methods themselves is implemented.
         }
 
         public void LoadFrames()
         {
-            // TODO: Kat - This method will need to be set faceUp differently depending on individual images or spritesheets.
+            // TODO: Kat - This method will need to be set up differently depending on individual images or spritesheets.
             // If we use sprite sheets we need it to take values for the number of animation sets, the number of frames in each set, and the pixel dimensions of each frame being pulled.
             // With that said, because of how this stuff works (to my knowledge) we don't need to pull the image file itself as part of this. We can just use the player's sprite itself for references.
             // This method shouldn't actually need to touch the Texture2D, we're just using it to set faceUp rects which will be used as sources in Draw() method.
@@ -112,8 +113,9 @@ namespace GamePrototype.Classes.Objects
         }
         // TODO: Change the return type of FlagInteractables back to void
         // NOTE: I guess this works as a way of showing the methodology works for now, but I coded this method originally to register with the closest interactable
-        // that it's usable so we can flag it with some visual marker like a button prompt. Absolutely works for the purposes of Milestone II until we have this set up better,
-        // but I'd like to migrate this to the original planned setup later on. - Tom
+        // that it's usable so we can flag it with some visual marker like a button prompt. Absolutely works for the purposes of Milestone II's framework until we have this set up better,
+        // but I'd like to migrate this to the original planned setup later on. Also, slightly unrelated and I'm not angry or anything but if 100% of my code for a method is commented out for a build
+        // please give me a heads-up in the future. I like to be fully aware at all times what work I can take credit for. - Tom
         public string FlagInteractables(GameObject[] targets)
         {
             GameObject closestGameObj = new GameObject();

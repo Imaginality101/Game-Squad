@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
-/*Workers: Kat
+/*Workers: Kat, Tom
  * DisasterPiece Games
  * Menu Class
  */
@@ -21,7 +21,7 @@ namespace GamePrototype.Classes.Menu
         private Category activeMenu;
         private SelectedEntry selectedEntry;
         Clue openedClue; // so the menu knows if the player's chosen a clue to look at
-        Dictionary<Clue, Boolean> clueList;
+        Dictionary<Clue, Boolean> clueList; // to keep track of 
 
         public Menu()
         {
@@ -77,5 +77,5 @@ namespace GamePrototype.Classes.Menu
     // The menu view itself also needs a property and attribute to check if it's enabled, as well as an Open method for itself which toggles that on/Close method for off
     // Other than the main view of the phone itself and maybe settings, menus should use lists for content since as the player finds clues they go there
     // Implements IControlled, use this to check user input while in the menu. Whoever does player updating should make sure they check if the menu is open before checking for input.
-
+    // - Tom
 }

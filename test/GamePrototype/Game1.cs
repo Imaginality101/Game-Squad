@@ -296,7 +296,7 @@ namespace GamePrototype
                         {
                             drawInteractText = false;
                         }
-                        // kat get person state
+                        // kat get person state, this has been moved to Player
                         /*if (kbState.IsKeyDown(Keys.W) && !prevKbState.IsKeyDown(Keys.W))
                         {
                             playerDirection = PlayerDir.FaceUp;
