@@ -381,13 +381,13 @@ namespace GamePrototype
                                 menuState = MenuState.Power;
                             }
 
-                            /* NOT WORKING RIGHT NOW
-                            if (menuState == MenuState.Journal || menuState == MenuState.Photos || menuState == MenuState.Settings && kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
+                            // NOT WORKING RIGHT NOW --- Fixed it, you just needed a set of parenthesis around the state checks here - Tom
+                            if ((menuState == MenuState.Journal || menuState == MenuState.Photos || menuState == MenuState.Settings) && kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
                             {
                                 // back to main menu
                                 menuState = MenuState.Main;
                             }
-                            */
+                            
 
                             if (kbState.IsKeyDown(Keys.LeftShift) && !prevKbState.IsKeyDown(Keys.LeftShift)) // would like to make tab later but wasnt working
                             {
