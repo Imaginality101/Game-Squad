@@ -188,6 +188,7 @@
     <Content Include="Content\Arial.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Content\phoneMain0.xnb" />
     <None Include="Content\phoneMain5.xnb" />
     <None Include="Content\phoneMain7.xnb" />

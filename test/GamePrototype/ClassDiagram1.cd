@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GamePrototype.Classes.Clue" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAGAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Clue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamePrototype.Classes.Room" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQCAEAAAQAEAwAAAJAAAAAAAAAAQAkAQAAAAAAAAgA=</HashCode>
+      <FileName>Classes\Room.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamePrototype.Classes.Menu.Menu" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAAAABAAEAgAAAAAACAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Classes\Menu\Menu.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GamePrototype.Classes.Menu.MenuObject" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Menu\MenuObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamePrototype.Classes.Objects.ClueObject" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Objects\ClueObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamePrototype.Classes.Objects.Door" Collapsed="true">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Objects\Door.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamePrototype.Classes.Objects.GameObject" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAAAAACAoBAgACACIQAABAECBAQAAAAAAAAYAQ=</HashCode>
+      <FileName>Classes\Objects\GameObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamePrototype.Classes.Objects.Interactable" Collapsed="true">
+    <Position X="3.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAIQAAAAA=</HashCode>
+      <FileName>Classes\Objects\Interactable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamePrototype.Classes.Objects.Player" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AsQAGBAAgIAgQgAABEAAAghAgAABArAAAAAAKQAgIAA=</HashCode>
+      <FileName>Classes\Objects\Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GamePrototype.Classes.Tools.GameSound" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BACAEAAAAAAAAAAAAABAAAAIAAAAAAAAAAAAIAAABBA=</HashCode>
+      <FileName>Classes\Tools\GameSound.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamePrototype.Classes.Tools.ObjectSetup" Collapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAACBFgAAABEAgAAQiAAQoBIABCAAAgAAAIAAAAAAQQ=</HashCode>
+      <FileName>Classes\Tools\ObjectSetup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamePrototype.Classes.Tools.SaveData" Collapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAEAACgAAAAAAAAAAAAAAAgAAAAAkAEABAEAAAAAA=</HashCode>
+      <FileName>Classes\Tools\SaveData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamePrototype.Game1" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KIYCkIGCCwAhAwAJAAAQAEoEAABAv4oBKAEwAQBAAAQ=</HashCode>
+      <FileName>Game1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamePrototype.Program" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="GamePrototype.Classes.Tools.IAnimated" Collapsed="true">
+    <Position X="7.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Tools\IAnimated.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GamePrototype.Classes.Tools.IControlled" Collapsed="true">
+    <Position X="9.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Classes\Tools\IControlled.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="GamePrototype.Classes.Menu.Category" Collapsed="true">
+    <Position X="7.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAgAAAAgAAABAAAAAA=</HashCode>
+      <FileName>Classes\Menu\Menu.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GamePrototype.Classes.Menu.SelectedEntry" Collapsed="true">
+    <Position X="11" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAABAAAAQAAAAAAQAAAQAAAAAAAAAAAEA=</HashCode>
+      <FileName>Classes\Menu\Menu.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GamePrototype.Classes.Objects.PlayerDir" Collapsed="true">
+    <Position X="9.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAoAACAAAAAAAAAAABAAAAASAAAAAAAAAAAAAAAQBAA=</HashCode>
+      <FileName>Classes\Objects\Player.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GamePrototype.GameState" Collapsed="true">
+    <Position X="11" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAEAAAAAQAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game1.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GamePrototype.MenuState" Collapsed="true">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAgAAABgAAABAAAAAA=</HashCode>
+      <FileName>Game1.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GamePrototype.CurrentRoom" Collapsed="true">
+    <Position X="9.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Game1.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
