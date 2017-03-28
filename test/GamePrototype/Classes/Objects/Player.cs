@@ -191,52 +191,29 @@ namespace GamePrototype.Classes.Objects
         // Caleb - hopefully will block player and objects
         public void BlockCollisions(List<GameObject> objects)
         {
-            // temporary: checks collision with bed
-            GameObject testObj = objects[4];
-            bool collidingObj = isColliding(testObj);
-            if (collidingObj)
+            foreach (GameObject go in objects)
             {
-                if (playerRect.Bottom > testObj.GlobalBounds.Top)
+                Boolean collidingObj = isColliding(go);
+                if (collidingObj)
                 {
-                    BlockDown();
-                }
-                if (playerRect.Top < testObj.GlobalBounds.Bottom)
-                {
-                    BlockUp();
-                }
-                if (playerRect.Left < testObj.GlobalBounds.Right)
-                {
-                    BlockRight();
-                }
-                if (playerRect.Right > testObj.GlobalBounds.Left)
-                {
-                    BlockLeft();
-                }
-            }
-            
-            
-            /*foreach (GameObject go in objects)
-            {
-                if (isColliding(go))
-                {
-                    if (playerRect.Bottom > go.GlobalBounds.Top)
+                    if (playerRect.Center.Y < go.GlobalBounds.Center.Y && (playerRect.Right - 2 > go.GlobalBounds.Left && playerRect.Left + 2 < go.GlobalBounds.Right))
                     {
                         BlockDown();
                     }
-                    if (playerRect.Top < go.GlobalBounds.Bottom)
+                    if (playerRect.Center.Y > go.GlobalBounds.Center.Y && (playerRect.Right - 2 > go.GlobalBounds.Left && playerRect.Left + 2 < go.GlobalBounds.Right))
                     {
                         BlockUp();
                     }
-                    if (playerRect.Left < go.GlobalBounds.Right)
+                    if (playerRect.Center.X > go.GlobalBounds.Center.X && (playerRect.Bottom > go.GlobalBounds.Top && playerRect.Top < go.GlobalBounds.Bottom))
                     {
                         BlockLeft();
                     }
-                    if (playerRect.Right > go.GlobalBounds.Left)
+                    if (playerRect.Center.X < go.GlobalBounds.Center.X && (playerRect.Bottom > go.GlobalBounds.Top && playerRect.Top < go.GlobalBounds.Bottom))
                     {
                         BlockRight();
                     }
                 }
-            }*/
+            }
         }
 
         // Caleb - changes the PlayerDir enum based on input
@@ -316,7 +293,7 @@ namespace GamePrototype.Classes.Objects
             }
         }
 
-        public Vector2 PLayerOrigin
+        public Vector2 PlayerOrigin
         {
             get
             {
