@@ -196,21 +196,21 @@ namespace GamePrototype.Classes.Objects
             bool collidingObj = isColliding(testObj);
             if (collidingObj)
             {
-                if (playerRect.Bottom > testObj.GlobalBounds.Top)
+                if (playerRect.Center.Y < testObj.GlobalBounds.Center.Y && (playerRect.Right - 2 > testObj.GlobalBounds.Left && playerRect.Left + 2 < testObj.GlobalBounds.Right))
                 {
                     BlockDown();
                 }
-                if (playerRect.Top < testObj.GlobalBounds.Bottom)
+                if (playerRect.Center.Y > testObj.GlobalBounds.Center.Y && (playerRect.Right - 2 > testObj.GlobalBounds.Left && playerRect.Left + 2 < testObj.GlobalBounds.Right))
                 {
                     BlockUp();
                 }
-                if (playerRect.Left < testObj.GlobalBounds.Right)
-                {
-                    BlockRight();
-                }
-                if (playerRect.Right > testObj.GlobalBounds.Left)
+                if (playerRect.Center.X > testObj.GlobalBounds.Center.X && (playerRect.Bottom > testObj.GlobalBounds.Top && playerRect.Top < testObj.GlobalBounds.Bottom))
                 {
                     BlockLeft();
+                }
+                if (playerRect.Center.X < testObj.GlobalBounds.Center.X && (playerRect.Bottom > testObj.GlobalBounds.Top && playerRect.Top < testObj.GlobalBounds.Bottom))
+                {
+                    BlockRight();
                 }
             }
             
