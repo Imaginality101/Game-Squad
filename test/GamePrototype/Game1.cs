@@ -152,7 +152,7 @@ namespace GamePrototype
             faceRight6 = content.Load<Texture2D>("profile6");
             faceRight7 = content.Load<Texture2D>("profile7");
             faceRight8 = content.Load<Texture2D>("profile8");
-            protagRect = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 50, graphics.PreferredBackBufferHeight / 2 - 50, 192, 192);
+            protagRect = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 50, graphics.PreferredBackBufferHeight / 2 - 50, 96, 192);//<-------------THIS IS WHERE THE PLAYER RECT SIZE IS----------------
             protagTextureRight = new List<Texture2D>();
             protagTextureRight.Add(faceRight1);
             protagTextureRight.Add(faceRight2);
@@ -176,7 +176,7 @@ namespace GamePrototype
             bedRoom = new Room(GraphicsDevice,Content);
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
             bedRoom.Objects = furnitureSet.BedroomSetup();
-            player = new Player(faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds,  protagRect);
+            player = new Player(faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds,  protagRect); 
         }
 
         /// <summary>
@@ -296,59 +296,6 @@ namespace GamePrototype
                         {
                             drawInteractText = false;
                         }
-                        // kat get person state, this has been moved to Player
-                        /*if (kbState.IsKeyDown(Keys.W) && !prevKbState.IsKeyDown(Keys.W))
-                        {
-                            playerDirection = PlayerDir.FaceUp;
-                        }
-                        if (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyDown(Keys.W))
-                        {
-                            playerDirection = PlayerDir.WalkUp;
-                            protagRect = new Rectangle(protagRect.X, protagRect.Y - 2, faceUp.Width, faceUp.Height);
-                        }
-                        if (!kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyDown(Keys.W))
-                        {
-                            playerDirection = PlayerDir.FaceUp;
-                        }
-                        if (kbState.IsKeyDown(Keys.A) && !prevKbState.IsKeyDown(Keys.A))
-                        {
-                            playerDirection = PlayerDir.FaceLeft;
-                        }
-                        if (kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyDown(Keys.A))
-                        {
-                            playerDirection = PlayerDir.WalkLeft;
-                            protagRect = new Rectangle(protagRect.X - 2, protagRect.Y, faceUp.Width, faceUp.Height);
-                        }
-                        if (!kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyDown(Keys.A))
-                        {
-                            playerDirection = PlayerDir.FaceLeft;
-                        }
-                        if (kbState.IsKeyDown(Keys.S) && !prevKbState.IsKeyDown(Keys.S))
-                        {
-                            playerDirection = PlayerDir.FaceDown;
-                        }
-                        if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyDown(Keys.S))
-                        {
-                            playerDirection = PlayerDir.WalkDown;
-                            protagRect = new Rectangle(protagRect.X, protagRect.Y + 2, faceUp.Width, faceUp.Height);
-                        }
-                        if (!kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyDown(Keys.S))
-                        {
-                            playerDirection = PlayerDir.FaceDown;
-                        }
-                        if (kbState.IsKeyDown(Keys.D) && !prevKbState.IsKeyDown(Keys.D))
-                        {
-                            playerDirection = PlayerDir.FaceRight;
-                        }
-                        if (kbState.IsKeyDown(Keys.D) && prevKbState.IsKeyDown(Keys.D))
-                        {
-                            playerDirection = PlayerDir.WalkRight;
-                            protagRect = new Rectangle(protagRect.X + 2, protagRect.Y, faceUp.Width, faceUp.Height);
-                        }
-                        if (!kbState.IsKeyDown(Keys.D) && prevKbState.IsKeyDown(Keys.D))
-                        {
-                            playerDirection = PlayerDir.FaceRight;
-                        }*/
                         break;
                     }
                 case GameState.GMenu:
@@ -437,58 +384,6 @@ namespace GamePrototype
             {
                 bedRoom.Draw(uSpriteBatch);
             }
-
-            // player walking stuff - kat
-            /*if (playerDirection == PlayerDir.FaceUp)
-            {
-                uSpriteBatch.Draw(faceUp, protagRect, Color.White);
-            }
-            if (playerDirection == PlayerDir.WalkUp)
-            {
-                uSpriteBatch.Draw(faceUp, protagRect, Color.White);
-            }
-            if (playerDirection == PlayerDir.FaceLeft)
-            {
-                uSpriteBatch.Draw(faceRight, protagRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
-            }
-            if (playerDirection == PlayerDir.WalkLeft)
-            {
-                if (timer == 0 || timer < 0)
-                {
-                    i++;
-                    timer = .1;
-                    if (i >= protagTextureRight.Count)
-                    {
-                        i = 0;
-                    }
-                }
-                uSpriteBatch.Draw(protagTextureRight[i], protagRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
-            }
-            if (playerDirection == PlayerDir.FaceDown)
-            {
-                uSpriteBatch.Draw(faceDown, protagRect, Color.White);
-            }
-            if (playerDirection == PlayerDir.WalkDown)
-            {
-                uSpriteBatch.Draw(faceDown, protagRect, Color.White);
-            }
-            if (playerDirection == PlayerDir.FaceRight)
-            {
-                uSpriteBatch.Draw(faceRight, protagRect, Color.White);
-            }
-            if (playerDirection == PlayerDir.WalkRight)
-            {
-                if (timer == 0 || timer < 0)
-                {
-                    i++;
-                    timer = .1;
-                    if (i >= protagTextureRight.Count)
-                    {
-                        i = 0;
-                    }
-                }
-                uSpriteBatch.Draw(protagTextureRight[i], protagRect, Color.White);
-            }*/
             player.Draw(uSpriteBatch);
 
             // menu stuff kat

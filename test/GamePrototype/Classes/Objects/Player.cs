@@ -38,7 +38,7 @@ namespace GamePrototype.Classes.Objects
             moveQueue = Vector2.Zero; // initialize moveQueue to a zero vector
             playerDirection = PlayerDir.FaceDown; // start out facing downwards for now
             moveBounds = bounds;
-            playerRect = pRect;
+            playerRect = pRect; //<------------------------------------------------------------------------THIS IS WHERE THE PLAYER RECT SIZE IS-------------------------
             faceRightSprite = faceRight;
             walkRightSprites = walkRight;
             faceUpSprite = faceUp;
