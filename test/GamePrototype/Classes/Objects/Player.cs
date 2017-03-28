@@ -52,6 +52,7 @@ namespace GamePrototype.Classes.Objects
             Move(gameTime);
             CheckBounds(moveBounds);
             ChangeDirection();
+            BlockCollisions(objects);
             //FlagInteractables(objects.ToArray());
 
             base.Update(gameTime);
@@ -187,6 +188,56 @@ namespace GamePrototype.Classes.Objects
             }
 
         }
+        // Caleb - hopefully will block player and objects
+        public void BlockCollisions(List<GameObject> objects)
+        {
+            // temporary: checks collision with bed
+            GameObject testObj = objects[4];
+            bool collidingObj = isColliding(testObj);
+            if (collidingObj)
+            {
+                if (playerRect.Bottom > testObj.GlobalBounds.Top)
+                {
+                    BlockDown();
+                }
+                if (playerRect.Top < testObj.GlobalBounds.Bottom)
+                {
+                    BlockUp();
+                }
+                if (playerRect.Left < testObj.GlobalBounds.Right)
+                {
+                    BlockRight();
+                }
+                if (playerRect.Right > testObj.GlobalBounds.Left)
+                {
+                    BlockLeft();
+                }
+            }
+            
+            
+            /*foreach (GameObject go in objects)
+            {
+                if (isColliding(go))
+                {
+                    if (playerRect.Bottom > go.GlobalBounds.Top)
+                    {
+                        BlockDown();
+                    }
+                    if (playerRect.Top < go.GlobalBounds.Bottom)
+                    {
+                        BlockUp();
+                    }
+                    if (playerRect.Left < go.GlobalBounds.Right)
+                    {
+                        BlockLeft();
+                    }
+                    if (playerRect.Right > go.GlobalBounds.Left)
+                    {
+                        BlockRight();
+                    }
+                }
+            }*/
+        }
 
         // Caleb - changes the PlayerDir enum based on input
         private void ChangeDirection()
@@ -255,7 +306,7 @@ namespace GamePrototype.Classes.Objects
 
         public Boolean isColliding(GameObject target)
         {
-            if ((target != this && (GlobalBounds.Intersects(target.GlobalBounds))))
+            if ((target != this && (playerRect.Intersects(target.GlobalBounds))))
             {
                 return true;
             }
@@ -273,21 +324,31 @@ namespace GamePrototype.Classes.Objects
             }
         }
 
+        public Rectangle PlayerRect
+        {
+            get
+            {
+                return playerRect;
+            }
+        }
         // Caleb - methods to block player from moving in the cardinal directions. Useful if collisions end faceUp not being handled by the player class
+        // moves player down
         public void BlockUp()
         {
             playerRect = new Rectangle(playerRect.X, playerRect.Y + 2, playerRect.Width, playerRect.Height);
         }
+        // moves player up
         public void BlockDown()
         {
             playerRect = new Rectangle(playerRect.X, playerRect.Y - 2, playerRect.Width, playerRect.Height);
 
         }
+        // moves player right
         public void BlockLeft()
         {
-            //X += 10;
             playerRect = new Rectangle(playerRect.X + 2, playerRect.Y, playerRect.Width, playerRect.Height);
         }
+        // moves player left
         public void BlockRight()
         {
             playerRect = new Rectangle(playerRect.X - 2, playerRect.Y, playerRect.Width, playerRect.Height);
@@ -346,7 +407,6 @@ namespace GamePrototype.Classes.Objects
                 }
                 sprtBtch.Draw(walkRightSprites[currentFrame], playerRect, Color.White);
             }
-
         }
 
     }
