@@ -439,10 +439,6 @@ namespace GamePrototype
             {
                 uSpriteBatch.DrawString(font, string.Format("{0}:{1}", gameTimerSeconds / 60, gameTimerSeconds % 60), new Vector2(0, 50), Color.White);
             }
-            //TODO: Remove this shit
-            Texture2D testRect = Content.Load<Texture2D>("BlueGuy");
-            //uSpriteBatch.Draw(testRect, player.PlayerRect, Color.Red);
-            //uSpriteBatch.Draw(testRect, bedRoom.Objects[4].GlobalBounds, Color.Green);
             // end spritebatch
             uSpriteBatch.End();
 

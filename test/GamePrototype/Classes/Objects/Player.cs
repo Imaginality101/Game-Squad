@@ -147,6 +147,11 @@ namespace GamePrototype.Classes.Objects
             }
             else
             {
+                if (closestGameObj is ClueObject)
+                {
+                    ClueObject closestClueObj = (ClueObject)closestGameObj;
+                    inventory.Add(closestClueObj.RequiredClue);
+                }
                 return "You are interacting with: " + closestGameObj.Name;
             }*/
             Interactable closest = null; // use this temporary instance of the object to track which interactable in the room is closest to the player
@@ -315,6 +320,14 @@ namespace GamePrototype.Classes.Objects
             get
             {
                 return playerRect;
+            }
+        }
+
+        public List<Clue> Inventory
+        {
+            get
+            {
+                return inventory;
             }
         }
         // Caleb - methods to block player from moving in the cardinal directions. Useful if collisions end faceUp not being handled by the player class
