@@ -383,8 +383,8 @@ namespace GamePrototype
             if (gameState == GameState.Game)
             {
                 bedRoom.Draw(uSpriteBatch);
+                player.Draw(uSpriteBatch);
             }
-            player.Draw(uSpriteBatch);
 
             // menu stuff kat
             if (gameState == GameState.GMenu && menuState == MenuState.Main)
