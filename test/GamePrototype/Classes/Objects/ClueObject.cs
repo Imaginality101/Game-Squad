@@ -49,6 +49,8 @@ namespace GamePrototype.Classes.Objects
             if(onetimeUse)
             {
                 Enabled = false;
+                Clue.Inventory.Add(givenClue);
+                Console.WriteLine(givenClue.ToString());
             }
         }
     }

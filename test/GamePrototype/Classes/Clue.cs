@@ -76,7 +76,11 @@ namespace GamePrototype.Classes
             {"StickyNote", new Clue("It has some phone numbers on it. Some are scribbled out.") }
         };
 
-        
+        public override string ToString()
+        {
+            return flavorText;
+        }
+
 
     }
 }
