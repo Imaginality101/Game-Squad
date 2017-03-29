@@ -17,6 +17,7 @@ namespace GamePrototype.Classes
         Texture2D clueImg; // the clue itself to be displayed on screen
         String flavorText;
         bool playerHas;
+        private static List<Clue> inventory = new List<Clue>();
 
         // default constructor
         public Clue()
@@ -34,8 +35,14 @@ namespace GamePrototype.Classes
         public bool PlayerHas {  get { return playerHas; } set { playerHas = value; } }
 
         // Caleb accessor property for dictionary, call this in setups
-        public static Dictionary<string, Clue> Clues { get { return clues; }
+        public static Dictionary<string, Clue> Clues { get { return clues; } }
 
+        public static List<Clue> Inventory
+        {
+            get
+            {
+                return inventory;
+            }
         }
 
         // TODO: Caleb - Clue Dictionary should go here, it will be static
