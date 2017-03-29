@@ -27,7 +27,7 @@ namespace GamePrototype.Classes.Objects
         private Texture2D faceRightSprite;
         private Texture2D faceUpSprite;
         private Texture2D faceDownSprite;
-
+        private List<Clue> inventory;
         // variables for animation
         double timer = .1;
         int currentFrame = 0;
@@ -43,6 +43,7 @@ namespace GamePrototype.Classes.Objects
             walkRightSprites = walkRight;
             faceUpSprite = faceUp;
             faceDownSprite = faceDown;
+            inventory = new List<Clue>();
         }
         // TODO: Update method override, should check player input and movement
         public void Update(GameTime gameTime, List<GameObject> objects)
@@ -109,7 +110,7 @@ namespace GamePrototype.Classes.Objects
         public float CheckProximity(GameObject target)
         {
             // This method will return the length of a vector between the two objects' global origin coordinates
-            Vector2 difference = PLayerOrigin - target.SpriteOrigin;
+            Vector2 difference = PlayerOrigin - target.SpriteOrigin;
             return Math.Abs(difference.Length());
         }
         // TODO: Change the return type of FlagInteractables back to void
@@ -138,6 +139,11 @@ namespace GamePrototype.Classes.Objects
             }
             else
             {
+                if (closestGameObj is ClueObject)
+                {
+                    ClueObject closestClueObj = (ClueObject)closestGameObj;
+                    inventory.Add(closestClueObj.RequiredClue);
+                }
                 return "You are interacting with: " + closestGameObj.Name;
             }
             /*Interactable closest = null; // use this temporary instance of the object to track which interactable in the room is closest to the player
@@ -306,6 +312,14 @@ namespace GamePrototype.Classes.Objects
             get
             {
                 return playerRect;
+            }
+        }
+
+        public List<Clue> Inventory
+        {
+            get
+            {
+                return inventory;
             }
         }
         // Caleb - methods to block player from moving in the cardinal directions. Useful if collisions end faceUp not being handled by the player class
