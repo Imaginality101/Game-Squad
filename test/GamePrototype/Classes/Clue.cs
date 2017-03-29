@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
-/*Workers: Caleb, Tom
+/*Workers: Caleb, Tom, Declan
  * DisasterPiece Games
  * Clue Class
  */
@@ -16,16 +16,26 @@ namespace GamePrototype.Classes
         // Should also have a string property for flavor/pickup text, and potentially a thumbnail image.
         Texture2D clueImg; // the clue itself to be displayed on screen
         String flavorText;
+        bool playerHas;
 
         // default constructor
         public Clue()
         {
-
+            playerHas = false;
         }
         // constructor with flavorText
         public Clue(string text)
         {
+            playerHas = false;
             flavorText = text;
+        }
+
+        //Delcna property to get if the play has something
+        public bool PlayerHas {  get { return playerHas; } set { playerHas = value; } }
+
+        // Caleb accessor property for dictionary, call this in setups
+        public static Dictionary<string, Clue> Clues { get { return clues; }
+
         }
 
         // TODO: Caleb - Clue Dictionary should go here, it will be static
@@ -59,11 +69,7 @@ namespace GamePrototype.Classes
             {"StickyNote", new Clue("It has some phone numbers on it. Some are scribbled out.") }
         };
 
-        // Caleb accessor property for dictionary, call this in setups
-        public static Dictionary<string, Clue> Clues
-        {
-            get { return clues; }
-        }
+        
 
     }
 }

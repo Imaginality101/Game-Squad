@@ -109,7 +109,7 @@ namespace GamePrototype.Classes.Objects
         public float CheckProximity(GameObject target)
         {
             // This method will return the length of a vector between the two objects' global origin coordinates
-            Vector2 difference = PLayerOrigin - target.SpriteOrigin;
+            Vector2 difference = PlayerOrigin - target.SpriteOrigin;
             return Math.Abs(difference.Length());
         }
         // TODO: Change the return type of FlagInteractables back to void
