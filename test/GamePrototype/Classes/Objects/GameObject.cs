@@ -64,6 +64,7 @@ namespace GamePrototype.Classes.Objects
         {
             sprite = txtr;
             positionRect = new Rectangle(psRct.X + clRct.X, psRct.Y + clRct.Y, clRct.Width, clRct.Height);
+            drawRect = psRct;
             enabled = true;
             collides = true;
         }
@@ -156,8 +157,17 @@ namespace GamePrototype.Classes.Objects
             // TODO: Reinstate original Draw()
             if (Enabled)
             {
-                sprtBtch.Draw(sprite, positionRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                if (drawRect == null)
+                {
+                    sprtBtch.Draw(sprite, positionRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                }
+                else
+                {
+                    sprtBtch.Draw(sprite, drawRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                }
             }
+
+
         }
 
         // test - visual identification for interactable objects

@@ -171,7 +171,7 @@ namespace GamePrototype.Classes.Objects
                         flaggedInteractable = null;
                     }
                 }
-                if (closest != null && minDistance <= (64)) // if something was found in a reasonable proximity
+                if (closest != null && minDistance <= (playerRect.Width + 20)) // if something was found in a reasonable proximity
                 {
                     closest.Usable = true;
                     flaggedInteractable = closest;
@@ -323,13 +323,6 @@ namespace GamePrototype.Classes.Objects
             }
         }
 
-        public List<Clue> Inventory
-        {
-            get
-            {
-                return inventory;
-            }
-        }
         // Caleb - methods to block player from moving in the cardinal directions. Useful if collisions end faceUp not being handled by the player class
         // moves player down
         public void BlockUp()
