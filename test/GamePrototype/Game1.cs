@@ -382,9 +382,18 @@ namespace GamePrototype
             // calls the bedroom draw command - kat
             if (gameState == GameState.Game)
             {
-                bedRoom.Draw(uSpriteBatch);
+                if (player.PlayerRect.Y < GraphicsDevice.Viewport.Bounds.Height / 2)
+                {
+                    bedRoom.Draw(uSpriteBatch);
+                    player.Draw(uSpriteBatch);
+                }
+                else
+                {
+                    bedRoom.Draw(uSpriteBatch);
+                    player.Draw(uSpriteBatch);
+                }
             }
-            player.Draw(uSpriteBatch);
+
 
             // menu stuff kat
             if (gameState == GameState.GMenu && menuState == MenuState.Main)
@@ -422,7 +431,7 @@ namespace GamePrototype
             // Caleb - draw interact text
             if (drawInteractText)
             {
-                uSpriteBatch.DrawString(font, player.FlagInteractables(bedRoom.Objects.ToArray()), Vector2.Zero, Color.White);
+                //uSpriteBatch.DrawString(font, player.FlagInteractables(bedRoom.Objects.ToArray()), Vector2.Zero, Color.White);
                 //drawInteractText = false;
             }
             // draw timer if enabled
@@ -432,8 +441,8 @@ namespace GamePrototype
             }
             //TODO: Remove this shit
             Texture2D testRect = Content.Load<Texture2D>("BlueGuy");
-            uSpriteBatch.Draw(testRect, player.PlayerRect, Color.Red);
-            uSpriteBatch.Draw(testRect, bedRoom.Objects[4].GlobalBounds, Color.Green);
+            //uSpriteBatch.Draw(testRect, player.PlayerRect, Color.Red);
+            //uSpriteBatch.Draw(testRect, bedRoom.Objects[4].GlobalBounds, Color.Green);
             // end spritebatch
             uSpriteBatch.End();
 

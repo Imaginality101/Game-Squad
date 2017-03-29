@@ -15,10 +15,11 @@ namespace GamePrototype.Classes.Objects
 {
     class GameObject
     {
-        private bool enabled;
+        private Boolean enabled;
         private Texture2D sprite;
         private Rectangle positionRect;
-        private bool collides;
+        private Rectangle drawRect;
+        private Boolean collides;
         //private enum Direction { North, South, East, West };
         //Direction dir;
         Point pos;
@@ -57,6 +58,23 @@ namespace GamePrototype.Classes.Objects
             positionRect = psRct;
             enabled = true;
             collides = cl;
+        }
+
+        public GameObject(Texture2D txtr, Rectangle psRct, Rectangle clRct)
+        {
+            sprite = txtr;
+            positionRect = new Rectangle(psRct.X + clRct.X, psRct.Y + clRct.Y, clRct.Width, clRct.Height);
+            enabled = true;
+            collides = true;
+        }
+        public GameObject(Texture2D txtr, Rectangle psRct, Boolean cl, String nm)
+        {
+            sprite = txtr;
+            pos = psRct.Location;
+            positionRect = psRct;
+            enabled = true;
+            collides = cl;
+            name = nm;
         }
         public GameObject(Texture2D txtr, Point posParam)
         {
@@ -136,9 +154,22 @@ namespace GamePrototype.Classes.Objects
         {
             // draws the object
             // TODO: Reinstate original Draw()
-            sprtBtch.Draw(sprite, positionRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+            if (Enabled)
+            {
+                sprtBtch.Draw(sprite, positionRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+            }
         }
 
+        // test - visual identification for interactable objects
+        public virtual void Draw(SpriteBatch sprtBtch, Color color)
+        {
+            // draws the object
+            // TODO: Reinstate original Draw()
+            if (Enabled)
+            {
+                sprtBtch.Draw(sprite, positionRect, null, color, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+            }
+        }
         public Boolean Tangible // Accessor property to tell if the object should collide or not
         {
             get { return collides; }

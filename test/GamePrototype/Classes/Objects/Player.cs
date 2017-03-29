@@ -17,7 +17,7 @@ namespace GamePrototype.Classes.Objects
     {
         KeyboardState kbState;
         KeyboardState prevKbState;
-        GameObject flaggedInteractable;
+        Interactable flaggedInteractable;
         //private Rectangle[][] animFrames; // source rectangles to be used in drawing the player
         private Rectangle moveBounds;
         private Rectangle playerRect;
@@ -27,7 +27,7 @@ namespace GamePrototype.Classes.Objects
         private Texture2D faceRightSprite;
         private Texture2D faceUpSprite;
         private Texture2D faceDownSprite;
-
+        
         // variables for animation
         double timer = .1;
         int currentFrame = 0;
@@ -48,12 +48,13 @@ namespace GamePrototype.Classes.Objects
         public void Update(GameTime gameTime, List<GameObject> objects)
         {
             timer -= gameTime.ElapsedGameTime.TotalSeconds;
+            FlagInteractables(objects.ToArray());
             CheckInput(); // first get input to adjust movement queueing
             Move(gameTime);
             CheckBounds(moveBounds);
             ChangeDirection();
             BlockCollisions(objects);
-            //FlagInteractables(objects.ToArray());
+
 
             base.Update(gameTime);
         }
@@ -96,6 +97,13 @@ namespace GamePrototype.Classes.Objects
             {
                 moveQueue.X += 2;
             }
+            if (kbState.IsKeyDown(Keys.E))
+            {
+                if (flaggedInteractable != null)
+                {
+                    flaggedInteractable.Interact(this);
+                }
+            }
             prevKbState = kbState;
         }
 
@@ -109,7 +117,7 @@ namespace GamePrototype.Classes.Objects
         public float CheckProximity(GameObject target)
         {
             // This method will return the length of a vector between the two objects' global origin coordinates
-            Vector2 difference = PLayerOrigin - target.SpriteOrigin;
+            Vector2 difference = PlayerOrigin - target.SpriteOrigin;
             return Math.Abs(difference.Length());
         }
         // TODO: Change the return type of FlagInteractables back to void
@@ -117,8 +125,9 @@ namespace GamePrototype.Classes.Objects
         // that it's usable so we can flag it with some visual marker like a button prompt. Absolutely works for the purposes of Milestone II's framework until we have this set up better,
         // but I'd like to migrate this to the original planned setup later on. Also, slightly unrelated and I'm not angry or anything but if 100% of my code for a method is commented out for a build
         // please give me a heads-up in the future. I like to be fully aware at all times what work I can take credit for. - Tom
-        public string FlagInteractables(GameObject[] targets)
+        public void FlagInteractables(GameObject[] targets)
         {
+            /*
             GameObject closestGameObj = new GameObject();
             float closestDistance = float.MaxValue;
             foreach (GameObject go in targets)
@@ -139,8 +148,8 @@ namespace GamePrototype.Classes.Objects
             else
             {
                 return "You are interacting with: " + closestGameObj.Name;
-            }
-            /*Interactable closest = null; // use this temporary instance of the object to track which interactable in the room is closest to the player
+            }*/
+            Interactable closest = null; // use this temporary instance of the object to track which interactable in the room is closest to the player
             float minDistance = moveBounds.Right; // ideally nothing should be interactable beyond the width of how far the player can move so use this as the default
             foreach(GameObject obj in targets)
             {
@@ -157,12 +166,12 @@ namespace GamePrototype.Classes.Objects
                         flaggedInteractable = null;
                     }
                 }
-                if (closest != null && minDistance <= ((Sprite.Height / 2) + 20)) // if something was found in a reasonable proximity
+                if (closest != null && minDistance <= (64)) // if something was found in a reasonable proximity
                 {
                     closest.Usable = true;
                     flaggedInteractable = closest;
                 }
-            }*/
+            }
         }
         public void CheckBounds(Rectangle roomBounds)
         {
@@ -283,7 +292,7 @@ namespace GamePrototype.Classes.Objects
 
         public Boolean isColliding(GameObject target)
         {
-            if ((target != this && (playerRect.Intersects(target.GlobalBounds))))
+            if ((target != this && (playerRect.Intersects(target.GlobalBounds)) && target.Tangible))
             {
                 return true;
             }
