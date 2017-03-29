@@ -164,7 +164,15 @@ namespace GamePrototype.Classes.Objects
             // TODO: Reinstate original Draw()
             if (Enabled)
             {
+                if (!drawMatchesCol)
+                {
+                    sprtBtch.Draw(sprite, drawRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                }
+                else
+                {
                     sprtBtch.Draw(sprite, positionRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                }
+
             }
 
 
