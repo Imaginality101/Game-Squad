@@ -27,7 +27,7 @@ namespace GamePrototype.Classes.Objects
         private Texture2D faceRightSprite;
         private Texture2D faceUpSprite;
         private Texture2D faceDownSprite;
-        
+        private List<Clue> inventory;
         // variables for animation
         double timer = .1;
         int currentFrame = 0;
@@ -147,11 +147,6 @@ namespace GamePrototype.Classes.Objects
             }
             else
             {
-                if (closestGameObj is ClueObject)
-                {
-                    ClueObject closestClueObj = (ClueObject)closestGameObj;
-                    inventory.Add(closestClueObj.RequiredClue);
-                }
                 return "You are interacting with: " + closestGameObj.Name;
             }*/
             Interactable closest = null; // use this temporary instance of the object to track which interactable in the room is closest to the player
