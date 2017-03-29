@@ -46,6 +46,8 @@ namespace GamePrototype.Classes.Objects
         // TODO: Interaction method
         public override void Interact(Player user)
         {
+            // INTERACTION FUNCTIONS HERE
+
             if(onetimeUse)
             {
                 Enabled = false;

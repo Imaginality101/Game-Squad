@@ -167,7 +167,7 @@ namespace GamePrototype.Classes.Objects
                         flaggedInteractable = null;
                     }
                 }
-                if (closest != null && minDistance <= (64)) // if something was found in a reasonable proximity
+                if (closest != null && minDistance <= (playerRect.Width + 20)) // if something was found in a reasonable proximity
                 {
                     closest.Usable = true;
                     flaggedInteractable = closest;

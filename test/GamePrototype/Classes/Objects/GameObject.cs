@@ -19,6 +19,7 @@ namespace GamePrototype.Classes.Objects
         private Texture2D sprite;
         private Rectangle positionRect;
         private Rectangle drawRect;
+        private Boolean drawMatchesCol;
         private Boolean collides;
         //private enum Direction { North, South, East, West };
         //Direction dir;
@@ -40,6 +41,7 @@ namespace GamePrototype.Classes.Objects
             positionRect = psRct;
             enabled = true;
             collides = true;
+            drawMatchesCol = true;
         }
         // Caleb - temporary constructor. It is like the above constructor, but with a string param for interacting with objects for the Milestone 2
         public GameObject(Texture2D txtr, Rectangle psRct, string nm)
@@ -50,6 +52,7 @@ namespace GamePrototype.Classes.Objects
             enabled = true;
             collides = true;
             name = nm;
+            drawMatchesCol = true;
         }
         public GameObject(Texture2D txtr, Rectangle psRct, Boolean cl)
         {
@@ -58,14 +61,17 @@ namespace GamePrototype.Classes.Objects
             positionRect = psRct;
             enabled = true;
             collides = cl;
+            drawMatchesCol = true;
         }
 
         public GameObject(Texture2D txtr, Rectangle psRct, Rectangle clRct)
         {
             sprite = txtr;
+            drawRect = psRct;
             positionRect = new Rectangle(psRct.X + clRct.X, psRct.Y + clRct.Y, clRct.Width, clRct.Height);
             enabled = true;
             collides = true;
+            drawMatchesCol = false;
         }
         public GameObject(Texture2D txtr, Rectangle psRct, Boolean cl, String nm)
         {
@@ -75,6 +81,7 @@ namespace GamePrototype.Classes.Objects
             enabled = true;
             collides = cl;
             name = nm;
+            drawMatchesCol = true;
         }
         public GameObject(Texture2D txtr, Point posParam)
         {
@@ -83,6 +90,7 @@ namespace GamePrototype.Classes.Objects
             positionRect = new Rectangle(pos.X, pos.Y, sprite.Width, sprite.Height);
             enabled = true;
             collides = true;
+            drawMatchesCol = true;
         }
         // Caleb - GameObject constructor with boolean "enabled"
         public GameObject(bool isEnabled, string txtrName, Point posParam)
@@ -156,8 +164,10 @@ namespace GamePrototype.Classes.Objects
             // TODO: Reinstate original Draw()
             if (Enabled)
             {
-                sprtBtch.Draw(sprite, positionRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                    sprtBtch.Draw(sprite, positionRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
             }
+
+
         }
 
         // test - visual identification for interactable objects
@@ -167,7 +177,14 @@ namespace GamePrototype.Classes.Objects
             // TODO: Reinstate original Draw()
             if (Enabled)
             {
-                sprtBtch.Draw(sprite, positionRect, null, color, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                if (!drawMatchesCol)
+                {
+                    sprtBtch.Draw(sprite, drawRect, null, color, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                }
+                else
+                {
+                    sprtBtch.Draw(sprite, positionRect, null, color, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                }
             }
         }
         public Boolean Tangible // Accessor property to tell if the object should collide or not
