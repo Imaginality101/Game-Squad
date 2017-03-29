@@ -30,7 +30,7 @@ namespace GamePrototype.Classes
             flavorText = text;
         }
 
-        //Delcna property to get if the play has something
+        //Declan property to get if the play has something
         public bool PlayerHas {  get { return playerHas; } set { playerHas = value; } }
 
         // Caleb accessor property for dictionary, call this in setups

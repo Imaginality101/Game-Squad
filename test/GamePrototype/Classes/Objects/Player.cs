@@ -323,13 +323,6 @@ namespace GamePrototype.Classes.Objects
             }
         }
 
-        public List<Clue> Inventory
-        {
-            get
-            {
-                return inventory;
-            }
-        }
         // Caleb - methods to block player from moving in the cardinal directions. Useful if collisions end faceUp not being handled by the player class
         // moves player down
         public void BlockUp()
