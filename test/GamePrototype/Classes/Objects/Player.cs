@@ -28,7 +28,7 @@ namespace GamePrototype.Classes.Objects
         private Texture2D faceRightSprite;
         private Texture2D faceUpSprite;
         private Texture2D faceDownSprite;
-        private List<Clue> inventory;
+        
         // variables for animation
         double timer = .1;
         int currentFrame = 0;
@@ -100,7 +100,7 @@ namespace GamePrototype.Classes.Objects
             }
             if (kbState.IsKeyDown(Keys.E))
             {
-                if (flaggedInteractable != null)
+                if (flaggedInteractable != null && flaggedInteractable.Enabled)
                 {
                     flaggedInteractable.Interact(this);
                 }
@@ -164,13 +164,18 @@ namespace GamePrototype.Classes.Objects
                     else if (((Interactable)obj).Usable == true)
                     {
                         ((Interactable)obj).Usable = false;
+                        flaggedInteractable.Usable = false;
                         flaggedInteractable = null;
                     }
                 }
+                if (flaggedInteractable != null)
+                {
+                    flaggedInteractable.Usable = false;
+                }
                 if (closest != null && minDistance <= (playerRect.Width + 20)) // if something was found in a reasonable proximity
                 {
-                    closest.Usable = true;
                     flaggedInteractable = closest;
+                    flaggedInteractable.Usable = true;
                 }
             }
         }
