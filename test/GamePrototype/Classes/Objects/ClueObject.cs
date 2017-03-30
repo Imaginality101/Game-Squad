@@ -50,9 +50,12 @@ namespace GamePrototype.Classes.Objects
 
             if(onetimeUse)
             {
+                if (Enabled)
+                {
+                    Console.WriteLine(givenClue.ToString());
+                }
                 Enabled = false;
                 Clue.Inventory.Add(givenClue);
-                Console.WriteLine(givenClue.ToString());
             }
         }
     }
