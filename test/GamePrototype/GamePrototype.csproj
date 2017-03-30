@@ -189,6 +189,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="ClassDiagram1.cd" />
+    <Content Include="Content\Footsteps.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\phoneMain0.xnb" />
     <None Include="Content\phoneMain5.xnb" />
     <None Include="Content\phoneMain7.xnb" />

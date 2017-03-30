@@ -176,7 +176,7 @@ namespace GamePrototype
             bedRoom = new Room(GraphicsDevice,Content);
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
             bedRoom.Objects = furnitureSet.BedroomSetup();
-            player = new Player(faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds,  protagRect); 
+            player = new Player(content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds,  protagRect); 
         }
 
         /// <summary>
