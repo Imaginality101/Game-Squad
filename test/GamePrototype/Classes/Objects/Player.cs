@@ -23,10 +23,11 @@ namespace GamePrototype.Classes.Objects
     {
         KeyboardState kbState;
         KeyboardState prevKbState;
-        GameObject flaggedInteractable;
+        Interactable flaggedInteractable;
         //private Rectangle[][] animFrames; // source rectangles to be used in drawing the player
         private Rectangle moveBounds;
         private Rectangle playerRect;
+        private Rectangle hitBox;
         private Vector2 moveQueue;
         private PlayerDir playerDirection; // get direction the player is facing
         private List<Texture2D> walkRightSprites;
@@ -43,12 +44,13 @@ namespace GamePrototype.Classes.Objects
         int currentFrame = 0;
 
         // TODO: Player constructor, should take the same sort of information as well as potentially a Menu object. We'd feed the overall Game's Menu into that.
-        public Player(ContentManager content, Texture2D faceRight, List<Texture2D> walkRight, Texture2D faceUp, Texture2D faceDown, Rectangle bounds, Rectangle pRect):base()
+        public Player(GraphicsDevice graphics, Texture2D faceRight, List<Texture2D> walkRight, Texture2D faceUp, Texture2D faceDown, Rectangle bounds):base()
         {
             moveQueue = Vector2.Zero; // initialize moveQueue to a zero vector
             playerDirection = PlayerDir.FaceDown; // start out facing downwards for now
             moveBounds = bounds;
-            playerRect = pRect; //<------------------------------------------------------------------------THIS IS WHERE THE PLAYER RECT SIZE IS-------------------------
+            playerRect = new Rectangle(graphics.Viewport.Width / 2 - 50, graphics.Viewport.Height / 2 - 50, 96, 192); //<------------------------THIS IS WHERE THE PLAYER RECT SIZE IS-------------------------
+            hitBox = new Rectangle(PlayerRect.X+24, PlayerRect.Y +144/ 2 - 50, 48, 48);
             faceRightSprite = faceRight;
             walkRightSprites = walkRight;
             faceUpSprite = faceUp;
@@ -61,12 +63,13 @@ namespace GamePrototype.Classes.Objects
         public void Update(GameTime gameTime, List<GameObject> objects)
         {
             timer -= gameTime.ElapsedGameTime.TotalSeconds;
+            FlagInteractables(objects.ToArray());
             CheckInput(); // first get input to adjust movement queueing
             Move(gameTime);
             CheckBounds(moveBounds);
             ChangeDirection();
             BlockCollisions(objects);
-            //FlagInteractables(objects.ToArray());
+
 
             base.Update(gameTime);
         }
@@ -150,8 +153,9 @@ namespace GamePrototype.Classes.Objects
         // that it's usable so we can flag it with some visual marker like a button prompt. Absolutely works for the purposes of Milestone II's framework until we have this set up better,
         // but I'd like to migrate this to the original planned setup later on. Also, slightly unrelated and I'm not angry or anything but if 100% of my code for a method is commented out for a build
         // please give me a heads-up in the future. I like to be fully aware at all times what work I can take credit for. - Tom
-        public string FlagInteractables(GameObject[] targets)
+        public void FlagInteractables(GameObject[] targets)
         {
+            /*
             GameObject closestGameObj = new GameObject();
             float closestDistance = float.MaxValue;
             foreach (GameObject go in targets)
@@ -172,8 +176,8 @@ namespace GamePrototype.Classes.Objects
             else
             {
                 return "You are interacting with: " + closestGameObj.Name;
-            }
-            /*Interactable closest = null; // use this temporary instance of the object to track which interactable in the room is closest to the player
+            }*/
+            Interactable closest = null; // use this temporary instance of the object to track which interactable in the room is closest to the player
             float minDistance = moveBounds.Right; // ideally nothing should be interactable beyond the width of how far the player can move so use this as the default
             foreach(GameObject obj in targets)
             {
@@ -187,15 +191,20 @@ namespace GamePrototype.Classes.Objects
                     else if (((Interactable)obj).Usable == true)
                     {
                         ((Interactable)obj).Usable = false;
+                        flaggedInteractable.Usable = false;
                         flaggedInteractable = null;
                     }
                 }
-                if (closest != null && minDistance <= ((Sprite.Height / 2) + 20)) // if something was found in a reasonable proximity
+                if (flaggedInteractable != null)
                 {
-                    closest.Usable = true;
-                    flaggedInteractable = closest;
+                    flaggedInteractable.Usable = false;
                 }
-            }*/
+                if (closest != null && minDistance <= (playerRect.Width + 20)) // if something was found in a reasonable proximity
+                {
+                    flaggedInteractable = closest;
+                    flaggedInteractable.Usable = true;
+                }
+            }
         }
         public void CheckBounds(Rectangle roomBounds)
         {
@@ -204,20 +213,20 @@ namespace GamePrototype.Classes.Objects
             if (playerRect.Left < roomBounds.Left)
             {
                 //X += (roomBounds.Left - GlobalBounds.Left + 5);
-                BlockLeft();
+                KeepPlayerFromGoingLeft();
             }
             else if (playerRect.Right > (roomBounds.Right - playerRect.Width))
             {
-                BlockRight();
+                KeepPlayerFromGoingRight();
             }
             
             if (playerRect.Top < roomBounds.Top)
             {
-                BlockUp();
+                KeepPlayerFromGoingUp();
             }
             else if (playerRect.Bottom > roomBounds.Bottom)
             {
-                BlockDown();
+                KeepPlayerFromGoingDown();
             }
 
         }
@@ -229,21 +238,21 @@ namespace GamePrototype.Classes.Objects
                 Boolean collidingObj = isColliding(go);
                 if (collidingObj)
                 {
-                    if (playerRect.Center.Y < go.GlobalBounds.Center.Y && (playerRect.Right - 2 > go.GlobalBounds.Left && playerRect.Left + 2 < go.GlobalBounds.Right))
+                    if (hitBox.Center.Y < go.GlobalBounds.Center.Y && (hitBox.Right - 2 > go.GlobalBounds.Left && hitBox.Left + 2 < go.GlobalBounds.Right))
                     {
-                        BlockDown();
+                        KeepPlayerFromGoingDown();
                     }
-                    if (playerRect.Center.Y > go.GlobalBounds.Center.Y && (playerRect.Right - 2 > go.GlobalBounds.Left && playerRect.Left + 2 < go.GlobalBounds.Right))
+                    if (hitBox.Center.Y > go.GlobalBounds.Center.Y && (hitBox.Right - 2 > go.GlobalBounds.Left && hitBox.Left + 2 < go.GlobalBounds.Right))
                     {
-                        BlockUp();
+                        KeepPlayerFromGoingUp();
                     }
-                    if (playerRect.Center.X > go.GlobalBounds.Center.X && (playerRect.Bottom > go.GlobalBounds.Top && playerRect.Top < go.GlobalBounds.Bottom))
+                    if (hitBox.Center.X > go.GlobalBounds.Center.X && (hitBox.Bottom > go.GlobalBounds.Top && hitBox.Top < go.GlobalBounds.Bottom))
                     {
-                        BlockLeft();
+                        KeepPlayerFromGoingLeft();
                     }
-                    if (playerRect.Center.X < go.GlobalBounds.Center.X && (playerRect.Bottom > go.GlobalBounds.Top && playerRect.Top < go.GlobalBounds.Bottom))
+                    if (hitBox.Center.X < go.GlobalBounds.Center.X && (hitBox.Bottom > go.GlobalBounds.Top && hitBox.Top < go.GlobalBounds.Bottom))
                     {
-                        BlockRight();
+                        KeepPlayerFromGoingRight();
                     }
                 }
             }
@@ -316,7 +325,7 @@ namespace GamePrototype.Classes.Objects
 
         public Boolean isColliding(GameObject target)
         {
-            if ((target != this && (playerRect.Intersects(target.GlobalBounds))))
+            if ((target != this && (playerRect.Intersects(target.GlobalBounds)) && target.Tangible))
             {
                 return true;
             }
@@ -341,25 +350,26 @@ namespace GamePrototype.Classes.Objects
                 return playerRect;
             }
         }
+
         // Caleb - methods to block player from moving in the cardinal directions. Useful if collisions end faceUp not being handled by the player class
         // moves player down
-        public void BlockUp()
+        public void KeepPlayerFromGoingUp()
         {
             playerRect = new Rectangle(playerRect.X, playerRect.Y + 2, playerRect.Width, playerRect.Height);
         }
         // moves player up
-        public void BlockDown()
+        public void KeepPlayerFromGoingDown()
         {
             playerRect = new Rectangle(playerRect.X, playerRect.Y - 2, playerRect.Width, playerRect.Height);
 
         }
         // moves player right
-        public void BlockLeft()
+        public void KeepPlayerFromGoingLeft()
         {
             playerRect = new Rectangle(playerRect.X + 2, playerRect.Y, playerRect.Width, playerRect.Height);
         }
         // moves player left
-        public void BlockRight()
+        public void KeepPlayerFromGoingRight()
         {
             playerRect = new Rectangle(playerRect.X - 2, playerRect.Y, playerRect.Width, playerRect.Height);
         }

@@ -74,7 +74,7 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new GameObject(outdoor, outdoorRect, "End door"));
             objs.Add(new GameObject(bathdoor, bathdoorRect, "Bathroom door"));
             objs.Add(new GameObject(closetdoor, closetdoorRect, "Closet door"));
-            objs.Add(new GameObject(tv, tvRect, "TV"));
+            objs.Add(new GameObject(tv, tvRect,new Rectangle(0,20,10,100)));
             objs.Add(new ClueObject(sidetab2, sidetab2Rect, Clue.Clues["News2"], "Side table 2"));
             objs.Add(new ClueObject(bed, bedRect, Clue.Clues["TenantDiary2"], "Bed"));
             objs.Add(new ClueObject(sidetab1, sidetab1Rect, Clue.Clues["OldPhoto1"], "Side table 1"));

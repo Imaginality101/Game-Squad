@@ -29,12 +29,16 @@ namespace GamePrototype.Classes.Objects
             flaggedForUse = false;
         }
 
-        public Interactable(Texture2D txtr, Rectangle psRct, Boolean collision):base(txtr, psRct)
+        public Interactable(Texture2D txtr, Rectangle psRct, Boolean collision):base(txtr, psRct, collision)
+        {
+            flaggedForUse = false;
+        }
+        public Interactable(Texture2D txtr, Rectangle psRct, Rectangle clRct) : base(txtr, psRct, clRct)
         {
             flaggedForUse = false;
         }
         // Caleb - Another temporary constructor for interaction demo
-        public Interactable(Texture2D txtr, Rectangle psRct, Boolean collision, string nm) : base(txtr, psRct, nm)
+        public Interactable(Texture2D txtr, Rectangle psRct, Boolean collision, string nm) : base(txtr, psRct, collision, nm)
         {
             flaggedForUse = false;
         }
@@ -52,6 +56,18 @@ namespace GamePrototype.Classes.Objects
         {
             get { return flaggedForUse; }
             set { flaggedForUse = value; }
+        }
+
+        public override void Draw(SpriteBatch sprtBtch)
+        {
+            if (flaggedForUse)
+            {
+                base.Draw(sprtBtch, Color.Purple);
+            }
+            else
+            {
+                base.Draw(sprtBtch);
+            }
         }
     }
 }

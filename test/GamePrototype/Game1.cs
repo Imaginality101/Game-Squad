@@ -152,7 +152,7 @@ namespace GamePrototype
             faceRight6 = content.Load<Texture2D>("profile6");
             faceRight7 = content.Load<Texture2D>("profile7");
             faceRight8 = content.Load<Texture2D>("profile8");
-            protagRect = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 50, graphics.PreferredBackBufferHeight / 2 - 50, 96, 192);//<-------------THIS IS WHERE THE PLAYER RECT SIZE IS----------------
+            //protagRect = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 50, graphics.PreferredBackBufferHeight / 2 - 50, 96, 192);//<-------------THIS IS WHERE THE PLAYER RECT SIZE IS----------------
             protagTextureRight = new List<Texture2D>();
             protagTextureRight.Add(faceRight1);
             protagTextureRight.Add(faceRight2);
@@ -176,7 +176,7 @@ namespace GamePrototype
             bedRoom = new Room(GraphicsDevice,Content);
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
             bedRoom.Objects = furnitureSet.BedroomSetup();
-            player = new Player(content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds,  protagRect); 
+            player = new Player(GraphicsDevice, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds); 
         }
 
         /// <summary>
@@ -382,9 +382,18 @@ namespace GamePrototype
             // calls the bedroom draw command - kat
             if (gameState == GameState.Game)
             {
-                bedRoom.Draw(uSpriteBatch);
-                player.Draw(uSpriteBatch);
+                if (player.PlayerRect.Y < GraphicsDevice.Viewport.Bounds.Height / 2)
+                {
+                    bedRoom.Draw(uSpriteBatch);
+                    player.Draw(uSpriteBatch);
+                }
+                else
+                {
+                    bedRoom.Draw(uSpriteBatch);
+                    player.Draw(uSpriteBatch);
+                }
             }
+
 
             // menu stuff kat
             if (gameState == GameState.GMenu && menuState == MenuState.Main)
@@ -422,7 +431,7 @@ namespace GamePrototype
             // Caleb - draw interact text
             if (drawInteractText)
             {
-                uSpriteBatch.DrawString(font, player.FlagInteractables(bedRoom.Objects.ToArray()), Vector2.Zero, Color.White);
+                //uSpriteBatch.DrawString(font, player.FlagInteractables(bedRoom.Objects.ToArray()), Vector2.Zero, Color.White);
                 //drawInteractText = false;
             }
             // draw timer if enabled
@@ -430,10 +439,6 @@ namespace GamePrototype
             {
                 uSpriteBatch.DrawString(font, string.Format("{0}:{1}", gameTimerSeconds / 60, gameTimerSeconds % 60), new Vector2(0, 50), Color.White);
             }
-            //TODO: Remove this shit
-            Texture2D testRect = Content.Load<Texture2D>("BlueGuy");
-            //uSpriteBatch.Draw(testRect, player.PlayerRect, Color.Red);
-            //uSpriteBatch.Draw(testRect, bedRoom.Objects[4].GlobalBounds, Color.Green);
             // end spritebatch
             uSpriteBatch.End();
 
