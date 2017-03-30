@@ -181,20 +181,20 @@ namespace GamePrototype.Classes.Objects
             if (playerRect.Left < roomBounds.Left)
             {
                 //X += (roomBounds.Left - GlobalBounds.Left + 5);
-                BlockLeft();
+                KeepPlayerFromGoingLeft();
             }
             else if (playerRect.Right > (roomBounds.Right - playerRect.Width))
             {
-                BlockRight();
+                KeepPlayerFromGoingRight();
             }
             
             if (playerRect.Top < roomBounds.Top)
             {
-                BlockUp();
+                KeepPlayerFromGoingUp();
             }
             else if (playerRect.Bottom > roomBounds.Bottom)
             {
-                BlockDown();
+                KeepPlayerFromGoingDown();
             }
 
         }
@@ -208,19 +208,19 @@ namespace GamePrototype.Classes.Objects
                 {
                     if (playerRect.Center.Y < go.GlobalBounds.Center.Y && (playerRect.Right - 2 > go.GlobalBounds.Left && playerRect.Left + 2 < go.GlobalBounds.Right))
                     {
-                        BlockDown();
+                        KeepPlayerFromGoingDown();
                     }
                     if (playerRect.Center.Y > go.GlobalBounds.Center.Y && (playerRect.Right - 2 > go.GlobalBounds.Left && playerRect.Left + 2 < go.GlobalBounds.Right))
                     {
-                        BlockUp();
+                        KeepPlayerFromGoingUp();
                     }
                     if (playerRect.Center.X > go.GlobalBounds.Center.X && (playerRect.Bottom > go.GlobalBounds.Top && playerRect.Top < go.GlobalBounds.Bottom))
                     {
-                        BlockLeft();
+                        KeepPlayerFromGoingLeft();
                     }
                     if (playerRect.Center.X < go.GlobalBounds.Center.X && (playerRect.Bottom > go.GlobalBounds.Top && playerRect.Top < go.GlobalBounds.Bottom))
                     {
-                        BlockRight();
+                        KeepPlayerFromGoingRight();
                     }
                 }
             }
@@ -321,23 +321,23 @@ namespace GamePrototype.Classes.Objects
 
         // Caleb - methods to block player from moving in the cardinal directions. Useful if collisions end faceUp not being handled by the player class
         // moves player down
-        public void BlockUp()
+        public void KeepPlayerFromGoingUp()
         {
             playerRect = new Rectangle(playerRect.X, playerRect.Y + 2, playerRect.Width, playerRect.Height);
         }
         // moves player up
-        public void BlockDown()
+        public void KeepPlayerFromGoingDown()
         {
             playerRect = new Rectangle(playerRect.X, playerRect.Y - 2, playerRect.Width, playerRect.Height);
 
         }
         // moves player right
-        public void BlockLeft()
+        public void KeepPlayerFromGoingLeft()
         {
             playerRect = new Rectangle(playerRect.X + 2, playerRect.Y, playerRect.Width, playerRect.Height);
         }
         // moves player left
-        public void BlockRight()
+        public void KeepPlayerFromGoingRight()
         {
             playerRect = new Rectangle(playerRect.X - 2, playerRect.Y, playerRect.Width, playerRect.Height);
         }

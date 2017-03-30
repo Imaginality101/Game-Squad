@@ -219,26 +219,26 @@ namespace GamePrototype.Classes.Objects
             // if Player is above and to the right of object
             if (playerRect.Y > this.positionRect.Y && playerRect.X > this.positionRect.X)
             {
-                player.BlockUp();
-                player.BlockRight();
+                player.KeepPlayerFromGoingUp();
+                player.KeepPlayerFromGoingRight();
             }
             // if player is above and to the left of object
             if (playerRect.Y > this.positionRect.Y && playerRect.X < this.positionRect.X)
             {
-                player.BlockUp();
-                player.BlockLeft();
+                player.KeepPlayerFromGoingUp();
+                player.KeepPlayerFromGoingLeft();
             }
             // if player is below and to the left of object
             if (playerRect.Y < this.positionRect.Y && playerRect.X < this.positionRect.X)
             {
-                player.BlockDown();
-                player.BlockLeft();
+                player.KeepPlayerFromGoingDown();
+                player.KeepPlayerFromGoingLeft();
             }
             // if player is below and to the right of object
             if (playerRect.Y < this.positionRect.Y && playerRect.X > this.positionRect.X)
             {
-                player.BlockUp();
-                player.BlockLeft();
+                player.KeepPlayerFromGoingUp();
+                player.KeepPlayerFromGoingLeft();
             }
         }
 
