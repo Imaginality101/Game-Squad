@@ -347,7 +347,7 @@ namespace GamePrototype.Classes.Objects
         {
             get
             {
-                return playerRect.Center.ToVector2();
+                return hitBox.Center.ToVector2();
             }
         }
 

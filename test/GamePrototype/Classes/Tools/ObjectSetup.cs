@@ -75,13 +75,13 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new GameObject(bathdoor, bathdoorRect, "Bathroom door"));
             objs.Add(new GameObject(closetdoor, closetdoorRect, "Closet door"));
             objs.Add(new GameObject(tv, tvRect,new Rectangle(0,100,172,250)));
-            objs.Add(new ClueObject(sidetab2, sidetab2Rect, Clue.Clues["News2"], "Side table 2"));
-            objs.Add(new ClueObject(bed, bedRect,new Rectangle(0,100,512,226), Clue.Clues["TenantDiary2"]));//Clue.Clues["TenantDiary2"], "Bed"
-            objs.Add(new ClueObject(sidetab1, sidetab1Rect, Clue.Clues["OldPhoto1"], "Side table 1"));
-            objs.Add(new ClueObject(book, bookRect,Clue.Clues["TenantDiary1"], "Book"));
-            objs.Add(new ClueObject(news1, news1Rect, Clue.Clues["News1"], false, "News 1"));
+            objs.Add(new ClueObject(sidetab2, sidetab2Rect, new Rectangle(0, 70, 172, 172),Clue.Clues["News2"],false));
+            objs.Add(new ClueObject(bed, bedRect,new Rectangle(0,100,512,226), Clue.Clues["TenantDiary2"],false));//Clue.Clues["TenantDiary2"], "Bed"
+            objs.Add(new ClueObject(sidetab1, sidetab1Rect, Clue.Clues["OldPhoto1"], "Side table 1",false));
+            objs.Add(new ClueObject(book, bookRect,Clue.Clues["TenantDiary1"], "Book",false));
+            objs.Add(new ClueObject(news1, news1Rect, Clue.Clues["News1"], false, "News 1",true));
             objs.Add(new GameObject(dress, dressRect, "Dresser"));
-            objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false, "Sticky Note"));
+            objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false, "Sticky Note",true));
             return objs;
         }
     }
