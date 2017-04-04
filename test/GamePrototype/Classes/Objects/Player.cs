@@ -50,7 +50,7 @@ namespace GamePrototype.Classes.Objects
             playerDirection = PlayerDir.FaceDown; // start out facing downwards for now
             moveBounds = bounds;
             playerRect = new Rectangle(graphics.Viewport.Width / 2 - 50, graphics.Viewport.Height / 2 - 50, 96, 192); //<------------------------THIS IS WHERE THE PLAYER RECT SIZE IS-------------------------
-            hitBox = new Rectangle(PlayerRect.X+24, PlayerRect.Y +144/ 2 - 50, 48, 48);
+            hitBox = new Rectangle(PlayerRect.X+24, PlayerRect.Y + 144, 48, 48);
             faceRightSprite = faceRight;
             walkRightSprites = walkRight;
             faceUpSprite = faceUp;
@@ -66,6 +66,7 @@ namespace GamePrototype.Classes.Objects
             FlagInteractables(objects.ToArray());
             CheckInput(); // first get input to adjust movement queueing
             Move(gameTime);
+            hitBox = new Rectangle(PlayerRect.X + 24, PlayerRect.Y + 144, 48, 48);
             CheckBounds(moveBounds);
             ChangeDirection();
             BlockCollisions(objects);
@@ -238,19 +239,19 @@ namespace GamePrototype.Classes.Objects
                 Boolean collidingObj = isColliding(go);
                 if (collidingObj)
                 {
-                    if (hitBox.Center.Y < go.GlobalBounds.Center.Y && (hitBox.Right - 2 > go.GlobalBounds.Left && hitBox.Left + 2 < go.GlobalBounds.Right))
+                    if (hitBox.Center.Y < go.GlobalBounds.Center.Y && (hitBox.Right  - 2 > go.GlobalBounds.Left && hitBox.Left  - 2 < go.GlobalBounds.Right))
                     {
                         KeepPlayerFromGoingDown();
                     }
-                    if (hitBox.Center.Y > go.GlobalBounds.Center.Y && (hitBox.Right - 2 > go.GlobalBounds.Left && hitBox.Left + 2 < go.GlobalBounds.Right))
+                    if (hitBox.Center.Y > go.GlobalBounds.Center.Y && (hitBox.Right - 2> go.GlobalBounds.Left && hitBox.Left  - 2< go.GlobalBounds.Right))
                     {
                         KeepPlayerFromGoingUp();
                     }
-                    if (hitBox.Center.X > go.GlobalBounds.Center.X && (hitBox.Bottom > go.GlobalBounds.Top && hitBox.Top < go.GlobalBounds.Bottom))
+                    if (hitBox.Center.X > go.GlobalBounds.Center.X && (hitBox.Bottom  - 2 > go.GlobalBounds.Top && hitBox.Top + 2 < go.GlobalBounds.Bottom))
                     {
                         KeepPlayerFromGoingLeft();
                     }
-                    if (hitBox.Center.X < go.GlobalBounds.Center.X && (hitBox.Bottom > go.GlobalBounds.Top && hitBox.Top < go.GlobalBounds.Bottom))
+                    if (hitBox.Center.X < go.GlobalBounds.Center.X && (hitBox.Bottom  - 2 > go.GlobalBounds.Top && hitBox.Top + 2 < go.GlobalBounds.Bottom))
                     {
                         KeepPlayerFromGoingRight();
                     }
@@ -325,7 +326,7 @@ namespace GamePrototype.Classes.Objects
 
         public Boolean isColliding(GameObject target)
         {
-            if ((target != this && (playerRect.Intersects(target.GlobalBounds)) && target.Tangible))
+            if ((target != this && (hitBox.Intersects(target.GlobalBounds)) && target.Tangible))
             {
                 return true;
             }

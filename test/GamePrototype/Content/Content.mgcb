@@ -49,6 +49,3 @@
 /processorParam:TextureFormat=Color
 /build:phoneMain7.png
 
-#begin cour.ttf
-/copy:cour.ttf
-
