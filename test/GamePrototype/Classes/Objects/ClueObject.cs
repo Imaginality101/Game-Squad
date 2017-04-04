@@ -20,21 +20,25 @@ namespace GamePrototype.Classes.Objects
         public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn) : base(txtr, psRct)
         {
             givenClue = clGvn;
+            onetimeUse = false;
         }
         // Caleb - temporary constructor for demoing interaction for milestone 2
         public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, string nm) : base(txtr, psRct, nm)
         {
-
+            givenClue = clGvn;
+            onetimeUse = false;
         }
         public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean collision) : base(txtr, psRct, collision)
         {
             givenClue = clGvn;
+            onetimeUse = true;
         }
 
         // Constructor overload for objects whose hitbox is sized differently from the sprite
         public ClueObject(Texture2D txtr, Rectangle psRct, Rectangle clRct, Clue clGvn) : base(txtr, psRct, clRct)
         {
             givenClue = clGvn;
+            onetimeUse = true;
         }
         // Caleb - Another temporary constructor for interaction
         public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean collision, string nm) : base(txtr, psRct, collision, nm)
@@ -47,15 +51,16 @@ namespace GamePrototype.Classes.Objects
         public override void Interact(Player user)
         {
             // INTERACTION FUNCTIONS HERE
-
-            if(onetimeUse)
+            if (Enabled)
             {
-                if (Enabled)
-                {
-                    Console.WriteLine(givenClue.ToString());
-                }
-                Enabled = false;
+                Console.WriteLine(givenClue.ToString());
                 Clue.Inventory.Add(givenClue);
+            }
+            if (onetimeUse)
+            {
+
+                Enabled = false;
+
             }
         }
     }

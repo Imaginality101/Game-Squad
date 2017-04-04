@@ -182,7 +182,7 @@ namespace GamePrototype
             bedRoom = new Room(GraphicsDevice,Content);
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
             bedRoom.Objects = furnitureSet.BedroomSetup();
-            player = new Player(GraphicsDevice, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds, content); 
+            player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds); 
         }
 
         /// <summary>
