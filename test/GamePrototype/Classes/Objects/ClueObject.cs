@@ -23,28 +23,28 @@ namespace GamePrototype.Classes.Objects
             onetimeUse = false;
         }
         // Caleb - temporary constructor for demoing interaction for milestone 2
-        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, string nm) : base(txtr, psRct, nm)
+        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, string nm, Boolean oneTIme) : base(txtr, psRct, nm)
         {
             givenClue = clGvn;
-            onetimeUse = false;
+            onetimeUse = oneTime;
         }
-        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean collision) : base(txtr, psRct, collision)
+        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean collision, Boolean oneTime) : base(txtr, psRct, collision)
         {
             givenClue = clGvn;
-            onetimeUse = true;
+            onetimeUse = oneTime;
         }
 
         // Constructor overload for objects whose hitbox is sized differently from the sprite
-        public ClueObject(Texture2D txtr, Rectangle psRct, Rectangle clRct, Clue clGvn) : base(txtr, psRct, clRct)
+        public ClueObject(Texture2D txtr, Rectangle psRct, Rectangle clRct, Clue clGvn, Boolean oneTime) : base(txtr, psRct, clRct)
         {
             givenClue = clGvn;
-            onetimeUse = true;
+            onetimeUse = oneTime;
         }
         // Caleb - Another temporary constructor for interaction
-        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean collision, string nm) : base(txtr, psRct, collision, nm)
+        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean collision, string nm, Boolean oneTime) : base(txtr, psRct, collision, nm)
         {
             givenClue = clGvn;
-            onetimeUse = true;
+            onetimeUse = oneTime;
         }
 
         // TODO: Interaction method
