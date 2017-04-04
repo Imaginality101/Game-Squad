@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
-using GamePrototype.Classes.Tools;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using GamePrototype.Classes.Tools; // added by kat for sound effect use
+using GamePrototype.Classes;
+using GamePrototype.Classes.Objects;
+
 /*Workers: Kat, Tom, Caleb
- * DisasterPiece Games
- * Player Class
- */
+* DisasterPiece Games
+* Player Class
+*/
 namespace GamePrototype.Classes.Objects
 {
     enum PlayerDir { FaceDown, WalkDown, FaceUp, WalkUp, FaceLeft, WalkLeft, FaceRight, WalkRight}
@@ -29,13 +34,17 @@ namespace GamePrototype.Classes.Objects
         private Texture2D faceRightSprite;
         private Texture2D faceUpSprite;
         private Texture2D faceDownSprite;
-        
+
+        // attributes for sounds - kat
+        ContentManager content; 
+        GameSound footsteps;
+
         // variables for animation
         double timer = .1;
         int currentFrame = 0;
 
         // TODO: Player constructor, should take the same sort of information as well as potentially a Menu object. We'd feed the overall Game's Menu into that.
-        public Player(GraphicsDevice graphics, Texture2D faceRight, List<Texture2D> walkRight, Texture2D faceUp, Texture2D faceDown, Rectangle bounds):base()
+        public Player(GraphicsDevice graphics, Texture2D faceRight, List<Texture2D> walkRight, Texture2D faceUp, Texture2D faceDown, Rectangle bounds, ContentManager contentParam):base()
         {
             moveQueue = Vector2.Zero; // initialize moveQueue to a zero vector
             playerDirection = PlayerDir.FaceDown; // start out facing downwards for now
@@ -46,6 +55,9 @@ namespace GamePrototype.Classes.Objects
             walkRightSprites = walkRight;
             faceUpSprite = faceUp;
             faceDownSprite = faceDown;
+            content = contentParam;
+            // footstep sound effect - kat
+            footsteps = new GameSound("Footsteps", content);
         }
         // TODO: Update method override, should check player input and movement
         public void Update(GameTime gameTime, List<GameObject> objects)
@@ -87,26 +99,39 @@ namespace GamePrototype.Classes.Objects
             kbState = Keyboard.GetState();
             if (kbState.IsKeyDown(Keys.W))
             {
+                footsteps.PlayAsMusic(.6f);
                 moveQueue.Y -= 2;
             }
             if (kbState.IsKeyDown(Keys.S))
             {
+                footsteps.PlayAsMusic(.6f);
                 moveQueue.Y += 2;
             }
             if (kbState.IsKeyDown(Keys.A))
             {
+                footsteps.PlayAsMusic(.6f);
                 moveQueue.X -= 2;
             }
             if (kbState.IsKeyDown(Keys.D))
             {
+                footsteps.PlayAsMusic(.6f);
                 moveQueue.X += 2;
             }
-            if (kbState.IsKeyDown(Keys.E))
+            if (!kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyDown(Keys.W))
             {
-                if (flaggedInteractable != null && flaggedInteractable.Enabled)
-                {
-                    flaggedInteractable.Interact(this);
-                }
+                footsteps.EndMusic();
+            }
+            if (!kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyDown(Keys.S))
+            {
+                footsteps.EndMusic();
+            }
+            if (!kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyDown(Keys.A))
+            {
+                footsteps.EndMusic();
+            }
+            if (!kbState.IsKeyDown(Keys.D) && prevKbState.IsKeyDown(Keys.D))
+            {
+                footsteps.EndMusic();
             }
             prevKbState = kbState;
         }
