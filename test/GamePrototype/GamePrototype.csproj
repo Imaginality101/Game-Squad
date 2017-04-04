@@ -43,8 +43,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Classes\Clue.cs" />
+    <Compile Include="Classes\Menu\Icon.cs" />
     <Compile Include="Classes\Menu\Menu.cs" />
     <Compile Include="Classes\Menu\MenuObject.cs" />
+    <Compile Include="Classes\Menu\TextBox.cs" />
+    <Compile Include="Classes\Menu\TextRow.cs" />
     <Compile Include="Classes\Objects\ClueObject.cs" />
     <Compile Include="Classes\Objects\Door.cs" />
     <Compile Include="Classes\Objects\GameObject.cs" />
@@ -190,6 +193,9 @@
     </Content>
     <None Include="ClassDiagram1.cd" />
     <Content Include="Content\Footsteps.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\cour.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Content\phoneMain0.xnb" />
