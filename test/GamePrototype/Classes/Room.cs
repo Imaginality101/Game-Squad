@@ -43,7 +43,7 @@ namespace GamePrototype.Classes
             origin = new Vector2(graphics.Viewport.Width / 2, graphics.Viewport.Height / 2);
             roomBG = content.Load<Texture2D>("backgroundFULL");
             roomBounds = new Rectangle((int)origin.X - (1382 / 2), (int)origin.Y - (972 / 2), 1382, 972);
-            roomColl = new Rectangle(roomBounds.X+110, roomBounds.Y+30, roomBounds.Width-30, roomBounds.Height-50);//Perf room bounds
+            roomColl = new Rectangle(roomBounds.X+150, roomBounds.Y+0, roomBounds.Width-220, roomBounds.Height-15);//Perf room bounds
            
         }
 
