@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+// deprecated do not use
 namespace GamePrototype.Classes.Menu
 {
     class TextRow : MenuObject
@@ -17,10 +17,17 @@ namespace GamePrototype.Classes.Menu
         // attributes
         Vector2 position;
         string text;
+        SpriteFont font;
         // constructor
-        public TextRow(Vector2 pos, string t) : base(new Rectangle(pos.ToPoint(), Point.Zero))
+        public TextRow(Vector2 pos, string t, SpriteFont fontParam) : base(pos)
         {
             text = t;
+            font = fontParam;
+        }
+        // overridden Draw()
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.DrawString(font, text, position, Color.White);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace GamePrototype.Classes.Menu
         // attribute
         Texture2D image;
         // constructor
-        public Icon(Texture2D img, Rectangle r) : base(r)
+        public Icon(Texture2D img, Vector2 pos) : base(pos)
         {
             image = img;
         }

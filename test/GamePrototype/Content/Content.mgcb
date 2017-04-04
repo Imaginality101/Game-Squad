@@ -49,6 +49,9 @@
 /processorParam:TextureFormat=Color
 /build:phoneMain7.png
 
-#begin cour.ttf
-/copy:cour.ttf
+#begin Courier12.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Courier12.spritefont
 
