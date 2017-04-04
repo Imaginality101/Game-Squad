@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using GamePrototype.Classes;
 using GamePrototype.Classes.Objects;
 using GamePrototype.Classes.Tools;
+using GamePrototype.Classes.Menu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -99,7 +100,10 @@ namespace GamePrototype
         float elapsedTime = 0;
         // Caleb - used for displaying text: is temporary
         SpriteFont font;
+        SpriteFont menuFont;
         bool drawInteractText = false;
+        // Caleb - menu stuff
+        TextBox box;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -119,7 +123,9 @@ namespace GamePrototype
             intro = new GameSound("spook3-thebegining", content);
             music = new GameSound("spook3-theloop ", content);
             font = Content.Load<SpriteFont>("Arial");
-
+            menuFont = Content.Load<SpriteFont>("Courier12");
+            // Caleb - instantiate the textbox
+            box = new TextBox(new Vector2(40, 40), "Push it Push it Real Good Push it Push it Real Good Push it Push it Real Good", 7, 3, menuFont);
             // TODO: Kat - Load texture sprites in here. What I'd recommend doing to make it easier to pass over to Declan is the use
             // of a Dictionary, with strings for the key and values being Texture2Ds. If you do decide to do it that way just add it to the
             // attributes.
@@ -356,6 +362,8 @@ namespace GamePrototype
                         break;
                     }
             }
+            // Caleb - update Textbox
+            box.Update(kbState, prevKbState);
             base.Update(gameTime);
         }
 
@@ -372,7 +380,7 @@ namespace GamePrototype
 
             // begin spritebatch
             uSpriteBatch.Begin();
-
+            
             // draws the mainmenu - kat
             if (gameState == GameState.MainMenu)
             {
@@ -427,7 +435,7 @@ namespace GamePrototype
              }*/
 
             //furnitureSet.DrawBedroom(); //kat commented out for now
-
+            
             // Caleb - draw interact text
             if (drawInteractText)
             {
@@ -439,6 +447,9 @@ namespace GamePrototype
             {
                 uSpriteBatch.DrawString(font, string.Format("{0}:{1}", gameTimerSeconds / 60, gameTimerSeconds % 60), new Vector2(0, 50), Color.White);
             }
+            
+            // Draw textbox
+            box.Draw(uSpriteBatch);
             // end spritebatch
             uSpriteBatch.End();
 

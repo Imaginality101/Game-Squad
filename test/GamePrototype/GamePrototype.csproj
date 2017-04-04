@@ -195,7 +195,7 @@
     <Content Include="Content\Footsteps.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\cour.ttf">
+    <Content Include="Content\Courier12.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Content\phoneMain0.xnb" />
