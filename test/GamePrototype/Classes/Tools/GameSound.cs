@@ -32,6 +32,9 @@ namespace GamePrototype.Classes.Tools
             singleEffectInst = singleEffect.CreateInstance();
 
         }
+
+
+
         //PlayAsSoundEffect Method - Takes a float volume as a parameter
         public void PlayAsSoundEffect(float volume0to1f)
         {

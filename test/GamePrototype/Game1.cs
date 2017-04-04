@@ -152,7 +152,7 @@ namespace GamePrototype
             faceRight6 = content.Load<Texture2D>("profile6");
             faceRight7 = content.Load<Texture2D>("profile7");
             faceRight8 = content.Load<Texture2D>("profile8");
-            protagRect = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 50, graphics.PreferredBackBufferHeight / 2 - 50, 96, 192);//<-------------THIS IS WHERE THE PLAYER RECT SIZE IS----------------
+            //protagRect = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 50, graphics.PreferredBackBufferHeight / 2 - 50, 96, 192);//<-------------THIS IS WHERE THE PLAYER RECT SIZE IS----------------
             protagTextureRight = new List<Texture2D>();
             protagTextureRight.Add(faceRight1);
             protagTextureRight.Add(faceRight2);
@@ -176,7 +176,7 @@ namespace GamePrototype
             bedRoom = new Room(GraphicsDevice,Content);
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
             bedRoom.Objects = furnitureSet.BedroomSetup();
-            player = new Player(faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds,  protagRect); 
+            player = new Player(GraphicsDevice, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds); 
         }
 
         /// <summary>

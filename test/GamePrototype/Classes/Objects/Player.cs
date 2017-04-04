@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
-using GamePrototype.Classes.Tools;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using GamePrototype.Classes.Tools; // added by kat for sound effect use
+using GamePrototype.Classes;
+using GamePrototype.Classes.Objects;
+
 /*Workers: Kat, Tom, Caleb
- * DisasterPiece Games
- * Player Class
- */
+* DisasterPiece Games
+* Player Class
+*/
 namespace GamePrototype.Classes.Objects
 {
     enum PlayerDir { FaceDown, WalkDown, FaceUp, WalkUp, FaceLeft, WalkLeft, FaceRight, WalkRight}
@@ -22,28 +27,37 @@ namespace GamePrototype.Classes.Objects
         //private Rectangle[][] animFrames; // source rectangles to be used in drawing the player
         private Rectangle moveBounds;
         private Rectangle playerRect;
+        private Rectangle hitBox;
         private Vector2 moveQueue;
         private PlayerDir playerDirection; // get direction the player is facing
         private List<Texture2D> walkRightSprites;
         private Texture2D faceRightSprite;
         private Texture2D faceUpSprite;
         private Texture2D faceDownSprite;
-        private List<Clue> inventory;
+
+        // attributes for sounds - kat
+        ContentManager content; 
+        GameSound footsteps;
+
         // variables for animation
         double timer = .1;
         int currentFrame = 0;
 
         // TODO: Player constructor, should take the same sort of information as well as potentially a Menu object. We'd feed the overall Game's Menu into that.
-        public Player(Texture2D faceRight, List<Texture2D> walkRight, Texture2D faceUp, Texture2D faceDown, Rectangle bounds, Rectangle pRect):base()
+        public Player(GraphicsDevice graphics, Texture2D faceRight, List<Texture2D> walkRight, Texture2D faceUp, Texture2D faceDown, Rectangle bounds):base()
         {
             moveQueue = Vector2.Zero; // initialize moveQueue to a zero vector
             playerDirection = PlayerDir.FaceDown; // start out facing downwards for now
             moveBounds = bounds;
-            playerRect = pRect; //<------------------------------------------------------------------------THIS IS WHERE THE PLAYER RECT SIZE IS-------------------------
+            playerRect = new Rectangle(graphics.Viewport.Width / 2 - 50, graphics.Viewport.Height / 2 - 50, 96, 192); //<------------------------THIS IS WHERE THE PLAYER RECT SIZE IS-------------------------
+            hitBox = new Rectangle(PlayerRect.X+24, PlayerRect.Y +144/ 2 - 50, 48, 48);
             faceRightSprite = faceRight;
             walkRightSprites = walkRight;
             faceUpSprite = faceUp;
             faceDownSprite = faceDown;
+
+            // footstep sound effect - kat
+            footsteps = new GameSound("Footsteps", content);
         }
         // TODO: Update method override, should check player input and movement
         public void Update(GameTime gameTime, List<GameObject> objects)
@@ -84,26 +98,39 @@ namespace GamePrototype.Classes.Objects
             kbState = Keyboard.GetState();
             if (kbState.IsKeyDown(Keys.W))
             {
+                footsteps.PlayAsMusic(.6f);
                 moveQueue.Y -= 2;
             }
             if (kbState.IsKeyDown(Keys.S))
             {
+                footsteps.PlayAsMusic(.6f);
                 moveQueue.Y += 2;
             }
             if (kbState.IsKeyDown(Keys.A))
             {
+                footsteps.PlayAsMusic(.6f);
                 moveQueue.X -= 2;
             }
             if (kbState.IsKeyDown(Keys.D))
             {
+                footsteps.PlayAsMusic(.6f);
                 moveQueue.X += 2;
             }
-            if (kbState.IsKeyDown(Keys.E))
+            if (!kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyDown(Keys.W))
             {
-                if (flaggedInteractable != null)
-                {
-                    flaggedInteractable.Interact(this);
-                }
+                footsteps.EndMusic();
+            }
+            if (!kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyDown(Keys.S))
+            {
+                footsteps.EndMusic();
+            }
+            if (!kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyDown(Keys.A))
+            {
+                footsteps.EndMusic();
+            }
+            if (!kbState.IsKeyDown(Keys.D) && prevKbState.IsKeyDown(Keys.D))
+            {
+                footsteps.EndMusic();
             }
             prevKbState = kbState;
         }
@@ -164,13 +191,18 @@ namespace GamePrototype.Classes.Objects
                     else if (((Interactable)obj).Usable == true)
                     {
                         ((Interactable)obj).Usable = false;
+                        flaggedInteractable.Usable = false;
                         flaggedInteractable = null;
                     }
                 }
+                if (flaggedInteractable != null)
+                {
+                    flaggedInteractable.Usable = false;
+                }
                 if (closest != null && minDistance <= (playerRect.Width + 20)) // if something was found in a reasonable proximity
                 {
-                    closest.Usable = true;
                     flaggedInteractable = closest;
+                    flaggedInteractable.Usable = true;
                 }
             }
         }
@@ -206,19 +238,19 @@ namespace GamePrototype.Classes.Objects
                 Boolean collidingObj = isColliding(go);
                 if (collidingObj)
                 {
-                    if (playerRect.Center.Y < go.GlobalBounds.Center.Y && (playerRect.Right - 2 > go.GlobalBounds.Left && playerRect.Left + 2 < go.GlobalBounds.Right))
+                    if (hitBox.Center.Y < go.GlobalBounds.Center.Y && (hitBox.Right - 2 > go.GlobalBounds.Left && hitBox.Left + 2 < go.GlobalBounds.Right))
                     {
                         KeepPlayerFromGoingDown();
                     }
-                    if (playerRect.Center.Y > go.GlobalBounds.Center.Y && (playerRect.Right - 2 > go.GlobalBounds.Left && playerRect.Left + 2 < go.GlobalBounds.Right))
+                    if (hitBox.Center.Y > go.GlobalBounds.Center.Y && (hitBox.Right - 2 > go.GlobalBounds.Left && hitBox.Left + 2 < go.GlobalBounds.Right))
                     {
                         KeepPlayerFromGoingUp();
                     }
-                    if (playerRect.Center.X > go.GlobalBounds.Center.X && (playerRect.Bottom > go.GlobalBounds.Top && playerRect.Top < go.GlobalBounds.Bottom))
+                    if (hitBox.Center.X > go.GlobalBounds.Center.X && (hitBox.Bottom > go.GlobalBounds.Top && hitBox.Top < go.GlobalBounds.Bottom))
                     {
                         KeepPlayerFromGoingLeft();
                     }
-                    if (playerRect.Center.X < go.GlobalBounds.Center.X && (playerRect.Bottom > go.GlobalBounds.Top && playerRect.Top < go.GlobalBounds.Bottom))
+                    if (hitBox.Center.X < go.GlobalBounds.Center.X && (hitBox.Bottom > go.GlobalBounds.Top && hitBox.Top < go.GlobalBounds.Bottom))
                     {
                         KeepPlayerFromGoingRight();
                     }
