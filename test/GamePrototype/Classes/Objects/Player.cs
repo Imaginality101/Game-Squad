@@ -44,7 +44,7 @@ namespace GamePrototype.Classes.Objects
         int currentFrame = 0;
 
         // TODO: Player constructor, should take the same sort of information as well as potentially a Menu object. We'd feed the overall Game's Menu into that.
-        public Player(GraphicsDevice graphics, Texture2D faceRight, List<Texture2D> walkRight, Texture2D faceUp, Texture2D faceDown, Rectangle bounds):base()
+        public Player(GraphicsDevice graphics, Texture2D faceRight, List<Texture2D> walkRight, Texture2D faceUp, Texture2D faceDown, Rectangle bounds, ContentManager contentParam):base()
         {
             moveQueue = Vector2.Zero; // initialize moveQueue to a zero vector
             playerDirection = PlayerDir.FaceDown; // start out facing downwards for now
@@ -55,7 +55,7 @@ namespace GamePrototype.Classes.Objects
             walkRightSprites = walkRight;
             faceUpSprite = faceUp;
             faceDownSprite = faceDown;
-
+            content = contentParam;
             // footstep sound effect - kat
             footsteps = new GameSound("Footsteps", content);
         }
