@@ -133,6 +133,11 @@ namespace GamePrototype.Classes.Objects
             {
                 footsteps.EndMusic();
             }
+
+            if (kbState.IsKeyDown(Keys.E) && prevKbState.IsKeyUp(Keys.E) && flaggedInteractable != null)
+            {
+                flaggedInteractable.Interact(this);
+            }
             prevKbState = kbState;
         }
 
@@ -180,7 +185,14 @@ namespace GamePrototype.Classes.Objects
             }*/
             Interactable closest = null; // use this temporary instance of the object to track which interactable in the room is closest to the player
             float minDistance = moveBounds.Right; // ideally nothing should be interactable beyond the width of how far the player can move so use this as the default
-            foreach(GameObject obj in targets)
+
+            if (flaggedInteractable != null)
+            {
+                flaggedInteractable.Usable = false;
+                flaggedInteractable = null;
+            }
+
+            foreach (GameObject obj in targets)
             {
                 if (obj is Interactable) // if the object is usable check its proximity
                 {
@@ -192,13 +204,7 @@ namespace GamePrototype.Classes.Objects
                     else if (((Interactable)obj).Usable == true)
                     {
                         ((Interactable)obj).Usable = false;
-                        flaggedInteractable.Usable = false;
-                        flaggedInteractable = null;
                     }
-                }
-                if (flaggedInteractable != null)
-                {
-                    flaggedInteractable.Usable = false;
                 }
                 if (closest != null && minDistance <= (playerRect.Width + 20)) // if something was found in a reasonable proximity
                 {
@@ -232,6 +238,7 @@ namespace GamePrototype.Classes.Objects
 
         }
         // Caleb - hopefully will block player and objects
+        // Tom - Does it work? Yes. Can I cohesively explain my math here? Probably not.
         public void BlockCollisions(List<GameObject> objects)
         {
             foreach (GameObject go in objects)
@@ -239,19 +246,19 @@ namespace GamePrototype.Classes.Objects
                 Boolean collidingObj = isColliding(go);
                 if (collidingObj)
                 {
-                    if (hitBox.Center.Y < go.GlobalBounds.Center.Y && (hitBox.Right  - 2 > go.GlobalBounds.Left && hitBox.Left  - 2 < go.GlobalBounds.Right))
+                    if (hitBox.Center.Y < go.GlobalBounds.Center.Y && (hitBox.Right - 2 > go.GlobalBounds.Left && hitBox.Left + 2 < go.GlobalBounds.Right))
                     {
                         KeepPlayerFromGoingDown();
                     }
-                    if (hitBox.Center.Y > go.GlobalBounds.Center.Y && (hitBox.Right - 2> go.GlobalBounds.Left && hitBox.Left  - 2< go.GlobalBounds.Right))
+                    if (hitBox.Center.Y > go.GlobalBounds.Center.Y && (hitBox.Right - 2> go.GlobalBounds.Left && hitBox.Left + 2 < go.GlobalBounds.Right))
                     {
                         KeepPlayerFromGoingUp();
                     }
-                    if (hitBox.Center.X > go.GlobalBounds.Center.X && (hitBox.Bottom  - 2 > go.GlobalBounds.Top && hitBox.Top + 2 < go.GlobalBounds.Bottom))
+                    if (hitBox.Center.X > go.GlobalBounds.Center.X && (hitBox.Bottom - 2 > go.GlobalBounds.Top && hitBox.Top + 2 < go.GlobalBounds.Bottom))
                     {
                         KeepPlayerFromGoingLeft();
                     }
-                    if (hitBox.Center.X < go.GlobalBounds.Center.X && (hitBox.Bottom  - 2 > go.GlobalBounds.Top && hitBox.Top + 2 < go.GlobalBounds.Bottom))
+                    if (hitBox.Center.X < go.GlobalBounds.Center.X && (hitBox.Bottom - 2 > go.GlobalBounds.Top && hitBox.Top + 2 < go.GlobalBounds.Bottom))
                     {
                         KeepPlayerFromGoingRight();
                     }
