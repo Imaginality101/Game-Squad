@@ -302,6 +302,11 @@ namespace GamePrototype
                         {
                             drawInteractText = false;
                         }
+                        // if C is pressed, print the inventory
+                        if (kbState.IsKeyDown(Keys.C) && prevKbState.IsKeyUp(Keys.C))
+                        {
+                            Clue.PrintInventory();
+                        }
                         break;
                     }
                 case GameState.GMenu:

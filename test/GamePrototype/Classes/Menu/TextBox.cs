@@ -27,6 +27,8 @@ namespace GamePrototype.Classes.Menu
         string[] visibleTextRows;
         // string of all the visible text
         string visibleText = "";
+        // array of the words in fullText
+        string[] words;
         SpriteFont font;
         // constructors
         // will parse text param into a list of TextRows
@@ -37,7 +39,33 @@ namespace GamePrototype.Classes.Menu
             viewLimit = vLimit;
             visibleTextRows = new string[viewLimit];
             string currRow = "";
-            foreach (char c in text)
+            words = text.Split(' ');
+            foreach (string s in words)
+            {
+                while (true)
+                {
+                    // if there is enough room on the row for the word, add it to the row
+                    if (s.Length < charLimit - currRow.Length + 1)
+                    {
+                        currRow += s + " ";
+                        break;
+                    }
+                    // else make a new row
+                    else
+                    {
+                        currRow += '\n';
+                        fullText += currRow;
+                        textRows.Add(currRow);
+                        currRow = "";
+                    }
+                }
+            }
+            // add the last row
+            currRow += '\n';
+            fullText += currRow;
+            textRows.Add(currRow);
+            currRow = "";
+            /*foreach (char c in text)
             {
                 currRow += c;
                 if (currRow.Length == charLimit)
@@ -55,7 +83,7 @@ namespace GamePrototype.Classes.Menu
                 fullText += currRow;
                 textRows.Add(currRow);
                 currRow = "";
-            }
+            }*/
         }
         // overridden Draw()
         public override void Draw(SpriteBatch spriteBatch)

@@ -21,6 +21,7 @@ namespace GamePrototype.Classes.Menu
         private Category activeMenu;
         private SelectedEntry selectedEntry;
         Clue openedClue; // so the menu knows if the player's chosen a clue to look at
+        // deprecated, use Clue.Inventory
         Dictionary<Clue, Boolean> clueList; // to keep track of 
 
         public Menu()
