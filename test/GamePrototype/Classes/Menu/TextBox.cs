@@ -99,7 +99,7 @@ namespace GamePrototype.Classes.Menu
                 visibleText += s;
             }
             // draw
-            spriteBatch.DrawString(font, visibleText, position, Color.White);
+            spriteBatch.DrawString(font, visibleText, position, Color.Black);
             // clear variable
             visibleText = "";
         }
