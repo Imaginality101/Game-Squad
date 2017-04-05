@@ -218,9 +218,8 @@ namespace GamePrototype
             bobRossMode = (bool)settingsData[1];
             Console.WriteLine("Timer mode: " + timerMode + " Bob Ross mode: " + bobRossMode);
             base.Initialize();
-           
         }
-
+        
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// game-specific content.
