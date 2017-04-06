@@ -82,6 +82,9 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new ClueObject(news1, news1Rect, Clue.Clues["News1"], false, "News 1",true));
             objs.Add(new GameObject(dress, dressRect, "Dresser"));
             objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false, "Sticky Note",true));
+
+            // Setting up interaction points, this is an example on how
+            ((ClueObject)objs[5]).InteractionPoint = new Vector2(30, bedRect.Height / 2); // bed
             return objs;
         }
     }
