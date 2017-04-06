@@ -152,7 +152,7 @@ namespace GamePrototype.Classes.Objects
         {
             // This method will return the length of a vector between the two objects' global origin coordinates
             Vector2 difference;
-            if (target is ClueObject)
+            if (target is ClueObject && ((ClueObject)target).InteractionPoint.Length() > 0)
             {
                 difference = PlayerOrigin - ((ClueObject)target).GetGlobalInteractPoint();
             }

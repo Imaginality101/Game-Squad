@@ -148,7 +148,14 @@ namespace GamePrototype.Classes.Objects
         {
             get
             {
+                if (drawMatchesCol)
+                {
                     return new Vector2(positionRect.X + positionRect.Width / 2, positionRect.Y + positionRect.Height / 2);
+                }
+                else
+                {
+                    return new Vector2(drawRect.X + sprite.Width / 2, drawRect.Y + sprite.Height / 2);
+                }
             }
         }
 
