@@ -16,6 +16,7 @@ namespace GamePrototype.Classes.Objects
         Boolean onetimeUse;
         Clue givenClue;
         Clue requiredClue;
+        Vector2 interactionPoint;
 
         public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn) : base(txtr, psRct)
         {
@@ -52,6 +53,19 @@ namespace GamePrototype.Classes.Objects
         {
             givenClue = clGvn;
             onetimeUse = oneTime;
+        }
+
+
+        // property for point of interaction
+        public Vector2 InteractionPoint
+        {
+            get { return interactionPoint; }
+            set { interactionPoint = value; }
+        }
+        public Vector2 GetGlobalInteractPoint()
+        {
+            Vector2 location = GlobalBounds.Location.ToVector2() + interactionPoint;
+            return location;
         }
 
         // TODO: Interaction method
