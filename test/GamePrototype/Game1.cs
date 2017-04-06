@@ -133,11 +133,11 @@ namespace GamePrototype
             // main menu - kat
             if (bobRossMode == true)
             {
-                mainMenu = Content.Load<Texture2D>("d6twRar");
+                mainMenu = Content.Load<Texture2D>("GameMenuBOBROSSMODE-FULL");
             }
             else
             {
-                mainMenu = Content.Load<Texture2D>("mainmenumaayybe.");
+                mainMenu = Content.Load<Texture2D>("GameMenuFULL");
             }
             mainMenuRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 

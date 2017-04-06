@@ -107,6 +107,12 @@
     <Content Include="Content\frontStationary.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\GameMenuBOBROSSMODE-FULL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\GameMenuFULL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\mainmenumaayybe..png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
