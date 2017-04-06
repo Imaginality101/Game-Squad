@@ -146,7 +146,17 @@ namespace GamePrototype.Classes.Objects
         // Origin property - will help with proximity checks for interactable objects, returns the global position of the sprite's center
         public Vector2 SpriteOrigin
         {
-            get { return new Vector2(positionRect.X + sprite.Width / 2, positionRect.Y + sprite.Height / 2); }
+            get
+            {
+                if (drawMatchesCol)
+                {
+                    return new Vector2(positionRect.X + positionRect.Width / 2, positionRect.Y + positionRect.Height / 2);
+                }
+                else
+                {
+                    return new Vector2(drawRect.X + sprite.Width / 2, drawRect.Y + sprite.Height / 2);
+                }
+            }
         }
 
         // property for sprite name; Game1.LoadContent will get this, pass it to Content.Load, then will pass the sprite to this.LoadContent

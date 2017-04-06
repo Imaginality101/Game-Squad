@@ -120,65 +120,14 @@ namespace GamePrototype
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             uSpriteBatch = new SpriteBatch(GraphicsDevice);
-            intro = new GameSound("spook3-thebegining", content);
-            music = new GameSound("spook3-theloop ", content);
-            font = Content.Load<SpriteFont>("Arial");
-            menuFont = Content.Load<SpriteFont>("Courier12");
+
+            
+            MasterContentLoader();//HERE IS WERE TEXTURES GET LOADED
             // Caleb - instantiate the textbox - Kat
             box = new TextBox(new Vector2(760, 220), "Phone Settings: Controls and Information on the game will go here~", 15, 15, menuFont);
-            // TODO: Kat - Load texture sprites in here. What I'd recommend doing to make it easier to pass over to Declan is the use
-            // of a Dictionary, with strings for the key and values being Texture2Ds. If you do decide to do it that way just add it to the
-            // attributes.
-
-            // main menu - kat
-            if (bobRossMode == true)
-            {
-                mainMenu = Content.Load<Texture2D>("GameMenuBOBROSSMODE-FULL");
-            }
-            else
-            {
-                mainMenu = Content.Load<Texture2D>("GameMenuFULL");
-            }
-            mainMenuRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-
-            // phone menu - kat
-            startingPhoneState = Content.Load<Texture2D>("phoneMain0");
-            imagePhoneState = Content.Load<Texture2D>("phoneMain5");
-            textPhoneState = Content.Load<Texture2D>("phoneMain7");
-
-            // protag - kat
-            faceUp = content.Load<Texture2D>("backStationary");
-            faceDown = content.Load<Texture2D>("frontStationary");
-            faceRight = content.Load<Texture2D>("profileStationary");
-            faceRight1 = content.Load<Texture2D>("profile1");
-            faceRight2 = content.Load<Texture2D>("profile2");
-            faceRight3 = content.Load<Texture2D>("profile3");
-            faceRight4 = content.Load<Texture2D>("profile4");
-            faceRight5 = content.Load<Texture2D>("profile5");
-            faceRight6 = content.Load<Texture2D>("profile6");
-            faceRight7 = content.Load<Texture2D>("profile7");
-            faceRight8 = content.Load<Texture2D>("profile8");
-            //protagRect = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 50, graphics.PreferredBackBufferHeight / 2 - 50, 96, 192);//<-------------THIS IS WHERE THE PLAYER RECT SIZE IS----------------
-            protagTextureRight = new List<Texture2D>();
-            protagTextureRight.Add(faceRight1);
-            protagTextureRight.Add(faceRight2);
-            protagTextureRight.Add(faceRight3);
-            protagTextureRight.Add(faceRight4);
-            protagTextureRight.Add(faceRight5);
-            protagTextureRight.Add(faceRight6);
-            protagTextureRight.Add(faceRight7);
-            protagTextureRight.Add(faceRight8);
             playerCenter = new Vector2(faceUp.Width / 2, faceUp.Height / 2);
             timer = .1;
-            i = 0;
 
-            // Caleb - this is a temporary solution to loading sprites until we have a dictionary
-            /*foreach (GameObject go in objects)
-            {
-                go.LoadContent(Content.Load<Texture2D>(go.SpriteName));
-            }*/
-
-            // loads the bedroom texture by giving the room the ability to go it locally
             bedRoom = new Room(GraphicsDevice,Content);
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
             bedRoom.Objects = furnitureSet.BedroomSetup();
@@ -473,10 +422,53 @@ namespace GamePrototype
         }
 
         // TODO: Load method, needs to read the binary files from the Save command and read them in. Should then use that info to set up stuff
-        public void Load()
+        public void MasterContentLoader()
         {
-            // NOTE: the Room class has an initialize function, if you do the individual loading code with a fed parameter for the information collections/variables
-            // that should be easier since you can then just call Initialize for each Room in here
+            // NOTE: Here is where i will load every god damn texture and sound so that the main stops looking like garb and we cont have to pass in ContentManagers *Looks at Kat*
+            intro = new GameSound("spook3-thebegining", content);
+            music = new GameSound("spook3-theloop ", content);
+            font = Content.Load<SpriteFont>("Arial");
+            menuFont = Content.Load<SpriteFont>("Courier12");
+
+            // main menu - kat
+            if (bobRossMode == true)
+            {
+                mainMenu = Content.Load<Texture2D>("GameMenuBOBROSSMODE-FULL");
+            }
+            else
+            {
+                mainMenu = Content.Load<Texture2D>("GameMenuFULL");
+            }
+            mainMenuRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+
+            // phone menu - kat
+            startingPhoneState = Content.Load<Texture2D>("phoneMain0");
+            imagePhoneState = Content.Load<Texture2D>("phoneMain5");
+            textPhoneState = Content.Load<Texture2D>("phoneMain7");
+
+            // protag - kat
+
+            faceUp = content.Load<Texture2D>("backStationary");
+            faceDown = content.Load<Texture2D>("frontStationary");
+            faceRight = content.Load<Texture2D>("profileStationary");
+            faceRight1 = content.Load<Texture2D>("profile1");
+            faceRight2 = content.Load<Texture2D>("profile2");
+            faceRight3 = content.Load<Texture2D>("profile3");
+            faceRight4 = content.Load<Texture2D>("profile4");
+            faceRight5 = content.Load<Texture2D>("profile5");
+            faceRight6 = content.Load<Texture2D>("profile6");
+            faceRight7 = content.Load<Texture2D>("profile7");
+            faceRight8 = content.Load<Texture2D>("profile8");
+            protagTextureRight = new List<Texture2D>();
+            protagTextureRight.Add(faceRight1);
+            protagTextureRight.Add(faceRight2);
+            protagTextureRight.Add(faceRight3);
+            protagTextureRight.Add(faceRight4);
+            protagTextureRight.Add(faceRight5);
+            protagTextureRight.Add(faceRight6);
+            protagTextureRight.Add(faceRight7);
+            protagTextureRight.Add(faceRight8);
+
         }
     }
 }

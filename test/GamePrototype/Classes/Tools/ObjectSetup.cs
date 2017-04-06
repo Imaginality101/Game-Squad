@@ -32,6 +32,7 @@ namespace GamePrototype.Classes.Tools
         Texture2D closetdoor;              Rectangle closetdoorRect;
         Texture2D stickynote;             Rectangle stickynoteRect;
         Texture2D news1;                    Rectangle news1Rect;
+                                                        Rectangle news2Rect;
 
         //fields to hold the constuctor stuff
         ContentManager content;
@@ -68,6 +69,7 @@ namespace GamePrototype.Classes.Tools
             closetdoor = content.Load<Texture2D>("closetdoorFULL");                 closetdoorRect = new Rectangle((int)origin.X - 685, (int)origin.Y + 230, 172, 172);
             stickynote = content.Load<Texture2D>("stickynoteFull");                    stickynoteRect = new Rectangle((int)origin.X - 490,(int)origin.Y +130, 56,56);
             news1 = content.Load<Texture2D>("NewspaperFULL");                        news1Rect = new Rectangle((int)origin.X - 300, (int)origin.Y - 350, 72, 72);
+                                                                                                                        news2Rect = new Rectangle((int)origin.X + 440, (int)origin.Y -120, 72, 72);
 
             //adding them all to the gameobjectlist
             // Caleb - adding a temporary name string to the constructor which is to demo interaction
@@ -75,13 +77,17 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new GameObject(bathdoor, bathdoorRect, "Bathroom door"));
             objs.Add(new GameObject(closetdoor, closetdoorRect, "Closet door"));
             objs.Add(new GameObject(tv, tvRect,new Rectangle(0,100,172,250)));
-            objs.Add(new ClueObject(sidetab2, sidetab2Rect, new Rectangle(0, 70, 172, 172),Clue.Clues["News2"],false));
+            objs.Add(new GameObject(sidetab2, sidetab2Rect, new Rectangle(5, 50, 172, 102)));
             objs.Add(new ClueObject(bed, bedRect,new Rectangle(0,100,512,226), Clue.Clues["TenantDiary2"],false));//Clue.Clues["TenantDiary2"], "Bed"
-            objs.Add(new ClueObject(sidetab1, sidetab1Rect, Clue.Clues["OldPhoto1"],false));
-            objs.Add(new ClueObject(book, bookRect,Clue.Clues["TenantDiary1"],false, Clue.Clues["StickyNote"]));
-            objs.Add(new ClueObject(news1, news1Rect, Clue.Clues["News1"], false,true));
+            objs.Add(new ClueObject(sidetab1, sidetab1Rect, new Rectangle(0, 0, 172, 172), Clue.Clues["OldPhoto1"],false));
+            objs.Add(new ClueObject(book, bookRect,Clue.Clues["TenantDiary1"], "Book",false, Clue.Clues["StickyNote"]));
+            objs.Add(new ClueObject(news1, news1Rect, Clue.Clues["News1"], false, "News 1",true));
+            objs.Add(new ClueObject(news1, news2Rect, Clue.Clues["News2"], false, "News 2", true));
             objs.Add(new GameObject(dress, dressRect, "Dresser"));
-            objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false,true));
+            objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false, "Sticky Note",true));
+
+            // Setting up interaction points, this is an example on how
+            ((ClueObject)objs[5]).InteractionPoint = new Vector2(30, bedRect.Height / 2); // bed
             return objs;
         }
     }
