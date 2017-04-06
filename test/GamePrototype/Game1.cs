@@ -124,8 +124,8 @@ namespace GamePrototype
             music = new GameSound("spook3-theloop ", content);
             font = Content.Load<SpriteFont>("Arial");
             menuFont = Content.Load<SpriteFont>("Courier12");
-            // Caleb - instantiate the textbox
-            box = new TextBox(new Vector2(40, 40), "Push it Push it Real Good Push it Push it Real Good Push it Push it Real Good", 7, 3, menuFont);
+            // Caleb - instantiate the textbox - Kat
+            box = new TextBox(new Vector2(760, 220), "Phone Settings: Controls and Information on the game will go here~", 15, 15, menuFont);
             // TODO: Kat - Load texture sprites in here. What I'd recommend doing to make it easier to pass over to Declan is the use
             // of a Dictionary, with strings for the key and values being Texture2Ds. If you do decide to do it that way just add it to the
             // attributes.
@@ -218,9 +218,8 @@ namespace GamePrototype
             bobRossMode = (bool)settingsData[1];
             Console.WriteLine("Timer mode: " + timerMode + " Bob Ross mode: " + bobRossMode);
             base.Initialize();
-           
         }
-
+        
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// game-specific content.
@@ -301,6 +300,11 @@ namespace GamePrototype
                         if (kbState.IsKeyUp(Keys.E) && prevKbState.IsKeyDown(Keys.E))
                         {
                             drawInteractText = false;
+                        }
+                        // if C is pressed, print the inventory
+                        if (kbState.IsKeyDown(Keys.C) && prevKbState.IsKeyUp(Keys.C))
+                        {
+                            Clue.PrintInventory();
                         }
                         break;
                     }
@@ -422,6 +426,9 @@ namespace GamePrototype
             if (gameState == GameState.GMenu && menuState == MenuState.Settings)
             {
                 bedRoom.Draw(uSpriteBatch);
+                uSpriteBatch.Draw(textPhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
+                // Draw textbox
+                box.Draw(uSpriteBatch);
             }
             if (gameState == GameState.GMenu && menuState == MenuState.Power)
             {
@@ -449,7 +456,7 @@ namespace GamePrototype
             }
             
             // Draw textbox
-            box.Draw(uSpriteBatch);
+            //box.Draw(uSpriteBatch);
             // end spritebatch
             uSpriteBatch.End();
 
