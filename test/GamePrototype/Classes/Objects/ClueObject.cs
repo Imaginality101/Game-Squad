@@ -15,7 +15,7 @@ namespace GamePrototype.Classes.Objects
     {
         Boolean onetimeUse;
         Clue givenClue;
-
+        Clue requiredClue;
 
         public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn) : base(txtr, psRct)
         {
@@ -27,6 +27,13 @@ namespace GamePrototype.Classes.Objects
         {
             givenClue = clGvn;
             onetimeUse = oneTime;
+        }
+        // same as above but with requiredClue
+        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, string nm, Boolean oneTime, Clue rqClue) : base(txtr, psRct, nm)
+        {
+            givenClue = clGvn;
+            onetimeUse = oneTime;
+            requiredClue = rqClue;
         }
         public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean collision, Boolean oneTime) : base(txtr, psRct, collision)
         {
@@ -51,16 +58,31 @@ namespace GamePrototype.Classes.Objects
         public override void Interact(Player user)
         {
             // INTERACTION FUNCTIONS HERE
-            if (Enabled)
+            // if there is a required clue
+            if (requiredClue != null)
             {
-                Console.WriteLine(givenClue.ToString());
-                Clue.Inventory.Add(givenClue);
+                if (Enabled && Clue.Inventory.Contains(requiredClue))
+                {
+                    Console.WriteLine(givenClue.ToString());
+                    Clue.Inventory.Add(givenClue);
+                }
+                else
+                {
+                    Console.WriteLine("You don't have the required clue");
+                }
             }
-            if (onetimeUse)
+            // if there isn't a required clue
+            else
             {
-
-                Enabled = false;
-
+                if (Enabled)
+                {
+                    Console.WriteLine(givenClue.ToString());
+                    Clue.Inventory.Add(givenClue);
+                }
+                if (onetimeUse)
+                {
+                    Enabled = false;
+                }
             }
         }
     }
