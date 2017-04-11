@@ -39,7 +39,7 @@ namespace GamePrototype.Classes
         // TODO: Parameterized constructor, needs to take a collection of GameObjects as a param
         public Room(Texture2D bg)
         {
-            origin = new Vector2(graphics.Viewport.Width / 2, graphics.Viewport.Height / 2);
+            origin = new Vector2(1728 / 2, 972 / 2);
             roomBG = bg;
             roomBounds = new Rectangle((int)origin.X - (1382 / 2), (int)origin.Y - (972 / 2), 1382, 972);
             roomColl = new Rectangle(roomBounds.X+150, roomBounds.Y+0, roomBounds.Width-220, roomBounds.Height-15);//Perf room bounds
