@@ -89,6 +89,8 @@ namespace GamePrototype
         Texture2D mainMenu;
         Rectangle mainMenuRect;
 
+        Texture2D blacklight;
+
         // Keyboard states
         KeyboardState kbState;
         KeyboardState prevKbState;
@@ -135,6 +137,8 @@ namespace GamePrototype
             bedRoom.Objects = furnitureSet.BedroomSetup();
             player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds);
             menu.LoadContent(Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("stickynoteFULL"));
+          
+
         }
 
         /// <summary>
@@ -358,6 +362,11 @@ namespace GamePrototype
                     bedRoom.Draw(uSpriteBatch);
                     player.Draw(uSpriteBatch);
                 }
+
+                if (bedRoom.LightsOff == true)
+                {
+                    uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+                }
             }
 
 
@@ -412,6 +421,7 @@ namespace GamePrototype
             menu.Draw(uSpriteBatch);
             // Draw textbox
             //box.Draw(uSpriteBatch);
+
             // end spritebatch
             uSpriteBatch.End();
 
@@ -474,6 +484,8 @@ namespace GamePrototype
             protagTextureRight.Add(faceRight6);
             protagTextureRight.Add(faceRight7);
             protagTextureRight.Add(faceRight8);
+
+            blacklight = content.Load<Texture2D>("black light overlay");
 
         }
     }
