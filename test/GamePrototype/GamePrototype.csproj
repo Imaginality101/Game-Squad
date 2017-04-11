@@ -92,6 +92,9 @@
     <Content Include="Content\bedFULL.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\black light overlay.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\bookshelfFULL.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

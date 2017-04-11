@@ -38,6 +38,8 @@ namespace GamePrototype
         // define enums
         GameState gameState;
         CurrentRoom activeRoom;
+        // Caleb - first menu object, non static for now
+        Menu menu;
         MenuState menuState; // kat
         // create attribute components specifically purposed for this class here
         GraphicsDeviceManager graphics;
@@ -87,6 +89,8 @@ namespace GamePrototype
         Texture2D mainMenu;
         Rectangle mainMenuRect;
 
+        Texture2D blacklight;
+
         // Keyboard states
         KeyboardState kbState;
         KeyboardState prevKbState;
@@ -131,7 +135,10 @@ namespace GamePrototype
             bedRoom = new Room(GraphicsDevice,Content);
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
             bedRoom.Objects = furnitureSet.BedroomSetup();
-            player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds); 
+            player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds);
+            menu.LoadContent(Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("stickynoteFULL"));
+          
+
         }
 
         /// <summary>
@@ -166,6 +173,7 @@ namespace GamePrototype
             timerMode = (bool)settingsData[0];
             bobRossMode = (bool)settingsData[1];
             Console.WriteLine("Timer mode: " + timerMode + " Bob Ross mode: " + bobRossMode);
+            menu = new Menu();
             base.Initialize();
         }
         
@@ -301,7 +309,8 @@ namespace GamePrototype
                                 menuState = MenuState.Main;
                                 gameState = GameState.Game;
                             }
-
+                            // Caleb - updates the menu instance; we might stick the above into this method?
+                            menu.Update();
                         }
                         break;
                     }
@@ -403,9 +412,16 @@ namespace GamePrototype
             {
                 uSpriteBatch.DrawString(font, string.Format("{0}:{1}", gameTimerSeconds / 60, gameTimerSeconds % 60), new Vector2(0, 50), Color.White);
             }
-            
+            // Caleb - draws menu in limited capacity
+            menu.Draw(uSpriteBatch);
             // Draw textbox
             //box.Draw(uSpriteBatch);
+
+            if (bedRoom.LightsOff == true)
+            {
+                uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+            }
+
             // end spritebatch
             uSpriteBatch.End();
 
@@ -468,6 +484,8 @@ namespace GamePrototype
             protagTextureRight.Add(faceRight6);
             protagTextureRight.Add(faceRight7);
             protagTextureRight.Add(faceRight8);
+
+            blacklight = content.Load<Texture2D>("black light overlay");
 
         }
     }

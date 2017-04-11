@@ -24,13 +24,13 @@ namespace GamePrototype.Classes.Objects
             onetimeUse = false;
         }
         // Caleb - temporary constructor for demoing interaction for milestone 2
-        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, string nm, Boolean oneTime) : base(txtr, psRct, nm)
+        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean oneTime) : base(txtr, psRct)
         {
             givenClue = clGvn;
             onetimeUse = oneTime;
         }
         // same as above but with requiredClue
-        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, string nm, Boolean oneTime, Clue rqClue) : base(txtr, psRct, nm)
+        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean oneTime, Clue rqClue) : base(txtr, psRct)
         {
             givenClue = clGvn;
             onetimeUse = oneTime;

@@ -31,6 +31,8 @@ namespace GamePrototype.Classes
         ContentManager content;//Added Delcan //Uses: Allows for the room clas to load the content locally so that the main Game1 doen't become overrun with texture loading
         // private Rectangle viewBounds; // Doesn't necessarily need to be used unless we go for resolution scalability
 
+        bool lightsOff;
+
         SpriteBatch spriteBatch;
         List<Texture2D> textureList;
         List<Rectangle> rectangleList;
@@ -44,6 +46,7 @@ namespace GamePrototype.Classes
             roomBG = content.Load<Texture2D>("backgroundFULL");
             roomBounds = new Rectangle((int)origin.X - (1382 / 2), (int)origin.Y - (972 / 2), 1382, 972);
             roomColl = new Rectangle(roomBounds.X+150, roomBounds.Y+0, roomBounds.Width-220, roomBounds.Height-15);//Perf room bounds
+            lightsOff = true;
            
         }
 
@@ -95,6 +98,19 @@ namespace GamePrototype.Classes
         public Rectangle CollisionBounds//Declan - bounds that hold the player in taking into account its sprite access point
         {
             get { return roomColl; }
+        }
+
+        public bool LightsOff
+        {
+            get
+            {
+                return lightsOff;
+            }
+
+            set
+            {
+                lightsOff = value;
+            }
         }
     }
 }
