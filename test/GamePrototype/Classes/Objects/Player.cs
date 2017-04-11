@@ -443,7 +443,11 @@ namespace GamePrototype.Classes.Objects
                 }
                 sprtBtch.Draw(walkRightSprites[currentFrame], playerRect, Color.White);
             }
+
         }
+        public Rectangle MoveBounds { get { return moveBounds; } set { moveBounds = value; } }
+        
+
 
     }
 }
