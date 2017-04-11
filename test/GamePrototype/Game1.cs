@@ -118,7 +118,7 @@ namespace GamePrototype
         SpriteFont menuFont;
         bool drawInteractText = false;
         // Caleb - menu stuff
-        TextBox box;
+        TextBox settingsTextBox;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -139,7 +139,7 @@ namespace GamePrototype
             
             MasterContentLoader();//HERE IS WERE TEXTURES GET LOADED
             // Caleb - instantiate the textbox - Kat
-            box = new TextBox(new Vector2(760, 220), "Phone Settings: Controls and Information on the game will go here~", 15, 15, menuFont);
+            settingsTextBox = new TextBox(new Vector2(760, 220), "Phone Settings: Controls and Information on the game will go here~", 15, 15, menuFont);
             playerCenter = new Vector2(faceUp.Width / 2, faceUp.Height / 2);
             timer = .1;
 
@@ -343,7 +343,7 @@ namespace GamePrototype
                     }
             }
             // Caleb - update Textbox
-            box.Update(kbState, prevKbState);
+            settingsTextBox.Update(kbState, prevKbState);
             base.Update(gameTime);
         }
 
@@ -436,7 +436,7 @@ namespace GamePrototype
                 bedRoom.Draw(uSpriteBatch);
                 uSpriteBatch.Draw(textPhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
                 // Draw textbox
-                box.Draw(uSpriteBatch);
+                settingsTextBox.Draw(uSpriteBatch);
             }
             if (gameState == GameState.GMenu && menuState == MenuState.Power)
             {
