@@ -49,7 +49,7 @@ namespace GamePrototype.Classes.Objects
             moveQueue = Vector2.Zero; // initialize moveQueue to a zero vector
             playerDirection = PlayerDir.FaceDown; // start out facing downwards for now
             moveBounds = bounds;
-            playerRect = new Rectangle(graphics.Viewport.Width / 2 - 50, graphics.Viewport.Height / 2 - 50, 96, 192); //<------------------------THIS IS WHERE THE PLAYER RECT SIZE IS-------------------------
+            playerRect = new Rectangle(1728 / 2 - 50, 972 / 2 - 50, 96, 192); //<------------------------THIS IS WHERE THE PLAYER RECT SIZE IS-------------------------
             hitBox = new Rectangle(PlayerRect.X+24, PlayerRect.Y + 144, 48, 48);
             faceRightSprite = faceRight;
             walkRightSprites = walkRight;
@@ -395,15 +395,15 @@ namespace GamePrototype.Classes.Objects
             //base.Draw(sprtBtch);
             if (playerDirection == PlayerDir.FaceUp)
             {
-                sprtBtch.Draw(faceUpSprite, playerRect, Color.White);
+                sprtBtch.Draw(faceUpSprite, Game1.FormatDraw(playerRect), Color.White);
             }
             if (playerDirection == PlayerDir.WalkUp)
             {
-                sprtBtch.Draw(faceUpSprite, playerRect, Color.White);
+                sprtBtch.Draw(faceUpSprite, Game1.FormatDraw(playerRect), Color.White);
             }
             if (playerDirection == PlayerDir.FaceLeft)
             {
-                sprtBtch.Draw(faceRightSprite, playerRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
+                sprtBtch.Draw(faceRightSprite, Game1.FormatDraw(playerRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
             }
             if (playerDirection == PlayerDir.WalkLeft)
             {
@@ -416,19 +416,19 @@ namespace GamePrototype.Classes.Objects
                         currentFrame = 0;
                     }
                 }
-                sprtBtch.Draw(walkRightSprites[currentFrame], playerRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
+                sprtBtch.Draw(walkRightSprites[currentFrame], Game1.FormatDraw(playerRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
             }
             if (playerDirection == PlayerDir.FaceDown)
             {
-                sprtBtch.Draw(faceDownSprite, playerRect, Color.White);
+                sprtBtch.Draw(faceDownSprite, Game1.FormatDraw(playerRect), Color.White);
             }
             if (playerDirection == PlayerDir.WalkDown)
             {
-                sprtBtch.Draw(faceDownSprite, playerRect, Color.White);
+                sprtBtch.Draw(faceDownSprite, Game1.FormatDraw(playerRect), Color.White);
             }
             if (playerDirection == PlayerDir.FaceRight)
             {
-                sprtBtch.Draw(faceRightSprite, playerRect, Color.White);
+                sprtBtch.Draw(faceRightSprite, Game1.FormatDraw(playerRect), Color.White);
             }
             if (playerDirection == PlayerDir.WalkRight)
             {
@@ -441,7 +441,7 @@ namespace GamePrototype.Classes.Objects
                         currentFrame = 0;
                     }
                 }
-                sprtBtch.Draw(walkRightSprites[currentFrame], playerRect, Color.White);
+                sprtBtch.Draw(walkRightSprites[currentFrame], Game1.FormatDraw(playerRect), Color.White);
             }
         }
 

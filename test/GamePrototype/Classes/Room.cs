@@ -42,7 +42,7 @@ namespace GamePrototype.Classes
         {
             content = ctm;
             graphics = gd;
-            origin = new Vector2(graphics.Viewport.Width / 2, graphics.Viewport.Height / 2);
+            origin = new Vector2(1728 / 2, 972 / 2);
             roomBG = content.Load<Texture2D>("backgroundFULL");
             roomBounds = new Rectangle((int)origin.X - (1382 / 2), (int)origin.Y - (972 / 2), 1382, 972);
             roomColl = new Rectangle(roomBounds.X+150, roomBounds.Y+0, roomBounds.Width-220, roomBounds.Height-15);//Perf room bounds
@@ -71,7 +71,8 @@ namespace GamePrototype.Classes
         public void Draw(SpriteBatch sprtBtch)
         {
             // draws the room texture image/background
-            sprtBtch.Draw(roomBG, roomBounds, Color.White);
+            
+            sprtBtch.Draw(roomBG, Game1.FormatDraw(roomBounds), Color.White);
 
             // foreach gameobject in the list of the objects in the room
             if (objectsInRoom != null)
