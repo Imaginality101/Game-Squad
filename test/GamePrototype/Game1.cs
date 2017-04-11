@@ -369,6 +369,11 @@ namespace GamePrototype
                     bedRoom.Draw(uSpriteBatch);
                     player.Draw(uSpriteBatch);
                 }
+
+                if (bedRoom.LightsOff == true)
+                {
+                    uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+                }
             }
 
 
@@ -423,11 +428,6 @@ namespace GamePrototype
             menu.Draw(uSpriteBatch);
             // Draw textbox
             //box.Draw(uSpriteBatch);
-
-            if (bedRoom.LightsOff == true)
-            {
-                uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
-            }
 
             // end spritebatch
             uSpriteBatch.End();
