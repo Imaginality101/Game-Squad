@@ -35,6 +35,11 @@ namespace GamePrototype
     enum CurrentRoom { Bedroom, Closet, Bathroom } // We'll start with just Bedroom for now, when we expand to more rooms add them to the end of the state list
     public class Game1 : Game
     {
+
+        const int NORM_WIDTH = 1728;
+        const int NORM_HEIGHT = 972;
+        static Vector2 drawRatio; // Keep track of the ratio of the current resolution to intended resolution
+
         // define enums
         GameState gameState;
         CurrentRoom activeRoom;
@@ -167,6 +172,8 @@ namespace GamePrototype
             // TODO: Screen sizes here
             graphics.PreferredBackBufferWidth = 1728;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 972;   // set this value to the desired height of your window
+            drawRatio.X = graphics.PreferredBackBufferWidth / NORM_WIDTH;
+            drawRatio.Y = graphics.PreferredBackBufferHeight / NORM_HEIGHT;
             //graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
            // graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
 
@@ -528,5 +535,17 @@ namespace GamePrototype
             bedBG = content.Load<Texture2D>("backgroundFULL");
 
         }
+
+        public static Rectangle FormatDraw(Rectangle drawRect)
+        {
+            Rectangle scaleRect;
+            int newX = (int)(drawRatio.X * drawRect.X);
+            int newY = (int)(drawRatio.Y * drawRect.Y);
+            int newWidth = (int)(drawRatio.X * drawRect.Width);
+            int newHeight = (int)(drawRatio.Y * drawRect.Height);
+            scaleRect = new Rectangle(newX, newY, newWidth, newHeight);
+            return scaleRect;
+        }
+
     }
 }

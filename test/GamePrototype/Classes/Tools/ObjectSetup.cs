@@ -86,12 +86,13 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new ClueObject(book, bookRect, Clue.Clues["TenantDiary1"], false, Clue.Clues["StickyNote"]));
             objs.Add(new ClueObject(news1, news1Rect, Clue.Clues["News1"], false, "News 1", true));
             objs.Add(new ClueObject(news1, news2Rect, Clue.Clues["News2"], false, "News 2", true));
-            objs.Add(new GameObject(dress, dressRect, "Dresser"));
-            objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false, "Sticky Note", true));
-            //objs.Add(new ClueObject(lamp,lampRect,))
+            //objs.Add(new GameObject(dress, dressRect, "Dresser"));
+            objs.Add(new ClueObject(dress, dressRect, Clue.Clues["Closet Key"], true, Clue.Clues["TenantDiary2"]));
+            objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false, "Sticky Note",true));
 
             // Setting up interaction points, this is an example on how
             ((ClueObject)objs[5]).InteractionPoint = new Vector2(30, bedRect.Height / 2); // bed
+            ((ClueObject)objs[10]).InteractionPoint = new Vector2(330, dressRect.Height / 2); // dresser
             return objs;
         }
         public List<GameObject> ClosetSetup()
