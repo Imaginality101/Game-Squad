@@ -21,5 +21,9 @@ namespace GamePrototype.Classes.Menu
         {
             image = img;
         }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(image, position);
+        }
     }
 }

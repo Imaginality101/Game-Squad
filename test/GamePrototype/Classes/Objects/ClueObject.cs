@@ -18,11 +18,11 @@ namespace GamePrototype.Classes.Objects
         Clue requiredClue;
         Vector2 interactionPoint;
 
-        /*public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn) : base(txtr, psRct)
+        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn) : base(txtr, psRct)
         {
             givenClue = clGvn;
             onetimeUse = false;
-        }*/
+        }
         // Caleb - temporary constructor for demoing interaction for milestone 2
         public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean oneTime) : base(txtr, psRct)
         {
@@ -49,11 +49,11 @@ namespace GamePrototype.Classes.Objects
             onetimeUse = oneTime;
         }
         // Caleb - Another temporary constructor for interaction
-        /*public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean collision, string nm, Boolean oneTime) : base(txtr, psRct, collision, nm)
+        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean collision, string nm, Boolean oneTime) : base(txtr, psRct, collision, nm)
         {
             givenClue = clGvn;
             onetimeUse = oneTime;
-        }*/
+        }
 
 
         // property for point of interaction

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 /*Workers: Kat, Tom
@@ -26,21 +27,21 @@ namespace GamePrototype.Classes.Menu
         // first index is the page on the menu, second index is which space it is on: 0 is top left, 1 is top right, 2 is bottom left, 3 is bottom right 
         private Clue[,] pageClue = new Clue[7, 4];
         // icons
-        Texture2D newsPaper;
-        Texture2D bathroomKey;
-        Texture2D closetKey;
-        Texture2D oldPhoto;
-        Texture2D newPhoto;
-        Texture2D tenantDiary;
-        Texture2D crazyPersonDiary;
-        Texture2D receipt;
-        Texture2D ring;
-        Texture2D pendant;
-        Texture2D bones;
-        Texture2D jaggedKnife;
-        Texture2D spaCoupon;
-        Texture2D medicineBottle;
-        Texture2D stickyNote;
+        Icon newsPaper;
+        Icon bathroomKey;
+        Icon closetKey;
+        Icon oldPhoto;
+        Icon newPhoto;
+        Icon tenantDiary;
+        Icon crazyPersonDiary;
+        Icon receipt;
+        Icon ring;
+        Icon pendant;
+        Icon bones;
+        Icon jaggedKnife;
+        Icon spaCoupon;
+        Icon medicineBottle;
+        Icon stickyNote;
         public Menu()
         {
             activeMenu = Category.Main;
@@ -53,13 +54,10 @@ namespace GamePrototype.Classes.Menu
             }*/
         }
         // TODO: Load icons in Game1, pass them here in an array
-        public void LoadContent(Texture2D nws, Texture2D stcky, Texture2D tenantDir, Texture2D oldPhto, Texture2D clstKey)
+        public void LoadContent(Texture2D nws, Texture2D stcky)
         {
-            newsPaper = nws;
-            stickyNote = stcky;
-            tenantDiary = tenantDir;
-            oldPhoto = oldPhto;
-            closetKey = clstKey;
+            newsPaper = new Icon(nws, Vector2.Zero);
+            stickyNote = new Icon(stcky, new Vector2(0, 50));
         }
         public void Update()
         {
@@ -125,7 +123,14 @@ namespace GamePrototype.Classes.Menu
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
+            if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))
+            {
+                newsPaper.Draw(spriteBatch);
+            }
+            if (Clue.Inventory.Contains(Clue.Clues["StickyNote"]))
+            {
+                stickyNote.Draw(spriteBatch);
+            }
         }
     }
 
