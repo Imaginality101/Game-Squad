@@ -16,6 +16,7 @@ namespace GamePrototype.Classes.Objects
     {
         public Door(Texture2D txtr, Rectangle psRct) : base(txtr, psRct)
         {
+
         }
 
         // TODO: Class needs fleshing out, but its primary difference is that interacting
