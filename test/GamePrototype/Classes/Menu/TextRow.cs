@@ -14,8 +14,6 @@ namespace GamePrototype.Classes.Menu
 {
     class TextRow : MenuObject
     {
-        // attributes
-        Vector2 position;
         string text;
         SpriteFont font;
         // constructor
