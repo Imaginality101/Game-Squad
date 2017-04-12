@@ -35,10 +35,11 @@ namespace GamePrototype
     enum CurrentRoom { Bedroom, Closet, Bathroom } // We'll start with just Bedroom for now, when we expand to more rooms add them to the end of the state list
     public class Game1 : Game
     {
-
+        // Stuff for adjusting the way things draw
         const float NORM_WIDTH = 1728;
         const float NORM_HEIGHT = 972;
         static Vector2 drawRatio; // Keep track of the ratio of the current resolution to intended resolution
+        Boolean fullScreen;
 
         // define enums
         GameState gameState;
@@ -159,15 +160,22 @@ namespace GamePrototype
             activeRoom = CurrentRoom.Bedroom;
             menuState = MenuState.Main; // kat
 
-            // TODO: Screen sizes here
-            //graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;  // set this value to the desired width of your window
-            //graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;   // set this value to the desired height of your window
+            fullScreen = true;
 
-            graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;   // set this value to the desired height of your window
-            //graphics.IsFullScreen = true;
-            drawRatio.X = graphics.PreferredBackBufferWidth / NORM_WIDTH;
-            drawRatio.Y = graphics.PreferredBackBufferHeight / NORM_HEIGHT;
+            // Screen sizes here, move this behind settings data once we have external tool stuff for it
+            if (fullScreen)
+            {
+                graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;  // set this value to the desired width of your window
+                graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;   // set this value to the desired height of your window
+                graphics.IsFullScreen = true;
+            }
+            else
+            {
+                graphics.PreferredBackBufferWidth = 1024;  // set this value to the desired width of your window
+                graphics.PreferredBackBufferHeight = 768;   // set this value to the desired height of your window
+            }
+                drawRatio.X = graphics.PreferredBackBufferWidth / NORM_WIDTH;
+                drawRatio.Y = graphics.PreferredBackBufferHeight / NORM_HEIGHT;
             //graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
            // graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
 
