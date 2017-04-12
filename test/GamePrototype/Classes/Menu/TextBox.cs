@@ -30,9 +30,12 @@ namespace GamePrototype.Classes.Menu
         // array of the words in fullText
         string[] words;
         SpriteFont font;
+
+        Vector2 positionText;
+
         // constructors
         // will parse text param into a list of TextRows
-        public TextBox(Vector2 pos, string text, int charLimit, int vLimit, SpriteFont fontParam) : base(pos)
+        public TextBox(Vector2 posi, string text, int charLimit, int vLimit, SpriteFont fontParam, Rectangle pos) : base(pos)
         {
             textRows = new List<string>();
             font = fontParam;
@@ -40,6 +43,9 @@ namespace GamePrototype.Classes.Menu
             visibleTextRows = new string[viewLimit];
             string currRow = "";
             words = text.Split(' ');
+
+            positionText = posi;
+
             foreach (string s in words)
             {
                 while (true)
@@ -99,7 +105,7 @@ namespace GamePrototype.Classes.Menu
                 visibleText += s;
             }
             // draw
-            spriteBatch.DrawString(font, visibleText, position, Color.Black);
+            spriteBatch.DrawString(font, visibleText, positionText, Color.Black);
             // clear variable
             visibleText = "";
         }
