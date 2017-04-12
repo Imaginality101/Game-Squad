@@ -17,7 +17,7 @@ namespace GamePrototype.Classes.Menu
         string text;
         SpriteFont font;
         // constructor
-        public TextRow(Vector2 pos, string t, SpriteFont fontParam) : base(pos)
+        public TextRow(Vector2 posi, string t, SpriteFont fontParam, Rectangle pos) : base(pos)
         {
             text = t;
             font = fontParam;

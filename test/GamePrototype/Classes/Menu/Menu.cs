@@ -7,6 +7,7 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
+using GamePrototype;
 /*Workers: Kat, Tom
  * DisasterPiece Games
  * Menu Class
@@ -128,7 +129,28 @@ namespace GamePrototype.Classes.Menu
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            // TODO: Kill it, kill it with fire
+            if (gameState == GameState.GMenu && menuState == MenuState.Main)
+            {
+                bedRoom.Draw(uSpriteBatch);
+                uSpriteBatch.Draw(startingPhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
+            }
+            if (gameState == GameState.GMenu && menuState == MenuState.Journal)
+            {
+                bedRoom.Draw(uSpriteBatch);
+                uSpriteBatch.Draw(textPhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
+            }
+            if (gameState == GameState.GMenu && menuState == MenuState.Photos)
+            {
+                bedRoom.Draw(uSpriteBatch);
+                uSpriteBatch.Draw(imagePhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
+            }
+            if (gameState == GameState.GMenu && menuState == MenuState.Settings)
+            {
+                bedRoom.Draw(uSpriteBatch);
+                uSpriteBatch.Draw(textPhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
+                // Draw textbox
+                settingsTextBox.Draw(uSpriteBatch);
+            }
             if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))
             {
                 newsPaper.Draw(spriteBatch);
