@@ -120,14 +120,6 @@ namespace GamePrototype
         // Caleb - menu stuff
         TextBox settingsTextBox;
 
-        public MenuState MenuState
-        {
-            get
-            {
-                return menuState;
-            }
-        }
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -156,7 +148,7 @@ namespace GamePrototype
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
             bedRoom.Objects = furnitureSet.BedroomSetup();
             player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds);
-            menu.LoadContent(Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("stickynoteFULL"));
+            menu.LoadContent(Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("stickynoteFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("stickynoteFULL"));
 
             closetRoom = new Room(closetBG);
             closetRoom.Objects = furnitureSet.ClosetSetup();

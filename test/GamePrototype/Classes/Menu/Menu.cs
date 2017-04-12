@@ -57,10 +57,10 @@ namespace GamePrototype.Classes.Menu
         // TODO: Load icons in Game1, pass them here in an array
         public void LoadContent(Texture2D nws, Texture2D stcky, Texture2D tenant, Texture2D crazy)
         {
-            newsPaper = new Icon(nws, Vector2.Zero);
-            stickyNote = new Icon(stcky, new Vector2(0, 50));
-            tenantDiary = new Icon(tenant, new Vector2(0, 100));
-            crazyPersonDiary = new Icon(crazy, new Vector2(0, 150));
+            newsPaper = new Icon(nws, new Rectangle(755, 210, 70, 100)); // box 1 location
+            stickyNote = new Icon(stcky, new Rectangle(825, 210, 70, 100)); // box 2 location
+            //tenantDiary = new Icon(tenant, new Vector2(0, 100));
+            //crazyPersonDiary = new Icon(crazy, new Vector2(0, 150));
         }
         public void Update()
         {
@@ -131,28 +131,6 @@ namespace GamePrototype.Classes.Menu
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (gameState == GameState.GMenu && menuState == MenuState.Main)
-            {
-                bedRoom.Draw(uSpriteBatch);
-                uSpriteBatch.Draw(startingPhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
-            }
-            if (gameState == GameState.GMenu && menuState == MenuState.Journal)
-            {
-                bedRoom.Draw(uSpriteBatch);
-                uSpriteBatch.Draw(textPhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
-            }
-            if (gameState == GameState.GMenu && menuState == MenuState.Photos)
-            {
-                bedRoom.Draw(uSpriteBatch);
-                uSpriteBatch.Draw(imagePhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
-            }
-            if (gameState == GameState.GMenu && menuState == MenuState.Settings)
-            {
-                bedRoom.Draw(uSpriteBatch);
-                uSpriteBatch.Draw(textPhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
-                // Draw textbox
-                settingsTextBox.Draw(uSpriteBatch);
-            }
             if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))
             {
                 newsPaper.Draw(spriteBatch);

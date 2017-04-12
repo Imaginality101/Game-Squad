@@ -25,7 +25,7 @@ namespace GamePrototype.Classes.Menu
         // overridden Draw()
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(font, text, position, Color.White);
+            spriteBatch.DrawString(font, text, new Vector2 (position.X, position.Y), Color.White);
         }
     }
 }
