@@ -508,6 +508,7 @@ namespace GamePrototype
 
         }
 
+        // Static draw formatting method. Takes in any given rectangle assumed to be the draw destination, scales it to fit the current resolution of the game and returns the new one
         public static Rectangle FormatDraw(Rectangle drawRect)
         {
             Rectangle scaleRect;
