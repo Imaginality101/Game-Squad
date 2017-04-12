@@ -55,7 +55,7 @@ namespace GamePrototype.Classes.Menu
             }*/
         }
         // TODO: Load icons in Game1, pass them here in an array
-        public void LoadContent(Texture2D nws, Texture2D stcky, Texture2D tenant, Texture2D crazy)
+        public void LoadContent(Texture2D nws, Texture2D stcky)
         {
             newsPaper = new Icon(nws, new Rectangle(755, 210, 70, 100)); // box 1 location
             stickyNote = new Icon(stcky, new Rectangle(825, 210, 70, 100)); // box 2 location
@@ -139,14 +139,14 @@ namespace GamePrototype.Classes.Menu
             {
                 stickyNote.Draw(spriteBatch);
             }
-            if (Clue.Inventory.Contains(Clue.Clues["TenantDiary1"]) || Clue.Inventory.Contains(Clue.Clues["TenantDiary2"]) || Clue.Inventory.Contains(Clue.Clues["TenantDiary3"]))
+            /*if (Clue.Inventory.Contains(Clue.Clues["TenantDiary1"]) || Clue.Inventory.Contains(Clue.Clues["TenantDiary2"]) || Clue.Inventory.Contains(Clue.Clues["TenantDiary3"]))
             {
                 tenantDiary.Draw(spriteBatch);
             }
             if (Clue.Inventory.Contains(Clue.Clues["CrazyDiary1"]) || Clue.Inventory.Contains(Clue.Clues["CrazyDiary2"]) || Clue.Inventory.Contains(Clue.Clues["CrazyDiary3"]))
             {
                 crazyPersonDiary.Draw(spriteBatch);
-            }
+            }*/
         }
     }
 
