@@ -61,6 +61,7 @@ namespace GamePrototype
 
         // any rooms will be defined here as we get them added
         Room bedRoom;
+        Room closetRoom;
         ObjectSetup furnitureSet;
 
         // phone menu - kat
@@ -95,6 +96,11 @@ namespace GamePrototype
         Rectangle mainMenuRect;
 
         Texture2D blacklight;
+        Texture2D bedBG;
+        Texture2D closetBG;
+        Texture2D bathBG;
+
+
 
         // Keyboard states
         KeyboardState kbState;
@@ -137,12 +143,16 @@ namespace GamePrototype
             playerCenter = new Vector2(faceUp.Width / 2, faceUp.Height / 2);
             timer = .1;
 
-            bedRoom = new Room(GraphicsDevice,Content);
+            bedRoom = new Room(bedBG);
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
             bedRoom.Objects = furnitureSet.BedroomSetup();
             player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds);
-            menu.LoadContent(Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("stickynoteFULL"), Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"));
-          
+            menu.LoadContent(Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("stickynoteFULL"));
+
+            closetRoom = new Room(closetBG);
+            closetRoom.Objects = furnitureSet.ClosetSetup();
+            player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds);
+
 
         }
 
@@ -246,6 +256,7 @@ namespace GamePrototype
                                 break;
                             case CurrentRoom.Closet:
                                 // TODO: update closet
+                                closetRoom.Update(gameTime);
                                 break;
                             case CurrentRoom.Bathroom:
                                 // TODO: update bathroom
@@ -359,21 +370,48 @@ namespace GamePrototype
             // calls the bedroom draw command - kat
             if (gameState == GameState.Game)
             {
-                if (player.PlayerRect.Y < GraphicsDevice.Viewport.Bounds.Height / 2)
+                switch (activeRoom)
                 {
-                    bedRoom.Draw(uSpriteBatch);
-                    player.Draw(uSpriteBatch);
-                }
-                else
-                {
-                    bedRoom.Draw(uSpriteBatch);
-                    player.Draw(uSpriteBatch);
-                }
+                    case CurrentRoom.Bedroom:
+                        if (player.PlayerRect.Y < GraphicsDevice.Viewport.Bounds.Height / 2)
+                        {
+                            bedRoom.Draw(uSpriteBatch);
+                            player.Draw(uSpriteBatch);
+                        }
+                        else
+                        {
+                            bedRoom.Draw(uSpriteBatch);
+                            player.Draw(uSpriteBatch);
+                        }
 
-                if (bedRoom.LightsOff == true)
-                {
-                    uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+                        if (bedRoom.LightsOff == true)
+                        {
+                            uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+                        }
+                        break;
+                    case CurrentRoom.Closet:
+                        // TODO: Draw closet
+                        if (player.PlayerRect.Y < GraphicsDevice.Viewport.Bounds.Height / 2)
+                        {
+                            closetRoom.Draw(uSpriteBatch);
+                            player.Draw(uSpriteBatch);
+                        }
+                        else
+                        {
+                            closetRoom.Draw(uSpriteBatch);
+                            player.Draw(uSpriteBatch);
+                        }
+
+                        if (closetRoom.LightsOff == true)
+                        {
+                            uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+                        }
+                        break;
+                    case CurrentRoom.Bathroom:
+                        // TODO: update bathroom
+                        break;
                 }
+                
             }
 
 
@@ -493,6 +531,8 @@ namespace GamePrototype
             protagTextureRight.Add(faceRight8);
 
             blacklight = content.Load<Texture2D>("black light overlay");
+
+            bedBG = content.Load<Texture2D>("backgroundFULL");
 
         }
 
