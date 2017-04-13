@@ -67,15 +67,15 @@ namespace GamePrototype.Classes.Menu
             }*/
         }
         // TODO: Load icons in Game1, pass them here in an array
-        public void LoadContent(Texture2D nws, Texture2D stcky, Texture2D main, Texture2D clues, Texture2D text, SpriteFont menuFont)
+        public void LoadContent(Texture2D nws, Texture2D stcky, Texture2D main, Texture2D clues, Texture2D text, SpriteFont menuFont, Texture2D tenant, Texture2D crazy)
         {
             //clues = inventoryClues.MenuInventory; <___ NOT SURE WHAT GOT MOVED TO FUCK THIS UP
-            //newsPaper = new Icon(nws, new Rectangle(755, 230, 70, 100)); // box 1 location
-            //stickyNote = new Icon(stcky, new Rectangle(845, 230, 70, 100)); // box 2 location
-            //tenantDiary = new Icon(tenant, new Rectangle(845, 380, 70, 100)); // box 3 location
-            //crazyPersonDiary = new Icon(crazy, new Rectangle(0, 150, 70, 100));
-            newsPaper = new Icon(nws, new Rectangle(0, 0, 50, 50));
-            stickyNote = new Icon(stcky, new Rectangle(0, 50, 50, 50));
+            newsPaper = new Icon(nws, new Rectangle(755, 230, 70, 100)); // box 1 location
+            stickyNote = new Icon(stcky, new Rectangle(845, 230, 70, 100)); // box 2 location
+            tenantDiary = new Icon(tenant, new Rectangle(845, 380, 70, 100)); // box 3 location
+            crazyPersonDiary = new Icon(crazy, new Rectangle(0, 150, 70, 100));
+            //newsPaper = new Icon(nws, new Rectangle(0, 0, 50, 50));
+            //stickyNote = new Icon(stcky, new Rectangle(0, 50, 50, 50));
             mainPhoneMenu = main;
             cluesPhoneMenu = clues;
             textPhoneMenu = text;
@@ -203,6 +203,22 @@ namespace GamePrototype.Classes.Menu
             {
                 //bedRoom.Draw(uSpriteBatch);
                 spriteBatch.Draw(cluesPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
+                if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))
+                {
+                    newsPaper.Draw(spriteBatch);
+                }
+                if (Clue.Inventory.Contains(Clue.Clues["StickyNote"]))
+                {
+                    stickyNote.Draw(spriteBatch);
+                }
+                if (Clue.Inventory.Contains(Clue.Clues["TenantDiary1"]) || Clue.Inventory.Contains(Clue.Clues["TenantDiary2"]) || Clue.Inventory.Contains(Clue.Clues["TenantDiary3"]))
+                {
+                    tenantDiary.Draw(spriteBatch);
+                }
+                if (Clue.Inventory.Contains(Clue.Clues["CrazyDiary1"]) || Clue.Inventory.Contains(Clue.Clues["CrazyDiary2"]) || Clue.Inventory.Contains(Clue.Clues["CrazyDiary3"]))
+                {
+                    crazyPersonDiary.Draw(spriteBatch);
+                }
             }
             if (activeMenu == Category.Settings)
             {
@@ -216,6 +232,7 @@ namespace GamePrototype.Classes.Menu
                 //bedRoom.Draw(uSpriteBatch);
             }
             // end of pasted code
+            /*
             if (activeMenu == Category.Main)
             {
                 //bedRoom.Draw(spriteBatch);
@@ -238,6 +255,7 @@ namespace GamePrototype.Classes.Menu
                 // Draw textbox
                 settingsTextBox.Draw(spriteBatch);
             }
+            
             if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))
             {
                 newsPaper.Draw(spriteBatch);
@@ -254,6 +272,7 @@ namespace GamePrototype.Classes.Menu
             {
                 crazyPersonDiary.Draw(spriteBatch);
             }
+            */
         }
     }
 
