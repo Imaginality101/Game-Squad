@@ -116,14 +116,6 @@ namespace GamePrototype.Classes.Menu
                 activeMenu = Category.Main;
             }
 
-
-            if (kbState.IsKeyDown(Keys.LeftShift) && !prevKbState.IsKeyDown(Keys.LeftShift)) // would like to make tab later but wasnt working
-            {
-                // close menu
-                activeMenu = Category.Main;
-                // put this back in Game1
-                //gameState = GameState.Game;
-            }
             switch (selectedEntry)
             {
                 case SelectedEntry.TopLeft:
