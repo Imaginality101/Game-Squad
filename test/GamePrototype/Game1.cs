@@ -32,7 +32,7 @@ namespace GamePrototype
     // enums for use in program, we need a GameState and a CurrentRoom
     enum GameState { MainMenu, Game, GMenu, Win}
     enum MenuState { Main, Journal, Photos, Settings, Power} // kat
-    enum CurrentRoom { Bedroom, Closet, Bathroom } // We'll start with just Bedroom for now, when we expand to more rooms add them to the end of the state list
+    public enum CurrentRoom { Bedroom, Closet, Bathroom } // We'll start with just Bedroom for now, when we expand to more rooms add them to the end of the state list
     public class Game1 : Game
     {
 
@@ -45,7 +45,7 @@ namespace GamePrototype
         CurrentRoom activeRoom;
         // Caleb - first menu object, non static for now
         Menu menu;
-        MenuState menuState; // kat
+        //MenuState menuState; // kat
         // create attribute components specifically purposed for this class here
         GraphicsDeviceManager graphics;
         ContentManager content; // added kat
@@ -62,6 +62,7 @@ namespace GamePrototype
         // any rooms will be defined here as we get them added
         Room bedRoom;
         Room closetRoom;
+        
         ObjectSetup furnitureSet;
 
         // phone menu - kat
@@ -117,8 +118,6 @@ namespace GamePrototype
         SpriteFont font;
         SpriteFont menuFont;
         bool drawInteractText = false;
-        // Caleb - menu stuff
-        TextBox settingsTextBox;
 
         public Game1()
         {
@@ -140,7 +139,6 @@ namespace GamePrototype
             
             MasterContentLoader();//HERE IS WERE TEXTURES GET LOADED
             // Caleb - instantiate the textbox - Kat
-            settingsTextBox = new TextBox(new Vector2(760, 220), "Phone Settings: Controls and Information on the game will go here~", 15, 15, menuFont, new Rectangle(0,0,0,0));
             playerCenter = new Vector2(faceUp.Width / 2, faceUp.Height / 2);
             timer = .1;
 
@@ -148,7 +146,7 @@ namespace GamePrototype
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
             bedRoom.Objects = furnitureSet.BedroomSetup();
             player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds);
-            menu.LoadContent(Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("stickynoteFULL"));
+            menu.LoadContent(Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("stickynoteFULL"), startingPhoneState, imagePhoneState, textPhoneState, menuFont);
 
             closetRoom = new Room(closetBG);
             closetRoom.Objects = furnitureSet.ClosetSetup();
@@ -168,7 +166,7 @@ namespace GamePrototype
             // initialize enums
             gameState = GameState.MainMenu;
             activeRoom = CurrentRoom.Bedroom;
-            menuState = MenuState.Main; // kat
+            //menuState = MenuState.Main; // kat
 
             // TODO: Screen sizes here
             graphics.PreferredBackBufferWidth = 1728;  // set this value to the desired width of your window
@@ -288,49 +286,47 @@ namespace GamePrototype
                     {
                         // TODO: update the phone menu
                         // kat draws menu things 
-                        if (gameState == GameState.GMenu)
+                        /*
+                        if (kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
                         {
-                            if (kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
-                            {
-                                // journal menu
-                                menuState = MenuState.Journal;
-                            }
+                            // journal menu
+                            menuState = MenuState.Journal;
+                        }
 
-                            if (kbState.IsKeyDown(Keys.D2) && !prevKbState.IsKeyDown(Keys.D2))
-                            {
-                                // photo menu
-                                menuState = MenuState.Photos;
-                            }
+                        if (kbState.IsKeyDown(Keys.D2) && !prevKbState.IsKeyDown(Keys.D2))
+                        {
+                            // photo menu
+                            menuState = MenuState.Photos;
+                        }
 
-                            if (kbState.IsKeyDown(Keys.D3) && !prevKbState.IsKeyDown(Keys.D3))
-                            {
-                                // settings menu
-                                menuState = MenuState.Settings;
-                            }
+                        if (kbState.IsKeyDown(Keys.D3) && !prevKbState.IsKeyDown(Keys.D3))
+                        {
+                            // settings menu
+                            menuState = MenuState.Settings;
+                        }
 
-                            if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4))
-                            {
-                                // exit game code
-                                menuState = MenuState.Power;
-                            }
+                        if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4))
+                        {
+                            // exit game code
+                            menuState = MenuState.Power;
+                        }
 
-                            // NOT WORKING RIGHT NOW --- Fixed it, you just needed a set of parenthesis around the state checks here - Tom
-                            if ((menuState == MenuState.Journal || menuState == MenuState.Photos || menuState == MenuState.Settings) && kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
-                            {
-                                // back to main menu
-                                menuState = MenuState.Main;
-                            }
+                        // NOT WORKING RIGHT NOW --- Fixed it, you just needed a set of parenthesis around the state checks here - Tom
+                        if ((menuState == MenuState.Journal || menuState == MenuState.Photos || menuState == MenuState.Settings) && kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
+                        {
+                            // back to main menu
+                            menuState = MenuState.Main;
+                        }
                             
 
-                            if (kbState.IsKeyDown(Keys.LeftShift) && !prevKbState.IsKeyDown(Keys.LeftShift)) // would like to make tab later but wasnt working
-                            {
-                                // close menu
-                                menuState = MenuState.Main;
-                                gameState = GameState.Game;
-                            }
-                            // Caleb - updates the menu instance; we might stick the above into this method?
-                            menu.Update();
-                        }
+                        if (kbState.IsKeyDown(Keys.LeftShift) && !prevKbState.IsKeyDown(Keys.LeftShift)) // would like to make tab later but wasnt working
+                        {
+                            // close menu
+                            menuState = MenuState.Main;
+                            gameState = GameState.Game;
+                        }*/
+                        // Caleb - updates the menu instance; we might stick the above into this method?
+                        menu.Update();
                         break;
                     }
                 case GameState.Win:
@@ -344,7 +340,7 @@ namespace GamePrototype
                     }
             }
             // Caleb - update Textbox
-            settingsTextBox.Update(kbState, prevKbState);
+            //settingsTextBox.Update(kbState, prevKbState);
             base.Update(gameTime);
         }
 
@@ -417,7 +413,7 @@ namespace GamePrototype
 
 
             // menu stuff kat  --- move to menu draw >??????????????????????????????????????????????????????????????????????????????
-            if (gameState == GameState.GMenu && menuState == MenuState.Main)
+            /*if (gameState == GameState.GMenu && menuState == MenuState.Main)
             {
                 bedRoom.Draw(uSpriteBatch);
                 uSpriteBatch.Draw(startingPhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
@@ -443,7 +439,12 @@ namespace GamePrototype
             {
                 bedRoom.Draw(uSpriteBatch);
             }
-
+            */
+            if (gameState == GameState.GMenu)
+            {
+                bedRoom.Draw(uSpriteBatch);
+                menu.Draw(uSpriteBatch);
+            }
             // TODO: Caleb - draws objects; is temporary 
             /*foreach (GameObject go in objects)
              {
@@ -463,8 +464,6 @@ namespace GamePrototype
             {
                 uSpriteBatch.DrawString(font, string.Format("{0}:{1}", gameTimerSeconds / 60, gameTimerSeconds % 60), new Vector2(0, 50), Color.White);
             }
-            // Caleb - draws menu in limited capacity
-            menu.Draw(uSpriteBatch);
             // Draw textbox
             //box.Draw(uSpriteBatch);
 
@@ -547,5 +546,10 @@ namespace GamePrototype
             scaleRect = new Rectangle(newX, newY, newWidth, newHeight);
             return scaleRect;
         }
+        public static void ChangeRoom(CurrentRoom wehere)
+        {
+
+        }
+
     }
 }

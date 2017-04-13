@@ -14,9 +14,16 @@ namespace GamePrototype.Classes.Objects
 
     class Door : Interactable
     {
-        public Door(Texture2D txtr, Rectangle psRct) : base(txtr, psRct)
+        Texture2D doorText;
+        Rectangle doorRect;
+        Clue requiredClue;
+        CurrentRoom wannago;
+        public Door(Texture2D txtr, Rectangle psRct,CurrentRoom wenothere, Clue rqClue) : base(txtr, psRct)
         {
-
+            doorText = txtr;
+            doorRect = psRct;
+            wannago = wenothere;
+            requiredClue = rqClue;
         }
 
         // TODO: Class needs fleshing out, but its primary difference is that interacting
@@ -24,7 +31,20 @@ namespace GamePrototype.Classes.Objects
         // otherwise I'll do it when we get to Milestone 3 and have multiple rooms.
         public override void Interact(Player user)
         {
-            
+            // if there is a required clue
+            if (requiredClue != null)
+            {
+                if (Enabled && Clue.Inventory.Contains(requiredClue))
+                {
+                    wannago = CurrentRoom.Closet;
+                    user.X = 1100;
+                    user.Y = 450;
+                }
+                else
+                {
+                    Console.WriteLine("You don't have the right key.");
+                }
+            }
         }
 
     }
