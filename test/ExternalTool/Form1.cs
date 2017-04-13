@@ -53,6 +53,7 @@ namespace ExternalTool
             {
                 writer.Write(false);
             }
+            // Tom - Getting resolution options
             writer.Close();
             Close();
         }
@@ -63,6 +64,11 @@ namespace ExternalTool
         }
 
         private void bobRossCheckBox_CheckedChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
