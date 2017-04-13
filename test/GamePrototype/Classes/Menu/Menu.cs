@@ -27,7 +27,6 @@ namespace GamePrototype.Classes.Menu
         //Dictionary<Clue, Boolean> clueList; // to keep track of
         // first index is the page on the menu, second index is which space it is on: 0 is top left, 1 is top right, 2 is bottom left, 3 is bottom right 
         //private Clue[,] pageClue = new Clue[7, 4];
-        List<Clue> clues = new List<Clue>();
 
         // icons
         Icon newsPaper;
@@ -52,8 +51,14 @@ namespace GamePrototype.Classes.Menu
         // textboxes
         TextBox settingsTextBox;
 
-        //
-        Clue inventoryClues = new Clue();
+        // list of clues caleb says is useless
+        List<Clue> clues;
+
+        // image menu box locations
+        Rectangle box1 = new Rectangle(755, 230, 70, 100);
+        Rectangle box2 = new Rectangle(845, 230, 70, 100);
+        Rectangle box3 = new Rectangle(845, 380, 70, 100);
+        //Rectangle box4 = new Rectangle(,, 70, 100);
 
         public Menu()
         {
@@ -67,9 +72,9 @@ namespace GamePrototype.Classes.Menu
             }*/
         }
         // TODO: Load icons in Game1, pass them here in an array
-        public void LoadContent(Texture2D nws, Texture2D stcky, Texture2D main, Texture2D clues, Texture2D text, SpriteFont menuFont, Texture2D tenant, Texture2D crazy)
+        public void LoadContent(Texture2D nws, Texture2D stcky, Texture2D main, Texture2D cluesTexture, Texture2D text, SpriteFont menuFont, Texture2D tenant, Texture2D crazy)
         {
-            //clues = inventoryClues.MenuInventory; <___ NOT SURE WHAT GOT MOVED TO FUCK THIS UP
+            clues = Clue.Inventory;
             newsPaper = new Icon(nws, new Rectangle(755, 230, 70, 100)); // box 1 location
             stickyNote = new Icon(stcky, new Rectangle(845, 230, 70, 100)); // box 2 location
             tenantDiary = new Icon(tenant, new Rectangle(845, 380, 70, 100)); // box 3 location
@@ -77,7 +82,7 @@ namespace GamePrototype.Classes.Menu
             //newsPaper = new Icon(nws, new Rectangle(0, 0, 50, 50));
             //stickyNote = new Icon(stcky, new Rectangle(0, 50, 50, 50));
             mainPhoneMenu = main;
-            cluesPhoneMenu = clues;
+            cluesPhoneMenu = cluesTexture;
             textPhoneMenu = text;
             settingsTextBox = new TextBox(new Vector2(760, 220), "Phone Settings: Controls and Information on the game will go here~", 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
         }
