@@ -17,13 +17,20 @@ namespace GamePrototype.Classes.Menu
         // attribute
         Texture2D image;
         // constructor
-        public Icon(Texture2D img, Vector2 pos) : base(pos)
+        public Icon(Texture2D img, Rectangle pos) : base(pos)
         {
             image = img;
         }
+
+        // kat
+        public Icon(Texture2D img) : base ()
+        {
+            image = img;
+        }
+
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(image, position);
+            spriteBatch.Draw(image, position, Color.White);
         }
     }
 }

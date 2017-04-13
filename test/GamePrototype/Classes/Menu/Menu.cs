@@ -7,13 +7,14 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
+using GamePrototype;
 /*Workers: Kat, Tom
  * DisasterPiece Games
  * Menu Class
  */
 namespace GamePrototype.Classes.Menu
 {
-    enum Category { Main, Journal, Clues, Settings }
+    enum Category { Main, Journal, Clues, Photos, Settings, Power }
     enum SelectedEntry { TopLeft, TopRight, BotLeft, BotRight, Upper, Lower }
 
     class Menu : Tools.IControlled
@@ -25,7 +26,9 @@ namespace GamePrototype.Classes.Menu
         // deprecated, use Clue.Inventory
         //Dictionary<Clue, Boolean> clueList; // to keep track of
         // first index is the page on the menu, second index is which space it is on: 0 is top left, 1 is top right, 2 is bottom left, 3 is bottom right 
-        private Clue[,] pageClue = new Clue[7, 4];
+        //private Clue[,] pageClue = new Clue[7, 4];
+        List<Clue> clues = new List<Clue>();
+
         // icons
         Icon newsPaper;
         Icon bathroomKey;
@@ -42,6 +45,12 @@ namespace GamePrototype.Classes.Menu
         Icon spaCoupon;
         Icon medicineBottle;
         Icon stickyNote;
+        // phone textures
+        Texture2D mainPhoneMenu;
+        Texture2D cluesPhoneMenu;
+        Texture2D textPhoneMenu;
+        // textboxes
+        TextBox settingsTextBox;
         public Menu()
         {
             activeMenu = Category.Main;
@@ -54,10 +63,14 @@ namespace GamePrototype.Classes.Menu
             }*/
         }
         // TODO: Load icons in Game1, pass them here in an array
-        public void LoadContent(Texture2D nws, Texture2D stcky)
+        public void LoadContent(Texture2D nws, Texture2D stcky, Texture2D main, Texture2D clues, Texture2D text, SpriteFont menuFont)
         {
-            newsPaper = new Icon(nws, Vector2.Zero);
-            stickyNote = new Icon(stcky, new Vector2(0, 50));
+            newsPaper = new Icon(nws, new Rectangle(0, 0, 50, 50));
+            stickyNote = new Icon(stcky, new Rectangle(0, 50, 50, 50));
+            mainPhoneMenu = main;
+            cluesPhoneMenu = clues;
+            textPhoneMenu = text;
+            settingsTextBox = new TextBox(new Vector2(760, 220), "Phone Settings: Controls and Information on the game will go here~", 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
         }
         public void Update()
         {
@@ -67,7 +80,42 @@ namespace GamePrototype.Classes.Menu
         public void CheckInput()
         {
             KeyboardState kbState = Keyboard.GetState();
-            KeyboardState prevKbState = kbState;
+            KeyboardState prevKbState = new KeyboardState(); // assign value at end of method
+            // pasted Game1 code here
+            // TODO: update the phone menu
+            // kat draws menu things 
+
+            if (kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
+            {
+                // journal menu
+                activeMenu = Category.Journal;
+            }
+
+            if (kbState.IsKeyDown(Keys.D2) && !prevKbState.IsKeyDown(Keys.D2))
+            {
+                // photo menu
+                activeMenu = Category.Photos;
+            }
+
+            if (kbState.IsKeyDown(Keys.D3) && !prevKbState.IsKeyDown(Keys.D3))
+            {
+                // settings menu
+                activeMenu = Category.Settings;
+            }
+
+            if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4))
+            {
+                // exit game code
+                activeMenu = Category.Power;
+            }
+
+            // NOT WORKING RIGHT NOW --- Fixed it, you just needed a set of parenthesis around the state checks here - Tom
+            if ((activeMenu == Category.Journal || activeMenu == Category.Photos || activeMenu == Category.Settings) && kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
+            {
+                // back to main menu
+                activeMenu = Category.Main;
+            }
+
             switch (selectedEntry)
             {
                 case SelectedEntry.TopLeft:
@@ -118,11 +166,67 @@ namespace GamePrototype.Classes.Menu
                         }
                         break;
                     }
-            }  
+            }
+            prevKbState = kbState;
+        }
+        // TODO: add icon to 2D array when clue is collected
+        public void AddClueIcon(Texture2D clueIcon)
+        {
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            // pasted Game1 code here
+            if (activeMenu == Category.Main)
+            {
+                //bedRoom.Draw(uSpriteBatch);
+                spriteBatch.Draw(mainPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
+            }
+            if (activeMenu == Category.Journal)
+            {
+                //bedRoom.Draw(uSpriteBatch);
+                spriteBatch.Draw(textPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
+            }
+            if (activeMenu == Category.Photos)
+            {
+                //bedRoom.Draw(uSpriteBatch);
+                spriteBatch.Draw(cluesPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
+            }
+            if (activeMenu == Category.Settings)
+            {
+                //bedRoom.Draw(uSpriteBatch);
+                spriteBatch.Draw(textPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
+                // Draw textbox
+                settingsTextBox.Draw(spriteBatch);
+            }
+            if (activeMenu == Category.Power)
+            {
+                //bedRoom.Draw(uSpriteBatch);
+            }
+            // end of pasted code
+            if (activeMenu == Category.Main)
+            {
+                //bedRoom.Draw(spriteBatch);
+                spriteBatch.Draw(mainPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
+            }
+            if (activeMenu == Category.Journal)
+            {
+                //bedRoom.Draw(uSpriteBatch);
+                spriteBatch.Draw(textPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
+            }
+            if (activeMenu == Category.Photos)
+            {
+                //bedRoom.Draw(uSpriteBatch);
+                spriteBatch.Draw(cluesPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
+            }
+            if (activeMenu == Category.Settings)
+            {
+                //bedRoom.Draw(uSpriteBatch);
+                spriteBatch.Draw(textPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
+                // Draw textbox
+                settingsTextBox.Draw(spriteBatch);
+            }
             if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))
             {
                 newsPaper.Draw(spriteBatch);
@@ -130,6 +234,14 @@ namespace GamePrototype.Classes.Menu
             if (Clue.Inventory.Contains(Clue.Clues["StickyNote"]))
             {
                 stickyNote.Draw(spriteBatch);
+            }
+            if (Clue.Inventory.Contains(Clue.Clues["TenantDiary1"]) || Clue.Inventory.Contains(Clue.Clues["TenantDiary2"]) || Clue.Inventory.Contains(Clue.Clues["TenantDiary3"]))
+            {
+                tenantDiary.Draw(spriteBatch);
+            }
+            if (Clue.Inventory.Contains(Clue.Clues["CrazyDiary1"]) || Clue.Inventory.Contains(Clue.Clues["CrazyDiary2"]) || Clue.Inventory.Contains(Clue.Clues["CrazyDiary3"]))
+            {
+                crazyPersonDiary.Draw(spriteBatch);
             }
         }
     }

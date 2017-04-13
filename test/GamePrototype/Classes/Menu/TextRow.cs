@@ -14,12 +14,10 @@ namespace GamePrototype.Classes.Menu
 {
     class TextRow : MenuObject
     {
-        // attributes
-        Vector2 position;
         string text;
         SpriteFont font;
         // constructor
-        public TextRow(Vector2 pos, string t, SpriteFont fontParam) : base(pos)
+        public TextRow(Vector2 posi, string t, SpriteFont fontParam, Rectangle pos) : base(pos)
         {
             text = t;
             font = fontParam;
@@ -27,7 +25,7 @@ namespace GamePrototype.Classes.Menu
         // overridden Draw()
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(font, text, position, Color.White);
+            spriteBatch.DrawString(font, text, new Vector2(position.X, position.Y), Color.White);
         }
     }
 }
