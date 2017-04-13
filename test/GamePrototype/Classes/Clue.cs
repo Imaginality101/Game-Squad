@@ -22,23 +22,6 @@ namespace GamePrototype.Classes
         bool playerHas;
         private static List<Clue> inventory = new List<Clue>();
 
-        // icons
-        Icon newsPaper;
-        Icon bathroomKey;
-        Icon closetKey;
-        Icon oldPhoto;
-        Icon newPhoto;
-        Icon tenantDiary;
-        Icon crazyPersonDiary;
-        Icon receipt;
-        Icon ring;
-        Icon pendant;
-        Icon bones;
-        Icon jaggedKnife;
-        Icon spaCoupon;
-        Icon medicineBottle;
-        Icon stickyNote;
-
         // default constructor
         public Clue()
         {
@@ -72,6 +55,19 @@ namespace GamePrototype.Classes
             get
             {
                 return inventory;
+            }
+        }
+
+        public Texture2D ClueImage
+        {
+            get
+            {
+                return clueImg;
+            }
+
+            set
+            {
+                clueImg = value;
             }
         }
 

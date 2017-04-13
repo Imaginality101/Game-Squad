@@ -106,7 +106,9 @@ namespace GamePrototype.Classes.Menu
             if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4))
             {
                 // exit game code
+                // ADD SAVE CODE FOR EXTERNAL TOOL HERE PLEASEEEE<3
                 activeMenu = Category.Power;
+                Environment.Exit(0);
             }
 
             // NOT WORKING RIGHT NOW --- Fixed it, you just needed a set of parenthesis around the state checks here - Tom

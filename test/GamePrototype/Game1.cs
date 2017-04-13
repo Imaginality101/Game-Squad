@@ -318,13 +318,13 @@ namespace GamePrototype
                             menuState = MenuState.Main;
                         }
                             
-
+                        */
                         if (kbState.IsKeyDown(Keys.LeftShift) && !prevKbState.IsKeyDown(Keys.LeftShift)) // would like to make tab later but wasnt working
                         {
                             // close menu
-                            menuState = MenuState.Main;
+                            //menuState = MenuState.Main;
                             gameState = GameState.Game;
-                        }*/
+                        }
                         // Caleb - updates the menu instance; we might stick the above into this method?
                         menu.Update();
                         break;
