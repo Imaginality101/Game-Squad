@@ -118,14 +118,6 @@ namespace GamePrototype
         SpriteFont menuFont;
         bool drawInteractText = false;
 
-        /*public MenuState MenuState
-        {
-            get
-            {
-                return menuState;
-            }
-        }*/
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);

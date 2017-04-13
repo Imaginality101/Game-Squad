@@ -30,6 +30,10 @@ namespace GamePrototype.Classes.Menu
         {
             position = pos;
         }
+        public MenuObject()
+        {
+            
+        }
         // will of course be overridden by children
         public virtual void Draw(SpriteBatch spriteBatch)
         {

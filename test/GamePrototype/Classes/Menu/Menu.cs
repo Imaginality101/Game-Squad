@@ -26,7 +26,9 @@ namespace GamePrototype.Classes.Menu
         // deprecated, use Clue.Inventory
         //Dictionary<Clue, Boolean> clueList; // to keep track of
         // first index is the page on the menu, second index is which space it is on: 0 is top left, 1 is top right, 2 is bottom left, 3 is bottom right 
-        private Clue[,] pageClue = new Clue[7, 4];
+        //private Clue[,] pageClue = new Clue[7, 4];
+        List<Clue> clues = new List<Clue>();
+
         // icons
         Icon newsPaper;
         Icon bathroomKey;
@@ -241,14 +243,14 @@ namespace GamePrototype.Classes.Menu
             {
                 stickyNote.Draw(spriteBatch);
             }
-            /*if (Clue.Inventory.Contains(Clue.Clues["TenantDiary1"]) || Clue.Inventory.Contains(Clue.Clues["TenantDiary2"]) || Clue.Inventory.Contains(Clue.Clues["TenantDiary3"]))
+            if (Clue.Inventory.Contains(Clue.Clues["TenantDiary1"]) || Clue.Inventory.Contains(Clue.Clues["TenantDiary2"]) || Clue.Inventory.Contains(Clue.Clues["TenantDiary3"]))
             {
                 tenantDiary.Draw(spriteBatch);
             }
             if (Clue.Inventory.Contains(Clue.Clues["CrazyDiary1"]) || Clue.Inventory.Contains(Clue.Clues["CrazyDiary2"]) || Clue.Inventory.Contains(Clue.Clues["CrazyDiary3"]))
             {
                 crazyPersonDiary.Draw(spriteBatch);
-            }*/
+            }
         }
     }
 

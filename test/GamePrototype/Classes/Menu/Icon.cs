@@ -21,6 +21,13 @@ namespace GamePrototype.Classes.Menu
         {
             image = img;
         }
+
+        // kat
+        public Icon(Texture2D img) : base ()
+        {
+            image = img;
+        }
+
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(image, position, Color.White);

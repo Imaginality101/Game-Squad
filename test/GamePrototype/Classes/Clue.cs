@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
+using GamePrototype.Classes.Menu;
 /*Workers: Caleb, Tom, Declan
- * DisasterPiece Games
- * Clue Class
- */
+* DisasterPiece Games
+* Clue Class
+*/
 namespace GamePrototype.Classes
 {
     class Clue
@@ -20,6 +21,23 @@ namespace GamePrototype.Classes
         // might be deprecated
         bool playerHas;
         private static List<Clue> inventory = new List<Clue>();
+
+        // icons
+        Icon newsPaper;
+        Icon bathroomKey;
+        Icon closetKey;
+        Icon oldPhoto;
+        Icon newPhoto;
+        Icon tenantDiary;
+        Icon crazyPersonDiary;
+        Icon receipt;
+        Icon ring;
+        Icon pendant;
+        Icon bones;
+        Icon jaggedKnife;
+        Icon spaCoupon;
+        Icon medicineBottle;
+        Icon stickyNote;
 
         // default constructor
         public Clue()
@@ -41,6 +59,15 @@ namespace GamePrototype.Classes
         public static Dictionary<string, Clue> Clues { get { return clues; } }
 
         public static List<Clue> Inventory
+        {
+            get
+            {
+                return inventory;
+            }
+        }
+
+        // kat
+        public List<Clue> MenuInventory
         {
             get
             {
