@@ -103,6 +103,7 @@ namespace GamePrototype.Classes.Tools
 
             List<GameObject> objs = new List<GameObject>();
             //all the shit goes here
+            objs.Add(new GameObject(cardbord, cardboardRect, "Bathroom door"));
             return objs;
         }
     }
