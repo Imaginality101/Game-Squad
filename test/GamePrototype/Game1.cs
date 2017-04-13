@@ -32,7 +32,7 @@ namespace GamePrototype
     // enums for use in program, we need a GameState and a CurrentRoom
     enum GameState { MainMenu, Game, GMenu, Win}
     enum MenuState { Main, Journal, Photos, Settings, Power} // kat
-    enum CurrentRoom { Bedroom, Closet, Bathroom } // We'll start with just Bedroom for now, when we expand to more rooms add them to the end of the state list
+    public enum CurrentRoom { Bedroom, Closet, Bathroom } // We'll start with just Bedroom for now, when we expand to more rooms add them to the end of the state list
     public class Game1 : Game
     {
 
@@ -62,6 +62,7 @@ namespace GamePrototype
         // any rooms will be defined here as we get them added
         Room bedRoom;
         Room closetRoom;
+        
         ObjectSetup furnitureSet;
 
         // phone menu - kat
@@ -545,6 +546,10 @@ namespace GamePrototype
             int newHeight = (int)(drawRatio.Y * drawRect.Height);
             scaleRect = new Rectangle(newX, newY, newWidth, newHeight);
             return scaleRect;
+        }
+        public static void ChangeRoom(CurrentRoom wehere)
+        {
+
         }
 
     }

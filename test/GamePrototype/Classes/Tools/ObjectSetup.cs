@@ -34,6 +34,7 @@ namespace GamePrototype.Classes.Tools
         Texture2D news1; Rectangle news1Rect;
         Rectangle news2Rect;
         Texture2D lamp; Rectangle lampRect;
+        Texture2D cardbord; Rectangle cardboardRect;
 
         //fields to hold the constuctor stuff
         ContentManager content;
@@ -78,7 +79,7 @@ namespace GamePrototype.Classes.Tools
             // Caleb - adding a temporary name string to the constructor which is to demo interaction
             objs.Add(new GameObject(outdoor, outdoorRect, "End door"));
             objs.Add(new GameObject(bathdoor, bathdoorRect, "Bathroom door"));
-            objs.Add(new GameObject(closetdoor, closetdoorRect, "Closet door"));
+            objs.Add(new Door(closetdoor, closetdoorRect, CurrentRoom.Closet,Clue.Clues["Closet Key"]));
             objs.Add(new GameObject(tv, tvRect, new Rectangle(0, 100, 172, 250)));
             objs.Add(new GameObject(sidetab2, sidetab2Rect, new Rectangle(5, 50, 172, 102)));
             objs.Add(new ClueObject(bed, bedRect, new Rectangle(0, 100, 512, 226), Clue.Clues["TenantDiary2"], false));//Clue.Clues["TenantDiary2"], "Bed"
@@ -97,6 +98,9 @@ namespace GamePrototype.Classes.Tools
         }
         public List<GameObject> ClosetSetup()
         {
+            cardbord = content.Load<Texture2D>("sidetableFULL");
+            cardboardRect = new Rectangle((int)origin.X - 570, (int)origin.Y - 110, 172, 172);
+
             List<GameObject> objs = new List<GameObject>();
             //all the shit goes here
             return objs;
