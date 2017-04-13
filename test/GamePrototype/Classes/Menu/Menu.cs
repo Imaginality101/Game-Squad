@@ -73,20 +73,20 @@ namespace GamePrototype.Classes.Menu
         }
         // TODO: Load icons in Game1, pass them here in an array
         // possibly deprecated, will get images from clues when added to the inventory
-        /*public void LoadContent(Texture2D nws, Texture2D stcky, Texture2D main, Texture2D clues, Texture2D text, SpriteFont menuFont)
+        public void LoadContent(Texture2D main, Texture2D clues, Texture2D text, SpriteFont menuFont)
         {
-            clues = Clue.Inventory;
-            newsPaper = new Icon(nws, new Rectangle(755, 230, 70, 100)); // box 1 location
-            stickyNote = new Icon(stcky, new Rectangle(845, 230, 70, 100)); // box 2 location
-            tenantDiary = new Icon(tenant, new Rectangle(845, 380, 70, 100)); // box 3 location
-            crazyPersonDiary = new Icon(crazy, new Rectangle(0, 150, 70, 100));
+            //clues = Clue.Inventory;
+            //newsPaper = new Icon(nws, new Rectangle(755, 230, 70, 100)); // box 1 location
+            //stickyNote = new Icon(stcky, new Rectangle(845, 230, 70, 100)); // box 2 location
+            //tenantDiary = new Icon(tenant, new Rectangle(845, 380, 70, 100)); // box 3 location
+            //crazyPersonDiary = new Icon(crazy, new Rectangle(0, 150, 70, 100));
             //newsPaper = new Icon(nws, new Rectangle(0, 0, 50, 50));
             //stickyNote = new Icon(stcky, new Rectangle(0, 50, 50, 50));
             mainPhoneMenu = main;
-            cluesPhoneMenu = cluesTexture;
+            cluesPhoneMenu = clues;
             textPhoneMenu = text;
             settingsTextBox = new TextBox(new Vector2(760, 220), "Phone Settings: Controls and Information on the game will go here~", 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
-        }*/
+        }
         public void Update()
         {
             CheckInput();
@@ -209,7 +209,7 @@ namespace GamePrototype.Classes.Menu
             {
                 //bedRoom.Draw(uSpriteBatch);
                 spriteBatch.Draw(cluesPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
-                if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))
+                /*if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))
                 {
                     newsPaper.Draw(spriteBatch);
                 }
@@ -224,7 +224,7 @@ namespace GamePrototype.Classes.Menu
                 if (Clue.Inventory.Contains(Clue.Clues["CrazyDiary1"]) || Clue.Inventory.Contains(Clue.Clues["CrazyDiary2"]) || Clue.Inventory.Contains(Clue.Clues["CrazyDiary3"]))
                 {
                     crazyPersonDiary.Draw(spriteBatch);
-                }
+                }*/
             }
             if (activeMenu == Category.Settings)
             {
