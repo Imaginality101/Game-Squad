@@ -117,5 +117,34 @@ namespace GamePrototype.Classes
             Console.WriteLine(result); 
         }
 
+        public static void LoadContent(Texture2D news, Texture2D bathroomKey, Texture2D closetKey, Texture2D oldPhoto, Texture2D newPhoto, Texture2D tenantDir, Texture2D crazyDir, Texture2D receipt, Texture2D ring, Texture2D pendant, Texture2D bones, Texture2D jaggedKnife, Texture2D spaCoupon, Texture2D medicineBottle, Texture2D stickyNote)
+        {
+            clues["News1"].ClueImage = news;
+            clues["News2"].ClueImage = news;
+            clues["News3"].ClueImage = news;
+            clues["News4"].ClueImage = news;
+            clues["News5"].ClueImage = news;
+            clues["Bathroom Key"].ClueImage = bathroomKey;
+            clues["Closet Key"].ClueImage = closetKey;
+            clues["OldPhoto1"].ClueImage = oldPhoto;
+            clues["OldPhoto2"].ClueImage = oldPhoto;
+            clues["OldPhoto3"].ClueImage = oldPhoto;
+            clues["NewPhoto"].ClueImage = newPhoto;
+            clues["TenantDiary1"].ClueImage = tenantDir;
+            clues["TenantDiary2"].ClueImage = tenantDir;
+            clues["TenantDiary3"].ClueImage = tenantDir;
+            clues["CrazyDiary1"].ClueImage = crazyDir;
+            clues["CrazyDiary2"].ClueImage = crazyDir;
+            clues["CrazyDiary3"].ClueImage = crazyDir;
+            clues["Receipt"].ClueImage = receipt;
+            clues["Ring"].ClueImage = ring;
+            clues["Pendant"].ClueImage = pendant;
+            clues["Bones"].ClueImage = bones;
+            clues["JaggedKnife"].ClueImage = jaggedKnife;
+            clues["SpaCoupon"].ClueImage = spaCoupon;
+            clues["MedicineBottle"].ClueImage = medicineBottle;
+            clues["StickyNote"].ClueImage = stickyNote;
+        }
+
     }
 }

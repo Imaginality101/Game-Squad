@@ -72,7 +72,8 @@ namespace GamePrototype.Classes.Menu
             }*/
         }
         // TODO: Load icons in Game1, pass them here in an array
-        public void LoadContent(Texture2D nws, Texture2D stcky, Texture2D main, Texture2D cluesTexture, Texture2D text, SpriteFont menuFont, Texture2D tenant, Texture2D crazy)
+        // possibly deprecated, will get images from clues when added to the inventory
+        /*public void LoadContent(Texture2D nws, Texture2D stcky, Texture2D main, Texture2D clues, Texture2D text, SpriteFont menuFont)
         {
             clues = Clue.Inventory;
             newsPaper = new Icon(nws, new Rectangle(755, 230, 70, 100)); // box 1 location
@@ -85,7 +86,7 @@ namespace GamePrototype.Classes.Menu
             cluesPhoneMenu = cluesTexture;
             textPhoneMenu = text;
             settingsTextBox = new TextBox(new Vector2(760, 220), "Phone Settings: Controls and Information on the game will go here~", 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
-        }
+        }*/
         public void Update()
         {
             CheckInput();
