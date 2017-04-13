@@ -51,6 +51,10 @@ namespace GamePrototype.Classes.Menu
         Texture2D textPhoneMenu;
         // textboxes
         TextBox settingsTextBox;
+
+        //
+        Clue inventoryClues = new Clue();
+
         public Menu()
         {
             activeMenu = Category.Main;
@@ -65,6 +69,11 @@ namespace GamePrototype.Classes.Menu
         // TODO: Load icons in Game1, pass them here in an array
         public void LoadContent(Texture2D nws, Texture2D stcky, Texture2D main, Texture2D clues, Texture2D text, SpriteFont menuFont)
         {
+            //clues = inventoryClues.MenuInventory; <___ NOT SURE WHAT GOT MOVED TO FUCK THIS UP
+            //newsPaper = new Icon(nws, new Rectangle(755, 230, 70, 100)); // box 1 location
+            //stickyNote = new Icon(stcky, new Rectangle(845, 230, 70, 100)); // box 2 location
+            //tenantDiary = new Icon(tenant, new Rectangle(845, 380, 70, 100)); // box 3 location
+            //crazyPersonDiary = new Icon(crazy, new Rectangle(0, 150, 70, 100));
             newsPaper = new Icon(nws, new Rectangle(0, 0, 50, 50));
             stickyNote = new Icon(stcky, new Rectangle(0, 50, 50, 50));
             mainPhoneMenu = main;
