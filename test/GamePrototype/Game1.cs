@@ -148,7 +148,9 @@ namespace GamePrototype
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
             bedRoom.Objects = furnitureSet.BedroomSetup();
             player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds);
-            menu.LoadContent(Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("stickynoteFULL"), startingPhoneState, imagePhoneState, textPhoneState, menuFont);
+            // TODO: fill in the nulls in the parameters list once we have more textures
+            Clue.LoadContent(Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("Photo1"), null, Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"), null, null, null, null, null, null, null, Content.Load<Texture2D>("stickynoteFULL"));
+            menu.LoadContent(startingPhoneState, imagePhoneState, textPhoneState, menuFont);
 
             closetRoom = new Room(closetBG);
             closetRoom.Objects = furnitureSet.ClosetSetup();
@@ -321,13 +323,13 @@ namespace GamePrototype
                             menuState = MenuState.Main;
                         }
                             
-
+                        */
                         if (kbState.IsKeyDown(Keys.LeftShift) && !prevKbState.IsKeyDown(Keys.LeftShift)) // would like to make tab later but wasnt working
                         {
                             // close menu
-                            menuState = MenuState.Main;
+                            //menuState = MenuState.Main;
                             gameState = GameState.Game;
-                        }*/
+                        }
                         // Caleb - updates the menu instance; we might stick the above into this method?
                         menu.Update();
                         break;
