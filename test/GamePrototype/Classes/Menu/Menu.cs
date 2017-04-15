@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using GamePrototype;
-/*Workers: Kat, Tom
+/*Workers: Kat, Tom, Caleb
  * DisasterPiece Games
  * Menu Class
  */
@@ -26,7 +26,7 @@ namespace GamePrototype.Classes.Menu
         // deprecated, use Clue.Inventory
         //Dictionary<Clue, Boolean> clueList; // to keep track of
         // first index is the page on the menu, second index is which space it is on: 0 is top left, 1 is top right, 2 is bottom left, 3 is bottom right 
-        //private Clue[,] pageClue = new Clue[7, 4];
+        public static Clue[,] pageClue = new Clue[7, 4];
 
         // icons
         Icon newsPaper;
@@ -57,8 +57,8 @@ namespace GamePrototype.Classes.Menu
         // image menu box locations
         Rectangle box1 = new Rectangle(755, 230, 70, 100);
         Rectangle box2 = new Rectangle(845, 230, 70, 100);
-        Rectangle box3 = new Rectangle(845, 380, 70, 100);
-        //Rectangle box4 = new Rectangle(,, 70, 100);
+        Rectangle box3 = new Rectangle(755, 380, 70, 100);
+        Rectangle box4 = new Rectangle(845,380, 70, 100);
 
         public Menu()
         {
@@ -187,9 +187,35 @@ namespace GamePrototype.Classes.Menu
             prevKbState = kbState;
         }
         // TODO: add icon to 2D array when clue is collected
-        public void AddClueIcon(Texture2D clueIcon)
+        public static void AddClue(Clue addedClue)
         {
-
+            // find the first empty space in pageClue
+            int i = 0;
+            int j = 0;
+            // outer loop for pageClue array
+            for (; i < 7; i++)
+            {
+                // inner loop for pageClue array
+                for (; j < 4; j++)
+                {
+                    if (pageClue[i, j] == null)
+                    {
+                        // now we have the indexes of the final entry
+                        // handle special case where j is 3
+                        /*if (j == 3)
+                        {
+                            i++;
+                            j = 0;
+                            pageClue[i, j] = addedClue;
+                        }
+                        else*/
+                        //{
+                            pageClue[i, j] = addedClue;
+                        //}
+                        return;
+                    }
+                }
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -207,8 +233,34 @@ namespace GamePrototype.Classes.Menu
             }
             if (activeMenu == Category.Photos)
             {
-                //bedRoom.Draw(uSpriteBatch);
                 spriteBatch.Draw(cluesPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
+                // outer loop for pageClue array
+                for (int i = 0; i < 7; i++)
+                {
+                    // inner loop for pageClue array
+                    for (int j = 0; j < 4; j++)
+                    {
+                        Clue curr = pageClue[i, j];
+                        if (curr != null)
+                        {
+                            switch (j)
+                            {
+                                case 0:
+                                    spriteBatch.Draw(curr.ClueImage, box1, Color.White);
+                                    break;
+                                case 1:
+                                    spriteBatch.Draw(curr.ClueImage, box2, Color.White);
+                                    break;
+                                case 2:
+                                    spriteBatch.Draw(curr.ClueImage, box3, Color.White);
+                                    break;
+                                case 3:
+                                    spriteBatch.Draw(curr.ClueImage, box4, Color.White);
+                                    break;
+                            }
+                        }
+                    }
+                }
                 /*if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))
                 {
                     newsPaper.Draw(spriteBatch);
