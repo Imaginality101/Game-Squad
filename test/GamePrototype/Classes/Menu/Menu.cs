@@ -60,6 +60,9 @@ namespace GamePrototype.Classes.Menu
         Rectangle box3 = new Rectangle(755, 380, 70, 100);
         Rectangle box4 = new Rectangle(845,380, 70, 100);
 
+        // Use this for the blown up images, its the size of the room, will maximize readibility hopefully, cannot currently select one to test it however
+        // new Rectangle((int)origin.X - (1382 / 2), (int)origin.Y - (972 / 2), 1382, 972)
+
         public Menu()
         {
             activeMenu = Category.Main;
