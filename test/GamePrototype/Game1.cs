@@ -35,9 +35,14 @@ namespace GamePrototype
     public enum CurrentRoom { Bedroom, Closet, Bathroom } // We'll start with just Bedroom for now, when we expand to more rooms add them to the end of the state list
     public class Game1 : Game
     {
-
+        // Tom - Setting variables for scaling draw
+        Boolean fullscreen;
         const int NORM_WIDTH = 1728;
         const int NORM_HEIGHT = 972;
+
+        // values for custom resolution settings being read from the external tool
+        int windowWidth;
+        int windowHeight;
         static Vector2 drawRatio; // Keep track of the ratio of the current resolution to intended resolution
 
         // define enums
@@ -177,7 +182,7 @@ namespace GamePrototype
            // graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
 
             //set the GraphicsDeviceManager's fullscreen property
-            //graphics.IsFullScreen = true;
+            
             graphics.ApplyChanges();
             data = new SaveData();
             // initializes the bedroom
@@ -188,6 +193,17 @@ namespace GamePrototype
             settingsData = data.ReadSettings();
             timerMode = (bool)settingsData[0];
             bobRossMode = (bool)settingsData[1];
+            fullscreen = (Boolean)settingsData[2]; // Tom - Get whether or not the window is fullscreen
+            if(fullscreen)
+            {
+                windowWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+                windowHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            }
+            else
+            {
+                windowWidth = (int)settingsData[3];
+                windowHeight = (int)settingsData[4];
+            }
             Console.WriteLine("Timer mode: " + timerMode + " Bob Ross mode: " + bobRossMode);
             menu = new Menu();
             base.Initialize();
@@ -482,6 +498,7 @@ namespace GamePrototype
 
         }
 
+        
         // TODO: Load method, needs to read the binary files from the Save command and read them in. Should then use that info to set up stuff
         public void MasterContentLoader()
         {

@@ -93,6 +93,12 @@ namespace GamePrototype.Classes.Tools
             {
                 result.Add(settingsReader.ReadBoolean());
                 result.Add(settingsReader.ReadBoolean());
+                result.Add(settingsReader.ReadBoolean()); // Tom - Resolution settings, fullscreen boolean
+                if((Boolean)result[2])
+                {
+                    result.Add(settingsReader.ReadInt32()); // width
+                    result.Add(settingsReader.ReadInt32()); // height
+                }
             }
             catch (EndOfStreamException)
             {
