@@ -79,6 +79,7 @@ namespace GamePrototype.Classes.Objects
                 {
                     Console.WriteLine(givenClue.ToString());
                     Clue.Inventory.Add(givenClue);
+                    Menu.Menu.AddClue(givenClue);
                 }
                 else
                 {
@@ -92,6 +93,7 @@ namespace GamePrototype.Classes.Objects
                 {
                     Console.WriteLine(givenClue.ToString());
                     Clue.Inventory.Add(givenClue);
+                    Menu.Menu.AddClue(givenClue);
                 }
                 if (onetimeUse)
                 {

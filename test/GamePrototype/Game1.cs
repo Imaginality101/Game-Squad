@@ -33,6 +33,7 @@ namespace GamePrototype
     enum GameState { MainMenu, Game, GMenu, Win}
     enum MenuState { Main, Journal, Photos, Settings, Power} // kat
     public enum CurrentRoom { Bedroom, Closet, Bathroom } // We'll start with just Bedroom for now, when we expand to more rooms add them to the end of the state list
+
     public class Game1 : Game
     {
         // Tom - Setting variables for scaling draw
@@ -47,7 +48,8 @@ namespace GamePrototype
 
         // define enums
         GameState gameState;
-        CurrentRoom activeRoom;
+        public static CurrentRoom activeRoom;
+        
         // Caleb - first menu object, non static for now
         Menu menu;
         //MenuState menuState; // kat
@@ -151,11 +153,12 @@ namespace GamePrototype
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
             bedRoom.Objects = furnitureSet.BedroomSetup();
             player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds);
-            menu.LoadContent(Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("stickynoteFULL"), startingPhoneState, imagePhoneState, textPhoneState, menuFont);
+            // TODO: fill in the nulls in the parameters list once we have more textures
+            Clue.LoadContent(Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("Photo1"), null, Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"), null, null, null, null, null, null, null, Content.Load<Texture2D>("stickynoteFULL"));
+            menu.LoadContent(startingPhoneState, imagePhoneState, textPhoneState, menuFont);
 
             closetRoom = new Room(closetBG);
             closetRoom.Objects = furnitureSet.ClosetSetup();
-            player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds);
 
 
         }
@@ -268,10 +271,12 @@ namespace GamePrototype
                         {
                             case CurrentRoom.Bedroom:
                                 bedRoom.Update(gameTime);
+                                player.Update(gameTime, bedRoom.Objects);
                                 break;
                             case CurrentRoom.Closet:
                                 // TODO: update closet
                                 closetRoom.Update(gameTime);
+                                player.Update(gameTime, closetRoom.Objects);
                                 break;
                             case CurrentRoom.Bathroom:
                                 // TODO: update bathroom
@@ -281,7 +286,7 @@ namespace GamePrototype
                         {
                             gameState = GameState.GMenu;
                         }
-                        player.Update(gameTime, bedRoom.Objects);
+                        
                         // Caleb - handles drawing interaction text
                         if (kbState.IsKeyDown(Keys.E) && prevKbState.IsKeyUp(Keys.E))
                         {
@@ -334,13 +339,13 @@ namespace GamePrototype
                             menuState = MenuState.Main;
                         }
                             
-
+                        */
                         if (kbState.IsKeyDown(Keys.LeftShift) && !prevKbState.IsKeyDown(Keys.LeftShift)) // would like to make tab later but wasnt working
                         {
                             // close menu
-                            menuState = MenuState.Main;
+                            //menuState = MenuState.Main;
                             gameState = GameState.Game;
-                        }*/
+                        }
                         // Caleb - updates the menu instance; we might stick the above into this method?
                         menu.Update();
                         break;
@@ -550,6 +555,8 @@ namespace GamePrototype
             blacklight = content.Load<Texture2D>("black light overlay");
 
             bedBG = content.Load<Texture2D>("backgroundFULL");
+            closetBG = content.Load<Texture2D>("theclosetFULL");
+
 
         }
 
@@ -565,7 +572,7 @@ namespace GamePrototype
         }
         public static void ChangeRoom(CurrentRoom wehere)
         {
-
+            //activeRoom = wehere;
         }
 
     }

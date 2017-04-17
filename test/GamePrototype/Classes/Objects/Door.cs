@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
  * DisasterPiece Games
  * Door Class
  */
+
 namespace GamePrototype.Classes.Objects
 {
 
@@ -18,12 +19,14 @@ namespace GamePrototype.Classes.Objects
         Rectangle doorRect;
         Clue requiredClue;
         CurrentRoom wannago;
+
         public Door(Texture2D txtr, Rectangle psRct,CurrentRoom wenothere, Clue rqClue) : base(txtr, psRct)
         {
             doorText = txtr;
             doorRect = psRct;
-            wannago = wenothere;
             requiredClue = rqClue;
+            wannago = wenothere;
+
         }
 
         // TODO: Class needs fleshing out, but its primary difference is that interacting
@@ -36,7 +39,7 @@ namespace GamePrototype.Classes.Objects
             {
                 if (Enabled && Clue.Inventory.Contains(requiredClue))
                 {
-                    wannago = CurrentRoom.Closet;
+                    Game1.activeRoom = wannago;
                     user.X = 1100;
                     user.Y = 450;
                 }
