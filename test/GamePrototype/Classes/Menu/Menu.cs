@@ -227,16 +227,16 @@ namespace GamePrototype.Classes.Menu
             if (activeMenu == Category.Main)
             {
                 //bedRoom.Draw(uSpriteBatch);
-                spriteBatch.Draw(mainPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
+                spriteBatch.Draw(mainPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
             }
             if (activeMenu == Category.Journal)
             {
                 //bedRoom.Draw(uSpriteBatch);
-                spriteBatch.Draw(textPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
+                spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
             }
             if (activeMenu == Category.Photos)
             {
-                spriteBatch.Draw(cluesPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
+                spriteBatch.Draw(cluesPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
                 // outer loop for pageClue array
                 for (int i = 0; i < 7; i++)
                 {
@@ -246,19 +246,19 @@ namespace GamePrototype.Classes.Menu
                         Clue curr = pageClue[i, j];
                         if (curr != null)
                         {
-                            switch (j)
+                            switch (j) // why in god's name is this where we decide to use switch statements - Tom
                             {
                                 case 0:
-                                    spriteBatch.Draw(curr.ClueImage, box1, Color.White);
+                                    spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box1), Color.White);
                                     break;
                                 case 1:
-                                    spriteBatch.Draw(curr.ClueImage, box2, Color.White);
+                                    spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box2), Color.White);
                                     break;
                                 case 2:
-                                    spriteBatch.Draw(curr.ClueImage, box3, Color.White);
+                                    spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box3), Color.White);
                                     break;
                                 case 3:
-                                    spriteBatch.Draw(curr.ClueImage, box4, Color.White);
+                                    spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box4), Color.White);
                                     break;
                             }
                         }
@@ -284,7 +284,7 @@ namespace GamePrototype.Classes.Menu
             if (activeMenu == Category.Settings)
             {
                 //bedRoom.Draw(uSpriteBatch);
-                spriteBatch.Draw(textPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
+                spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
                 // Draw textbox
                 settingsTextBox.Draw(spriteBatch);
             }

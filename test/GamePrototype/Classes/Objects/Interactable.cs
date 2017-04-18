@@ -62,7 +62,7 @@ namespace GamePrototype.Classes.Objects
         {
             if (flaggedForUse)
             {
-                base.Draw(sprtBtch, Color.Purple);
+                base.Draw(sprtBtch, Color.LightGreen);
             }
             else
             {

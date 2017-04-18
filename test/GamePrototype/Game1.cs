@@ -42,9 +42,9 @@ namespace GamePrototype
         const int NORM_HEIGHT = 972;
 
         // values for custom resolution settings being read from the external tool
-        int windowWidth;
-        int windowHeight;
-        static Vector2 drawRatio; // Keep track of the ratio of the current resolution to intended resolution
+        public static int windowWidth;
+        public static int windowHeight;
+        public static Vector2 drawRatio; // Keep track of the ratio of the current resolution to intended resolution
 
         // define enums
         GameState gameState;
@@ -176,17 +176,6 @@ namespace GamePrototype
             activeRoom = CurrentRoom.Bedroom;
             //menuState = MenuState.Main; // kat
 
-            // TODO: Screen sizes here
-            graphics.PreferredBackBufferWidth = 1728;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = 972;   // set this value to the desired height of your window
-            drawRatio.X = graphics.PreferredBackBufferWidth / NORM_WIDTH;
-            drawRatio.Y = graphics.PreferredBackBufferHeight / NORM_HEIGHT;
-            //graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
-           // graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
-
-            //set the GraphicsDeviceManager's fullscreen property
-            
-            graphics.ApplyChanges();
             data = new SaveData();
             // initializes the bedroom
             // Caleb - writes appropriate data to file, will save later
@@ -199,6 +188,7 @@ namespace GamePrototype
             fullscreen = (Boolean)settingsData[2]; // Tom - Get whether or not the window is fullscreen
             if(fullscreen)
             {
+                graphics.IsFullScreen = true;
                 windowWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
                 windowHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             }
@@ -207,6 +197,12 @@ namespace GamePrototype
                 windowWidth = (int)settingsData[3];
                 windowHeight = (int)settingsData[4];
             }
+            graphics.PreferredBackBufferWidth = windowWidth;
+            graphics.PreferredBackBufferHeight = windowHeight;
+            drawRatio.X = (float)windowWidth / NORM_WIDTH;
+            drawRatio.Y = (float)windowHeight / NORM_HEIGHT;
+            graphics.ApplyChanges();
+
             Console.WriteLine("Timer mode: " + timerMode + " Bob Ross mode: " + bobRossMode);
             menu = new Menu();
             base.Initialize();
