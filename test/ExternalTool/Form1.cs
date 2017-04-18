@@ -102,5 +102,10 @@ namespace ExternalTool
         {
 
         }
+
+        private void windowedButton_CheckedChanged(object sender, EventArgs e)
+        {
+            resPanelW.Enabled = windowedButton.Checked;
+        }
     }
 }

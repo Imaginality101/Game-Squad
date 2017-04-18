@@ -32,7 +32,7 @@
             this.timerBox = new System.Windows.Forms.CheckBox();
             this.bobRossCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.resPanelW = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.resBoxHeight = new System.Windows.Forms.MaskedTextBox();
             this.resBoxWidth = new System.Windows.Forms.MaskedTextBox();
@@ -43,7 +43,7 @@
             this.windowedButton = new System.Windows.Forms.RadioButton();
             this.fullScreenButton = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.resPanelW.SuspendLayout();
             this.SuspendLayout();
             // 
             // runGame
@@ -83,7 +83,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.panel1);
+            this.groupBox1.Controls.Add(this.resPanelW);
             this.groupBox1.Controls.Add(this.windowedButton);
             this.groupBox1.Controls.Add(this.fullScreenButton);
             this.groupBox1.Location = new System.Drawing.Point(313, 74);
@@ -93,19 +93,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Video Settings";
             // 
-            // panel1
+            // resPanelW
             // 
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.resBoxHeight);
-            this.panel1.Controls.Add(this.resBoxWidth);
-            this.panel1.Controls.Add(this.resButtonCustom);
-            this.panel1.Controls.Add(this.resButton3);
-            this.panel1.Controls.Add(this.resButton2);
-            this.panel1.Controls.Add(this.resButton1);
-            this.panel1.Location = new System.Drawing.Point(28, 85);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(229, 184);
-            this.panel1.TabIndex = 2;
+            this.resPanelW.Controls.Add(this.label1);
+            this.resPanelW.Controls.Add(this.resBoxHeight);
+            this.resPanelW.Controls.Add(this.resBoxWidth);
+            this.resPanelW.Controls.Add(this.resButtonCustom);
+            this.resPanelW.Controls.Add(this.resButton3);
+            this.resPanelW.Controls.Add(this.resButton2);
+            this.resPanelW.Controls.Add(this.resButton1);
+            this.resPanelW.Enabled = false;
+            this.resPanelW.Location = new System.Drawing.Point(28, 85);
+            this.resPanelW.Name = "resPanelW";
+            this.resPanelW.Size = new System.Drawing.Size(229, 184);
+            this.resPanelW.TabIndex = 2;
             // 
             // label1
             // 
@@ -183,13 +184,14 @@
             this.windowedButton.Name = "windowedButton";
             this.windowedButton.Size = new System.Drawing.Size(108, 24);
             this.windowedButton.TabIndex = 1;
-            this.windowedButton.TabStop = true;
             this.windowedButton.Text = "Windowed";
             this.windowedButton.UseVisualStyleBackColor = true;
+            this.windowedButton.CheckedChanged += new System.EventHandler(this.windowedButton_CheckedChanged);
             // 
             // fullScreenButton
             // 
             this.fullScreenButton.AutoSize = true;
+            this.fullScreenButton.Checked = true;
             this.fullScreenButton.Location = new System.Drawing.Point(7, 25);
             this.fullScreenButton.Name = "fullScreenButton";
             this.fullScreenButton.Size = new System.Drawing.Size(107, 24);
@@ -213,8 +215,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.resPanelW.ResumeLayout(false);
+            this.resPanelW.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,7 +227,7 @@
         private System.Windows.Forms.CheckBox timerBox;
         private System.Windows.Forms.CheckBox bobRossCheckBox;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel resPanelW;
         private System.Windows.Forms.RadioButton resButtonCustom;
         private System.Windows.Forms.RadioButton resButton3;
         private System.Windows.Forms.RadioButton resButton2;
