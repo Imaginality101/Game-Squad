@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Content;
 using System.Threading;
 using System.Diagnostics;
 using System.IO;
+
 /*Workers: Kat, Tom, Caleb, Declan
  * DisasterPiece Games
  * Game1 Class
@@ -63,7 +64,7 @@ namespace GamePrototype
         private GameSound blep;
         private GameSound beeboop;
         // Caleb - new attribute for reading data
-        SaveData data;
+        //SaveData data;
         // Caleb - List<GameObject> attribute that will be assigned the the contents of the save files - we will use the rooms later
         //List<GameObject> objects;
         // Rectangle viewBounds; // I want to try to work it out so that the game changes resolution cleanly so we'll be using this for graphx
@@ -110,6 +111,11 @@ namespace GamePrototype
         Texture2D bedBG;
         Texture2D closetBG;
         Texture2D bathBG;
+
+        // win/lose variable - kat
+        int winLose; // 0 is nothing, 1 is lost, 2 is win
+        Texture2D loseScreen;
+        Texture2D winScreen;
 
 
 
@@ -180,13 +186,13 @@ namespace GamePrototype
             activeRoom = CurrentRoom.Bedroom;
             //menuState = MenuState.Main; // kat
 
-            data = new SaveData();
+            //data = new SaveData();
             // initializes the bedroom
             // Caleb - writes appropriate data to file, will save later
-            data.WriteBedroom();
+            //data.WriteBedroom();
             // Caleb - reads GameObjects from the file, stores it in objects
             //objects = data.ReadBedroom();
-            settingsData = data.ReadSettings();
+            settingsData = SaveData.ReadSettings();
             timerMode = (bool)settingsData[0];
             bobRossMode = (bool)settingsData[1];
             fullscreen = (Boolean)settingsData[2]; // Tom - Get whether or not the window is fullscreen
@@ -206,6 +212,8 @@ namespace GamePrototype
             drawRatio.X = (float)windowWidth / NORM_WIDTH;
             drawRatio.Y = (float)windowHeight / NORM_HEIGHT;
             graphics.ApplyChanges();
+
+            winLose = 0;
 
             Console.WriteLine("Timer mode: " + timerMode + " Bob Ross mode: " + bobRossMode);
             menu = new Menu();
@@ -231,12 +239,28 @@ namespace GamePrototype
         {
             // NOTE: If we want to use Esc as the menu key this is pretty important to remove
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                SaveData.Save();
                 Exit();
+            }
 
             // TODO: The game's update function should primarily call the Update function of the active Room. That should run through inside the Room and update all the objects in it.
             // TODO: Check if menus are open or the open button has been pressed, and if so update them
             prevKbState = kbState;
             kbState = Keyboard.GetState();
+
+            // win state - kat
+            if (activeRoom == CurrentRoom.Closet)
+            {
+                winLose = 2; 
+            }
+
+            // timer ran out lose state - kat
+            if (gameTimerSeconds <= 0)
+            {
+                winLose = 1;
+            }
+
             switch (gameState)
             {
                 case GameState.MainMenu:
@@ -427,6 +451,21 @@ namespace GamePrototype
                 
             }
 
+            // draw lose things - kat
+            if (winLose == 1) // lost
+            {
+                // draw thing here
+                Thread.Sleep(5000);
+                Environment.Exit(0);
+            }
+
+            // draw win things - kat
+            if (winLose == 2)
+            {
+                // draw thing here
+                Thread.Sleep(5000);
+                Restart();
+            }
 
             // menu stuff kat  --- move to menu draw >??????????????????????????????????????????????????????????????????????????????
             /*if (gameState == GameState.GMenu && menuState == MenuState.Main)
@@ -460,6 +499,10 @@ namespace GamePrototype
             {
                 bedRoom.Draw(uSpriteBatch);
                 menu.Draw(uSpriteBatch);
+                if (closetRoom.LightsOff == true || bedRoom.LightsOff == true)
+                {
+                    uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+                }
             }
             // TODO: Caleb - draws objects; is temporary 
             /*foreach (GameObject go in objects)
@@ -579,5 +622,10 @@ namespace GamePrototype
         public static bool LightsOn { get { return lightsOn; } set { lightsOn = value; } }
 
 
+
+        public static void Restart()
+        {
+
+        }
     }
 }
