@@ -86,19 +86,36 @@ namespace GamePrototype.Classes.Tools
         public List<object> ReadSettings()
         {
             List<object> result = new List<object>();
-            settingsReadStream = File.OpenRead(SETTINGS_PATH);
-            settingsReader = new BinaryReader(settingsReadStream);
-            // read until end of file
             try
             {
-                result.Add(settingsReader.ReadBoolean());
-                result.Add(settingsReader.ReadBoolean());
-            }
-            catch (EndOfStreamException)
-            {
+                settingsReadStream = File.OpenRead(SETTINGS_PATH);
+                settingsReader = new BinaryReader(settingsReadStream);
+                // read until end of file
+                try
+                {
+                    result.Add(settingsReader.ReadBoolean());
+                    result.Add(settingsReader.ReadBoolean());
+                    result.Add(settingsReader.ReadBoolean()); // Tom - Resolution settings, fullscreen boolean
+                    if (!(Boolean)result[2]) // if windowed
+                    {
+                        result.Add(settingsReader.ReadInt32()); // width
+                        result.Add(settingsReader.ReadInt32()); // height
+                    }
+                }
+                catch (EndOfStreamException)
+                {
 
+                }
             }
-            return result;
+            catch(FileNotFoundException e) // If the file isn't found just default the settings
+            {
+                result.Add(false);
+                result.Add(false);
+                result.Add(false);
+                result.Add(1728);
+                result.Add(972);
+            }
+                return result;
         }
     }
 }

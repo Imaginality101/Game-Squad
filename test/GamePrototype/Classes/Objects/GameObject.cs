@@ -169,11 +169,11 @@ namespace GamePrototype.Classes.Objects
             {
                 if (!drawMatchesCol)
                 {
-                    sprtBtch.Draw(sprite, drawRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                    sprtBtch.Draw(sprite, Game1.FormatDraw(drawRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
                 }
                 else
                 {
-                    sprtBtch.Draw(sprite, positionRect, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                    sprtBtch.Draw(sprite, Game1.FormatDraw(positionRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
                 }
 
             }
@@ -190,11 +190,11 @@ namespace GamePrototype.Classes.Objects
             {
                 if (!drawMatchesCol)
                 {
-                    sprtBtch.Draw(sprite, drawRect, null, color, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                    sprtBtch.Draw(sprite, Game1.FormatDraw(drawRect), null, color, 0f, Vector2.Zero, SpriteEffects.None, 0f);
                 }
                 else
                 {
-                    sprtBtch.Draw(sprite, positionRect, null, color, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                    sprtBtch.Draw(sprite, Game1.FormatDraw(positionRect), null, color, 0f, Vector2.Zero, SpriteEffects.None, 0f);
                 }
             }
         }

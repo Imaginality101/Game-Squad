@@ -32,16 +32,16 @@
             this.timerBox = new System.Windows.Forms.CheckBox();
             this.bobRossCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.fullScreenButton = new System.Windows.Forms.RadioButton();
-            this.windowedButton = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.resButton1 = new System.Windows.Forms.RadioButton();
-            this.resButton2 = new System.Windows.Forms.RadioButton();
-            this.resButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.resBoxWidth = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.resBoxHeight = new System.Windows.Forms.MaskedTextBox();
+            this.resBoxWidth = new System.Windows.Forms.MaskedTextBox();
+            this.resButtonCustom = new System.Windows.Forms.RadioButton();
+            this.resButton3 = new System.Windows.Forms.RadioButton();
+            this.resButton2 = new System.Windows.Forms.RadioButton();
+            this.resButton1 = new System.Windows.Forms.RadioButton();
+            this.windowedButton = new System.Windows.Forms.RadioButton();
+            this.fullScreenButton = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -93,34 +93,12 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Video Settings";
             // 
-            // fullScreenButton
-            // 
-            this.fullScreenButton.AutoSize = true;
-            this.fullScreenButton.Location = new System.Drawing.Point(7, 25);
-            this.fullScreenButton.Name = "fullScreenButton";
-            this.fullScreenButton.Size = new System.Drawing.Size(107, 24);
-            this.fullScreenButton.TabIndex = 0;
-            this.fullScreenButton.TabStop = true;
-            this.fullScreenButton.Text = "Fullscreen";
-            this.fullScreenButton.UseVisualStyleBackColor = true;
-            // 
-            // windowedButton
-            // 
-            this.windowedButton.AutoSize = true;
-            this.windowedButton.Location = new System.Drawing.Point(7, 55);
-            this.windowedButton.Name = "windowedButton";
-            this.windowedButton.Size = new System.Drawing.Size(108, 24);
-            this.windowedButton.TabIndex = 1;
-            this.windowedButton.TabStop = true;
-            this.windowedButton.Text = "Windowed";
-            this.windowedButton.UseVisualStyleBackColor = true;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.resBoxHeight);
             this.panel1.Controls.Add(this.resBoxWidth);
-            this.panel1.Controls.Add(this.radioButton1);
+            this.panel1.Controls.Add(this.resButtonCustom);
             this.panel1.Controls.Add(this.resButton3);
             this.panel1.Controls.Add(this.resButton2);
             this.panel1.Controls.Add(this.resButton1);
@@ -128,58 +106,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(229, 184);
             this.panel1.TabIndex = 2;
-            // 
-            // resButton1
-            // 
-            this.resButton1.AutoSize = true;
-            this.resButton1.Location = new System.Drawing.Point(3, 3);
-            this.resButton1.Name = "resButton1";
-            this.resButton1.Size = new System.Drawing.Size(95, 24);
-            this.resButton1.TabIndex = 0;
-            this.resButton1.TabStop = true;
-            this.resButton1.Text = "800x600";
-            this.resButton1.UseVisualStyleBackColor = true;
-            // 
-            // resButton2
-            // 
-            this.resButton2.AutoSize = true;
-            this.resButton2.Location = new System.Drawing.Point(4, 34);
-            this.resButton2.Name = "resButton2";
-            this.resButton2.Size = new System.Drawing.Size(104, 24);
-            this.resButton2.TabIndex = 1;
-            this.resButton2.TabStop = true;
-            this.resButton2.Text = "1024x768";
-            this.resButton2.UseVisualStyleBackColor = true;
-            // 
-            // resButton3
-            // 
-            this.resButton3.AutoSize = true;
-            this.resButton3.Location = new System.Drawing.Point(4, 65);
-            this.resButton3.Name = "resButton3";
-            this.resButton3.Size = new System.Drawing.Size(104, 24);
-            this.resButton3.TabIndex = 2;
-            this.resButton3.TabStop = true;
-            this.resButton3.Text = "1732x972";
-            this.resButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(4, 96);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(89, 24);
-            this.radioButton1.TabIndex = 3;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Custom";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // resBoxWidth
-            // 
-            this.resBoxWidth.Location = new System.Drawing.Point(8, 142);
-            this.resBoxWidth.Mask = "0000";
-            this.resBoxWidth.Name = "resBoxWidth";
-            this.resBoxWidth.Size = new System.Drawing.Size(79, 26);
-            this.resBoxWidth.TabIndex = 4;
             // 
             // label1
             // 
@@ -197,6 +123,80 @@
             this.resBoxHeight.Name = "resBoxHeight";
             this.resBoxHeight.Size = new System.Drawing.Size(79, 26);
             this.resBoxHeight.TabIndex = 4;
+            // 
+            // resBoxWidth
+            // 
+            this.resBoxWidth.Location = new System.Drawing.Point(8, 142);
+            this.resBoxWidth.Mask = "0000";
+            this.resBoxWidth.Name = "resBoxWidth";
+            this.resBoxWidth.Size = new System.Drawing.Size(79, 26);
+            this.resBoxWidth.TabIndex = 4;
+            // 
+            // resButtonCustom
+            // 
+            this.resButtonCustom.AutoSize = true;
+            this.resButtonCustom.Location = new System.Drawing.Point(4, 96);
+            this.resButtonCustom.Name = "resButtonCustom";
+            this.resButtonCustom.Size = new System.Drawing.Size(89, 24);
+            this.resButtonCustom.TabIndex = 3;
+            this.resButtonCustom.TabStop = true;
+            this.resButtonCustom.Text = "Custom";
+            this.resButtonCustom.UseVisualStyleBackColor = true;
+            // 
+            // resButton3
+            // 
+            this.resButton3.AutoSize = true;
+            this.resButton3.Location = new System.Drawing.Point(4, 65);
+            this.resButton3.Name = "resButton3";
+            this.resButton3.Size = new System.Drawing.Size(104, 24);
+            this.resButton3.TabIndex = 2;
+            this.resButton3.TabStop = true;
+            this.resButton3.Text = "1728x972";
+            this.resButton3.UseVisualStyleBackColor = true;
+            // 
+            // resButton2
+            // 
+            this.resButton2.AutoSize = true;
+            this.resButton2.Location = new System.Drawing.Point(4, 34);
+            this.resButton2.Name = "resButton2";
+            this.resButton2.Size = new System.Drawing.Size(104, 24);
+            this.resButton2.TabIndex = 1;
+            this.resButton2.TabStop = true;
+            this.resButton2.Text = "1024x768";
+            this.resButton2.UseVisualStyleBackColor = true;
+            // 
+            // resButton1
+            // 
+            this.resButton1.AutoSize = true;
+            this.resButton1.Location = new System.Drawing.Point(3, 3);
+            this.resButton1.Name = "resButton1";
+            this.resButton1.Size = new System.Drawing.Size(95, 24);
+            this.resButton1.TabIndex = 0;
+            this.resButton1.TabStop = true;
+            this.resButton1.Text = "800x600";
+            this.resButton1.UseVisualStyleBackColor = true;
+            // 
+            // windowedButton
+            // 
+            this.windowedButton.AutoSize = true;
+            this.windowedButton.Location = new System.Drawing.Point(7, 55);
+            this.windowedButton.Name = "windowedButton";
+            this.windowedButton.Size = new System.Drawing.Size(108, 24);
+            this.windowedButton.TabIndex = 1;
+            this.windowedButton.TabStop = true;
+            this.windowedButton.Text = "Windowed";
+            this.windowedButton.UseVisualStyleBackColor = true;
+            // 
+            // fullScreenButton
+            // 
+            this.fullScreenButton.AutoSize = true;
+            this.fullScreenButton.Location = new System.Drawing.Point(7, 25);
+            this.fullScreenButton.Name = "fullScreenButton";
+            this.fullScreenButton.Size = new System.Drawing.Size(107, 24);
+            this.fullScreenButton.TabIndex = 0;
+            this.fullScreenButton.TabStop = true;
+            this.fullScreenButton.Text = "Fullscreen";
+            this.fullScreenButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -226,7 +226,7 @@
         private System.Windows.Forms.CheckBox bobRossCheckBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton resButtonCustom;
         private System.Windows.Forms.RadioButton resButton3;
         private System.Windows.Forms.RadioButton resButton2;
         private System.Windows.Forms.RadioButton resButton1;

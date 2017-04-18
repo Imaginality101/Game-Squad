@@ -67,6 +67,9 @@ namespace GamePrototype.Classes.Menu
         Rectangle box3 = new Rectangle(755, 380, 70, 100);
         Rectangle box4 = new Rectangle(845,380, 70, 100);
 
+        // Use this for the blown up images, its the size of the room, will maximize readibility hopefully, cannot currently select one to test it however
+        // new Rectangle((int)origin.X - (1382 / 2), (int)origin.Y - (972 / 2), 1382, 972)
+
         public Menu()
         {
             activeMenu = Category.Main;
@@ -285,65 +288,60 @@ namespace GamePrototype.Classes.Menu
             if (activeMenu == Category.Main)
             {
                 //bedRoom.Draw(uSpriteBatch);
-                spriteBatch.Draw(mainPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
+                spriteBatch.Draw(mainPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
             }
             if (activeMenu == Category.Journal)
             {
                 //bedRoom.Draw(uSpriteBatch);
-                spriteBatch.Draw(textPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
-                if (clueTextBox != null)
-                {
-                    clueTextBox.Draw(spriteBatch);
-                }
+                spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
             }
-            if (activeMenu == Category.Clues)
+            if (activeMenu == Category.Photos)
             {
-                spriteBatch.Draw(cluesPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
-                // draw the cursor
-                switch (selectedEntry)
+                spriteBatch.Draw(cluesPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
+                // outer loop for pageClue array
+                for (int i = 0; i < 7; i++)
                 {
-                    case SelectedEntry.TopLeft:
-                        spriteBatch.Draw(clueCursor, box1, new Color(Color.Black, .5f));
-                        break;
-                    case SelectedEntry.TopRight:
-                        spriteBatch.Draw(clueCursor, box2, new Color(Color.Black, .5f));
-                        break;
-                    case SelectedEntry.BotLeft:
-                        spriteBatch.Draw(clueCursor, box3, new Color(Color.Black, .5f));
-                        break;
-                    case SelectedEntry.BotRight:
-                        spriteBatch.Draw(clueCursor, box4, new Color(Color.Black, .5f));
-                        break;
-                }
-                // inner loop for pageClue array
-                for (int j = 0; j < 4; j++)
-                {
-                    // catch IndexOutOfRange exception                
-                    Clue curr = pageClue[cluePageIndex, j];
-                    if (curr != null)
+                    // inner loop for pageClue array
+                    for (int j = 0; j < 4; j++)
                     {
-                        switch (j)
+                        Clue curr = pageClue[i, j];
+                        if (curr != null)
                         {
-                            case 0:
-                                spriteBatch.Draw(curr.ClueImage, box1, Color.White);
-                                break;
-                            case 1:
-                                spriteBatch.Draw(curr.ClueImage, box2, Color.White);
-                                break;
-                            case 2:
-                                spriteBatch.Draw(curr.ClueImage, box3, Color.White);
-                                break;
-                            case 3:
-                                spriteBatch.Draw(curr.ClueImage, box4, Color.White);
-                                break;
+                            switch (j) // why in god's name is this where we decide to use switch statements - Tom
+                            {
+                                case 0:
+                                    spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box1), Color.White);
+                                    break;
+                                case 1:
+                                    spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box2), Color.White);
+                                    break;
+                                case 2:
+                                    spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box3), Color.White);
+                                    break;
+                                case 3:
+                                    spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box4), Color.White);
+                                    break;
+                            }
                         }
                     }
+                }
+                /*if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))
+                {
+                    newsPaper.Draw(spriteBatch);
+                }
+                if (Clue.Inventory.Contains(Clue.Clues["StickyNote"]))
+                {
+                    stickyNote.Draw(spriteBatch);
+                }
+                if (Clue.Inventory.Contains(Clue.Clues["TenantDiary1"]) || Clue.Inventory.Contains(Clue.Clues["TenantDiary2"]) || Clue.Inventory.Contains(Clue.Clues["TenantDiary3"]))
+                {
+                    tenantDiary.Draw(spriteBatch);
                 }
             }
             if (activeMenu == Category.Settings)
             {
                 //bedRoom.Draw(uSpriteBatch);
-                spriteBatch.Draw(textPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
+                spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
                 // Draw textbox
                 settingsTextBox.Draw(spriteBatch);
             }

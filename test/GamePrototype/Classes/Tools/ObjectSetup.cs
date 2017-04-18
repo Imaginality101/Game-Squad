@@ -50,7 +50,7 @@ namespace GamePrototype.Classes.Tools
             content = ctm;
             spriteBatch = sbt;
             graphics = gd;
-            origin = new Vector2(graphics.Viewport.Width / 2, graphics.Viewport.Height / 2);
+            origin = new Vector2(1728 / 2, 972 / 2);
 
         }
         //method to setup the objects int the bedroom it returns a list of gameobjects

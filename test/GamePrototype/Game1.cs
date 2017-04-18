@@ -36,10 +36,15 @@ namespace GamePrototype
 
     public class Game1 : Game
     {
-
+        // Tom - Setting variables for scaling draw
+        Boolean fullscreen;
         const int NORM_WIDTH = 1728;
         const int NORM_HEIGHT = 972;
-        static Vector2 drawRatio; // Keep track of the ratio of the current resolution to intended resolution
+
+        // values for custom resolution settings being read from the external tool
+        public static int windowWidth;
+        public static int windowHeight;
+        public static Vector2 drawRatio; // Keep track of the ratio of the current resolution to intended resolution
 
         // define enums
         GameState gameState;
@@ -171,17 +176,6 @@ namespace GamePrototype
             activeRoom = CurrentRoom.Bedroom;
             //menuState = MenuState.Main; // kat
 
-            // TODO: Screen sizes here
-            graphics.PreferredBackBufferWidth = 1728;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = 972;   // set this value to the desired height of your window
-            drawRatio.X = graphics.PreferredBackBufferWidth / NORM_WIDTH;
-            drawRatio.Y = graphics.PreferredBackBufferHeight / NORM_HEIGHT;
-            //graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
-           // graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
-
-            //set the GraphicsDeviceManager's fullscreen property
-            //graphics.IsFullScreen = true;
-            graphics.ApplyChanges();
             data = new SaveData();
             // initializes the bedroom
             // Caleb - writes appropriate data to file, will save later
@@ -191,6 +185,24 @@ namespace GamePrototype
             settingsData = data.ReadSettings();
             timerMode = (bool)settingsData[0];
             bobRossMode = (bool)settingsData[1];
+            fullscreen = (Boolean)settingsData[2]; // Tom - Get whether or not the window is fullscreen
+            if(fullscreen)
+            {
+                graphics.IsFullScreen = true;
+                windowWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+                windowHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            }
+            else
+            {
+                windowWidth = (int)settingsData[3];
+                windowHeight = (int)settingsData[4];
+            }
+            graphics.PreferredBackBufferWidth = windowWidth;
+            graphics.PreferredBackBufferHeight = windowHeight;
+            drawRatio.X = (float)windowWidth / NORM_WIDTH;
+            drawRatio.Y = (float)windowHeight / NORM_HEIGHT;
+            graphics.ApplyChanges();
+
             Console.WriteLine("Timer mode: " + timerMode + " Bob Ross mode: " + bobRossMode);
             menu = new Menu();
             base.Initialize();
@@ -487,6 +499,7 @@ namespace GamePrototype
 
         }
 
+        
         // TODO: Load method, needs to read the binary files from the Save command and read them in. Should then use that info to set up stuff
         public void MasterContentLoader()
         {
