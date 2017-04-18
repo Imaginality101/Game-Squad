@@ -65,10 +65,10 @@ namespace GamePrototype.Classes.Menu
         Rectangle box1 = new Rectangle(755, 230, 70, 100);
         Rectangle box2 = new Rectangle(845, 230, 70, 100);
         Rectangle box3 = new Rectangle(755, 380, 70, 100);
-        Rectangle box4 = new Rectangle(845,380, 70, 100);
+        Rectangle box4 = new Rectangle(845, 380, 70, 100);
 
         // Use this for the blown up images, its the size of the room, will maximize readibility hopefully, cannot currently select one to test it however
-        // new Rectangle((int)origin.X - (1382 / 2), (int)origin.Y - (972 / 2), 1382, 972)
+        //Rectangle blownUpPictureBox = new Rectangle((int)origin.X - (1382 / 2), (int)origin.Y - (972 / 2), 1382, 972)
 
         public Menu()
         {
@@ -230,20 +230,32 @@ namespace GamePrototype.Classes.Menu
                     switch (selectedEntry)
                     {
                         case SelectedEntry.TopLeft:
-                            clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 0].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
-                            activeMenu = Category.Journal;
+                            if (pageClue[cluePageIndex, 0] != null)
+                            {
+                                clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 0].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
+                                activeMenu = Category.Journal;
+                            }
                             break;
                         case SelectedEntry.TopRight:
-                            clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 1].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
-                            activeMenu = Category.Journal;
+                            if (pageClue[cluePageIndex, 1] != null)
+                            {
+                                clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 1].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
+                                activeMenu = Category.Journal;
+                            }
                             break;
                         case SelectedEntry.BotLeft:
-                            clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 2].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
-                            activeMenu = Category.Journal;
+                            if (pageClue[cluePageIndex, 2] != null)
+                            {
+                                clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 2].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
+                                activeMenu = Category.Journal;
+                            }
                             break;
                         case SelectedEntry.BotRight:
-                            clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 3].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
-                            activeMenu = Category.Journal;
+                            if (pageClue[cluePageIndex, 2] != null)
+                            {
+                                clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 3].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
+                                activeMenu = Category.Journal;
+                            }
                             break;
                     }
                 }
@@ -294,10 +306,12 @@ namespace GamePrototype.Classes.Menu
             {
                 //bedRoom.Draw(uSpriteBatch);
                 spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
+                clueTextBox.Draw(spriteBatch);
             }
-            if (activeMenu == Category.Photos)
+            if (activeMenu == Category.Clues)
             {
                 spriteBatch.Draw(cluesPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
+                // will draw the clue icons
                 // outer loop for pageClue array
                 for (int i = 0; i < 7; i++)
                 {
@@ -324,6 +338,23 @@ namespace GamePrototype.Classes.Menu
                             }
                         }
                     }
+                }
+                // draw the clue cursor based on the selected entry
+                switch (selectedEntry)
+                {
+                    case SelectedEntry.TopLeft:
+                        spriteBatch.Draw(clueCursor, box1, new Color(Color.Black, 50f));
+                        break;
+
+                    case SelectedEntry.TopRight:
+                        spriteBatch.Draw(clueCursor, box2, new Color(Color.Black, 50f));
+                        break;
+                    case SelectedEntry.BotLeft:
+                        spriteBatch.Draw(clueCursor, box3, new Color(Color.Black, 50f));
+                        break;
+                    case SelectedEntry.BotRight:
+                        spriteBatch.Draw(clueCursor, box4, new Color(Color.Black, 50f));
+                        break;
                 }
                 /*if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))
                 {
@@ -391,14 +422,15 @@ namespace GamePrototype.Classes.Menu
                 crazyPersonDiary.Draw(spriteBatch);
             }
             */
+            }
         }
-    }
 
-    // TODO: Menu class will need an update and draw method, should check for input
-    // Needs to have a way of tracking which menu item it's on, we may also need a more categorical version of this class to hold other menus
-    // If the player hits whatever the method of selection is, it should call an Open() method of the menu item highlighted
-    // The menu view itself also needs a property and attribute to check if it's enabled, as well as an Open method for itself which toggles that on/Close method for off
-    // Other than the main view of the phone itself and maybe settings, menus should use lists for content since as the player finds clues they go there
-    // Implements IControlled, use this to check user input while in the menu. Whoever does player updating should make sure they check if the menu is open before checking for input.
-    // - Tom
+        // TODO: Menu class will need an update and draw method, should check for input
+        // Needs to have a way of tracking which menu item it's on, we may also need a more categorical version of this class to hold other menus
+        // If the player hits whatever the method of selection is, it should call an Open() method of the menu item highlighted
+        // The menu view itself also needs a property and attribute to check if it's enabled, as well as an Open method for itself which toggles that on/Close method for off
+        // Other than the main view of the phone itself and maybe settings, menus should use lists for content since as the player finds clues they go there
+        // Implements IControlled, use this to check user input while in the menu. Whoever does player updating should make sure they check if the menu is open before checking for input.
+        // - Tom
+    }
 }
