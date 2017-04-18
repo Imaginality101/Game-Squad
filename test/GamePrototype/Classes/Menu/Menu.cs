@@ -8,10 +8,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using GamePrototype;
+using GamePrototype.Classes.Tools;
+using Microsoft.Xna.Framework.Content;
 /*Workers: Kat, Tom, Caleb
- * DisasterPiece Games
- * Menu Class
- */
+* DisasterPiece Games
+* Menu Class
+*/
 namespace GamePrototype.Classes.Menu
 {
     enum Category { Main, Journal, Clues, Photos, Settings, Power }
@@ -29,6 +31,7 @@ namespace GamePrototype.Classes.Menu
         // first index is the page on the menu, second index is which space it is on: 0 is top left, 1 is top right, 2 is bottom left, 3 is bottom right 
         public static Clue[,] pageClue = new Clue[7, 4];
         int cluePageIndex = 0;
+
 
         // icons
         /*
@@ -67,6 +70,7 @@ namespace GamePrototype.Classes.Menu
         Rectangle box2 = new Rectangle(845, 230, 70, 100);
         Rectangle box3 = new Rectangle(755, 380, 70, 100);
         Rectangle box4 = new Rectangle(845, 380, 70, 100);
+        private GameSound blep;
 
         // Use this for the blown up images, its the size of the room, will maximize readibility hopefully, cannot currently select one to test it however
         Rectangle blownUpImage = new Rectangle((int)new Vector2(1728 / 2, 972 / 2).X - (1382 / 2), (int)new Vector2(1728 / 2, 972 / 2).Y - (972 / 2), 1382, 972);
@@ -75,6 +79,8 @@ namespace GamePrototype.Classes.Menu
         {
             activeMenu = Category.Main;
             selectedEntry = SelectedEntry.TopRight;
+            blep = new GameSound("phone-selection", Game1.ContentMan);
+
             // commented out because it is deprecated
             /*clueList = new Dictionary<Clue, Boolean>();
             foreach(Clue cl in Clue.Clues.Values)
@@ -155,15 +161,18 @@ namespace GamePrototype.Classes.Menu
                             if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S))
                             {
                                 selectedEntry = SelectedEntry.BotLeft;
+                                blep.PlayAsSoundEffect(.9f);
                             }
                             else if (kbState.IsKeyDown(Keys.D) && prevKbState.IsKeyUp(Keys.D))
                             {
                                 selectedEntry = SelectedEntry.TopRight;
+                                blep.PlayAsSoundEffect(.9f);
                             }
                             // handles scrolling
                             else if (cluePageIndex != 0 && (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W)))
                             {
                                 selectedEntry = SelectedEntry.BotLeft;
+                                blep.PlayAsSoundEffect(.9f);
                                 cluePageIndex--;
                             }
                             break;
@@ -174,15 +183,18 @@ namespace GamePrototype.Classes.Menu
                             if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S))
                             {
                                 selectedEntry = SelectedEntry.BotRight;
+                                blep.PlayAsSoundEffect(.9f);
                             }
                             else if (kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyUp(Keys.A))
                             {
                                 selectedEntry = SelectedEntry.TopLeft;
+                                blep.PlayAsSoundEffect(.9f);
                             }
                             // handles scrolling
                             else if (cluePageIndex != 0 && (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W)))
                             {
                                 selectedEntry = SelectedEntry.BotRight;
+                                blep.PlayAsSoundEffect(.9f);
                                 cluePageIndex--;
                             }
                             break;
@@ -193,15 +205,18 @@ namespace GamePrototype.Classes.Menu
                             if (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W))
                             {
                                 selectedEntry = SelectedEntry.TopLeft;
+                                blep.PlayAsSoundEffect(.9f);
                             }
                             else if (kbState.IsKeyDown(Keys.D) && prevKbState.IsKeyUp(Keys.D))
                             {
                                 selectedEntry = SelectedEntry.BotRight;
+                                blep.PlayAsSoundEffect(.9f);
                             }
                             // handles scrolling
                             else if (cluePageIndex != 6 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
                             {
                                 selectedEntry = SelectedEntry.TopLeft;
+                                blep.PlayAsSoundEffect(.9f);
                                 cluePageIndex++;
                             }
                             break;
@@ -212,15 +227,18 @@ namespace GamePrototype.Classes.Menu
                             if (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W))
                             {
                                 selectedEntry = SelectedEntry.TopRight;
+                                blep.PlayAsSoundEffect(.9f);
                             }
                             else if (kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyUp(Keys.A))
                             {
                                 selectedEntry = SelectedEntry.BotLeft;
+                                blep.PlayAsSoundEffect(.9f);
                             }
                             // handles scrolling
                             else if (cluePageIndex != 7 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
                             {
                                 selectedEntry = SelectedEntry.TopRight;
+                                blep.PlayAsSoundEffect(.9f);
                                 cluePageIndex++;
                             }
                             break;
@@ -267,13 +285,12 @@ namespace GamePrototype.Classes.Menu
         public static void AddClue(Clue addedClue)
         {
             // find the first empty space in pageClue
-            int i = 0;
-            int j = 0;
+
             // outer loop for pageClue array
-            for (; i < 7; i++)
+            for (int i = 0; i < 7; i++)
             {
                 // inner loop for pageClue array
-                for (; j < 4; j++)
+                for (int j = 0; j < 4; j++)
                 {
                     if (pageClue[i, j] == null)
                     {
@@ -287,6 +304,7 @@ namespace GamePrototype.Classes.Menu
                         }
                         else*/
                         //{
+
                         pageClue[i, j] = addedClue;
                         //}
                         return;
@@ -307,19 +325,23 @@ namespace GamePrototype.Classes.Menu
             {
                 //bedRoom.Draw(uSpriteBatch);
                 spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
-                clueTextBox.Draw(spriteBatch);
+                //clueTextBox.Draw(spriteBatch);
+            }
+            if (activeMenu == Category.Settings)
+            {
+                //bedRoom.Draw(uSpriteBatch);
+                spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
+                // Draw textbox
+                settingsTextBox.Draw(spriteBatch);
             }
             if (activeMenu == Category.Clues)
             {
                 spriteBatch.Draw(cluesPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
                 // will draw the clue icons
-                // outer loop for pageClue array
-                for (int i = 0; i < 7; i++)
-                {
                     // inner loop for pageClue array
                     for (int j = 0; j < 4; j++)
                     {
-                        Clue curr = pageClue[i, j];
+                        Clue curr = pageClue[cluePageIndex, j];
                         if (curr != null)
                         {
                             switch (j) // why in god's name is this where we decide to use switch statements - Tom
@@ -338,7 +360,6 @@ namespace GamePrototype.Classes.Menu
                                     break;
                             }
                         }
-                    }
                 }
                 // draw the clue cursor based on the selected entry
                 switch (selectedEntry)
@@ -357,6 +378,7 @@ namespace GamePrototype.Classes.Menu
                         spriteBatch.Draw(clueCursor, Game1.FormatDraw(box4), new Color(Color.Black, 50f));
                         break;
                 }
+
                 /*if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))
                 {
                     newsPaper.Draw(spriteBatch);
@@ -369,7 +391,8 @@ namespace GamePrototype.Classes.Menu
                 {
                     tenantDiary.Draw(spriteBatch);
                 }
-            }
+                }
+            
             if (activeMenu == Category.Settings)
             {
                 //bedRoom.Draw(uSpriteBatch);
@@ -377,6 +400,7 @@ namespace GamePrototype.Classes.Menu
                 // Draw textbox
                 settingsTextBox.Draw(spriteBatch);
             }
+            
             if (activeMenu == Category.Power)
             {
                 //bedRoom.Draw(uSpriteBatch);

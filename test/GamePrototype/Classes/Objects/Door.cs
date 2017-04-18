@@ -40,8 +40,6 @@ namespace GamePrototype.Classes.Objects
                 if (Enabled && Clue.Inventory.Contains(requiredClue))
                 {
                     Game1.activeRoom = wannago;
-                    user.X = 1100;
-                    user.Y = 450;
                 }
                 else
                 {
