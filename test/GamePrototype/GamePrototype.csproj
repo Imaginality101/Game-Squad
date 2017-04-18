@@ -241,7 +241,6 @@
     </Content>
     <None Include="Content\phoneMain0.xnb" />
     <None Include="Content\phoneMain5.xnb" />
-    <None Include="Content\phoneMain7.xnb" />
     <Content Include="Content\spook3-thebegining.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
