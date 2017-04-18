@@ -27,8 +27,10 @@ namespace GamePrototype.Classes.Menu
         //Dictionary<Clue, Boolean> clueList; // to keep track of
         // first index is the page on the menu, second index is which space it is on: 0 is top left, 1 is top right, 2 is bottom left, 3 is bottom right 
         public static Clue[,] pageClue = new Clue[7, 4];
+        int cluePageIndex = 0;
 
         // icons
+        /*
         Icon newsPaper;
         Icon bathroomKey;
         Icon closetKey;
@@ -44,15 +46,20 @@ namespace GamePrototype.Classes.Menu
         Icon spaCoupon;
         Icon medicineBottle;
         Icon stickyNote;
+        */
         // phone textures
         Texture2D mainPhoneMenu;
         Texture2D cluesPhoneMenu;
         Texture2D textPhoneMenu;
         // textboxes
         TextBox settingsTextBox;
-
+        TextBox clueTextBox;
+        // highlights the selected clue icon in the clue menu
+        Texture2D clueCursor;
         // list of clues caleb says is useless
         List<Clue> clues;
+        // font for displaying text
+        SpriteFont menuFont;
 
         // image menu box locations
         Rectangle box1 = new Rectangle(755, 230, 70, 100);
@@ -73,7 +80,7 @@ namespace GamePrototype.Classes.Menu
         }
         // TODO: Load icons in Game1, pass them here in an array
         // possibly deprecated, will get images from clues when added to the inventory
-        public void LoadContent(Texture2D main, Texture2D clues, Texture2D text, SpriteFont menuFont)
+        public void LoadContent(Texture2D main, Texture2D clues, Texture2D text, SpriteFont mFont, Texture2D cursor)
         {
             //clues = Clue.Inventory;
             //newsPaper = new Icon(nws, new Rectangle(755, 230, 70, 100)); // box 1 location
@@ -85,7 +92,9 @@ namespace GamePrototype.Classes.Menu
             mainPhoneMenu = main;
             cluesPhoneMenu = clues;
             textPhoneMenu = text;
-            settingsTextBox = new TextBox(new Vector2(760, 220), "Phone Settings: Controls and Information on the game will go here~", 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
+            menuFont = mFont;
+            settingsTextBox = new TextBox(new Vector2(760, 220), "Phone Settings: Controls and Information on the game will go here~", 15, 15, mFont, new Rectangle(0, 0, 0, 0));
+            clueCursor = cursor;
         }
         public void Update()
         {
@@ -109,7 +118,7 @@ namespace GamePrototype.Classes.Menu
             if (kbState.IsKeyDown(Keys.D2) && !prevKbState.IsKeyDown(Keys.D2))
             {
                 // photo menu
-                activeMenu = Category.Photos;
+                activeMenu = Category.Clues;
             }
 
             if (kbState.IsKeyDown(Keys.D3) && !prevKbState.IsKeyDown(Keys.D3))
@@ -132,57 +141,109 @@ namespace GamePrototype.Classes.Menu
                 // back to main menu
                 activeMenu = Category.Main;
             }
-
-            switch (selectedEntry)
+            if (activeMenu == Category.Clues)
             {
-                case SelectedEntry.TopLeft:
+                switch (selectedEntry)
+                {
+                    case SelectedEntry.TopLeft:
+                        {
+                            // moves between entries
+                            if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S))
+                            {
+                                selectedEntry = SelectedEntry.BotLeft;
+                            }
+                            else if (kbState.IsKeyDown(Keys.D) && prevKbState.IsKeyUp(Keys.D))
+                            {
+                                selectedEntry = SelectedEntry.TopRight;
+                            }
+                            // handles scrolling
+                            if (cluePageIndex != 0 && (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W)))
+                            {
+                                selectedEntry = SelectedEntry.BotLeft;
+                                cluePageIndex--;
+                            }
+                            break;
+                        }
+                    case SelectedEntry.TopRight:
+                        {
+                            // moves between entries
+                            if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S))
+                            {
+                                selectedEntry = SelectedEntry.BotRight;
+                            }
+                            else if (kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyUp(Keys.A))
+                            {
+                                selectedEntry = SelectedEntry.TopLeft;
+                            }
+                            // handles scrolling
+                            if (cluePageIndex != 0 && (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W)))
+                            {
+                                selectedEntry = SelectedEntry.BotRight;
+                                cluePageIndex--;
+                            }
+                            break;
+                        }
+                    case SelectedEntry.BotLeft:
+                        {
+                            // moves between entries
+                            if (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W))
+                            {
+                                selectedEntry = SelectedEntry.TopLeft;
+                            }
+                            else if (kbState.IsKeyDown(Keys.D) && prevKbState.IsKeyUp(Keys.D))
+                            {
+                                selectedEntry = SelectedEntry.BotRight;
+                            }
+                            // handles scrolling
+                            if (cluePageIndex != 6 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
+                            {
+                                selectedEntry = SelectedEntry.TopLeft;
+                                cluePageIndex++;
+                            }
+                            break;
+                        }
+                    case SelectedEntry.BotRight:
+                        {
+                            // moves between entries
+                            if (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W))
+                            {
+                                selectedEntry = SelectedEntry.TopRight;
+                            }
+                            else if (kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyUp(Keys.A))
+                            {
+                                selectedEntry = SelectedEntry.BotLeft;
+                            }
+                            // handles scrolling
+                            if (cluePageIndex != 7 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
+                            {
+                                selectedEntry = SelectedEntry.TopRight;
+                                cluePageIndex++;
+                            }
+                            break;
+                        }
+                }
+                if (kbState.IsKeyDown(Keys.Enter) && prevKbState.IsKeyUp(Keys.Enter))
+                {
+                    switch (selectedEntry)
                     {
-                        if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S))
-                        {
-                            selectedEntry = SelectedEntry.BotLeft;
-                        }
-                        else if (kbState.IsKeyDown(Keys.D) && prevKbState.IsKeyUp(Keys.D))
-                        {
-                            selectedEntry = SelectedEntry.TopRight;
-                        }
-                        break;
+                        case SelectedEntry.TopLeft:
+                            clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 0].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
+                            activeMenu = Category.Journal;
+                            break;
+                        case SelectedEntry.TopRight:
+                            clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 1].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
+                            activeMenu = Category.Journal;
+                            break;
+                        case SelectedEntry.BotLeft:
+                            clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 2].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
+                            activeMenu = Category.Journal;
+                            break;
+                        case SelectedEntry.BotRight:
+                            clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 3].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
+                            activeMenu = Category.Journal;
+                            break;
                     }
-                case SelectedEntry.TopRight:
-                    {
-                        if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S))
-                        {
-                            selectedEntry = SelectedEntry.BotRight;
-                        }
-                        else if (kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyUp(Keys.A))
-                        {
-                            selectedEntry = SelectedEntry.TopLeft;
-                        }
-                        break;
-                    }
-                case SelectedEntry.BotLeft:
-                    {
-                        if (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W))
-                        {
-                            selectedEntry = SelectedEntry.TopLeft;
-                        }
-                        else if (kbState.IsKeyDown(Keys.D) && prevKbState.IsKeyUp(Keys.D))
-                        {
-                            selectedEntry = SelectedEntry.BotRight;
-                        }
-                        break;
-                    }
-                case SelectedEntry.BotRight:
-                    {
-                        if (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W))
-                        {
-                            selectedEntry = SelectedEntry.TopRight;
-                        }
-                        else if (kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyUp(Keys.A))
-                        {
-                            selectedEntry = SelectedEntry.BotLeft;
-                        }
-                        break;
-                    }
+                }
             }
             prevKbState = kbState;
         }
@@ -210,7 +271,7 @@ namespace GamePrototype.Classes.Menu
                         }
                         else*/
                         //{
-                            pageClue[i, j] = addedClue;
+                        pageClue[i, j] = addedClue;
                         //}
                         return;
                     }
@@ -230,53 +291,54 @@ namespace GamePrototype.Classes.Menu
             {
                 //bedRoom.Draw(uSpriteBatch);
                 spriteBatch.Draw(textPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
+                if (clueTextBox != null)
+                {
+                    clueTextBox.Draw(spriteBatch);
+                }
             }
-            if (activeMenu == Category.Photos)
+            if (activeMenu == Category.Clues)
             {
                 spriteBatch.Draw(cluesPhoneMenu, new Rectangle(300, 0, 1200, 1000), Color.White);
-                // outer loop for pageClue array
-                for (int i = 0; i < 7; i++)
+                // draw the cursor
+                switch (selectedEntry)
                 {
-                    // inner loop for pageClue array
-                    for (int j = 0; j < 4; j++)
+                    case SelectedEntry.TopLeft:
+                        spriteBatch.Draw(clueCursor, box1, new Color(Color.Black, .5f));
+                        break;
+                    case SelectedEntry.TopRight:
+                        spriteBatch.Draw(clueCursor, box2, new Color(Color.Black, .5f));
+                        break;
+                    case SelectedEntry.BotLeft:
+                        spriteBatch.Draw(clueCursor, box3, new Color(Color.Black, .5f));
+                        break;
+                    case SelectedEntry.BotRight:
+                        spriteBatch.Draw(clueCursor, box4, new Color(Color.Black, .5f));
+                        break;
+                }
+                // inner loop for pageClue array
+                for (int j = 0; j < 4; j++)
+                {
+                    // catch IndexOutOfRange exception                
+                    Clue curr = pageClue[cluePageIndex, j];
+                    if (curr != null)
                     {
-                        Clue curr = pageClue[i, j];
-                        if (curr != null)
+                        switch (j)
                         {
-                            switch (j)
-                            {
-                                case 0:
-                                    spriteBatch.Draw(curr.ClueImage, box1, Color.White);
-                                    break;
-                                case 1:
-                                    spriteBatch.Draw(curr.ClueImage, box2, Color.White);
-                                    break;
-                                case 2:
-                                    spriteBatch.Draw(curr.ClueImage, box3, Color.White);
-                                    break;
-                                case 3:
-                                    spriteBatch.Draw(curr.ClueImage, box4, Color.White);
-                                    break;
-                            }
+                            case 0:
+                                spriteBatch.Draw(curr.ClueImage, box1, Color.White);
+                                break;
+                            case 1:
+                                spriteBatch.Draw(curr.ClueImage, box2, Color.White);
+                                break;
+                            case 2:
+                                spriteBatch.Draw(curr.ClueImage, box3, Color.White);
+                                break;
+                            case 3:
+                                spriteBatch.Draw(curr.ClueImage, box4, Color.White);
+                                break;
                         }
                     }
                 }
-                /*if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))
-                {
-                    newsPaper.Draw(spriteBatch);
-                }
-                if (Clue.Inventory.Contains(Clue.Clues["StickyNote"]))
-                {
-                    stickyNote.Draw(spriteBatch);
-                }
-                if (Clue.Inventory.Contains(Clue.Clues["TenantDiary1"]) || Clue.Inventory.Contains(Clue.Clues["TenantDiary2"]) || Clue.Inventory.Contains(Clue.Clues["TenantDiary3"]))
-                {
-                    tenantDiary.Draw(spriteBatch);
-                }
-                if (Clue.Inventory.Contains(Clue.Clues["CrazyDiary1"]) || Clue.Inventory.Contains(Clue.Clues["CrazyDiary2"]) || Clue.Inventory.Contains(Clue.Clues["CrazyDiary3"]))
-                {
-                    crazyPersonDiary.Draw(spriteBatch);
-                }*/
             }
             if (activeMenu == Category.Settings)
             {

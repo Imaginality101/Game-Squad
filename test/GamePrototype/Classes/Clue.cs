@@ -75,7 +75,7 @@ namespace GamePrototype.Classes
         private static Dictionary<string, Clue> clues = new Dictionary<string, Clue>
         {
             {"News1", new Clue("Newspaper 1","Details revealed about the disappearance of the wealthy widow Olivia Afton.")},
-            {"News2", new Clue("NewsPaper 2", "Another body was pulled from the Humerus River with lacerations. The press begins to call the string a deaths a serial event, branding the killer “The Funnybone Killer”") },
+            {"News2", new Clue("NewsPaper 2", "Another body was pulled from the Humerus River with lacerations. The press begins to call the string a deaths a serial event, branding the killer \"The Funnybone Killer\"") },
             {"News3", new Clue("Newspaper 3", "Reports of a missing girl have began to surface after deaths of Mr and Mrs. Edward Afton. The question on everyone's minds is: Where is Elizabeth Afton? ") },
             {"News4", new Clue("NewsPaper 4", "Reports that Afton Manor has been acquired by the state due to no live heirs") },
             {"News5", new Clue("Newspaper 5", "A bed of remains have been found near the river yet again, this time with an unidentified number of victims. The repeated" /*TODO: Finish sentence */ ) },
