@@ -14,24 +14,27 @@ using GamePrototype.Classes.Objects;
  */
 namespace GamePrototype.Classes.Tools
 {
-    class SaveData
+    static class SaveData
     {
         // attributes
-        protected BinaryWriter bedRoomDataWriter;
-        protected BinaryReader bedRoomDataReader;
-        protected Stream bedRoomReadStream;
-        protected Stream bedRoomWriteStream;
-        protected const string BEDROOM_PATH = "SaveFile";
-        protected BinaryReader settingsReader;
-        protected Stream settingsReadStream;
-        protected const string SETTINGS_PATH = "Settings";
+        //protected BinaryWriter bedRoomDataWriter;
+        //protected BinaryReader bedRoomDataReader;
+        //protected Stream bedRoomReadStream;
+        //protected Stream bedRoomWriteStream;
+        //protected const string BEDROOM_PATH = "SaveFile";
+        private static StreamReader saveFileReader;
+        private static StreamWriter saveFileWriter;
+        private static string savePath = "SaveFile";
+        private static BinaryReader settingsReader;
+        private static Stream settingsReadStream;
+        private static string settingsPath = "Settings";
         // constructor
-        public SaveData()
+        /*public SaveData()
         {
 
-        }
+        }*/
         // writes to the file
-        public void WriteBedroom()
+        /*public void WriteBedroom()
         {
             bedRoomWriteStream = File.Open(BEDROOM_PATH, FileMode.Create);
             bedRoomDataWriter = new BinaryWriter(bedRoomWriteStream);
@@ -48,10 +51,10 @@ namespace GamePrototype.Classes.Tools
             bedRoomDataWriter.Write("END");
             bedRoomDataWriter.Close();
             
-        }
+        }*/
 
         // reads the data
-        public List<GameObject> ReadBedroom()
+        /*public List<GameObject> ReadBedroom()
         {
             // the list to return
             List<GameObject> result = new List<GameObject>();
@@ -81,14 +84,14 @@ namespace GamePrototype.Classes.Tools
                     result.Add(new GameObject(isActivated, textureName, new Point (x, y)));
                 }
             } while (true);
-        }
+        }*/
 
-        public List<object> ReadSettings()
+        public static List<object> ReadSettings()
         {
             List<object> result = new List<object>();
             try
             {
-                settingsReadStream = File.OpenRead(SETTINGS_PATH);
+                settingsReadStream = File.OpenRead(settingsPath);
                 settingsReader = new BinaryReader(settingsReadStream);
                 // read until end of file
                 try
@@ -116,6 +119,18 @@ namespace GamePrototype.Classes.Tools
                 result.Add(972);
             }
                 return result;
+        }
+
+        // saves the game by saving their inventory
+        public static void Save()
+        {
+            saveFileWriter = new StreamWriter("SaveFile");
+            foreach(Clue c in Clue.Inventory)
+            {
+                string entry = c.Name + " ";
+                saveFileWriter.Write(entry);
+                saveFileWriter.Close();
+            }
         }
     }
 }
