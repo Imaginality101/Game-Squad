@@ -306,7 +306,14 @@ namespace GamePrototype.Classes.Menu
             {
                 //bedRoom.Draw(uSpriteBatch);
                 spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
-                clueTextBox.Draw(spriteBatch);
+                //clueTextBox.Draw(spriteBatch);
+            }
+            if (activeMenu == Category.Settings)
+            {
+                //bedRoom.Draw(uSpriteBatch);
+                spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
+                // Draw textbox
+                settingsTextBox.Draw(spriteBatch);
             }
             if (activeMenu == Category.Clues)
             {
@@ -356,6 +363,7 @@ namespace GamePrototype.Classes.Menu
                         spriteBatch.Draw(clueCursor, Game1.FormatDraw(box4), new Color(Color.Black, 50f));
                         break;
                 }
+
                 /*if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))
                 {
                     newsPaper.Draw(spriteBatch);
@@ -368,7 +376,8 @@ namespace GamePrototype.Classes.Menu
                 {
                     tenantDiary.Draw(spriteBatch);
                 }
-            }
+                }
+            
             if (activeMenu == Category.Settings)
             {
                 //bedRoom.Draw(uSpriteBatch);
@@ -376,6 +385,7 @@ namespace GamePrototype.Classes.Menu
                 // Draw textbox
                 settingsTextBox.Draw(spriteBatch);
             }
+            
             if (activeMenu == Category.Power)
             {
                 //bedRoom.Draw(uSpriteBatch);

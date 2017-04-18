@@ -108,6 +108,11 @@ namespace GamePrototype
         Texture2D closetBG;
         Texture2D bathBG;
 
+        // win/lose variable - kat
+        int winLose; // 0 is nothing, 1 is lost, 2 is win
+        Texture2D loseScreen;
+        Texture2D winScreen;
+
 
 
         // Keyboard states
@@ -203,6 +208,8 @@ namespace GamePrototype
             drawRatio.Y = (float)windowHeight / NORM_HEIGHT;
             graphics.ApplyChanges();
 
+            winLose = 0;
+
             Console.WriteLine("Timer mode: " + timerMode + " Bob Ross mode: " + bobRossMode);
             menu = new Menu();
             base.Initialize();
@@ -232,6 +239,19 @@ namespace GamePrototype
             // TODO: Check if menus are open or the open button has been pressed, and if so update them
             prevKbState = kbState;
             kbState = Keyboard.GetState();
+
+            // win state - kat
+            if (activeRoom == CurrentRoom.Closet)
+            {
+                winLose = 2; 
+            }
+
+            // timer ran out lose state - kat
+            if (gameTimerSeconds <= 0)
+            {
+                winLose = 1;
+            }
+
             switch (gameState)
             {
                 case GameState.MainMenu:
@@ -428,6 +448,21 @@ namespace GamePrototype
                 
             }
 
+            // draw lose things - kat
+            if (winLose == 1) // lost
+            {
+                // draw thing here
+                Thread.Sleep(5000);
+                Environment.Exit(0);
+            }
+
+            // draw win things - kat
+            if (winLose == 2)
+            {
+                // draw thing here
+                Thread.Sleep(5000);
+                Restart();
+            }
 
             // menu stuff kat  --- move to menu draw >??????????????????????????????????????????????????????????????????????????????
             /*if (gameState == GameState.GMenu && menuState == MenuState.Main)
@@ -461,6 +496,10 @@ namespace GamePrototype
             {
                 bedRoom.Draw(uSpriteBatch);
                 menu.Draw(uSpriteBatch);
+                if (closetRoom.LightsOff == true || bedRoom.LightsOff == true)
+                {
+                    uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+                }
             }
             // TODO: Caleb - draws objects; is temporary 
             /*foreach (GameObject go in objects)
@@ -571,5 +610,10 @@ namespace GamePrototype
             //activeRoom = wehere;
         }
 
+
+        public static void Restart()
+        {
+
+        }
     }
 }
