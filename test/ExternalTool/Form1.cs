@@ -54,6 +54,36 @@ namespace ExternalTool
                 writer.Write(false);
             }
             // Tom - Getting resolution options
+            if(fullScreenButton.Checked) // fullscreen selected
+            {
+                writer.Write(true);
+            }
+            else // windowed mode
+            {
+                writer.Write(false);
+                if(resButton1.Checked) // 800x600
+                {
+                    writer.Write(800);
+                    writer.Write(600);
+                }
+                else if(resButton2.Checked) // 1024x768
+                {
+                    writer.Write(1024);
+                    writer.Write(768);
+                }
+                else if(resButton3.Checked) // 1732x972
+                {
+                    writer.Write(1728);
+                    writer.Write(972);
+                }
+                else if(resButtonCustom.Checked) // Custom resolution
+                {
+                    int width = int.Parse(resBoxWidth.Text);
+                    int height = int.Parse(resBoxHeight.Text);
+                    writer.Write(width);
+                    writer.Write(height);
+                }
+            }
             writer.Close();
             Close();
         }
@@ -71,6 +101,11 @@ namespace ExternalTool
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void windowedButton_CheckedChanged(object sender, EventArgs e)
+        {
+            resPanelW.Enabled = windowedButton.Checked;
         }
     }
 }
