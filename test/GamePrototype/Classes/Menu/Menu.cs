@@ -19,7 +19,8 @@ namespace GamePrototype.Classes.Menu
 
     class Menu : Tools.IControlled
     {
-
+        KeyboardState kbState;
+        KeyboardState prevKbState;
         private Category activeMenu;
         private SelectedEntry selectedEntry;
         Clue openedClue; // so the menu knows if the player's chosen a clue to look at
@@ -106,8 +107,7 @@ namespace GamePrototype.Classes.Menu
 
         public void CheckInput()
         {
-            KeyboardState kbState = Keyboard.GetState();
-            KeyboardState prevKbState = new KeyboardState(); // assign value at end of method
+            kbState = Keyboard.GetState();
             // pasted Game1 code here
             // TODO: update the phone menu
             // kat draws menu things 
@@ -160,7 +160,7 @@ namespace GamePrototype.Classes.Menu
                                 selectedEntry = SelectedEntry.TopRight;
                             }
                             // handles scrolling
-                            if (cluePageIndex != 0 && (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W)))
+                            else if (cluePageIndex != 0 && (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W)))
                             {
                                 selectedEntry = SelectedEntry.BotLeft;
                                 cluePageIndex--;
@@ -179,7 +179,7 @@ namespace GamePrototype.Classes.Menu
                                 selectedEntry = SelectedEntry.TopLeft;
                             }
                             // handles scrolling
-                            if (cluePageIndex != 0 && (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W)))
+                            else if (cluePageIndex != 0 && (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W)))
                             {
                                 selectedEntry = SelectedEntry.BotRight;
                                 cluePageIndex--;
@@ -198,7 +198,7 @@ namespace GamePrototype.Classes.Menu
                                 selectedEntry = SelectedEntry.BotRight;
                             }
                             // handles scrolling
-                            if (cluePageIndex != 6 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
+                            else if (cluePageIndex != 6 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
                             {
                                 selectedEntry = SelectedEntry.TopLeft;
                                 cluePageIndex++;
@@ -217,7 +217,7 @@ namespace GamePrototype.Classes.Menu
                                 selectedEntry = SelectedEntry.BotLeft;
                             }
                             // handles scrolling
-                            if (cluePageIndex != 7 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
+                            else if (cluePageIndex != 7 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
                             {
                                 selectedEntry = SelectedEntry.TopRight;
                                 cluePageIndex++;
@@ -343,17 +343,17 @@ namespace GamePrototype.Classes.Menu
                 switch (selectedEntry)
                 {
                     case SelectedEntry.TopLeft:
-                        spriteBatch.Draw(clueCursor, box1, new Color(Color.Black, 50f));
+                        spriteBatch.Draw(clueCursor, Game1.FormatDraw(box1), new Color(Color.Black, 50f));
                         break;
 
                     case SelectedEntry.TopRight:
-                        spriteBatch.Draw(clueCursor, box2, new Color(Color.Black, 50f));
+                        spriteBatch.Draw(clueCursor, Game1.FormatDraw(box2), new Color(Color.Black, 50f));
                         break;
                     case SelectedEntry.BotLeft:
-                        spriteBatch.Draw(clueCursor, box3, new Color(Color.Black, 50f));
+                        spriteBatch.Draw(clueCursor, Game1.FormatDraw(box3), new Color(Color.Black, 50f));
                         break;
                     case SelectedEntry.BotRight:
-                        spriteBatch.Draw(clueCursor, box4, new Color(Color.Black, 50f));
+                        spriteBatch.Draw(clueCursor, Game1.FormatDraw(box4), new Color(Color.Black, 50f));
                         break;
                 }
                 /*if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))
