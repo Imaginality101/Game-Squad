@@ -499,10 +499,7 @@ namespace GamePrototype
             {
                 bedRoom.Draw(uSpriteBatch);
                 menu.Draw(uSpriteBatch);
-                if (closetRoom.LightsOff == true || bedRoom.LightsOff == true)
-                {
-                    uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
-                }
+                
             }
             // TODO: Caleb - draws objects; is temporary 
             /*foreach (GameObject go in objects)
