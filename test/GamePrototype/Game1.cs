@@ -55,11 +55,13 @@ namespace GamePrototype
         //MenuState menuState; // kat
         // create attribute components specifically purposed for this class here
         GraphicsDeviceManager graphics;
-        ContentManager content; // added kat
+        static ContentManager content; // added kat
         SpriteBatch uSpriteBatch; // this
         //Declan - this is for sounds
         GameSound music;
         GameSound intro;
+        private GameSound blep;
+        private GameSound beeboop;
         // Caleb - new attribute for reading data
         SaveData data;
         // Caleb - List<GameObject> attribute that will be assigned the the contents of the save files - we will use the rooms later
@@ -125,6 +127,7 @@ namespace GamePrototype
         SpriteFont font;
         SpriteFont menuFont;
         bool drawInteractText = false;
+        
 
         public Game1()
         {
@@ -281,6 +284,7 @@ namespace GamePrototype
                         if (kbState.IsKeyDown(Keys.Tab))// && !prevKbState.IsKeyDown(Keys.Tab))
                         {
                             gameState = GameState.GMenu;
+                            beeboop.PlayAsSoundEffect(.9f);
                         }
                         
                         // Caleb - handles drawing interaction text
@@ -506,6 +510,8 @@ namespace GamePrototype
             // NOTE: Here is where i will load every god damn texture and sound so that the main stops looking like garb and we cont have to pass in ContentManagers *Looks at Kat*
             intro = new GameSound("spook3-thebegining", content);
             music = new GameSound("spook3-theloop ", content);
+            beeboop = new GameSound("phone-beep", content);
+
             font = Content.Load<SpriteFont>("Arial");
             menuFont = Content.Load<SpriteFont>("Courier12");
 
@@ -570,6 +576,7 @@ namespace GamePrototype
         {
             //activeRoom = wehere;
         }
+        public static  ContentManager ContentMan { get { return content; } }
 
     }
 }
