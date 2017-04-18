@@ -64,7 +64,7 @@ namespace GamePrototype
         private GameSound blep;
         private GameSound beeboop;
         // Caleb - new attribute for reading data
-        SaveData data;
+        //SaveData data;
         // Caleb - List<GameObject> attribute that will be assigned the the contents of the save files - we will use the rooms later
         //List<GameObject> objects;
         // Rectangle viewBounds; // I want to try to work it out so that the game changes resolution cleanly so we'll be using this for graphx
@@ -185,13 +185,13 @@ namespace GamePrototype
             activeRoom = CurrentRoom.Bedroom;
             //menuState = MenuState.Main; // kat
 
-            data = new SaveData();
+            //data = new SaveData();
             // initializes the bedroom
             // Caleb - writes appropriate data to file, will save later
-            data.WriteBedroom();
+            //data.WriteBedroom();
             // Caleb - reads GameObjects from the file, stores it in objects
             //objects = data.ReadBedroom();
-            settingsData = data.ReadSettings();
+            settingsData = SaveData.ReadSettings();
             timerMode = (bool)settingsData[0];
             bobRossMode = (bool)settingsData[1];
             fullscreen = (Boolean)settingsData[2]; // Tom - Get whether or not the window is fullscreen
@@ -237,7 +237,10 @@ namespace GamePrototype
         {
             // NOTE: If we want to use Esc as the menu key this is pretty important to remove
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                SaveData.Save();
                 Exit();
+            }
 
             // TODO: The game's update function should primarily call the Update function of the active Room. That should run through inside the Room and update all the objects in it.
             // TODO: Check if menus are open or the open button has been pressed, and if so update them

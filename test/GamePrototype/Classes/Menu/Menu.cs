@@ -141,6 +141,7 @@ namespace GamePrototype.Classes.Menu
                 // exit game code
                 // ADD SAVE CODE FOR EXTERNAL TOOL HERE PLEASEEEE<3
                 activeMenu = Category.Power;
+                
                 Environment.Exit(0);
             }
 
