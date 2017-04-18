@@ -74,7 +74,10 @@ namespace GamePrototype.Classes.Objects
             Vector2 location = GlobalBounds.Location.ToVector2() + interactionPoint;
             return location;
         }
-
+        public Boolean Found
+        {
+            get { return pickedUp; }
+        }
         // TODO: Interaction method
         public override void Interact(Player user)
         {

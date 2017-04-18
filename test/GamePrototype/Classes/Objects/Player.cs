@@ -206,6 +206,7 @@ namespace GamePrototype.Classes.Objects
                 {
                     if (minDistance >= CheckProximity(obj)) // looping through this will find which interactable is the closest to the player
                     {
+                        if(!(obj is ClueObject) || (obj is ClueObject && !((ClueObject)obj).Found))
                         minDistance = CheckProximity(obj);
                         closest = (Interactable)obj;
                     }
