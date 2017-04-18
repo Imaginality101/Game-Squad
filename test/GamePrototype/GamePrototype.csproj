@@ -195,7 +195,9 @@
     <Content Include="Content\stickynoteFULL.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\theclosetFULL.png" />
+    <Content Include="Content\theclosetFULL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\tvFULL.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
