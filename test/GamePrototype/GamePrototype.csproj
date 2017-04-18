@@ -51,6 +51,7 @@
     <Compile Include="Classes\Objects\ClueObject.cs" />
     <Compile Include="Classes\Objects\Door.cs" />
     <Compile Include="Classes\Objects\GameObject.cs" />
+    <Compile Include="Classes\Objects\ImageClue.cs" />
     <Compile Include="Classes\Objects\Interactable.cs" />
     <Compile Include="Classes\Objects\Player.cs" />
     <Compile Include="Classes\Room.cs" />

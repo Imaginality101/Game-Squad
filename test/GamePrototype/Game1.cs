@@ -56,11 +56,13 @@ namespace GamePrototype
         //MenuState menuState; // kat
         // create attribute components specifically purposed for this class here
         GraphicsDeviceManager graphics;
-        ContentManager content; // added kat
+        static ContentManager content; // added kat
         SpriteBatch uSpriteBatch; // this
         //Declan - this is for sounds
         GameSound music;
         GameSound intro;
+        private GameSound blep;
+        private GameSound beeboop;
         // Caleb - new attribute for reading data
         SaveData data;
         // Caleb - List<GameObject> attribute that will be assigned the the contents of the save files - we will use the rooms later
@@ -109,6 +111,11 @@ namespace GamePrototype
         Texture2D closetBG;
         Texture2D bathBG;
 
+        // win/lose variable - kat
+        int winLose; // 0 is nothing, 1 is lost, 2 is win
+        Texture2D loseScreen;
+        Texture2D winScreen;
+
 
 
         // Keyboard states
@@ -126,6 +133,7 @@ namespace GamePrototype
         SpriteFont font;
         SpriteFont menuFont;
         bool drawInteractText = false;
+        
 
         public Game1()
         {
@@ -204,6 +212,8 @@ namespace GamePrototype
             drawRatio.Y = (float)windowHeight / NORM_HEIGHT;
             graphics.ApplyChanges();
 
+            winLose = 0;
+
             Console.WriteLine("Timer mode: " + timerMode + " Bob Ross mode: " + bobRossMode);
             menu = new Menu();
             base.Initialize();
@@ -233,6 +243,19 @@ namespace GamePrototype
             // TODO: Check if menus are open or the open button has been pressed, and if so update them
             prevKbState = kbState;
             kbState = Keyboard.GetState();
+
+            // win state - kat
+            if (activeRoom == CurrentRoom.Closet)
+            {
+                winLose = 2; 
+            }
+
+            // timer ran out lose state - kat
+            if (gameTimerSeconds <= 0)
+            {
+                winLose = 1;
+            }
+
             switch (gameState)
             {
                 case GameState.MainMenu:
@@ -282,6 +305,7 @@ namespace GamePrototype
                         if (kbState.IsKeyDown(Keys.Tab))// && !prevKbState.IsKeyDown(Keys.Tab))
                         {
                             gameState = GameState.GMenu;
+                            beeboop.PlayAsSoundEffect(.9f);
                         }
                         
                         // Caleb - handles drawing interaction text
@@ -429,6 +453,21 @@ namespace GamePrototype
                 
             }
 
+            // draw lose things - kat
+            if (winLose == 1) // lost
+            {
+                // draw thing here
+                Thread.Sleep(5000);
+                Environment.Exit(0);
+            }
+
+            // draw win things - kat
+            if (winLose == 2)
+            {
+                // draw thing here
+                Thread.Sleep(5000);
+                Restart();
+            }
 
             // menu stuff kat  --- move to menu draw >??????????????????????????????????????????????????????????????????????????????
             /*if (gameState == GameState.GMenu && menuState == MenuState.Main)
@@ -462,6 +501,10 @@ namespace GamePrototype
             {
                 bedRoom.Draw(uSpriteBatch);
                 menu.Draw(uSpriteBatch);
+                if (closetRoom.LightsOff == true || bedRoom.LightsOff == true)
+                {
+                    uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+                }
             }
             // TODO: Caleb - draws objects; is temporary 
             /*foreach (GameObject go in objects)
@@ -507,6 +550,8 @@ namespace GamePrototype
             // NOTE: Here is where i will load every god damn texture and sound so that the main stops looking like garb and we cont have to pass in ContentManagers *Looks at Kat*
             intro = new GameSound("spook3-thebegining", content);
             music = new GameSound("spook3-theloop ", content);
+            beeboop = new GameSound("phone-beep", content);
+
             font = Content.Load<SpriteFont>("Arial");
             menuFont = Content.Load<SpriteFont>("Courier12");
 
@@ -571,6 +616,12 @@ namespace GamePrototype
         {
             //activeRoom = wehere;
         }
+        public static  ContentManager ContentMan { get { return content; } }
 
+
+        public static void Restart()
+        {
+
+        }
     }
 }
