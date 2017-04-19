@@ -366,8 +366,35 @@ namespace GamePrototype.Classes.Objects
             {
                 return playerRect;
             }
+            set
+            {
+                playerRect = value;
+            }
         }
+        public override int X
+        {
+            get
+            {
+                return playerRect.X;
+            }
 
+            set
+            {
+                playerRect.X = value;
+            }
+        }
+        public override int Y
+        {
+            get
+            {
+                return playerRect.Y;
+            }
+
+            set
+            {
+                playerRect.Y = value;
+            }
+        }
         // Caleb - methods to block player from moving in the cardinal directions. Useful if collisions end faceUp not being handled by the player class
         // moves player down
         public void KeepPlayerFromGoingUp()
