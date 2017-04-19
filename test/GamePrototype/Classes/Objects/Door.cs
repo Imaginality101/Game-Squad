@@ -19,6 +19,7 @@ namespace GamePrototype.Classes.Objects
         Rectangle doorRect;
         Clue requiredClue;
         CurrentRoom wannago;
+        Vector2 origin;
 
         public Door(Texture2D txtr, Rectangle psRct,CurrentRoom wenothere, Clue rqClue) : base(txtr, psRct)
         {
@@ -26,6 +27,17 @@ namespace GamePrototype.Classes.Objects
             doorRect = psRct;
             requiredClue = rqClue;
             wannago = wenothere;
+            origin = new Vector2(1728 / 2, 972 / 2);
+
+        }
+        //cheatdoor
+        public Door(Texture2D txtr, Rectangle psRct, CurrentRoom wenothere) : base(txtr, psRct)
+        {
+            doorText = txtr;
+            doorRect = psRct;
+            wannago = wenothere;
+            requiredClue = null;
+            origin = new Vector2(1728 / 2, 972 / 2);
 
         }
 
@@ -39,6 +51,8 @@ namespace GamePrototype.Classes.Objects
             {
                 if (Enabled && Clue.Inventory.Contains(requiredClue))
                 {
+                    user.X = (int)origin.X;
+                    user.Y = (int)origin.Y;
                     Game1.activeRoom = wannago;
                 }
                 else
@@ -46,6 +60,14 @@ namespace GamePrototype.Classes.Objects
                     Console.WriteLine("You don't have the right key.");
                 }
             }
+            else
+            {
+                user.X = (int)origin.X;
+                user.Y = (int)origin.Y;
+                Game1.activeRoom = wannago;
+            }
+                
+            
         }
 
     }

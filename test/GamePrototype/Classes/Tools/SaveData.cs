@@ -122,9 +122,11 @@ namespace GamePrototype.Classes.Tools
         }
 
         // saves the game by saving their inventory
+        //            saveFileWriter = new StreamWriter(new FileStream("SaveFile", FileMode.Create));
+
         public static void Save()
         {
-            saveFileWriter = new StreamWriter("SaveFile");
+            saveFileWriter = new StreamWriter(new FileStream("SaveFile", FileMode.Create));
             foreach(Clue c in Clue.Inventory)
             {
                 string entry = c.Name + " ";

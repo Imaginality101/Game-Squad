@@ -94,6 +94,8 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new ClueObject(dress, dressRect, Clue.Clues["Closet Key"], true, Clue.Clues["TenantDiary2"]));
             objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false, "Sticky Note",true));
             objs.Add(new Lamp(lamp, lampRect));
+            objs.Add(new Door(closetdoor, new Rectangle((int)origin.X - 685, (int)origin.Y - 310, 172, 172), CurrentRoom.Closet));//Cheatdoor
+
 
             // Setting up interaction points, this is an example on how
             ((ClueObject)objs[5]).InteractionPoint = new Vector2(30, bedRect.Height / 2); // bed
@@ -105,10 +107,10 @@ namespace GamePrototype.Classes.Tools
         public List<GameObject> ClosetSetup()
         {
             cardbord = content.Load<Texture2D>("boxesFULL");
-            cardboardRect = new Rectangle((int)origin.X - 560, (int)origin.Y - 100, 172, 172);
+            cardboardRect = new Rectangle((int)origin.X - 560, (int)origin.Y - 200, 172, 172);
 
             mirror = content.Load<Texture2D>("mirrorFULL");
-            mirrorRect = new Rectangle((int)origin.X - 570, (int)origin.Y +72, 172, 172);
+            mirrorRect = new Rectangle((int)origin.X - 570, (int)origin.Y -26, 172, 172);
 
 
 
