@@ -49,6 +49,11 @@ namespace GamePrototype.Classes.Objects
             flaggedForUse = false;
             promptTexture = Tools.ObjectSetup.buttonPrompt;
         }
+
+        public Interactable()
+        {
+        }
+
         public abstract void Interact(Player user); // Interaction, check if player has the requisite clue
 
         // property for required clue

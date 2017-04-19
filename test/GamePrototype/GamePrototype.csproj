@@ -58,6 +58,7 @@
     <Compile Include="Classes\Tools\GameSound.cs" />
     <Compile Include="Classes\Tools\IAnimated.cs" />
     <Compile Include="Classes\Tools\IControlled.cs" />
+    <Compile Include="Classes\Objects\Lamp.cs" />
     <Compile Include="Classes\Tools\ObjectSetup.cs" />
     <Compile Include="Classes\Tools\SaveData.cs" />
     <Compile Include="Game1.cs" />
@@ -99,6 +100,9 @@
     <Content Include="Content\bookshelfFULL.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\boxesFULL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\closetdoorFULL.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -132,7 +136,13 @@
     <Content Include="Content\Lamp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\LampFULL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\mainmenumaayybe..png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\mirrorFULL.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\New1FULL.png">

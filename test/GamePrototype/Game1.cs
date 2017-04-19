@@ -107,6 +107,7 @@ namespace GamePrototype
         Rectangle mainMenuRect;
 
         Texture2D blacklight;
+        static bool lightsOn;
         Texture2D bedBG;
         Texture2D closetBG;
         Texture2D bathBG;
@@ -216,6 +217,7 @@ namespace GamePrototype
 
             Console.WriteLine("Timer mode: " + timerMode + " Bob Ross mode: " + bobRossMode);
             menu = new Menu();
+            lightsOn = false;
             base.Initialize();
         }
         
@@ -248,7 +250,7 @@ namespace GamePrototype
             kbState = Keyboard.GetState();
 
             // win state - kat
-            if (activeRoom == CurrentRoom.Closet)
+            if (activeRoom == CurrentRoom.Bathroom)
             {
                 winLose = 2; 
             }
@@ -426,10 +428,7 @@ namespace GamePrototype
                             player.Draw(uSpriteBatch);
                         }
 
-                        if (bedRoom.LightsOff == true)
-                        {
-                            uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
-                        }
+                        
                         break;
                     case CurrentRoom.Closet:
                         // TODO: Draw closet
@@ -443,11 +442,7 @@ namespace GamePrototype
                             closetRoom.Draw(uSpriteBatch);
                             player.Draw(uSpriteBatch);
                         }
-
-                        if (closetRoom.LightsOff == true)
-                        {
-                            uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
-                        }
+                        
                         break;
                     case CurrentRoom.Bathroom:
                         // TODO: update bathroom
@@ -504,10 +499,7 @@ namespace GamePrototype
             {
                 bedRoom.Draw(uSpriteBatch);
                 menu.Draw(uSpriteBatch);
-                if (closetRoom.LightsOff == true || bedRoom.LightsOff == true)
-                {
-                    uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
-                }
+                
             }
             // TODO: Caleb - draws objects; is temporary 
             /*foreach (GameObject go in objects)
@@ -532,6 +524,10 @@ namespace GamePrototype
             //box.Draw(uSpriteBatch);
 
             // end spritebatch
+            if (LightsOn == false && gameState != GameState.MainMenu)
+            {
+                uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+            }
             uSpriteBatch.End();
 
             // TODO: Check if menus are open, and draw them after the room if they are so that the room itself stays visible
@@ -620,6 +616,8 @@ namespace GamePrototype
             //activeRoom = wehere;
         }
         public static  ContentManager ContentMan { get { return content; } }
+        public static bool LightsOn { get { return lightsOn; } set { lightsOn = value; } }
+
 
 
         public static void Restart()

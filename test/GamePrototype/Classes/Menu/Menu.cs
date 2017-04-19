@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using GamePrototype;
 using GamePrototype.Classes.Tools;
 using Microsoft.Xna.Framework.Content;
+using GamePrototype.Classes.Objects;
 /*Workers: Kat, Tom, Caleb
 * DisasterPiece Games
 * Menu Class
@@ -251,8 +252,15 @@ namespace GamePrototype.Classes.Menu
                         case SelectedEntry.TopLeft:
                             if (pageClue[cluePageIndex, 0] != null)
                             {
-                                clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 0].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
-                                activeMenu = Category.Journal;
+                                if (pageClue[cluePageIndex, 0] is ImageClue)
+                                {
+
+                                }
+                                else
+                                {
+                                    clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 0].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
+                                    activeMenu = Category.Journal;
+                                }
                             }
                             break;
                         case SelectedEntry.TopRight:

@@ -35,6 +35,8 @@ namespace GamePrototype.Classes.Tools
         Rectangle news2Rect;
         Texture2D lamp; Rectangle lampRect;
         Texture2D cardbord; Rectangle cardboardRect;
+        private Texture2D mirror;
+        private Rectangle mirrorRect;
 
         // Texture for display above interactables
         public static Texture2D buttonPrompt;
@@ -46,6 +48,7 @@ namespace GamePrototype.Classes.Tools
 
         //draw origin
         Vector2 origin;
+        
 
         // constructor to take content manager, spritebatch and a graphic device to handle local contect assignments
         public ObjectSetup(ContentManager ctm, SpriteBatch sbt, GraphicsDevice gd)
@@ -75,7 +78,7 @@ namespace GamePrototype.Classes.Tools
             stickynote = content.Load<Texture2D>("stickynoteFull"); stickynoteRect = new Rectangle((int)origin.X - 490, (int)origin.Y + 130, 56, 56);
             news1 = content.Load<Texture2D>("NewspaperFULL"); news1Rect = new Rectangle((int)origin.X - 300, (int)origin.Y - 350, 72, 72);
             news2Rect = new Rectangle((int)origin.X + 440, (int)origin.Y - 120, 72, 72);
-            lamp = content.Load<Texture2D>("Lamp"); lampRect = new Rectangle((int)origin.X + 380, (int)origin.Y + 260, 72, 72);
+            lamp = content.Load<Texture2D>("LampFULL"); lampRect = new Rectangle((int)origin.X - 440, (int)origin.Y - 475, 128, 128);
 
 
             //adding them all to the gameobjectlist
@@ -93,20 +96,29 @@ namespace GamePrototype.Classes.Tools
             //objs.Add(new GameObject(dress, dressRect, "Dresser"));
             objs.Add(new ClueObject(dress, dressRect, Clue.Clues["Closet Key"], true, Clue.Clues["TenantDiary2"]));
             objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false, "Sticky Note",true));
+            objs.Add(new Lamp(lamp, lampRect));
 
             // Setting up interaction points, this is an example on how
             ((ClueObject)objs[5]).InteractionPoint = new Vector2(30, bedRect.Height / 2); // bed
             ((ClueObject)objs[10]).InteractionPoint = new Vector2(330, dressRect.Height / 2); // dresser
+            ((Lamp)objs[12]).InteractionPoint = new Vector2(lampRect.Width/2,lampRect.Height); // Lamp
+
             return objs;
         }
         public List<GameObject> ClosetSetup()
         {
-            cardbord = content.Load<Texture2D>("sidetableFULL");
-            cardboardRect = new Rectangle((int)origin.X - 570, (int)origin.Y - 110, 172, 172);
+            cardbord = content.Load<Texture2D>("boxesFULL");
+            cardboardRect = new Rectangle((int)origin.X - 560, (int)origin.Y - 100, 172, 172);
+
+            mirror = content.Load<Texture2D>("mirrorFULL");
+            mirrorRect = new Rectangle((int)origin.X - 570, (int)origin.Y +72, 172, 172);
+
+
 
             List<GameObject> objs = new List<GameObject>();
             //all the shit goes here
-            objs.Add(new GameObject(cardbord, cardboardRect, "Bathroom door"));
+            objs.Add(new GameObject(cardbord, cardboardRect, "Boxes"));
+            objs.Add(new GameObject(mirror, mirrorRect, "Mirror"));
             return objs;
         }
     }
