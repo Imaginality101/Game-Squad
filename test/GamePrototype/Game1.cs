@@ -250,7 +250,7 @@ namespace GamePrototype
             kbState = Keyboard.GetState();
 
             // win state - kat
-            if (activeRoom == CurrentRoom.Bedroom)
+            if (activeRoom == CurrentRoom.Bathroom)
             {
                 winLose = 2; 
             }
