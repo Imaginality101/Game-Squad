@@ -153,6 +153,7 @@ namespace GamePrototype
             // Create a new SpriteBatch, which can be used to draw textures.
             uSpriteBatch = new SpriteBatch(GraphicsDevice);
 
+            loseScreen = content.Load<Texture2D>("death_screen");
             
             MasterContentLoader();//HERE IS WERE TEXTURES GET LOADED
             // Caleb - instantiate the textbox - Kat
@@ -253,6 +254,12 @@ namespace GamePrototype
             if (activeRoom == CurrentRoom.Bathroom)
             {
                 winLose = 2; 
+            }
+
+            if (winLose == 1) // kat
+            {
+                Thread.Sleep(5000);
+                Environment.Exit(0);
             }
 
             // timer ran out lose state - kat
@@ -404,7 +411,7 @@ namespace GamePrototype
 
             // begin spritebatch
             uSpriteBatch.Begin();
-            
+
             // draws the mainmenu - kat
             if (gameState == GameState.MainMenu)
             {
@@ -449,22 +456,6 @@ namespace GamePrototype
                         break;
                 }
                 
-            }
-
-            // draw lose things - kat
-            if (winLose == 1) // lost
-            {
-                // draw thing here
-                Thread.Sleep(5000);
-                Environment.Exit(0);
-            }
-
-            // draw win things - kat
-            if (winLose == 2)
-            {
-                // draw thing here
-                Thread.Sleep(5000);
-                Restart();
             }
 
             // menu stuff kat  --- move to menu draw >??????????????????????????????????????????????????????????????????????????????
@@ -528,6 +519,21 @@ namespace GamePrototype
             {
                 uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
             }
+
+            // draw lose things - kat
+            if (winLose == 1) // lost
+            {
+                uSpriteBatch.Draw(loseScreen, new Rectangle(0, 0, 1950, 1100), Color.White);
+            }
+
+            // draw win things - kat
+            if (winLose == 2) // win
+            {
+                // draw thing here
+                Thread.Sleep(5000);
+                Restart();
+            }
+
             uSpriteBatch.End();
 
             // TODO: Check if menus are open, and draw them after the room if they are so that the room itself stays visible
