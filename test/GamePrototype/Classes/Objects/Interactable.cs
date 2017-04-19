@@ -19,29 +19,35 @@ namespace GamePrototype.Classes.Objects
         private Clue keyRequired;
         private Boolean flaggedForUse;
         Vector2 interactionPoint;
+        Texture2D promptTexture;
 
         public Interactable(Texture2D txtr, Rectangle psRct) : base(txtr, psRct)
         {
             flaggedForUse = false;
+            promptTexture = Tools.ObjectSetup.buttonPrompt;
         }
         // Caleb - temporary constructor for interaction demo for milestone 2
         public Interactable(Texture2D txtr, Rectangle psRct, string nm) : base(txtr, psRct, nm)
         {
             flaggedForUse = false;
+            promptTexture = Tools.ObjectSetup.buttonPrompt;
         }
 
         public Interactable(Texture2D txtr, Rectangle psRct, Boolean collision):base(txtr, psRct, collision)
         {
             flaggedForUse = false;
+            promptTexture = Tools.ObjectSetup.buttonPrompt;
         }
         public Interactable(Texture2D txtr, Rectangle psRct, Rectangle clRct) : base(txtr, psRct, clRct)
         {
             flaggedForUse = false;
+            promptTexture = Tools.ObjectSetup.buttonPrompt;
         }
         // Caleb - Another temporary constructor for interaction demo
         public Interactable(Texture2D txtr, Rectangle psRct, Boolean collision, string nm) : base(txtr, psRct, collision, nm)
         {
             flaggedForUse = false;
+            promptTexture = Tools.ObjectSetup.buttonPrompt;
         }
 
         public Interactable()
@@ -69,6 +75,16 @@ namespace GamePrototype.Classes.Objects
             if (flaggedForUse)
             {
                 base.Draw(sprtBtch, Color.LightGreen);
+                Vector2 basePoint;
+                if (interactionPoint == null)
+                {
+                    basePoint = base.SpriteOrigin;
+                }
+                else
+                {
+                    basePoint = GetGlobalInteractPoint();
+                }
+                sprtBtch.Draw(promptTexture, Game1.FormatDraw(new Rectangle((int)basePoint.X, (int)basePoint.Y - 30, 32, 32)), Color.White);
             }
             else
             {
