@@ -38,6 +38,9 @@ namespace GamePrototype.Classes.Tools
         private Texture2D mirror;
         private Rectangle mirrorRect;
 
+        // Texture for display above interactables
+        public static Texture2D buttonPrompt;
+
         //fields to hold the constuctor stuff
         ContentManager content;
         SpriteBatch spriteBatch;
@@ -54,7 +57,7 @@ namespace GamePrototype.Classes.Tools
             spriteBatch = sbt;
             graphics = gd;
             origin = new Vector2(1728 / 2, 972 / 2);
-
+            buttonPrompt = content.Load<Texture2D>("ebut64x64");
         }
         //method to setup the objects int the bedroom it returns a list of gameobjects
         public List<GameObject> BedroomSetup()

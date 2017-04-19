@@ -127,13 +127,13 @@ namespace GamePrototype.Classes.Objects
         }
         
         // Position properties
-        public int X
+        public virtual int X
         {
             get { return positionRect.X; }
             set { positionRect.X = value; }
         }
 
-        public int Y
+        public virtual int Y
         {
             get { return positionRect.Y; }
             set { positionRect.Y = value; }
