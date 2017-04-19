@@ -18,6 +18,7 @@ namespace GamePrototype.Classes.Objects
         // attributes - should have a Clue that the player needs to access it
         private Clue keyRequired;
         private Boolean flaggedForUse;
+        Vector2 interactionPoint;
 
         public Interactable(Texture2D txtr, Rectangle psRct) : base(txtr, psRct)
         {
@@ -42,6 +43,11 @@ namespace GamePrototype.Classes.Objects
         {
             flaggedForUse = false;
         }
+
+        public Interactable()
+        {
+        }
+
         public abstract void Interact(Player user); // Interaction, check if player has the requisite clue
 
         // property for required clue
@@ -68,6 +74,18 @@ namespace GamePrototype.Classes.Objects
             {
                 base.Draw(sprtBtch);
             }
+        }
+
+        // property for point of interaction
+        public Vector2 InteractionPoint
+        {
+            get { return interactionPoint; }
+            set { interactionPoint = value; }
+        }
+        public Vector2 GetGlobalInteractPoint()
+        {
+            Vector2 location = GlobalBounds.Location.ToVector2() + interactionPoint;
+            return location;
         }
     }
 }

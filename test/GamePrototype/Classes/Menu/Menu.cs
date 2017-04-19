@@ -142,6 +142,7 @@ namespace GamePrototype.Classes.Menu
                 // exit game code
                 // ADD SAVE CODE FOR EXTERNAL TOOL HERE PLEASEEEE<3
                 activeMenu = Category.Power;
+                
                 Environment.Exit(0);
             }
 
@@ -292,13 +293,12 @@ namespace GamePrototype.Classes.Menu
         public static void AddClue(Clue addedClue)
         {
             // find the first empty space in pageClue
-            int i = 0;
-            int j = 0;
+
             // outer loop for pageClue array
-            for (; i < 7; i++)
+            for (int i = 0; i < 7; i++)
             {
                 // inner loop for pageClue array
-                for (; j < 4; j++)
+                for (int j = 0; j < 4; j++)
                 {
                     if (pageClue[i, j] == null)
                     {
@@ -312,6 +312,7 @@ namespace GamePrototype.Classes.Menu
                         }
                         else*/
                         //{
+
                         pageClue[i, j] = addedClue;
                         //}
                         return;
@@ -345,13 +346,10 @@ namespace GamePrototype.Classes.Menu
             {
                 spriteBatch.Draw(cluesPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
                 // will draw the clue icons
-                // outer loop for pageClue array
-                for (int i = 0; i < 7; i++)
-                {
                     // inner loop for pageClue array
                     for (int j = 0; j < 4; j++)
                     {
-                        Clue curr = pageClue[i, j];
+                        Clue curr = pageClue[cluePageIndex, j];
                         if (curr != null)
                         {
                             switch (j) // why in god's name is this where we decide to use switch statements - Tom
@@ -370,7 +368,6 @@ namespace GamePrototype.Classes.Menu
                                     break;
                             }
                         }
-                    }
                 }
                 // draw the clue cursor based on the selected entry
                 switch (selectedEntry)
