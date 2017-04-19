@@ -18,9 +18,12 @@ using GamePrototype.Classes.Objects;
 */
 namespace GamePrototype.Classes.Objects
 {
+
     enum PlayerDir { FaceDown, WalkDown, FaceUp, WalkUp, FaceLeft, WalkLeft, FaceRight, WalkRight}
     class Player : GameObject, Tools.IAnimated, Tools.IControlled
     {
+        public event EventHandler<String> PopUp;
+
         KeyboardState kbState;
         KeyboardState prevKbState;
         Interactable flaggedInteractable;
@@ -475,7 +478,14 @@ namespace GamePrototype.Classes.Objects
         }
         public Rectangle MoveBounds { get { return moveBounds; } set { moveBounds = value; } }
         
-
+        protected virtual void OnPopUp(String msg)
+        {
+            EventHandler<String> handler = PopUp;
+            if (handler != null)
+            {
+                handler(this, msg);
+            }
+        }
 
     }
 }
