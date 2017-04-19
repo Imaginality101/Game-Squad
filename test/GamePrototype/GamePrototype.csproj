@@ -112,6 +112,9 @@
     <Content Include="Content\d6twRar.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\death_screen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Diary1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
