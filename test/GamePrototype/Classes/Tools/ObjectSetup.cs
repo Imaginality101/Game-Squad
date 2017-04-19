@@ -21,23 +21,37 @@ namespace GamePrototype.Classes.Tools
         // TODO: Declan - You can use this for initializing game objects
 
         //Texture2Ds                           //Rectangles;
-        Texture2D bed; Rectangle bedRect;
-        Texture2D tv; Rectangle tvRect;
-        Texture2D sidetab1; Rectangle sidetab1Rect;
-        Texture2D sidetab2; Rectangle sidetab2Rect;
-        Texture2D book; Rectangle bookRect;
-        Texture2D dress; Rectangle dressRect;
-        Texture2D outdoor; Rectangle outdoorRect;
-        Texture2D bathdoor; Rectangle bathdoorRect;
-        Texture2D closetdoor; Rectangle closetdoorRect;
-        Texture2D stickynote; Rectangle stickynoteRect;
-        Texture2D news1; Rectangle news1Rect;
-        Rectangle news2Rect;
-        Texture2D lamp; Rectangle lampRect;
-        Texture2D cardbord; Rectangle cardboardRect;
+        private Texture2D bed;
+        private Texture2D tv;
+        private Texture2D sidetab1;
+        private Texture2D sidetab2;
+        private Texture2D book;
+        private Texture2D dress;
+        private Texture2D outdoor;
+        private Texture2D bathdoor;
+        private Texture2D closetdoor;
+        private Texture2D stickynote;
+        private Texture2D news1;
+        private Texture2D lamp;
+        private Texture2D cardbord;
+        private Rectangle bedRect;
+        private Rectangle tvRect;
+        private Rectangle sidetab1Rect;
+        private Rectangle sidetab2Rect;
+        private Rectangle bookRect;
+        private Rectangle dressRect;
+        private Rectangle outdoorRect;
+        private Rectangle bathdoorRect;
+        private Rectangle closetdoorRect;
+        private Rectangle stickynoteRect;
+        private Rectangle news1Rect;
+        private Rectangle news2Rect;
+        private Rectangle lampRect;
+        private Rectangle cardboardRect;
         private Texture2D mirror;
         private Rectangle mirrorRect;
-
+        private Texture2D bedroondoorside;
+        private Rectangle bedroomdoorsideRect;
         // Texture for display above interactables
         public static Texture2D buttonPrompt;
 
@@ -49,6 +63,7 @@ namespace GamePrototype.Classes.Tools
         //draw origin
         Vector2 origin;
         
+
 
         // constructor to take content manager, spritebatch and a graphic device to handle local contect assignments
         public ObjectSetup(ContentManager ctm, SpriteBatch sbt, GraphicsDevice gd)
@@ -115,12 +130,17 @@ namespace GamePrototype.Classes.Tools
             mirror = content.Load<Texture2D>("mirrorFULL");
             mirrorRect = new Rectangle((int)origin.X - 570, (int)origin.Y -26, 172, 172);
 
+            bedroondoorside = content.Load<Texture2D>("bedroomdoorSideFULL");
+            bedroomdoorsideRect = new Rectangle((int)origin.X + 505, (int)origin.Y - 72, 172, 172);
+
 
 
             List<GameObject> objs = new List<GameObject>();
             //all the shit goes here
             objs.Add(new GameObject(cardbord, cardboardRect, "Boxes"));
             objs.Add(new GameObject(mirror, mirrorRect, "Mirror"));
+            objs.Add(new Door(bedroondoorside, bedroomdoorsideRect, CurrentRoom.Bedroom));
+
             return objs;
         }
     }

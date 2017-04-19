@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-/*Workers: Tom
+/*Workers: Declan
  * DisasterPiece Games
  * Door Class
  */
@@ -18,24 +18,25 @@ namespace GamePrototype.Classes.Objects
         Texture2D doorText;
         Rectangle doorRect;
         Clue requiredClue;
-        CurrentRoom wannago;
+        CurrentRoom destination;
+        CurrentRoom prevRoom;
         Vector2 origin;
 
-        public Door(Texture2D txtr, Rectangle psRct,CurrentRoom wenothere, Clue rqClue) : base(txtr, psRct)
+        public Door(Texture2D txtr, Rectangle psRct,CurrentRoom targetRoom, Clue rqClue) : base(txtr, psRct)
         {
             doorText = txtr;
             doorRect = psRct;
             requiredClue = rqClue;
-            wannago = wenothere;
+            destination = targetRoom;
             origin = new Vector2(1728 / 2, 972 / 2);
 
         }
         //cheatdoor
-        public Door(Texture2D txtr, Rectangle psRct, CurrentRoom wenothere) : base(txtr, psRct)
+        public Door(Texture2D txtr, Rectangle psRct, CurrentRoom targetRoom) : base(txtr, psRct)
         {
             doorText = txtr;
             doorRect = psRct;
-            wannago = wenothere;
+            destination = targetRoom;
             requiredClue = null;
             origin = new Vector2(1728 / 2, 972 / 2);
 
@@ -47,12 +48,15 @@ namespace GamePrototype.Classes.Objects
         public override void Interact(Player user)
         {
             // if there is a required clue
+            
             if (requiredClue != null)
             {
                 if (Enabled && Clue.Inventory.Contains(requiredClue))
                 {
-                    
-                    Game1.activeRoom = wannago;
+
+                    Game1.activeRoom = destination;
+                    Translocate(user, destination, prevRoom);
+
                 }
                 else
                 {
@@ -61,12 +65,35 @@ namespace GamePrototype.Classes.Objects
             }
             else
             {
-                
-                Game1.activeRoom = wannago;
+                Game1.activeRoom = destination;
+                Translocate(user, destination, prevRoom);
             }
-            user.X = (int)origin.X + 500;
-            user.Y = (int)origin.Y - 72;
+            prevRoom = destination;
 
+        }
+        public void Translocate(Player user,CurrentRoom destination, CurrentRoom prevRoom)
+        {
+            if (destination == CurrentRoom.Closet)
+            {
+                user.X = (int)origin.X + 490;
+                user.Y = (int)origin.Y - 90;
+            }
+            if (destination == CurrentRoom.Bedroom)// && prevRoom == CurrentRoom.Closet)
+            {
+                user.X = (int)origin.X - 660;
+                user.Y = (int)origin.Y + 220;
+            }/*
+            if (destination == CurrentRoom.Bedroom && prevRoom == CurrentRoom.Bathroom)
+            {
+                //+ 350, (int)origin.Y - 530
+                user.X = (int)origin.X + 35;
+                user.Y = (int)origin.Y - 500;
+            }
+            else
+            {
+                user.X = (int)origin.X + 0;
+                user.Y = (int)origin.Y + 0;
+            }*/
         }
 
     }
