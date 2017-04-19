@@ -51,8 +51,7 @@ namespace GamePrototype.Classes.Objects
             {
                 if (Enabled && Clue.Inventory.Contains(requiredClue))
                 {
-                    user.X = (int)origin.X;
-                    user.Y = (int)origin.Y;
+                    
                     Game1.activeRoom = wannago;
                 }
                 else
@@ -62,12 +61,12 @@ namespace GamePrototype.Classes.Objects
             }
             else
             {
-                user.X = (int)origin.X;
-                user.Y = (int)origin.Y;
+                
                 Game1.activeRoom = wannago;
             }
-                
-            
+            user.X = (int)origin.X + 500;
+            user.Y = (int)origin.Y - 72;
+
         }
 
     }
