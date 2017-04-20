@@ -122,6 +122,19 @@ namespace GamePrototype.Classes.Menu
             // TODO: update the phone menu
             // kat draws menu things 
 
+            if (imageClueDraw > 0)
+            {
+                while(kbState.IsKeyUp(Keys.Enter) == true)
+                {
+
+                }
+
+                if (kbState.IsKeyDown(Keys.Enter) == true)
+                {
+                    imageClueDraw = 0;
+                }
+            }
+
             if (kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
             {
                 // journal menu
