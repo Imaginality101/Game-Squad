@@ -100,7 +100,7 @@ namespace GamePrototype.Classes.Tools
             // Caleb - adding a temporary name string to the constructor which is to demo interaction
             objs.Add(new GameObject(outdoor, outdoorRect, "End door"));
             objs.Add(new GameObject(bathdoor, bathdoorRect, "Bathroom door"));
-            objs.Add(new Door(closetdoor, closetdoorRect, CurrentRoom.Closet,Clue.Clues["Closet Key"]));
+            objs.Add(new Door(closetdoor, closetdoorRect, CurrentRoom.Closet,Clue.Clues["ClosetKey"]));
             objs.Add(new GameObject(tv, tvRect, new Rectangle(0, 100, 172, 250)));
             objs.Add(new GameObject(sidetab2, sidetab2Rect, new Rectangle(5, 50, 172, 102)));
             objs.Add(new ClueObject(bed, bedRect, new Rectangle(0, 100, 512, 226), Clue.Clues["TenantDiary2"], false));//Clue.Clues["TenantDiary2"], "Bed"
@@ -109,7 +109,7 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new ClueObject(news1, news1Rect, Clue.Clues["News1"], false, "News 1", true));
             objs.Add(new ClueObject(news1, news2Rect, Clue.Clues["News2"], false, "News 2", true));
             //objs.Add(new GameObject(dress, dressRect, "Dresser"));
-            objs.Add(new ClueObject(dress, dressRect, Clue.Clues["Closet Key"], true, Clue.Clues["TenantDiary2"]));
+            objs.Add(new ClueObject(dress, dressRect, Clue.Clues["ClosetKey"], true, Clue.Clues["TenantDiary2"]));
             objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false, "Sticky Note",true));
             objs.Add(new Lamp(lamp, lampRect));
             objs.Add(new Door(closetdoor, new Rectangle((int)origin.X - 685, (int)origin.Y - 310, 172, 172), CurrentRoom.Closet));//Cheatdoor

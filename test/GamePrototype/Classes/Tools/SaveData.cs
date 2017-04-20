@@ -24,7 +24,7 @@ namespace GamePrototype.Classes.Tools
         //protected const string BEDROOM_PATH = "SaveFile";
         private static StreamReader saveFileReader;
         private static StreamWriter saveFileWriter;
-        private static string savePath = "SaveFile";
+        private static string savePath = "SaveFile.txt";
         private static BinaryReader settingsReader;
         private static Stream settingsReadStream;
         private static string settingsPath = "Settings";
@@ -131,8 +131,22 @@ namespace GamePrototype.Classes.Tools
             {
                 string entry = c.Name + " ";
                 saveFileWriter.Write(entry);
-                saveFileWriter.Close();
+                saveFileWriter.Flush();
             }
+            saveFileWriter.Close();
+        }
+        // returns the text in SaveFile
+        public static string GetSaveFileData()
+        {
+            saveFileReader = new StreamReader(savePath);
+            string line = "";
+            string result = "";
+            while ((line = saveFileReader.ReadLine()) != null)
+            {
+                result += line;
+            }
+            saveFileReader.Close();
+            return result;
         }
     }
 }
