@@ -156,5 +156,12 @@ namespace GamePrototype.Classes.Tools
                 return "";
             }
         }
+        // clears the SaveFile file
+        public static void Restart()
+        {
+            saveFileWriter = new StreamWriter(new FileStream("SaveFile", FileMode.Create));
+            Clue.Inventory.Clear();
+            saveFileWriter.Close();
+        }
     }
 }
