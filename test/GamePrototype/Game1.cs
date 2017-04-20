@@ -154,6 +154,7 @@ namespace GamePrototype
             uSpriteBatch = new SpriteBatch(GraphicsDevice);
 
             loseScreen = content.Load<Texture2D>("death_screen");
+            winScreen = content.Load<Texture2D>("win_screen");
             
             MasterContentLoader();//HERE IS WERE TEXTURES GET LOADED
             // Caleb - instantiate the textbox - Kat
@@ -251,6 +252,13 @@ namespace GamePrototype
             // TODO: Check if menus are open or the open button has been pressed, and if so update them
             prevKbState = kbState;
             kbState = Keyboard.GetState();
+
+            if (winLose == 2)
+            {
+                Thread.Sleep(5000);
+                winLose = 0;
+                Restart();
+            }
 
             // win state - kat
             if (activeRoom == CurrentRoom.Bathroom)
@@ -531,9 +539,7 @@ namespace GamePrototype
             // draw win things - kat
             if (winLose == 2) // win
             {
-                // draw thing here
-                Thread.Sleep(5000);
-                Restart();
+                uSpriteBatch.Draw(winScreen, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
             }
 
             uSpriteBatch.End();
