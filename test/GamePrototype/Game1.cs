@@ -642,6 +642,8 @@ namespace GamePrototype
             bedRoom.ReenableClueObjects();
             closetRoom.ReenableClueObjects();
             SaveData.Restart();
+            // TODO: reconfigure so that it assigns the custom timer value
+            gameTimerSeconds = 15 * 60;
 
         }
     }
