@@ -357,7 +357,10 @@ namespace GamePrototype.Classes.Menu
             {
                 //bedRoom.Draw(uSpriteBatch);
                 spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
-                clueTextBox.Draw(spriteBatch);
+                if (clueTextBox != null)
+                {
+                    clueTextBox.Draw(spriteBatch);
+                }
             }
             if (activeMenu == Category.Settings)
             {
@@ -411,21 +414,9 @@ namespace GamePrototype.Classes.Menu
                         break;
                 }
 
-                if (imageClueDraw == 1)
+                if (imageClueDraw > 0)
                 {
-                    spriteBatch.Draw(pageClue[cluePageIndex, 0].BlownClueImage, new Rectangle(0, 0, 1950, 1100), Color.White);
-                }
-                if (imageClueDraw == 2)
-                {
-                    spriteBatch.Draw(pageClue[cluePageIndex, 1].BlownClueImage, new Rectangle(0, 0, 1950, 1100), Color.White);
-                }
-                if (imageClueDraw == 3)
-                {
-                    spriteBatch.Draw(pageClue[cluePageIndex, 2].BlownClueImage, new Rectangle(0, 0, 1950, 1100), Color.White);
-                }
-                if (imageClueDraw == 4)
-                {
-                    spriteBatch.Draw(pageClue[cluePageIndex, 3].BlownClueImage, new Rectangle(0, 0, 1950, 1100), Color.White);
+                    spriteBatch.Draw(pageClue[cluePageIndex, imageClueDraw - 1].BlownClueImage, Game1.FormatDraw(new Rectangle(0, 0, 1950, 1100)), Color.White);
                 }
 
                 /*if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))
