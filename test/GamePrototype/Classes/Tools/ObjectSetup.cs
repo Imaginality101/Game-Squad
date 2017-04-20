@@ -109,7 +109,7 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new ClueObject(news1, news1Rect, Clue.Clues["News1"], false, "News 1", true));
             objs.Add(new ClueObject(news1, news2Rect, Clue.Clues["News2"], false, "News 2", true));
             //objs.Add(new GameObject(dress, dressRect, "Dresser"));
-            objs.Add(new ClueObject(dress, dressRect, Clue.Clues["ClosetKey"], true, Clue.Clues["TenantDiary2"]));
+            objs.Add(new ClueObject(dress, dressRect, Clue.Clues["ClosetKey"], false, Clue.Clues["TenantDiary2"]));
             objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false, "Sticky Note",true));
             objs.Add(new Lamp(lamp, lampRect));
             objs.Add(new Door(closetdoor, new Rectangle((int)origin.X - 685, (int)origin.Y - 310, 172, 172), CurrentRoom.Closet));//Cheatdoor

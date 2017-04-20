@@ -333,7 +333,7 @@ namespace GamePrototype.Classes.Menu
             {
                 //bedRoom.Draw(uSpriteBatch);
                 spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
-                //clueTextBox.Draw(spriteBatch);
+                clueTextBox.Draw(spriteBatch);
             }
             if (activeMenu == Category.Settings)
             {
