@@ -66,6 +66,9 @@ namespace GamePrototype.Classes.Menu
         // font for displaying text
         SpriteFont menuFont;
 
+        // kat - for drawing images
+        int imageClueDraw = 0;
+
         // image menu box locations
         Rectangle box1 = new Rectangle(755, 230, 70, 100);
         Rectangle box2 = new Rectangle(845, 230, 70, 100);
@@ -119,6 +122,19 @@ namespace GamePrototype.Classes.Menu
             // TODO: update the phone menu
             // kat draws menu things 
 
+            if (imageClueDraw > 0)
+            {
+                while(kbState.IsKeyUp(Keys.Enter) == true)
+                {
+
+                }
+
+                if (kbState.IsKeyDown(Keys.Enter) == true)
+                {
+                    imageClueDraw = 0;
+                }
+            }
+
             if (kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
             {
                 // journal menu
@@ -142,7 +158,7 @@ namespace GamePrototype.Classes.Menu
                 // exit game code
                 // ADD SAVE CODE FOR EXTERNAL TOOL HERE PLEASEEEE<3
                 activeMenu = Category.Power;
-                
+                SaveData.Save();
                 Environment.Exit(0);
             }
 
@@ -252,9 +268,9 @@ namespace GamePrototype.Classes.Menu
                         case SelectedEntry.TopLeft:
                             if (pageClue[cluePageIndex, 0] != null)
                             {
-                                if (pageClue[cluePageIndex, 0] is ImageClue)
+                                if (pageClue[cluePageIndex, 0].BlownClueImage != null)
                                 {
-
+                                    imageClueDraw = 1;
                                 }
                                 else
                                 {
@@ -266,22 +282,43 @@ namespace GamePrototype.Classes.Menu
                         case SelectedEntry.TopRight:
                             if (pageClue[cluePageIndex, 1] != null)
                             {
-                                clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 1].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
-                                activeMenu = Category.Journal;
+                                if (pageClue[cluePageIndex, 1].BlownClueImage != null)
+                                {
+                                    imageClueDraw = 2;
+                                }
+                                else
+                                {
+                                    clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 1].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
+                                    activeMenu = Category.Journal;
+                                }
                             }
                             break;
                         case SelectedEntry.BotLeft:
                             if (pageClue[cluePageIndex, 2] != null)
                             {
-                                clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 2].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
-                                activeMenu = Category.Journal;
+                                if (pageClue[cluePageIndex, 2].BlownClueImage != null)
+                                {
+                                    imageClueDraw = 3;
+                                }
+                                else
+                                {
+                                    clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 2].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
+                                    activeMenu = Category.Journal;
+                                }
                             }
                             break;
                         case SelectedEntry.BotRight:
-                            if (pageClue[cluePageIndex, 2] != null)
+                            if (pageClue[cluePageIndex, 3] != null)
                             {
-                                clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 3].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
-                                activeMenu = Category.Journal;
+                                if (pageClue[cluePageIndex, 3].BlownClueImage != null)
+                                {
+                                    imageClueDraw = 4;
+                                }
+                                else
+                                {
+                                    clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 3].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
+                                    activeMenu = Category.Journal;
+                                }
                             }
                             break;
                     }
@@ -385,6 +422,23 @@ namespace GamePrototype.Classes.Menu
                     case SelectedEntry.BotRight:
                         spriteBatch.Draw(clueCursor, Game1.FormatDraw(box4), new Color(Color.Black, 50f));
                         break;
+                }
+
+                if (imageClueDraw == 1)
+                {
+                    spriteBatch.Draw(pageClue[cluePageIndex, 0].BlownClueImage, new Rectangle(0, 0, 1950, 1100), Color.White);
+                }
+                if (imageClueDraw == 2)
+                {
+                    spriteBatch.Draw(pageClue[cluePageIndex, 1].BlownClueImage, new Rectangle(0, 0, 1950, 1100), Color.White);
+                }
+                if (imageClueDraw == 3)
+                {
+                    spriteBatch.Draw(pageClue[cluePageIndex, 2].BlownClueImage, new Rectangle(0, 0, 1950, 1100), Color.White);
+                }
+                if (imageClueDraw == 4)
+                {
+                    spriteBatch.Draw(pageClue[cluePageIndex, 3].BlownClueImage, new Rectangle(0, 0, 1950, 1100), Color.White);
                 }
 
                 /*if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))
