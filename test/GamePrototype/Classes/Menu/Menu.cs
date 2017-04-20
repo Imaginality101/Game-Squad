@@ -239,7 +239,7 @@ namespace GamePrototype.Classes.Menu
                                 blep.PlayAsSoundEffect(.9f);
                             }
                             // handles scrolling
-                            else if (cluePageIndex != 7 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
+                            else if (cluePageIndex != 6 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
                             {
                                 selectedEntry = SelectedEntry.TopRight;
                                 blep.PlayAsSoundEffect(.9f);
@@ -357,7 +357,7 @@ namespace GamePrototype.Classes.Menu
             {
                 //bedRoom.Draw(uSpriteBatch);
                 spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
-                //clueTextBox.Draw(spriteBatch);
+                clueTextBox.Draw(spriteBatch);
             }
             if (activeMenu == Category.Settings)
             {

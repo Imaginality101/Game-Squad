@@ -75,16 +75,8 @@ namespace GamePrototype.Classes.Objects
             if (flaggedForUse)
             {
                 base.Draw(sprtBtch, Color.LightGreen);
-                Vector2 basePoint;
-                if (interactionPoint == null)
-                {
-                    basePoint = base.SpriteOrigin;
-                }
-                else
-                {
-                    basePoint = GetGlobalInteractPoint();
-                }
-                sprtBtch.Draw(promptTexture, Game1.FormatDraw(new Rectangle((int)basePoint.X, (int)basePoint.Y - 30, 32, 32)), Color.White);
+                Vector2 basePoint = base.GlobalBounds.Center.ToVector2();
+                sprtBtch.Draw(promptTexture, Game1.FormatDraw(new Rectangle((int)(basePoint.X), (int)(basePoint.Y - (promptTexture.Height / 2)), promptTexture.Width, promptTexture.Height)), Color.White);
             }
             else
             {

@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using GamePrototype.Classes.Objects;
 using Microsoft.Xna.Framework.Content;
+using GamePrototype.Classes.Tools;
 /*Workers: Kat, Tom, Declan, Caleb
  * DisasterPiece Games
  * Room Class
@@ -77,6 +78,34 @@ namespace GamePrototype.Classes
                 for (int i = 0; i < objectsInRoom.Count; i++)
                 {
                     objectsInRoom[i].Draw(sprtBtch);
+                }
+            }
+        }
+        // Caleb - Marks ClueObjects already gotten from previous games as picked up
+        public void DisableSavedClueObjects()
+        {
+            string[] clues = SaveData.GetSaveFileData().Split(' ');
+            foreach (GameObject go in objectsInRoom)
+            {
+                if (go is ClueObject)
+                {
+                    ClueObject co = (ClueObject)go;
+                    foreach (string key in clues)
+                    {
+                        // checks the null case
+                        if (key == "")
+                        {
+                            continue;
+                        }
+                        if (co.GivenClue == Clue.Clues[key])
+                        {
+                            co.Found = true;
+                            if (co.OneTimeUse)
+                            {
+                                co.Enabled = false;
+                            }
+                        }
+                    }
                 }
             }
         }

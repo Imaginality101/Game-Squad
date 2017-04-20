@@ -67,6 +67,25 @@ namespace GamePrototype.Classes.Objects
         public Boolean Found
         {
             get { return pickedUp; }
+            set { pickedUp = value; }
+        }
+        public Boolean OneTimeUse
+        {
+            get
+            {
+                return onetimeUse;
+            }
+            set
+            {
+                onetimeUse = value;
+            }
+        }
+        public Clue GivenClue
+        {
+            get
+            {
+                return givenClue;
+            }
         }
         // TODO: Interaction method
         public override void Interact(Player user)
