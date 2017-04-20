@@ -90,7 +90,7 @@ namespace ExternalTool
 
         private void timerBox_CheckedChanged(object sender, EventArgs e)
         {
-
+            timeLimit.Enabled = timerBox.Checked;
         }
 
         private void bobRossCheckBox_CheckedChanged_1(object sender, EventArgs e)

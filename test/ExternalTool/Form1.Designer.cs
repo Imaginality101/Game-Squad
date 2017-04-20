@@ -42,37 +42,43 @@
             this.resButton1 = new System.Windows.Forms.RadioButton();
             this.windowedButton = new System.Windows.Forms.RadioButton();
             this.fullScreenButton = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.easyBox = new System.Windows.Forms.CheckBox();
+            this.timeLimit = new System.Windows.Forms.MaskedTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.resPanelW.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // runGame
             // 
-            this.runGame.Location = new System.Drawing.Point(230, 522);
+            this.runGame.Location = new System.Drawing.Point(26, 211);
             this.runGame.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.runGame.Name = "runGame";
-            this.runGame.Size = new System.Drawing.Size(180, 82);
+            this.runGame.Size = new System.Drawing.Size(280, 156);
             this.runGame.TabIndex = 1;
-            this.runGame.Text = "Run Game!";
+            this.runGame.Text = "Save Settings";
             this.runGame.UseVisualStyleBackColor = true;
             this.runGame.Click += new System.EventHandler(this.runGame_Click);
             // 
             // timerBox
             // 
             this.timerBox.AutoSize = true;
-            this.timerBox.Location = new System.Drawing.Point(100, 74);
+            this.timerBox.Location = new System.Drawing.Point(7, 55);
             this.timerBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.timerBox.Name = "timerBox";
-            this.timerBox.Size = new System.Drawing.Size(74, 24);
+            this.timerBox.Size = new System.Drawing.Size(78, 24);
             this.timerBox.TabIndex = 2;
-            this.timerBox.Text = "Timer";
+            this.timerBox.Text = "Timer:";
             this.timerBox.UseVisualStyleBackColor = true;
             this.timerBox.CheckedChanged += new System.EventHandler(this.timerBox_CheckedChanged);
             // 
             // bobRossCheckBox
             // 
             this.bobRossCheckBox.AutoSize = true;
-            this.bobRossCheckBox.Location = new System.Drawing.Point(100, 149);
+            this.bobRossCheckBox.Location = new System.Drawing.Point(7, 90);
             this.bobRossCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bobRossCheckBox.Name = "bobRossCheckBox";
             this.bobRossCheckBox.Size = new System.Drawing.Size(149, 24);
@@ -200,14 +206,66 @@
             this.fullScreenButton.Text = "Fullscreen";
             this.fullScreenButton.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.timeLimit);
+            this.groupBox2.Controls.Add(this.easyBox);
+            this.groupBox2.Controls.Add(this.bobRossCheckBox);
+            this.groupBox2.Controls.Add(this.timerBox);
+            this.groupBox2.Location = new System.Drawing.Point(26, 74);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(281, 129);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Gameplay Modifiers";
+            // 
+            // easyBox
+            // 
+            this.easyBox.AutoSize = true;
+            this.easyBox.Location = new System.Drawing.Point(7, 26);
+            this.easyBox.Name = "easyBox";
+            this.easyBox.Size = new System.Drawing.Size(114, 24);
+            this.easyBox.TabIndex = 0;
+            this.easyBox.Text = "Easy Mode";
+            this.easyBox.UseVisualStyleBackColor = true;
+            // 
+            // timeLimit
+            // 
+            this.timeLimit.Location = new System.Drawing.Point(88, 56);
+            this.timeLimit.Mask = "00000";
+            this.timeLimit.Name = "timeLimit";
+            this.timeLimit.Size = new System.Drawing.Size(52, 26);
+            this.timeLimit.TabIndex = 0;
+            this.timeLimit.ValidatingType = typeof(int);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(156, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 20);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "minutes";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(26, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(390, 29);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Escape From Afton Manor: Settings";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(643, 719);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.bobRossCheckBox);
-            this.Controls.Add(this.timerBox);
             this.Controls.Add(this.runGame);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
@@ -217,6 +275,8 @@
             this.groupBox1.PerformLayout();
             this.resPanelW.ResumeLayout(false);
             this.resPanelW.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,6 +297,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox resBoxHeight;
         private System.Windows.Forms.MaskedTextBox resBoxWidth;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.MaskedTextBox timeLimit;
+        private System.Windows.Forms.CheckBox easyBox;
+        private System.Windows.Forms.Label label3;
     }
 }
 

@@ -37,6 +37,7 @@ namespace GamePrototype.Classes.Objects
         private Texture2D faceRightSprite;
         private Texture2D faceUpSprite;
         private Texture2D faceDownSprite;
+        private Texture2D promptTexture;
         private const int MOVE_SPEED = 4;
 
         // attributes for sounds - kat
@@ -60,6 +61,7 @@ namespace GamePrototype.Classes.Objects
             faceUpSprite = faceUp;
             faceDownSprite = faceDown;
             content = contentParam;
+            promptTexture = Tools.ObjectSetup.buttonPrompt;
             // footstep sound effect - kat
             footsteps = new GameSound("Footsteps", content);
         }
@@ -476,6 +478,11 @@ namespace GamePrototype.Classes.Objects
                 sprtBtch.Draw(walkRightSprites[currentFrame], Game1.FormatDraw(playerRect), Color.White);
             }
 
+            if(flaggedInteractable != null)
+            {
+                Vector2 basePoint = new Vector2(playerRect.X + (playerRect.Width / 2), playerRect.Y);
+                sprtBtch.Draw(promptTexture, Game1.FormatDraw(new Rectangle((int)(basePoint.X - 16), (int)(basePoint.Y - 40), 32, 32)), Color.White);
+            }
         }
         public Rectangle MoveBounds { get { return moveBounds; } set { moveBounds = value; } }
         
