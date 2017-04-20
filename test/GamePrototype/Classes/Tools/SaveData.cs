@@ -139,15 +139,22 @@ namespace GamePrototype.Classes.Tools
         // returns the text in SaveFile
         public static string GetSaveFileData()
         {
-            saveFileReader = new StreamReader(savePath);
-            string line = "";
-            string result = "";
-            while ((line = saveFileReader.ReadLine()) != null)
+            try
             {
-                result += line;
+                saveFileReader = new StreamReader(savePath);
+                string line = "";
+                string result = "";
+                while ((line = saveFileReader.ReadLine()) != null)
+                {
+                    result += line;
+                }
+                saveFileReader.Close();
+                return result;
             }
-            saveFileReader.Close();
-            return result;
+            catch(FileNotFoundException e)
+            {
+                return "";
+            }
         }
     }
 }
