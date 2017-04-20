@@ -91,11 +91,11 @@ namespace GamePrototype.Classes
         // TODO: Caleb - Clue Dictionary should go here, it will be static
         private static Dictionary<string, Clue> clues = new Dictionary<string, Clue>
         {
-            {"News1", new Clue("News1","Details revealed about the disappearance of the wealthy widow Olivia Afton.")},
-            {"News2", new Clue("News2", "Another body was pulled from the Humerus River with lacerations. The press begins to call the string a deaths a serial event, branding the killer \"The Funnybone Killer\"") },
-            {"News3", new Clue("News3", "Reports of a missing girl have began to surface after deaths of Mr and Mrs. Edward Afton. The question on everyone's minds is: Where is Elizabeth Afton? ") },
-            {"News4", new Clue("News4", "Reports that Afton Manor has been acquired by the state due to no live heirs") },
-            {"News5", new Clue("News5", "A bed of remains have been found near the river yet again, this time with an unidentified number of victims. The repeated" /*TODO: Finish sentence */ ) },
+            {"News1", new ImageClue("News1","Details revealed about the disappearance of the wealthy widow Olivia Afton.")},
+            {"News2", new ImageClue("News2", "Another body was pulled from the Humerus River with lacerations. The press begins to call the string a deaths a serial event, branding the killer \"The Funnybone Killer\"") },
+            {"News3", new ImageClue("News3", "Reports of a missing girl have began to surface after deaths of Mr and Mrs. Edward Afton. The question on everyone's minds is: Where is Elizabeth Afton? ") },
+            {"News4", new ImageClue("News4", "Reports that Afton Manor has been acquired by the state due to no live heirs") },
+            {"News5", new ImageClue("News5", "A bed of remains have been found near the river yet again, this time with an unidentified number of victims. The repeated" /*TODO: Finish sentence */ ) },
             {"BathroomKey", new Clue("BathroomKey", "It's a key to the bathroom") },
             {"ClosetKey", new Clue("ClosetKey", "It's a key to the closet") },
             {"OldPhoto1", new Clue("OldPhoto1", "It's a photo of the house, when it was constructed") },
@@ -149,7 +149,7 @@ namespace GamePrototype.Classes
             return;
         }
 
-        public static void LoadContent(Texture2D news, Texture2D bathroomKey, Texture2D closetKey, Texture2D oldPhoto, Texture2D newPhoto, Texture2D tenantDir, Texture2D crazyDir, Texture2D receipt, Texture2D ring, Texture2D pendant, Texture2D bones, Texture2D jaggedKnife, Texture2D spaCoupon, Texture2D medicineBottle, Texture2D stickyNote)
+        public static void LoadContent(Texture2D news, Texture2D bathroomKey, Texture2D closetKey, Texture2D oldPhoto, Texture2D newPhoto, Texture2D tenantDir, Texture2D crazyDir, Texture2D receipt, Texture2D ring, Texture2D pendant, Texture2D bones, Texture2D jaggedKnife, Texture2D spaCoupon, Texture2D medicineBottle, Texture2D stickyNote, Texture2D news1BlownUp, Texture2D news2BlownUp, Texture2D news3BlownUp, Texture2D news4BlownUp)
         {
             clues["News1"].ClueImage = news;
             clues["News2"].ClueImage = news;
@@ -176,6 +176,12 @@ namespace GamePrototype.Classes
             clues["SpaCoupon"].ClueImage = spaCoupon;
             clues["MedicineBottle"].ClueImage = medicineBottle;
             clues["StickyNote"].ClueImage = stickyNote;
+            // Caleb - load blown up images for image clues
+            /*clues["News1"]. = news;
+            clues["News2"].ClueImage = news;
+            clues["News3"].ClueImage = news;
+            clues["News4"].ClueImage = news;
+            clues["News5"].ClueImage = news;*/
         }
 
     }
