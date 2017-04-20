@@ -24,7 +24,7 @@ namespace GamePrototype.Classes.Tools
         //protected const string BEDROOM_PATH = "SaveFile";
         private static StreamReader saveFileReader;
         private static StreamWriter saveFileWriter;
-        private static string savePath = "SaveFile";
+        private static string savePath = "SaveFile.txt";
         private static BinaryReader settingsReader;
         private static Stream settingsReadStream;
         private static string settingsPath = "Settings";
@@ -124,13 +124,27 @@ namespace GamePrototype.Classes.Tools
         // saves the game by saving their inventory
         public static void Save()
         {
-            saveFileWriter = new StreamWriter("SaveFile");
+            saveFileWriter = new StreamWriter(savePath);
             foreach(Clue c in Clue.Inventory)
             {
                 string entry = c.Name + " ";
                 saveFileWriter.Write(entry);
-                saveFileWriter.Close();
+                saveFileWriter.Flush();
             }
+            saveFileWriter.Close();
+        }
+        // returns the text in SaveFile
+        public static string GetSaveFileData()
+        {
+            saveFileReader = new StreamReader(savePath);
+            string line = "";
+            string result = "";
+            while ((line = saveFileReader.ReadLine()) != null)
+            {
+                result += line;
+            }
+            saveFileReader.Close();
+            return result;
         }
     }
 }

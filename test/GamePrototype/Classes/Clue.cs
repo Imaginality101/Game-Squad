@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using GamePrototype.Classes.Menu;
+using GamePrototype.Classes.Tools;
 /*Workers: Caleb, Tom, Declan
 * DisasterPiece Games
 * Clue Class
@@ -86,8 +87,8 @@ namespace GamePrototype.Classes
             {"News3", new Clue("News3", "Reports of a missing girl have began to surface after deaths of Mr and Mrs. Edward Afton. The question on everyone's minds is: Where is Elizabeth Afton? ") },
             {"News4", new Clue("News4", "Reports that Afton Manor has been acquired by the state due to no live heirs") },
             {"News5", new Clue("News5", "A bed of remains have been found near the river yet again, this time with an unidentified number of victims. The repeated" /*TODO: Finish sentence */ ) },
-            {"Bathroom Key", new Clue("Bathroom Key", "It's a key to the bathroom") },
-            {"Closet Key", new Clue("Closet Key", "It's a key to the closet") },
+            {"BathroomKey", new Clue("BathroomKey", "It's a key to the bathroom") },
+            {"ClosetKey", new Clue("ClosetKey", "It's a key to the closet") },
             {"OldPhoto1", new Clue("OldPhoto1", "It's a photo of the house, when it was constructed") },
             {"OldPhoto2", new Clue("OldPhoto2", "It's a photo of Liz, and her parents Olivia and Edward") },
             {"OldPhoto3", new Clue("OldPhoto3", "It's a photo of the cutlery rack in the kitchen, it has a spot missing.") },
@@ -123,6 +124,21 @@ namespace GamePrototype.Classes
             }
             Console.WriteLine(result); 
         }
+        // loads the inventory based on data in SaveFile
+        public static void LoadInventory()
+        {
+            string[] clues = SaveData.GetSaveFileData().Split(' ');
+            foreach (string key in clues)
+            {
+                if (key == "")
+                {
+                    continue;
+                }
+                inventory.Add(Clues[key]);
+                Menu.Menu.AddClue(Clues[key]);
+            }
+            return;
+        }
 
         public static void LoadContent(Texture2D news, Texture2D bathroomKey, Texture2D closetKey, Texture2D oldPhoto, Texture2D newPhoto, Texture2D tenantDir, Texture2D crazyDir, Texture2D receipt, Texture2D ring, Texture2D pendant, Texture2D bones, Texture2D jaggedKnife, Texture2D spaCoupon, Texture2D medicineBottle, Texture2D stickyNote)
         {
@@ -131,8 +147,8 @@ namespace GamePrototype.Classes
             clues["News3"].ClueImage = news;
             clues["News4"].ClueImage = news;
             clues["News5"].ClueImage = news;
-            clues["Bathroom Key"].ClueImage = bathroomKey;
-            clues["Closet Key"].ClueImage = closetKey;
+            clues["BathroomKey"].ClueImage = bathroomKey;
+            clues["ClosetKey"].ClueImage = closetKey;
             clues["OldPhoto1"].ClueImage = oldPhoto;
             clues["OldPhoto2"].ClueImage = oldPhoto;
             clues["OldPhoto3"].ClueImage = oldPhoto;

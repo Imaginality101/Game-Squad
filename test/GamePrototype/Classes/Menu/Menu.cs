@@ -235,7 +235,7 @@ namespace GamePrototype.Classes.Menu
                                 blep.PlayAsSoundEffect(.9f);
                             }
                             // handles scrolling
-                            else if (cluePageIndex != 7 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
+                            else if (cluePageIndex != 6 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
                             {
                                 selectedEntry = SelectedEntry.TopRight;
                                 blep.PlayAsSoundEffect(.9f);

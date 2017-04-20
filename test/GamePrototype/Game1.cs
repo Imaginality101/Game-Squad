@@ -161,9 +161,11 @@ namespace GamePrototype
             bedRoom = new Room(bedBG);
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
             bedRoom.Objects = furnitureSet.BedroomSetup();
+            bedRoom.DisableSavedClueObjects();
             player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds);
             // TODO: fill in the nulls in the parameters list once we have more textures
             Clue.LoadContent(Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("Photo1"), null, Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"), null, null, null, null, null, null, null, Content.Load<Texture2D>("stickynoteFULL"));
+            Clue.LoadInventory();
             menu.LoadContent(startingPhoneState, imagePhoneState, textPhoneState, menuFont, Content.Load<Texture2D>("BlueGuy"));
 
             closetRoom = new Room(closetBG);
