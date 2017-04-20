@@ -434,7 +434,7 @@ namespace GamePrototype.Classes.Menu
 
                 if (imageClueDraw > 0)
                 {
-                    spriteBatch.Draw(pageClue[cluePageIndex, imageClueDraw - 1].BlownClueImage, Game1.FormatDraw(new Rectangle(0, 0, 1950, 1100)), Color.White);
+                    spriteBatch.Draw(pageClue[cluePageIndex, imageClueDraw - 1].BlownClueImage, Game1.FormatDraw(blownUpImage), Color.White);
                 }
 
                 /*if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))
