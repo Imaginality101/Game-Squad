@@ -258,8 +258,8 @@ namespace GamePrototype
             if (winLose == 2)
             {
                 Thread.Sleep(5000);
-                winLose = 0;
                 Restart();
+                winLose = 0;
             }
 
             // win state - kat
@@ -641,6 +641,8 @@ namespace GamePrototype
         {
             // returns palyer to bedroom
             activeRoom = CurrentRoom.Bedroom;
+            //lights
+            lightsOn = false;
             // restores the player position to what it was at the start of the game
             player.PlayerRect = new Rectangle(1728 / 2 - 50, 972 / 2 - 50, 96, 192);
             Menu.pageClue = new Clue[7,4];
