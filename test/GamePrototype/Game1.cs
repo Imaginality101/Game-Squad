@@ -164,6 +164,7 @@ namespace GamePrototype
             bedRoom = new Room(bedBG);
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
             bedRoom.Objects = furnitureSet.BedroomSetup();
+            // TODO: call bathroom's DisableSavedClueObjects() when bathroom is created
             bedRoom.DisableSavedClueObjects();
             player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds);
             // TODO: fill in the nulls in the parameters list once we have more textures
@@ -173,6 +174,7 @@ namespace GamePrototype
 
             closetRoom = new Room(closetBG);
             closetRoom.Objects = furnitureSet.ClosetSetup();
+            closetRoom.DisableSavedClueObjects();
 
 
         }
@@ -403,8 +405,11 @@ namespace GamePrototype
                         break;
                     }
             }
-            // Caleb - update Textbox
-            //settingsTextBox.Update(kbState, prevKbState);
+            // restarts the game if R is pressed
+            if (kbState.IsKeyDown(Keys.R) && prevKbState.IsKeyUp(Keys.R))
+            {
+                Restart();
+            }
             base.Update(gameTime);
         }
 
@@ -632,10 +637,19 @@ namespace GamePrototype
 
 
 
-        public static void Restart()
+        public void Restart()
         {
-            
+            // returns palyer to bedroom
             activeRoom = CurrentRoom.Bedroom;
+            // restores the player position to what it was at the start of the game
+            player.PlayerRect = new Rectangle(1728 / 2 - 50, 972 / 2 - 50, 96, 192);
+            Menu.pageClue = new Clue[7,4];
+            // TODO: restart more rooms when we get them
+            bedRoom.ReenableClueObjects();
+            closetRoom.ReenableClueObjects();
+            SaveData.Restart();
+            // TODO: reconfigure so that it assigns the custom timer value
+            gameTimerSeconds = 15 * 60;
 
         }
     }

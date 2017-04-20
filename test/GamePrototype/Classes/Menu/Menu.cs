@@ -129,12 +129,12 @@ namespace GamePrototype.Classes.Menu
                     imageClueDraw = 0;
                 }
             }
-            */
-            if (kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
+
+            /*if (kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
             {
                 // journal menu
                 activeMenu = Category.Journal;
-            }
+            }*/
 
             if (kbState.IsKeyDown(Keys.D2) && !prevKbState.IsKeyDown(Keys.D2))
             {
@@ -390,37 +390,12 @@ namespace GamePrototype.Classes.Menu
             if (activeMenu == Category.Clues)
             {
                 spriteBatch.Draw(cluesPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
-                // will draw the clue icons
-                    // inner loop for pageClue array
-                    for (int j = 0; j < 4; j++)
-                    {
-                        Clue curr = pageClue[cluePageIndex, j];
-                        if (curr != null)
-                        {
-                            switch (j) // why in god's name is this where we decide to use switch statements - Tom
-                            {
-                                case 0:
-                                    spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box1), Color.White);
-                                    break;
-                                case 1:
-                                    spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box2), Color.White);
-                                    break;
-                                case 2:
-                                    spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box3), Color.White);
-                                    break;
-                                case 3:
-                                    spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box4), Color.White);
-                                    break;
-                            }
-                        }
-                }
                 // draw the clue cursor based on the selected entry
                 switch (selectedEntry)
                 {
                     case SelectedEntry.TopLeft:
                         spriteBatch.Draw(clueCursor, Game1.FormatDraw(box1), new Color(Color.Black, 50f));
                         break;
-
                     case SelectedEntry.TopRight:
                         spriteBatch.Draw(clueCursor, Game1.FormatDraw(box2), new Color(Color.Black, 50f));
                         break;
@@ -431,6 +406,31 @@ namespace GamePrototype.Classes.Menu
                         spriteBatch.Draw(clueCursor, Game1.FormatDraw(box4), new Color(Color.Black, 50f));
                         break;
                 }
+                // will draw the clue icons
+                // inner loop for pageClue array
+                for (int j = 0; j < 4; j++)
+                {
+                    Clue curr = pageClue[cluePageIndex, j];
+                    if (curr != null)
+                    {
+                        switch (j) // why in god's name is this where we decide to use switch statements - Tom
+                        {
+                            case 0:
+                                spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box1), Color.White);
+                                break;
+                            case 1:
+                                spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box2), Color.White);
+                                break;
+                            case 2:
+                                spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box3), Color.White);
+                                break;
+                            case 3:
+                                spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box4), Color.White);
+                                break;
+                        }
+                    }
+                }
+                
 
                 if (imageClueDraw > 0)
                 {
