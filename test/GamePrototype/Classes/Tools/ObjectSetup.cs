@@ -65,7 +65,13 @@ namespace GamePrototype.Classes.Tools
 
         //draw origin
         Vector2 origin;
-        
+        private Texture2D wardrobe;
+        private Rectangle wardrobeRect;
+        private Texture2D wardrobeopen;
+        private Rectangle wardrobeopenRect;
+        private Texture2D bathkey;
+        private Rectangle bathkeyRect;
+
 
 
         // constructor to take content manager, spritebatch and a graphic device to handle local contect assignments
@@ -91,7 +97,7 @@ namespace GamePrototype.Classes.Tools
             book = content.Load<Texture2D>("bookshelfFULL"); bookRect = new Rectangle((int)origin.X + 55, (int)origin.Y - 470, 346, 172);
             dress = content.Load<Texture2D>("dresserFULL"); dressRect = new Rectangle((int)origin.X - 440, (int)origin.Y - 470, 346, 172);
             outdoor = content.Load<Texture2D>("outdoorFULL"); outdoorRect = new Rectangle((int)origin.X - 96, (int)origin.Y - 530, 172, 172);
-            bathdoor = content.Load<Texture2D>("bathroomdoorFULL"); bathdoorRect = new Rectangle((int)origin.X + 350, (int)origin.Y - 530, 172, 172);
+            bathdoor = content.Load<Texture2D>("bathroomdoorFULL"); bathdoorRect = new Rectangle((int)origin.X + 370, (int)origin.Y - 530, 172, 172);
             closetdoor = content.Load<Texture2D>("closetdoorFULL"); closetdoorRect = new Rectangle((int)origin.X - 685, (int)origin.Y + 230, 172, 172);
             stickynote = content.Load<Texture2D>("stickynoteFull"); stickynoteRect = new Rectangle((int)origin.X - 490, (int)origin.Y + 130, 56, 56);
             news1 = content.Load<Texture2D>("NewspaperFULL"); news1Rect = new Rectangle((int)origin.X - 300, (int)origin.Y - 350, 72, 72);
@@ -102,7 +108,7 @@ namespace GamePrototype.Classes.Tools
             //adding them all to the gameobjectlist
             // Caleb - adding a temporary name string to the constructor which is to demo interaction
             objs.Add(new GameObject(outdoor, outdoorRect, "End door"));
-            objs.Add(new GameObject(bathdoor, bathdoorRect, "Bathroom door"));
+            objs.Add(new Door(bathdoor, bathdoorRect, CurrentRoom.Bathroom, Clue.Clues["BathroomKey"]));
             objs.Add(new Door(closetdoor, closetdoorRect, CurrentRoom.Closet,Clue.Clues["ClosetKey"]));
             objs.Add(new GameObject(tv, tvRect, new Rectangle(0, 100, 172, 250)));
             objs.Add(new GameObject(sidetab2, sidetab2Rect, new Rectangle(5, 50, 172, 102)));
@@ -122,6 +128,8 @@ namespace GamePrototype.Classes.Tools
             ((ClueObject)objs[5]).InteractionPoint = new Vector2(30, bedRect.Height / 2); // bed
             ((ClueObject)objs[10]).InteractionPoint = new Vector2(330, dressRect.Height / 2); // dresser
             ((Lamp)objs[12]).InteractionPoint = new Vector2(lampRect.Width/2,lampRect.Height); // Lamp
+            ((Door)objs[1]).InteractionPoint = new Vector2((lampRect.Width / 2)+50, lampRect.Height); // Lamp
+
 
             return objs;
         }
@@ -137,7 +145,17 @@ namespace GamePrototype.Classes.Tools
             bedroomdoorsideRect = new Rectangle((int)origin.X + 495, (int)origin.Y + 50, 172, 172);
 
             lampfloor = content.Load<Texture2D>("lampFloor");
-            lampfloorRect = new Rectangle((int)origin.X + 410, (int)origin.Y - 380, 172, 346);
+            lampfloorRect = new Rectangle((int)origin.X + 410, (int)origin.Y - 360, 172, 324);
+
+            wardrobe = content.Load<Texture2D>("wardobeFULL");
+            wardrobeRect = new Rectangle((int)origin.X +100, (int)origin.Y - 370, 346, 346);
+
+            wardrobeopen = content.Load<Texture2D>("wardobeOpenFULL");
+            wardrobeopenRect = new Rectangle((int)origin.X -320, (int)origin.Y - 370, 346, 346);
+
+            bathkey = content.Load<Texture2D>("key1");
+            bathkeyRect  = new Rectangle((int)origin.X - 170, (int)origin.Y - 110, 56, 56);
+
 
             List<GameObject> objs = new List<GameObject>();
             //all the shit goes here
@@ -145,8 +163,14 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new GameObject(mirror, mirrorRect, "Mirror"));
             objs.Add(new Door(bedroondoorside, bedroomdoorsideRect, CurrentRoom.Bedroom));
             objs.Add(new Lamp(lampfloor, lampfloorRect));
+            objs.Add(new GameObject(wardrobeopen, wardrobeopenRect, "WardrobeOpen"));
+            objs.Add(new ClueObject(wardrobe, wardrobeRect, new Rectangle(0, 0, 346, 346), Clue.Clues["TenantDiary3"], false));
+            objs.Add(new ClueObject(bathkey, bathkeyRect, Clue.Clues["BathroomKey"], false, "Bathroom Key", true));
+
 
             ((Lamp)objs[3]).InteractionPoint = new Vector2(lampfloorRect.Width / 2, lampfloorRect.Height); // Lamp
+            ((ClueObject)objs[5]).InteractionPoint = new Vector2(wardrobeRect.Width / 2, 3*(wardrobeRect.Height/4)); // wardrobe
+
 
             return objs;
         }
