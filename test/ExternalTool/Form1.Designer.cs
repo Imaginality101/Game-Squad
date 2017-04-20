@@ -43,9 +43,9 @@
             this.windowedButton = new System.Windows.Forms.RadioButton();
             this.fullScreenButton = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.easyBox = new System.Windows.Forms.CheckBox();
-            this.timeLimit = new System.Windows.Forms.MaskedTextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.timeLimit = new System.Windows.Forms.MaskedTextBox();
+            this.easyBox = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.resPanelW.SuspendLayout();
@@ -220,15 +220,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Gameplay Modifiers";
             // 
-            // easyBox
+            // label2
             // 
-            this.easyBox.AutoSize = true;
-            this.easyBox.Location = new System.Drawing.Point(7, 26);
-            this.easyBox.Name = "easyBox";
-            this.easyBox.Size = new System.Drawing.Size(114, 24);
-            this.easyBox.TabIndex = 0;
-            this.easyBox.Text = "Easy Mode";
-            this.easyBox.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(156, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 20);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "minutes";
             // 
             // timeLimit
             // 
@@ -239,14 +238,15 @@
             this.timeLimit.TabIndex = 0;
             this.timeLimit.ValidatingType = typeof(int);
             // 
-            // label2
+            // easyBox
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(156, 59);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 20);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "minutes";
+            this.easyBox.AutoSize = true;
+            this.easyBox.Location = new System.Drawing.Point(7, 26);
+            this.easyBox.Name = "easyBox";
+            this.easyBox.Size = new System.Drawing.Size(114, 24);
+            this.easyBox.TabIndex = 0;
+            this.easyBox.Text = "Easy Mode";
+            this.easyBox.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -262,7 +262,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(643, 719);
+            this.ClientSize = new System.Drawing.Size(643, 392);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
