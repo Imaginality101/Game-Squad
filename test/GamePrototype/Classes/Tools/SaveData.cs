@@ -126,7 +126,8 @@ namespace GamePrototype.Classes.Tools
 
         public static void Save()
         {
-            saveFileWriter = new StreamWriter(new FileStream("SaveFile", FileMode.Create));
+            //saveFileWriter = new StreamWriter(new FileStream("SaveFile", FileMode.Create));
+            saveFileWriter = new StreamWriter(savePath);
             foreach(Clue c in Clue.Inventory)
             {
                 string entry = c.Name + " ";

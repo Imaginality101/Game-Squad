@@ -100,6 +100,10 @@ namespace GamePrototype.Classes
                         if (co.GivenClue == Clue.Clues[key])
                         {
                             co.Found = true;
+                            if (co.OneTimeUse)
+                            {
+                                co.Enabled = false;
+                            }
                         }
                     }
                 }

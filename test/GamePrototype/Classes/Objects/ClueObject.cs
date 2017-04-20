@@ -69,6 +69,17 @@ namespace GamePrototype.Classes.Objects
             get { return pickedUp; }
             set { pickedUp = value; }
         }
+        public Boolean OneTimeUse
+        {
+            get
+            {
+                return onetimeUse;
+            }
+            set
+            {
+                onetimeUse = value;
+            }
+        }
         public Clue GivenClue
         {
             get
