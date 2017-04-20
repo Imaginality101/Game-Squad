@@ -21,20 +21,39 @@ namespace GamePrototype.Classes.Tools
         // TODO: Declan - You can use this for initializing game objects
 
         //Texture2Ds                           //Rectangles;
-        Texture2D bed; Rectangle bedRect;
-        Texture2D tv; Rectangle tvRect;
-        Texture2D sidetab1; Rectangle sidetab1Rect;
-        Texture2D sidetab2; Rectangle sidetab2Rect;
-        Texture2D book; Rectangle bookRect;
-        Texture2D dress; Rectangle dressRect;
-        Texture2D outdoor; Rectangle outdoorRect;
-        Texture2D bathdoor; Rectangle bathdoorRect;
-        Texture2D closetdoor; Rectangle closetdoorRect;
-        Texture2D stickynote; Rectangle stickynoteRect;
-        Texture2D news1; Rectangle news1Rect;
-        Rectangle news2Rect;
-        Texture2D lamp; Rectangle lampRect;
-        Texture2D cardbord; Rectangle cardboardRect;
+        private Texture2D bed;
+        private Texture2D tv;
+        private Texture2D sidetab1;
+        private Texture2D sidetab2;
+        private Texture2D book;
+        private Texture2D dress;
+        private Texture2D outdoor;
+        private Texture2D bathdoor;
+        private Texture2D closetdoor;
+        private Texture2D stickynote;
+        private Texture2D news1;
+        private Texture2D lamp;
+        private Texture2D cardbord;
+        private Rectangle bedRect;
+        private Rectangle tvRect;
+        private Rectangle sidetab1Rect;
+        private Rectangle sidetab2Rect;
+        private Rectangle bookRect;
+        private Rectangle dressRect;
+        private Rectangle outdoorRect;
+        private Rectangle bathdoorRect;
+        private Rectangle closetdoorRect;
+        private Rectangle stickynoteRect;
+        private Rectangle news1Rect;
+        private Rectangle news2Rect;
+        private Rectangle lampRect;
+        private Rectangle cardboardRect;
+        private Texture2D mirror;
+        private Rectangle mirrorRect;
+        private Texture2D bedroondoorside;
+        private Rectangle bedroomdoorsideRect;
+        // Texture for display above interactables
+        public static Texture2D buttonPrompt;
 
         //fields to hold the constuctor stuff
         ContentManager content;
@@ -43,6 +62,8 @@ namespace GamePrototype.Classes.Tools
 
         //draw origin
         Vector2 origin;
+        
+
 
         // constructor to take content manager, spritebatch and a graphic device to handle local contect assignments
         public ObjectSetup(ContentManager ctm, SpriteBatch sbt, GraphicsDevice gd)
@@ -51,7 +72,7 @@ namespace GamePrototype.Classes.Tools
             spriteBatch = sbt;
             graphics = gd;
             origin = new Vector2(1728 / 2, 972 / 2);
-
+            buttonPrompt = content.Load<Texture2D>("ebut64x64");
         }
         //method to setup the objects int the bedroom it returns a list of gameobjects
         public List<GameObject> BedroomSetup()
@@ -72,7 +93,7 @@ namespace GamePrototype.Classes.Tools
             stickynote = content.Load<Texture2D>("stickynoteFull"); stickynoteRect = new Rectangle((int)origin.X - 490, (int)origin.Y + 130, 56, 56);
             news1 = content.Load<Texture2D>("NewspaperFULL"); news1Rect = new Rectangle((int)origin.X - 300, (int)origin.Y - 350, 72, 72);
             news2Rect = new Rectangle((int)origin.X + 440, (int)origin.Y - 120, 72, 72);
-            lamp = content.Load<Texture2D>("Lamp"); lampRect = new Rectangle((int)origin.X + 380, (int)origin.Y + 260, 72, 72);
+            lamp = content.Load<Texture2D>("LampFULL"); lampRect = new Rectangle((int)origin.X - 440, (int)origin.Y - 475, 128, 128);
 
 
             //adding them all to the gameobjectlist
@@ -90,20 +111,36 @@ namespace GamePrototype.Classes.Tools
             //objs.Add(new GameObject(dress, dressRect, "Dresser"));
             objs.Add(new ClueObject(dress, dressRect, Clue.Clues["ClosetKey"], true, Clue.Clues["TenantDiary2"]));
             objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false, "Sticky Note",true));
+            objs.Add(new Lamp(lamp, lampRect));
+            objs.Add(new Door(closetdoor, new Rectangle((int)origin.X - 685, (int)origin.Y - 310, 172, 172), CurrentRoom.Closet));//Cheatdoor
+
 
             // Setting up interaction points, this is an example on how
             ((ClueObject)objs[5]).InteractionPoint = new Vector2(30, bedRect.Height / 2); // bed
             ((ClueObject)objs[10]).InteractionPoint = new Vector2(330, dressRect.Height / 2); // dresser
+            ((Lamp)objs[12]).InteractionPoint = new Vector2(lampRect.Width/2,lampRect.Height); // Lamp
+
             return objs;
         }
         public List<GameObject> ClosetSetup()
         {
-            cardbord = content.Load<Texture2D>("sidetableFULL");
-            cardboardRect = new Rectangle((int)origin.X - 570, (int)origin.Y - 110, 172, 172);
+            cardbord = content.Load<Texture2D>("boxesFULL");
+            cardboardRect = new Rectangle((int)origin.X - 560, (int)origin.Y - 200, 172, 172);
+
+            mirror = content.Load<Texture2D>("mirrorFULL");
+            mirrorRect = new Rectangle((int)origin.X - 570, (int)origin.Y -26, 172, 172);
+
+            bedroondoorside = content.Load<Texture2D>("bedroomdoorSideFULL");
+            bedroomdoorsideRect = new Rectangle((int)origin.X + 505, (int)origin.Y - 72, 172, 172);
+
+
 
             List<GameObject> objs = new List<GameObject>();
             //all the shit goes here
-            objs.Add(new GameObject(cardbord, cardboardRect, "Bathroom door"));
+            objs.Add(new GameObject(cardbord, cardboardRect, "Boxes"));
+            objs.Add(new GameObject(mirror, mirrorRect, "Mirror"));
+            objs.Add(new Door(bedroondoorside, bedroomdoorsideRect, CurrentRoom.Bedroom));
+
             return objs;
         }
     }

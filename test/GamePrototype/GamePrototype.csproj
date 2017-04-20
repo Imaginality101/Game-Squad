@@ -58,6 +58,7 @@
     <Compile Include="Classes\Tools\GameSound.cs" />
     <Compile Include="Classes\Tools\IAnimated.cs" />
     <Compile Include="Classes\Tools\IControlled.cs" />
+    <Compile Include="Classes\Objects\Lamp.cs" />
     <Compile Include="Classes\Tools\ObjectSetup.cs" />
     <Compile Include="Classes\Tools\SaveData.cs" />
     <Compile Include="Game1.cs" />
@@ -93,10 +94,16 @@
     <Content Include="Content\bedFULL.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\bedroomdoorSideFULL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\black light overlay.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\bookshelfFULL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\boxesFULL.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\closetdoorFULL.png">
@@ -108,13 +115,18 @@
     <Content Include="Content\d6twRar.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\death_screen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Diary1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\dresserFULL.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\ebut64x64.png" />
+    <Content Include="Content\ebut64x64.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\frontStationary.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -130,7 +142,13 @@
     <Content Include="Content\Lamp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\LampFULL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\mainmenumaayybe..png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\mirrorFULL.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\New1FULL.png">
@@ -241,7 +259,6 @@
     </Content>
     <None Include="Content\phoneMain0.xnb" />
     <None Include="Content\phoneMain5.xnb" />
-    <None Include="Content\phoneMain7.xnb" />
     <Content Include="Content\spook3-thebegining.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -122,17 +122,6 @@ namespace GamePrototype.Classes
             get { return roomColl; }
         }
 
-        public bool LightsOff
-        {
-            get
-            {
-                return lightsOff;
-            }
-
-            set
-            {
-                lightsOff = value;
-            }
-        }
+        
     }
 }

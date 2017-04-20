@@ -18,7 +18,7 @@ using GamePrototype.Classes.Objects;
 */
 namespace GamePrototype.Classes.Objects
 {
-    enum PlayerDir { FaceDown, WalkDown, FaceUp, WalkUp, FaceLeft, WalkLeft, FaceRight, WalkRight}
+    enum PlayerDir { FaceDown, WalkDown, FaceUp, WalkUp, FaceLeft, WalkLeft, FaceRight, WalkRight }
     class Player : GameObject, Tools.IAnimated, Tools.IControlled
     {
         KeyboardState kbState;
@@ -34,9 +34,10 @@ namespace GamePrototype.Classes.Objects
         private Texture2D faceRightSprite;
         private Texture2D faceUpSprite;
         private Texture2D faceDownSprite;
+        private const int MOVE_SPEED = 4;
 
         // attributes for sounds - kat
-        ContentManager content; 
+        ContentManager content;
         GameSound footsteps;
 
         // variables for animation
@@ -44,13 +45,13 @@ namespace GamePrototype.Classes.Objects
         int currentFrame = 0;
 
         // TODO: Player constructor, should take the same sort of information as well as potentially a Menu object. We'd feed the overall Game's Menu into that.
-        public Player(GraphicsDevice graphics, ContentManager contentParam, Texture2D faceRight, List<Texture2D> walkRight, Texture2D faceUp, Texture2D faceDown, Rectangle bounds):base()
+        public Player(GraphicsDevice graphics, ContentManager contentParam, Texture2D faceRight, List<Texture2D> walkRight, Texture2D faceUp, Texture2D faceDown, Rectangle bounds) : base()
         {
             moveQueue = Vector2.Zero; // initialize moveQueue to a zero vector
             playerDirection = PlayerDir.FaceDown; // start out facing downwards for now
             moveBounds = bounds;
             playerRect = new Rectangle(1728 / 2 - 50, 972 / 2 - 50, 96, 192); //<------------------------THIS IS WHERE THE PLAYER RECT SIZE IS-------------------------
-            hitBox = new Rectangle(PlayerRect.X+24, PlayerRect.Y + 144, 48, 48);
+            hitBox = new Rectangle(PlayerRect.X + 24, PlayerRect.Y + 144, 48, 48);
             faceRightSprite = faceRight;
             walkRightSprites = walkRight;
             faceUpSprite = faceUp;
@@ -100,22 +101,22 @@ namespace GamePrototype.Classes.Objects
             if (kbState.IsKeyDown(Keys.W))
             {
                 footsteps.PlayAsMusic(.6f);
-                moveQueue.Y -= 2;
+                moveQueue.Y -= MOVE_SPEED;
             }
             if (kbState.IsKeyDown(Keys.S))
             {
                 footsteps.PlayAsMusic(.6f);
-                moveQueue.Y += 2;
+                moveQueue.Y += MOVE_SPEED;
             }
             if (kbState.IsKeyDown(Keys.A))
             {
                 footsteps.PlayAsMusic(.6f);
-                moveQueue.X -= 2;
+                moveQueue.X -= MOVE_SPEED;
             }
             if (kbState.IsKeyDown(Keys.D))
             {
                 footsteps.PlayAsMusic(.6f);
-                moveQueue.X += 2;
+                moveQueue.X += MOVE_SPEED;
             }
             if (!kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyDown(Keys.W))
             {
@@ -152,9 +153,9 @@ namespace GamePrototype.Classes.Objects
         {
             // This method will return the length of a vector between the two objects' global origin coordinates
             Vector2 difference;
-            if (target is ClueObject && ((ClueObject)target).InteractionPoint.Length() > 0)
+            if (target is Interactable && ((Interactable)target).InteractionPoint.Length() > 0)
             {
-                difference = PlayerOrigin - ((ClueObject)target).GetGlobalInteractPoint();
+                difference = PlayerOrigin - ((Interactable)target).GetGlobalInteractPoint();
             }
             else
             {
@@ -206,8 +207,8 @@ namespace GamePrototype.Classes.Objects
                 {
                     if (minDistance >= CheckProximity(obj)) // looping through this will find which interactable is the closest to the player
                     {
-                        if(!(obj is ClueObject) || (obj is ClueObject && !((ClueObject)obj).Found))
-                        minDistance = CheckProximity(obj);
+                        if (!(obj is ClueObject) || (obj is ClueObject && !((ClueObject)obj).Found))
+                            minDistance = CheckProximity(obj);
                         closest = (Interactable)obj;
                     }
                     else if (((Interactable)obj).Usable == true)
@@ -235,7 +236,7 @@ namespace GamePrototype.Classes.Objects
             {
                 KeepPlayerFromGoingRight();
             }
-            
+
             if (playerRect.Top < roomBounds.Top)
             {
                 KeepPlayerFromGoingUp();
@@ -255,19 +256,19 @@ namespace GamePrototype.Classes.Objects
                 Boolean collidingObj = isColliding(go);
                 if (collidingObj)
                 {
-                    if (hitBox.Center.Y < go.GlobalBounds.Center.Y && (hitBox.Right - 2 > go.GlobalBounds.Left && hitBox.Left + 2 < go.GlobalBounds.Right))
+                    if (hitBox.Center.Y < go.GlobalBounds.Center.Y && (hitBox.Right - MOVE_SPEED > go.GlobalBounds.Left && hitBox.Left + MOVE_SPEED < go.GlobalBounds.Right))
                     {
                         KeepPlayerFromGoingDown();
                     }
-                    if (hitBox.Center.Y > go.GlobalBounds.Center.Y && (hitBox.Right - 2> go.GlobalBounds.Left && hitBox.Left + 2 < go.GlobalBounds.Right))
+                    if (hitBox.Center.Y > go.GlobalBounds.Center.Y && (hitBox.Right - MOVE_SPEED > go.GlobalBounds.Left && hitBox.Left + MOVE_SPEED < go.GlobalBounds.Right))
                     {
                         KeepPlayerFromGoingUp();
                     }
-                    if (hitBox.Center.X > go.GlobalBounds.Center.X && (hitBox.Bottom - 2 > go.GlobalBounds.Top && hitBox.Top + 2 < go.GlobalBounds.Bottom))
+                    if (hitBox.Center.X > go.GlobalBounds.Center.X && (hitBox.Bottom - MOVE_SPEED > go.GlobalBounds.Top && hitBox.Top + MOVE_SPEED < go.GlobalBounds.Bottom))
                     {
                         KeepPlayerFromGoingLeft();
                     }
-                    if (hitBox.Center.X < go.GlobalBounds.Center.X && (hitBox.Bottom - 2 > go.GlobalBounds.Top && hitBox.Top + 2 < go.GlobalBounds.Bottom))
+                    if (hitBox.Center.X < go.GlobalBounds.Center.X && (hitBox.Bottom - MOVE_SPEED > go.GlobalBounds.Top && hitBox.Top + MOVE_SPEED < go.GlobalBounds.Bottom))
                     {
                         KeepPlayerFromGoingRight();
                     }
@@ -366,29 +367,56 @@ namespace GamePrototype.Classes.Objects
             {
                 return playerRect;
             }
+            set
+            {
+                playerRect = value;
+            }
         }
+        public override int X
+        {
+            get
+            {
+                return playerRect.X;
+            }
 
+            set
+            {
+                playerRect.X = value;
+            }
+        }
+        public override int Y
+        {
+            get
+            {
+                return playerRect.Y;
+            }
+
+            set
+            {
+                playerRect.Y = value;
+            }
+        }
         // Caleb - methods to block player from moving in the cardinal directions. Useful if collisions end faceUp not being handled by the player class
         // moves player down
         public void KeepPlayerFromGoingUp()
         {
-            playerRect = new Rectangle(playerRect.X, playerRect.Y + 2, playerRect.Width, playerRect.Height);
+            playerRect = new Rectangle(playerRect.X, playerRect.Y + MOVE_SPEED, playerRect.Width, playerRect.Height);
         }
         // moves player up
         public void KeepPlayerFromGoingDown()
         {
-            playerRect = new Rectangle(playerRect.X, playerRect.Y - 2, playerRect.Width, playerRect.Height);
+            playerRect = new Rectangle(playerRect.X, playerRect.Y - MOVE_SPEED, playerRect.Width, playerRect.Height);
 
         }
         // moves player right
         public void KeepPlayerFromGoingLeft()
         {
-            playerRect = new Rectangle(playerRect.X + 2, playerRect.Y, playerRect.Width, playerRect.Height);
+            playerRect = new Rectangle(playerRect.X + MOVE_SPEED, playerRect.Y, playerRect.Width, playerRect.Height);
         }
         // moves player left
         public void KeepPlayerFromGoingRight()
         {
-            playerRect = new Rectangle(playerRect.X - 2, playerRect.Y, playerRect.Width, playerRect.Height);
+            playerRect = new Rectangle(playerRect.X - MOVE_SPEED, playerRect.Y, playerRect.Width, playerRect.Height);
         }
 
         public override void Draw(SpriteBatch sprtBtch)
@@ -447,8 +475,6 @@ namespace GamePrototype.Classes.Objects
 
         }
         public Rectangle MoveBounds { get { return moveBounds; } set { moveBounds = value; } }
-        
-
 
     }
 }

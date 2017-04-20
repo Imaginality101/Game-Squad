@@ -18,30 +18,42 @@ namespace GamePrototype.Classes.Objects
         // attributes - should have a Clue that the player needs to access it
         private Clue keyRequired;
         private Boolean flaggedForUse;
+        Vector2 interactionPoint;
+        Texture2D promptTexture;
 
         public Interactable(Texture2D txtr, Rectangle psRct) : base(txtr, psRct)
         {
             flaggedForUse = false;
+            promptTexture = Tools.ObjectSetup.buttonPrompt;
         }
         // Caleb - temporary constructor for interaction demo for milestone 2
         public Interactable(Texture2D txtr, Rectangle psRct, string nm) : base(txtr, psRct, nm)
         {
             flaggedForUse = false;
+            promptTexture = Tools.ObjectSetup.buttonPrompt;
         }
 
         public Interactable(Texture2D txtr, Rectangle psRct, Boolean collision):base(txtr, psRct, collision)
         {
             flaggedForUse = false;
+            promptTexture = Tools.ObjectSetup.buttonPrompt;
         }
         public Interactable(Texture2D txtr, Rectangle psRct, Rectangle clRct) : base(txtr, psRct, clRct)
         {
             flaggedForUse = false;
+            promptTexture = Tools.ObjectSetup.buttonPrompt;
         }
         // Caleb - Another temporary constructor for interaction demo
         public Interactable(Texture2D txtr, Rectangle psRct, Boolean collision, string nm) : base(txtr, psRct, collision, nm)
         {
             flaggedForUse = false;
+            promptTexture = Tools.ObjectSetup.buttonPrompt;
         }
+
+        public Interactable()
+        {
+        }
+
         public abstract void Interact(Player user); // Interaction, check if player has the requisite clue
 
         // property for required clue
@@ -63,11 +75,25 @@ namespace GamePrototype.Classes.Objects
             if (flaggedForUse)
             {
                 base.Draw(sprtBtch, Color.LightGreen);
+                Vector2 basePoint = base.GlobalBounds.Center.ToVector2();
+                sprtBtch.Draw(promptTexture, Game1.FormatDraw(new Rectangle((int)(basePoint.X), (int)(basePoint.Y - (promptTexture.Height / 2)), promptTexture.Width, promptTexture.Height)), Color.White);
             }
             else
             {
                 base.Draw(sprtBtch);
             }
+        }
+
+        // property for point of interaction
+        public Vector2 InteractionPoint
+        {
+            get { return interactionPoint; }
+            set { interactionPoint = value; }
+        }
+        public Vector2 GetGlobalInteractPoint()
+        {
+            Vector2 location = GlobalBounds.Location.ToVector2() + interactionPoint;
+            return location;
         }
     }
 }
