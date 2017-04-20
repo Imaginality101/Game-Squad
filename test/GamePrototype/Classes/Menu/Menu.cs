@@ -121,7 +121,15 @@ namespace GamePrototype.Classes.Menu
             // pasted Game1 code here
             // TODO: update the phone menu
             // kat draws menu things 
-
+            /*
+            if (imageClueDraw > 0) // not workuing
+            {
+                if (kbState.IsKeyDown(Keys.Enter) == true && prevKbState.IsKeyUp(Keys.Enter) == true)
+                {
+                    imageClueDraw = 0;
+                }
+            }
+            */
             if (kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
             {
                 // journal menu
@@ -157,157 +165,167 @@ namespace GamePrototype.Classes.Menu
             }
             if (activeMenu == Category.Clues)
             {
-                switch (selectedEntry)
-                {
-                    case SelectedEntry.TopLeft:
-                        {
-                            // moves between entries
-                            if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S))
-                            {
-                                selectedEntry = SelectedEntry.BotLeft;
-                                blep.PlayAsSoundEffect(.9f);
-                            }
-                            else if (kbState.IsKeyDown(Keys.D) && prevKbState.IsKeyUp(Keys.D))
-                            {
-                                selectedEntry = SelectedEntry.TopRight;
-                                blep.PlayAsSoundEffect(.9f);
-                            }
-                            // handles scrolling
-                            else if (cluePageIndex != 0 && (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W)))
-                            {
-                                selectedEntry = SelectedEntry.BotLeft;
-                                blep.PlayAsSoundEffect(.9f);
-                                cluePageIndex--;
-                            }
-                            break;
-                        }
-                    case SelectedEntry.TopRight:
-                        {
-                            // moves between entries
-                            if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S))
-                            {
-                                selectedEntry = SelectedEntry.BotRight;
-                                blep.PlayAsSoundEffect(.9f);
-                            }
-                            else if (kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyUp(Keys.A))
-                            {
-                                selectedEntry = SelectedEntry.TopLeft;
-                                blep.PlayAsSoundEffect(.9f);
-                            }
-                            // handles scrolling
-                            else if (cluePageIndex != 0 && (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W)))
-                            {
-                                selectedEntry = SelectedEntry.BotRight;
-                                blep.PlayAsSoundEffect(.9f);
-                                cluePageIndex--;
-                            }
-                            break;
-                        }
-                    case SelectedEntry.BotLeft:
-                        {
-                            // moves between entries
-                            if (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W))
-                            {
-                                selectedEntry = SelectedEntry.TopLeft;
-                                blep.PlayAsSoundEffect(.9f);
-                            }
-                            else if (kbState.IsKeyDown(Keys.D) && prevKbState.IsKeyUp(Keys.D))
-                            {
-                                selectedEntry = SelectedEntry.BotRight;
-                                blep.PlayAsSoundEffect(.9f);
-                            }
-                            // handles scrolling
-                            else if (cluePageIndex != 6 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
-                            {
-                                selectedEntry = SelectedEntry.TopLeft;
-                                blep.PlayAsSoundEffect(.9f);
-                                cluePageIndex++;
-                            }
-                            break;
-                        }
-                    case SelectedEntry.BotRight:
-                        {
-                            // moves between entries
-                            if (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W))
-                            {
-                                selectedEntry = SelectedEntry.TopRight;
-                                blep.PlayAsSoundEffect(.9f);
-                            }
-                            else if (kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyUp(Keys.A))
-                            {
-                                selectedEntry = SelectedEntry.BotLeft;
-                                blep.PlayAsSoundEffect(.9f);
-                            }
-                            // handles scrolling
-                            else if (cluePageIndex != 6 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
-                            {
-                                selectedEntry = SelectedEntry.TopRight;
-                                blep.PlayAsSoundEffect(.9f);
-                                cluePageIndex++;
-                            }
-                            break;
-                        }
-                }
-                if (kbState.IsKeyDown(Keys.Enter) && prevKbState.IsKeyUp(Keys.Enter))
+                if (imageClueDraw == 0)
                 {
                     switch (selectedEntry)
                     {
                         case SelectedEntry.TopLeft:
-                            if (pageClue[cluePageIndex, 0] != null)
                             {
-                                if (pageClue[cluePageIndex, 0].BlownClueImage != null)
+                                // moves between entries
+                                if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S))
                                 {
-                                    imageClueDraw = 1;
+                                    selectedEntry = SelectedEntry.BotLeft;
+                                    blep.PlayAsSoundEffect(.9f);
                                 }
-                                else
+                                else if (kbState.IsKeyDown(Keys.D) && prevKbState.IsKeyUp(Keys.D))
                                 {
-                                    clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 0].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
-                                    activeMenu = Category.Journal;
+                                    selectedEntry = SelectedEntry.TopRight;
+                                    blep.PlayAsSoundEffect(.9f);
                                 }
+                                // handles scrolling
+                                else if (cluePageIndex != 0 && (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W)))
+                                {
+                                    selectedEntry = SelectedEntry.BotLeft;
+                                    blep.PlayAsSoundEffect(.9f);
+                                    cluePageIndex--;
+                                }
+                                break;
                             }
-                            break;
                         case SelectedEntry.TopRight:
-                            if (pageClue[cluePageIndex, 1] != null)
                             {
-                                if (pageClue[cluePageIndex, 1].BlownClueImage != null)
+                                // moves between entries
+                                if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S))
                                 {
-                                    imageClueDraw = 2;
+                                    selectedEntry = SelectedEntry.BotRight;
+                                    blep.PlayAsSoundEffect(.9f);
                                 }
-                                else
+                                else if (kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyUp(Keys.A))
                                 {
-                                    clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 1].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
-                                    activeMenu = Category.Journal;
+                                    selectedEntry = SelectedEntry.TopLeft;
+                                    blep.PlayAsSoundEffect(.9f);
                                 }
+                                // handles scrolling
+                                else if (cluePageIndex != 0 && (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W)))
+                                {
+                                    selectedEntry = SelectedEntry.BotRight;
+                                    blep.PlayAsSoundEffect(.9f);
+                                    cluePageIndex--;
+                                }
+                                break;
                             }
-                            break;
                         case SelectedEntry.BotLeft:
-                            if (pageClue[cluePageIndex, 2] != null)
                             {
-                                if (pageClue[cluePageIndex, 2].BlownClueImage != null)
+                                // moves between entries
+                                if (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W))
                                 {
-                                    imageClueDraw = 3;
+                                    selectedEntry = SelectedEntry.TopLeft;
+                                    blep.PlayAsSoundEffect(.9f);
                                 }
-                                else
+                                else if (kbState.IsKeyDown(Keys.D) && prevKbState.IsKeyUp(Keys.D))
                                 {
-                                    clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 2].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
-                                    activeMenu = Category.Journal;
+                                    selectedEntry = SelectedEntry.BotRight;
+                                    blep.PlayAsSoundEffect(.9f);
                                 }
+                                // handles scrolling
+                                else if (cluePageIndex != 6 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
+                                {
+                                    selectedEntry = SelectedEntry.TopLeft;
+                                    blep.PlayAsSoundEffect(.9f);
+                                    cluePageIndex++;
+                                }
+                                break;
                             }
-                            break;
                         case SelectedEntry.BotRight:
-                            if (pageClue[cluePageIndex, 3] != null)
                             {
-                                if (pageClue[cluePageIndex, 3].BlownClueImage != null)
+                                // moves between entries
+                                if (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W))
                                 {
-                                    imageClueDraw = 4;
+                                    selectedEntry = SelectedEntry.TopRight;
+                                    blep.PlayAsSoundEffect(.9f);
                                 }
-                                else
+                                else if (kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyUp(Keys.A))
                                 {
-                                    clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 3].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
-                                    activeMenu = Category.Journal;
+                                    selectedEntry = SelectedEntry.BotLeft;
+                                    blep.PlayAsSoundEffect(.9f);
                                 }
+                                // handles scrolling
+                                else if (cluePageIndex != 6 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
+                                {
+                                    selectedEntry = SelectedEntry.TopRight;
+                                    blep.PlayAsSoundEffect(.9f);
+                                    cluePageIndex++;
+                                }
+                                break;
                             }
-                            break;
+                    }
+                }
+                if (kbState.IsKeyDown(Keys.Enter) && prevKbState.IsKeyUp(Keys.Enter))
+                {
+                    if (imageClueDraw > 0)
+                    {
+                        imageClueDraw = 0;
+                    }
+                    else
+                    {
+                        switch (selectedEntry)
+                        {
+                            case SelectedEntry.TopLeft:
+                                if (pageClue[cluePageIndex, 0] != null)
+                                {
+                                    if (pageClue[cluePageIndex, 0].BlownClueImage != null)
+                                    {
+                                        imageClueDraw = 1;
+                                    }
+                                    else
+                                    {
+                                        clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 0].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
+                                        activeMenu = Category.Journal;
+                                    }
+                                }
+                                break;
+                            case SelectedEntry.TopRight:
+                                if (pageClue[cluePageIndex, 1] != null)
+                                {
+                                    if (pageClue[cluePageIndex, 1].BlownClueImage != null)
+                                    {
+                                        imageClueDraw = 2;
+                                    }
+                                    else
+                                    {
+                                        clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 1].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
+                                        activeMenu = Category.Journal;
+                                    }
+                                }
+                                break;
+                            case SelectedEntry.BotLeft:
+                                if (pageClue[cluePageIndex, 2] != null)
+                                {
+                                    if (pageClue[cluePageIndex, 2].BlownClueImage != null)
+                                    {
+                                        imageClueDraw = 3;
+                                    }
+                                    else
+                                    {
+                                        clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 2].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
+                                        activeMenu = Category.Journal;
+                                    }
+                                }
+                                break;
+                            case SelectedEntry.BotRight:
+                                if (pageClue[cluePageIndex, 3] != null)
+                                {
+                                    if (pageClue[cluePageIndex, 3].BlownClueImage != null)
+                                    {
+                                        imageClueDraw = 4;
+                                    }
+                                    else
+                                    {
+                                        clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 3].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
+                                        activeMenu = Category.Journal;
+                                    }
+                                }
+                                break;
+                        }
                     }
                 }
             }
@@ -357,7 +375,10 @@ namespace GamePrototype.Classes.Menu
             {
                 //bedRoom.Draw(uSpriteBatch);
                 spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
-                clueTextBox.Draw(spriteBatch);
+                if (clueTextBox != null)
+                {
+                    clueTextBox.Draw(spriteBatch);
+                }
             }
             if (activeMenu == Category.Settings)
             {
@@ -411,21 +432,9 @@ namespace GamePrototype.Classes.Menu
                         break;
                 }
 
-                if (imageClueDraw == 1)
+                if (imageClueDraw > 0)
                 {
-                    spriteBatch.Draw(pageClue[cluePageIndex, 0].BlownClueImage, new Rectangle(0, 0, 1950, 1100), Color.White);
-                }
-                if (imageClueDraw == 2)
-                {
-                    spriteBatch.Draw(pageClue[cluePageIndex, 1].BlownClueImage, new Rectangle(0, 0, 1950, 1100), Color.White);
-                }
-                if (imageClueDraw == 3)
-                {
-                    spriteBatch.Draw(pageClue[cluePageIndex, 2].BlownClueImage, new Rectangle(0, 0, 1950, 1100), Color.White);
-                }
-                if (imageClueDraw == 4)
-                {
-                    spriteBatch.Draw(pageClue[cluePageIndex, 3].BlownClueImage, new Rectangle(0, 0, 1950, 1100), Color.White);
+                    spriteBatch.Draw(pageClue[cluePageIndex, imageClueDraw - 1].BlownClueImage, Game1.FormatDraw(new Rectangle(0, 0, 1950, 1100)), Color.White);
                 }
 
                 /*if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))

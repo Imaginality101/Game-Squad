@@ -628,6 +628,8 @@ namespace GamePrototype
 
         public static void Restart()
         {
+            
+            activeRoom = CurrentRoom.Bedroom;
 
         }
     }
