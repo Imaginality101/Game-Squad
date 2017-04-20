@@ -17,7 +17,7 @@ namespace GamePrototype.Classes
         // TODO: This class should have a texture, which will be an image file of the clue information.
         // Should also have a string property for flavor/pickup text, and potentially a thumbnail image.
         Texture2D clueImg; // the clue itself to be displayed on screen
-        Texture2D blownClueImage; // - kat
+        Texture2D blownClueImage = null; // - kat
         string flavorText;
         string name;
         // might be deprecated
@@ -86,6 +86,11 @@ namespace GamePrototype.Classes
             {
                 return blownClueImage;
             }
+
+            set
+            {
+                blownClueImage = value;
+            }
         }
 
         // TODO: Caleb - Clue Dictionary should go here, it will be static
@@ -149,12 +154,16 @@ namespace GamePrototype.Classes
             return;
         }
 
-        public static void LoadContent(Texture2D news, Texture2D bathroomKey, Texture2D closetKey, Texture2D oldPhoto, Texture2D newPhoto, Texture2D tenantDir, Texture2D crazyDir, Texture2D receipt, Texture2D ring, Texture2D pendant, Texture2D bones, Texture2D jaggedKnife, Texture2D spaCoupon, Texture2D medicineBottle, Texture2D stickyNote, Texture2D news1BlownUp, Texture2D news2BlownUp, Texture2D news3BlownUp, Texture2D news4BlownUp)
+        public static void LoadContent(Texture2D news, Texture2D bathroomKey, Texture2D closetKey, Texture2D oldPhoto, Texture2D newPhoto, Texture2D tenantDir, Texture2D crazyDir, Texture2D receipt, Texture2D ring, Texture2D pendant, Texture2D bones, Texture2D jaggedKnife, Texture2D spaCoupon, Texture2D medicineBottle, Texture2D stickyNote, Texture2D new1full, Texture2D new2full, Texture2D new3full, Texture2D new4full)
         {
             clues["News1"].ClueImage = news;
+            clues["News1"].BlownClueImage = new1full;
             clues["News2"].ClueImage = news;
+            clues["News2"].BlownClueImage = new2full;
             clues["News3"].ClueImage = news;
+            clues["News3"].BlownClueImage = new3full;
             clues["News4"].ClueImage = news;
+            clues["News4"].BlownClueImage = new4full;
             clues["News5"].ClueImage = news;
             clues["BathroomKey"].ClueImage = bathroomKey;
             clues["ClosetKey"].ClueImage = closetKey;

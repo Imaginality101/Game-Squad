@@ -31,9 +31,10 @@ namespace GamePrototype.Classes
             {
                 return fullImage;
             }
+
             set
             {
-                FullImage = value;
+                fullImage = value;
             }
         }
     }
