@@ -525,7 +525,7 @@ namespace GamePrototype
             // draw lose things - kat
             if (winLose == 1) // lost
             {
-                uSpriteBatch.Draw(loseScreen, new Rectangle(0, 0, 1950, 1100), Color.White);
+                uSpriteBatch.Draw(loseScreen, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
             }
 
             // draw win things - kat
