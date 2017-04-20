@@ -11,8 +11,6 @@ namespace GamePrototype.Classes.Tools
 {
     class Lamp : Interactable
     {
-        private Vector2 interactionPoint;
-
         public Lamp(Texture2D txtr, Rectangle psRct) : base(txtr, psRct)
         {
 

@@ -20,7 +20,7 @@ namespace GamePrototype.Classes.Tools
     {
         // TODO: Declan - You can use this for initializing game objects
 
-        //Texture2Ds                           //Rectangles;
+        //Texture2Ds                           
         private Texture2D bed;
         private Texture2D tv;
         private Texture2D sidetab1;
@@ -34,6 +34,8 @@ namespace GamePrototype.Classes.Tools
         private Texture2D news1;
         private Texture2D lamp;
         private Texture2D cardbord;
+        private Texture2D lampfloor;
+        //Rectangles;
         private Rectangle bedRect;
         private Rectangle tvRect;
         private Rectangle sidetab1Rect;
@@ -52,6 +54,7 @@ namespace GamePrototype.Classes.Tools
         private Rectangle mirrorRect;
         private Texture2D bedroondoorside;
         private Rectangle bedroomdoorsideRect;
+        private Rectangle lampfloorRect;
         // Texture for display above interactables
         public static Texture2D buttonPrompt;
 
@@ -131,15 +134,19 @@ namespace GamePrototype.Classes.Tools
             mirrorRect = new Rectangle((int)origin.X - 570, (int)origin.Y -26, 172, 172);
 
             bedroondoorside = content.Load<Texture2D>("bedroomdoorSideFULL");
-            bedroomdoorsideRect = new Rectangle((int)origin.X + 505, (int)origin.Y - 72, 172, 172);
+            bedroomdoorsideRect = new Rectangle((int)origin.X + 495, (int)origin.Y + 50, 172, 172);
 
-
+            lampfloor = content.Load<Texture2D>("lampFloor");
+            lampfloorRect = new Rectangle((int)origin.X + 410, (int)origin.Y - 380, 172, 346);
 
             List<GameObject> objs = new List<GameObject>();
             //all the shit goes here
-            objs.Add(new GameObject(cardbord, cardboardRect, "Boxes"));
+            objs.Add(new ClueObject(cardbord, cardboardRect, new Rectangle(0, 0, 172, 172),Clue.Clues["News3"],false));
             objs.Add(new GameObject(mirror, mirrorRect, "Mirror"));
             objs.Add(new Door(bedroondoorside, bedroomdoorsideRect, CurrentRoom.Bedroom));
+            objs.Add(new Lamp(lampfloor, lampfloorRect));
+
+            ((Lamp)objs[3]).InteractionPoint = new Vector2(lampfloorRect.Width / 2, lampfloorRect.Height); // Lamp
 
             return objs;
         }

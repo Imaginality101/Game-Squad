@@ -75,13 +75,13 @@ namespace GamePrototype.Classes.Objects
         {
             if (destination == CurrentRoom.Closet)
             {
-                user.X = (int)origin.X + 490;
-                user.Y = (int)origin.Y - 90;
+                user.X = (int)origin.X + 470;
+                user.Y = (int)origin.Y - 20;
             }
             if (destination == CurrentRoom.Bedroom)// && prevRoom == CurrentRoom.Closet)
             {
-                user.X = (int)origin.X - 660;
-                user.Y = (int)origin.Y + 220;
+                user.X = (int)origin.X - 620;
+                user.Y = (int)origin.Y + 200;
             }/*
             if (destination == CurrentRoom.Bedroom && prevRoom == CurrentRoom.Bathroom)
             {
