@@ -60,6 +60,7 @@
     <Compile Include="Classes\Tools\IControlled.cs" />
     <Compile Include="Classes\Objects\Lamp.cs" />
     <Compile Include="Classes\Tools\ObjectSetup.cs" />
+    <Compile Include="Classes\Tools\PopUpManager.cs" />
     <Compile Include="Classes\Tools\SaveData.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />

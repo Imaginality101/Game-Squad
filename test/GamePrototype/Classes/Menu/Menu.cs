@@ -77,7 +77,7 @@ namespace GamePrototype.Classes.Menu
         private GameSound blep;
 
         // Use this for the blown up images, its the size of the room, will maximize readibility hopefully, cannot currently select one to test it however
-        Rectangle blownUpImage = new Rectangle((int)new Vector2(1728 / 2, 972 / 2).X - (1382 / 2), (int)new Vector2(1728 / 2, 972 / 2).Y - (972 / 2), 1382, 972);
+        Rectangle blownUpImage = new Rectangle((1728 / 2) - (1382 / 2), 0, 1382, 972);
 
         public Menu()
         {
