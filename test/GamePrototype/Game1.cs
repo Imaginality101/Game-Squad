@@ -154,6 +154,7 @@ namespace GamePrototype
             uSpriteBatch = new SpriteBatch(GraphicsDevice);
 
             loseScreen = content.Load<Texture2D>("death_screen");
+            winScreen = content.Load<Texture2D>("win_screen");
             
             MasterContentLoader();//HERE IS WERE TEXTURES GET LOADED
             // Caleb - instantiate the textbox - Kat
@@ -163,6 +164,7 @@ namespace GamePrototype
             bedRoom = new Room(bedBG);
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
             bedRoom.Objects = furnitureSet.BedroomSetup();
+            // TODO: call bathroom's DisableSavedClueObjects() when bathroom is created
             bedRoom.DisableSavedClueObjects();
             player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds);
             // TODO: fill in the nulls in the parameters list once we have more textures
@@ -172,6 +174,7 @@ namespace GamePrototype
 
             closetRoom = new Room(closetBG);
             closetRoom.Objects = furnitureSet.ClosetSetup();
+            closetRoom.DisableSavedClueObjects();
 
 
         }
@@ -251,6 +254,13 @@ namespace GamePrototype
             // TODO: Check if menus are open or the open button has been pressed, and if so update them
             prevKbState = kbState;
             kbState = Keyboard.GetState();
+
+            if (winLose == 2)
+            {
+                Thread.Sleep(5000);
+                Restart();
+                winLose = 0;
+            }
 
             // win state - kat
             if (activeRoom == CurrentRoom.Bathroom)
@@ -395,8 +405,11 @@ namespace GamePrototype
                         break;
                     }
             }
-            // Caleb - update Textbox
-            //settingsTextBox.Update(kbState, prevKbState);
+            // restarts the game if R is pressed
+            if (kbState.IsKeyDown(Keys.R) && prevKbState.IsKeyUp(Keys.R))
+            {
+                Restart();
+            }
             base.Update(gameTime);
         }
 
@@ -531,9 +544,7 @@ namespace GamePrototype
             // draw win things - kat
             if (winLose == 2) // win
             {
-                // draw thing here
-                Thread.Sleep(5000);
-                Restart();
+                uSpriteBatch.Draw(winScreen, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
             }
 
             uSpriteBatch.End();
@@ -626,10 +637,21 @@ namespace GamePrototype
 
 
 
-        public static void Restart()
+        public void Restart()
         {
-            
+            // returns palyer to bedroom
             activeRoom = CurrentRoom.Bedroom;
+            //lights
+            lightsOn = false;
+            // restores the player position to what it was at the start of the game
+            player.PlayerRect = new Rectangle(1728 / 2 - 50, 972 / 2 - 50, 96, 192);
+            Menu.pageClue = new Clue[7,4];
+            // TODO: restart more rooms when we get them
+            bedRoom.ReenableClueObjects();
+            closetRoom.ReenableClueObjects();
+            SaveData.Restart();
+            // TODO: reconfigure so that it assigns the custom timer value
+            gameTimerSeconds = 15 * 60;
 
         }
     }

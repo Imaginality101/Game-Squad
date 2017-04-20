@@ -109,6 +109,19 @@ namespace GamePrototype.Classes
                 }
             }
         }
+        // Caleb - reenables ClueObjects when restarted
+        public void ReenableClueObjects()
+        {
+            foreach (GameObject go in objectsInRoom)
+            {
+                if (go is ClueObject)
+                {
+                    ClueObject co = (ClueObject)go;
+                    co.Found = false;
+                    co.Enabled = true;
+                }
+            }
+        }
 
         // NOTE: Declan - This was moved from the constructor, so when you initialize the Room(s) make sure you remember to
         public List<GameObject> Objects
