@@ -8,13 +8,18 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using GamePrototype;
 
-namespace GamePrototype.Classes.Objects
+namespace GamePrototype.Classes
 {
     class ImageClue : Clue
     {
         // attributes
         Texture2D fullImage;
-        // constructor
+        // constructors
+        // default
+        public ImageClue (string nm, string text) : base(nm, text)
+        {
+            fullImage = null;
+        }
         public ImageClue(string nm, string text, Texture2D img) : base(nm, text)
         {
             fullImage = img;
