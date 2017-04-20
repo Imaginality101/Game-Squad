@@ -617,12 +617,10 @@ namespace GamePrototype
             scaleRect = new Rectangle(newX, newY, newWidth, newHeight);
             return scaleRect;
         }
-        public static void ChangeRoom(CurrentRoom wehere)
-        {
-            //activeRoom = wehere;
-        }
+        
         public static  ContentManager ContentMan { get { return content; } }
         public static bool LightsOn { get { return lightsOn; } set { lightsOn = value; } }
+
 
 
 
