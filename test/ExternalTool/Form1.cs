@@ -39,6 +39,30 @@ namespace ExternalTool
             writer = new BinaryWriter(File.Open(PATH, FileMode.OpenOrCreate));
             if (timerBox.Checked)
             {
+                int minutes = 0;
+                // check the input of timeLimit box
+                bool parseSuccessful = int.TryParse(timeLimit.Text, out minutes);
+                if (parseSuccessful)
+                {
+                    writer.Write(true);
+                    writer.Write(minutes);
+                }
+                else
+                {
+                    // if parse was unsuccessful, pretend that the timer checkbox was not checked
+                    writer.Write(false);
+                    // write -1 for the amount of minutes
+                    writer.Write(-1);
+                }
+            }
+            else
+            {
+                writer.Write(false);
+                // write -1 for the amount of minutes
+                writer.Write(-1);
+            }
+            if (easyBox.Checked)
+            {
                 writer.Write(true);
             }
             else
@@ -106,6 +130,11 @@ namespace ExternalTool
         private void windowedButton_CheckedChanged(object sender, EventArgs e)
         {
             resPanelW.Enabled = windowedButton.Checked;
+        }
+
+        private void easyBox_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

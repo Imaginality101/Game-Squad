@@ -200,8 +200,13 @@ namespace GamePrototype
             //objects = data.ReadBedroom();
             settingsData = SaveData.ReadSettings();
             timerMode = (bool)settingsData[0];
-            bobRossMode = (bool)settingsData[1];
-            fullscreen = (Boolean)settingsData[2]; // Tom - Get whether or not the window is fullscreen
+            if (timerMode)
+            {
+                gameTimerSeconds = (int)settingsData[1] * 60;
+            }
+            bool easyMode = (bool)settingsData[2];
+            bobRossMode = (bool)settingsData[3];
+            fullscreen = (Boolean)settingsData[4]; // Tom - Get whether or not the window is fullscreen
             if(fullscreen)
             {
                 graphics.IsFullScreen = true;
@@ -210,8 +215,8 @@ namespace GamePrototype
             }
             else
             {
-                windowWidth = (int)settingsData[3];
-                windowHeight = (int)settingsData[4];
+                windowWidth = (int)settingsData[5];
+                windowHeight = (int)settingsData[6];
             }
             graphics.PreferredBackBufferWidth = windowWidth;
             graphics.PreferredBackBufferHeight = windowHeight;
@@ -221,7 +226,7 @@ namespace GamePrototype
 
             winLose = 0;
 
-            Console.WriteLine("Timer mode: " + timerMode + " Bob Ross mode: " + bobRossMode);
+            Console.WriteLine("Timer mode: " + timerMode + " Bob Ross mode: " + bobRossMode + " Easy mode: " + easyMode);
             menu = new Menu();
             lightsOn = false;
             base.Initialize();

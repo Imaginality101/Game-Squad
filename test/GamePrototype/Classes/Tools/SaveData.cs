@@ -96,10 +96,17 @@ namespace GamePrototype.Classes.Tools
                 // read until end of file
                 try
                 {
+                    // timer mode
                     result.Add(settingsReader.ReadBoolean());
+                    // number of minutes
+                    result.Add(settingsReader.ReadInt32());
+                    // easy mode
                     result.Add(settingsReader.ReadBoolean());
+                    // Bob Ross mode
+                    result.Add(settingsReader.ReadBoolean());
+                    // full screen mode
                     result.Add(settingsReader.ReadBoolean()); // Tom - Resolution settings, fullscreen boolean
-                    if (!(Boolean)result[2]) // if windowed
+                    if (!(Boolean)result[4]) // if windowed
                     {
                         result.Add(settingsReader.ReadInt32()); // width
                         result.Add(settingsReader.ReadInt32()); // height
@@ -112,6 +119,8 @@ namespace GamePrototype.Classes.Tools
             }
             catch(FileNotFoundException e) // If the file isn't found just default the settings
             {
+                result.Add(false);
+                result.Add(-1);
                 result.Add(false);
                 result.Add(false);
                 result.Add(false);
