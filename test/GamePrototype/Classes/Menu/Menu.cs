@@ -328,6 +328,11 @@ namespace GamePrototype.Classes.Menu
                         }
                     }
                 }
+                // stops drawing the image clue when exiting the clues menu
+                if ((kbState.IsKeyDown(Keys.D2) && prevKbState.IsKeyUp(Keys.D2)) || (kbState.IsKeyDown(Keys.D3) && prevKbState.IsKeyUp(Keys.D3)) || (kbState.IsKeyDown(Keys.LeftShift) && prevKbState.IsKeyUp(Keys.LeftShift)))
+                {
+                    imageClueDraw = 0;
+                }
             }
             prevKbState = kbState;
         }
