@@ -33,8 +33,7 @@ namespace GamePrototype.Classes.Tools
         private Texture2D stickynote;
         private Texture2D news1;
         private Texture2D lamp;
-        private Texture2D cardbord;
-        private Texture2D lampfloor;
+
         //Rectangles;
         private Rectangle bedRect;
         private Rectangle tvRect;
@@ -49,12 +48,8 @@ namespace GamePrototype.Classes.Tools
         private Rectangle news1Rect;
         private Rectangle news2Rect;
         private Rectangle lampRect;
-        private Rectangle cardboardRect;
-        private Texture2D mirror;
-        private Rectangle mirrorRect;
-        private Texture2D bedroondoorside;
-        private Rectangle bedroomdoorsideRect;
-        private Rectangle lampfloorRect;
+        
+        
         // Texture for display above interactables
         public static Texture2D buttonPrompt;
 
@@ -65,15 +60,22 @@ namespace GamePrototype.Classes.Tools
 
         //draw origin
         Vector2 origin;
+
+        //closet objects
         private Texture2D wardrobe;
         private Rectangle wardrobeRect;
         private Texture2D wardrobeopen;
         private Rectangle wardrobeopenRect;
         private Texture2D bathkey;
         private Rectangle bathkeyRect;
-
-
-
+        private Texture2D lampfloor;
+        private Rectangle lampfloorRect;
+        private Texture2D cardbord;
+        private Rectangle cardboardRect;
+        private Texture2D mirror;
+        private Rectangle mirrorRect;
+        private Texture2D bedroondoorside;
+        private Rectangle bedroomdoorsideRect;
         // constructor to take content manager, spritebatch and a graphic device to handle local contect assignments
         public ObjectSetup(ContentManager ctm, SpriteBatch sbt, GraphicsDevice gd)
         {
@@ -89,21 +91,34 @@ namespace GamePrototype.Classes.Tools
             // GameObject List for return
             List<GameObject> objs = new List<GameObject>();
 
-            //texterure assignments                                                                      //Bounds assignments
-            bed = content.Load<Texture2D>("bedFULL"); bedRect = new Rectangle((int)origin.X + 100, (int)origin.Y - 40, 518, 346);
-            tv = content.Load<Texture2D>("tvFULL"); tvRect = new Rectangle((int)origin.X - 570, (int)origin.Y - 110, 172, 346);
-            sidetab1 = content.Load<Texture2D>("sidetableFULL"); sidetab1Rect = new Rectangle((int)origin.X + 380, (int)origin.Y + 260, 172, 172);
-            sidetab2 = content.Load<Texture2D>("sidetableFULL"); sidetab2Rect = new Rectangle((int)origin.X + 380, (int)origin.Y - 140, 172, 172);
-            book = content.Load<Texture2D>("bookshelfFULL"); bookRect = new Rectangle((int)origin.X + 55, (int)origin.Y - 470, 346, 172);
-            dress = content.Load<Texture2D>("dresserFULL"); dressRect = new Rectangle((int)origin.X - 440, (int)origin.Y - 470, 346, 172);
-            outdoor = content.Load<Texture2D>("outdoorFULL"); outdoorRect = new Rectangle((int)origin.X - 96, (int)origin.Y - 530, 172, 172);
-            bathdoor = content.Load<Texture2D>("bathroomdoorFULL"); bathdoorRect = new Rectangle((int)origin.X + 370, (int)origin.Y - 530, 172, 172);
-            closetdoor = content.Load<Texture2D>("closetdoorFULL"); closetdoorRect = new Rectangle((int)origin.X - 685, (int)origin.Y + 230, 172, 172);
-            stickynote = content.Load<Texture2D>("stickynoteFull"); stickynoteRect = new Rectangle((int)origin.X - 490, (int)origin.Y + 130, 56, 56);
-            news1 = content.Load<Texture2D>("NewspaperFULL"); news1Rect = new Rectangle((int)origin.X - 300, (int)origin.Y - 350, 72, 72);
-            news2Rect = new Rectangle((int)origin.X + 440, (int)origin.Y - 120, 72, 72);
-            lamp = content.Load<Texture2D>("LampFULL"); lampRect = new Rectangle((int)origin.X - 440, (int)origin.Y - 475, 128, 128);
+            //texterure assignments                                                                     
+            bed = content.Load<Texture2D>("bedFULL"); 
+            tv = content.Load<Texture2D>("tvFULL"); 
+            sidetab1 = content.Load<Texture2D>("sidetableFULL");
+            sidetab2 = content.Load<Texture2D>("sidetableFULL"); 
+            book = content.Load<Texture2D>("bookshelfFULL"); 
+            dress = content.Load<Texture2D>("dresserFULL"); 
+            outdoor = content.Load<Texture2D>("outdoorFULL"); 
+            bathdoor = content.Load<Texture2D>("bathroomdoorFULL"); 
+            closetdoor = content.Load<Texture2D>("closetdoorFULL");
+            stickynote = content.Load<Texture2D>("stickynoteFull");
+            news1 = content.Load<Texture2D>("NewspaperFULL"); 
+            lamp = content.Load<Texture2D>("LampFULL");
 
+            //Bounds assignments
+            bedRect = new Rectangle((int)origin.X + 100, (int)origin.Y - 40, 518, 346);
+            tvRect = new Rectangle((int)origin.X - 570, (int)origin.Y - 110, 172, 346);
+            sidetab1Rect = new Rectangle((int)origin.X + 380, (int)origin.Y + 260, 172, 172);
+            sidetab2Rect = new Rectangle((int)origin.X + 380, (int)origin.Y - 140, 172, 172);
+            bookRect = new Rectangle((int)origin.X + 55, (int)origin.Y - 470, 346, 172);
+            dressRect = new Rectangle((int)origin.X - 440, (int)origin.Y - 470, 346, 172);
+            outdoorRect = new Rectangle((int)origin.X - 96, (int)origin.Y - 530, 172, 172);
+            bathdoorRect = new Rectangle((int)origin.X + 370, (int)origin.Y - 530, 172, 172);
+            closetdoorRect = new Rectangle((int)origin.X - 685, (int)origin.Y + 230, 172, 172);
+            stickynoteRect = new Rectangle((int)origin.X - 490, (int)origin.Y + 130, 56, 56);
+            news1Rect = new Rectangle((int)origin.X - 300, (int)origin.Y - 350, 72, 72);
+            news2Rect = new Rectangle((int)origin.X + 440, (int)origin.Y - 120, 72, 72);
+            lampRect = new Rectangle((int)origin.X - 440, (int)origin.Y - 475, 128, 128);
 
             //adding them all to the gameobjectlist
             // Caleb - adding a temporary name string to the constructor which is to demo interaction
@@ -117,7 +132,6 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new ClueObject(book, bookRect, Clue.Clues["TenantDiary1"], false, Clue.Clues["StickyNote"]));
             objs.Add(new ClueObject(news1, news1Rect, Clue.Clues["News1"], false, "News 1", true));
             objs.Add(new ClueObject(news1, news2Rect, Clue.Clues["News2"], false, "News 2", true));
-            //objs.Add(new GameObject(dress, dressRect, "Dresser"));
             objs.Add(new ClueObject(dress, dressRect, Clue.Clues["ClosetKey"], false, Clue.Clues["TenantDiary2"]));
             objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false, "Sticky Note",true));
             objs.Add(new Lamp(lamp, lampRect));
