@@ -650,13 +650,18 @@ namespace GamePrototype
             lightsOn = false;
             // restores the player position to what it was at the start of the game
             player.PlayerRect = new Rectangle(1728 / 2 - 50, 972 / 2 - 50, 96, 192);
+            // clears the clue menu 
             Menu.pageClue = new Clue[7,4];
             // TODO: restart more rooms when we get them
             bedRoom.ReenableClueObjects();
             closetRoom.ReenableClueObjects();
             SaveData.Restart();
             // TODO: reconfigure so that it assigns the custom timer value
-            gameTimerSeconds = 15 * 60;
+            if (timerMode)
+            {
+                gameTimerSeconds = (int)settingsData[1] * 60;
+            }
+            //gameTimerSeconds = 15 * 60;
 
         }
     }
