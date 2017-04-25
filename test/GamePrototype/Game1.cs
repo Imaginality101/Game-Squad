@@ -60,6 +60,7 @@ namespace GamePrototype
         SpriteBatch uSpriteBatch; // this
         //Declan - this is for sounds
         GameSound music;
+        GameSound music2;
         GameSound intro;
         private GameSound blep;
         private GameSound beeboop;
@@ -72,6 +73,7 @@ namespace GamePrototype
         // any rooms will be defined here as we get them added
         Room bedRoom;
         Room closetRoom;
+        Room bathRoom;
         
         ObjectSetup furnitureSet;
 
@@ -176,6 +178,9 @@ namespace GamePrototype
             closetRoom.Objects = furnitureSet.ClosetSetup();
             closetRoom.DisableSavedClueObjects();
 
+            bathRoom = new Room(bathBG);
+            bathRoom.Objects = furnitureSet.BathroomSetup();
+            bathRoom.DisableSavedClueObjects();
 
         }
 
@@ -236,10 +241,12 @@ namespace GamePrototype
             }
 
             // win state - kat
+            /*
             if (activeRoom == CurrentRoom.Bathroom)
             {
                 winLose = 2; 
             }
+            */
 
             if (winLose == 1) // kat
             {
@@ -268,10 +275,12 @@ namespace GamePrototype
                     {
                         // timer for animation - kat
                         timer -= gameTime.ElapsedGameTime.TotalSeconds;
-                        intro.PlayIntro(.5f);
+                        //intro.PlayIntro(.5f);
+                        intro.IsPlayed = true;
                         if (intro.IsPlayed == true)
                         {
-                            music.PlayAsMusic(.5f);
+                            //music.PlayAsMusic(.5f);
+                            music2.PlayAsMusic(.5f);
                         }
                         // Caleb - game timer code
                         if (timerMode)
@@ -297,6 +306,8 @@ namespace GamePrototype
                                 break;
                             case CurrentRoom.Bathroom:
                                 // TODO: update bathroom
+                                bathRoom.Update(gameTime);
+                                player.Update(gameTime, closetRoom.Objects);
                                 break;
                         }
                         if (kbState.IsKeyDown(Keys.Tab))// && !prevKbState.IsKeyDown(Keys.Tab))
@@ -440,6 +451,16 @@ namespace GamePrototype
                         
                         break;
                     case CurrentRoom.Bathroom:
+                        if (player.PlayerRect.Y < GraphicsDevice.Viewport.Bounds.Height / 2)
+                        {
+                            bathRoom.Draw(uSpriteBatch);
+                            player.Draw(uSpriteBatch);
+                        }
+                        else
+                        {
+                            bathRoom.Draw(uSpriteBatch);
+                            player.Draw(uSpriteBatch);
+                        }
                         // TODO: update bathroom
                         break;
                 }
@@ -476,7 +497,18 @@ namespace GamePrototype
             */
             if (gameState == GameState.GMenu)
             {
-                bedRoom.Draw(uSpriteBatch);
+                switch (activeRoom)
+                {
+                    case CurrentRoom.Bedroom:
+                        bedRoom.Draw(uSpriteBatch);
+                        break;
+                    case CurrentRoom.Closet:
+                        closetRoom.Draw(uSpriteBatch);
+                        break;
+                    case CurrentRoom.Bathroom:
+                        // TODO: Draw bathroom
+                        break;
+                }
                 menu.Draw(uSpriteBatch);
                 
             }
@@ -541,6 +573,7 @@ namespace GamePrototype
             // NOTE: Here is where i will load every god damn texture and sound so that the main stops looking like garb and we cont have to pass in ContentManagers *Looks at Kat*
             intro = new GameSound("spook3-thebegining", content);
             music = new GameSound("spook3-theloop ", content);
+            music2 = new GameSound("Spook4-Spidershuffle", content);
             beeboop = new GameSound("phone-beep", content);
 
             font = Content.Load<SpriteFont>("Arial");
@@ -589,6 +622,7 @@ namespace GamePrototype
 
             bedBG = content.Load<Texture2D>("backgroundFULL");
             closetBG = content.Load<Texture2D>("theclosetFULL");
+            bathBG = content.Load<Texture2D>("thebathroomFULL");
 
 
         }
@@ -658,13 +692,18 @@ namespace GamePrototype
             lightsOn = false;
             // restores the player position to what it was at the start of the game
             player.PlayerRect = new Rectangle(1728 / 2 - 50, 972 / 2 - 50, 96, 192);
+            // clears the clue menu 
             Menu.pageClue = new Clue[7,4];
             // TODO: restart more rooms when we get them
             bedRoom.ReenableClueObjects();
             closetRoom.ReenableClueObjects();
             SaveData.Restart();
             // TODO: reconfigure so that it assigns the custom timer value
-            gameTimerSeconds = 15 * 60;
+            if (timerMode)
+            {
+                gameTimerSeconds = (int)settingsData[1] * 60;
+            }
+            //gameTimerSeconds = 15 * 60;
 
         }
     }

@@ -23,7 +23,7 @@ namespace GamePrototype.Classes.Tools
         bool isPlayed = false;
 
         //Proporties
-        public bool IsPlayed { get { return isPlayed; } }
+        public bool IsPlayed { get { return isPlayed; } set { isPlayed = value; } }
         //Constructor
         public GameSound(string filename, ContentManager content)
         {
