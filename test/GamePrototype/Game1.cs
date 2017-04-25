@@ -60,6 +60,7 @@ namespace GamePrototype
         SpriteBatch uSpriteBatch; // this
         //Declan - this is for sounds
         GameSound music;
+        GameSound music2;
         GameSound intro;
         private GameSound blep;
         private GameSound beeboop;
@@ -300,10 +301,12 @@ namespace GamePrototype
                     {
                         // timer for animation - kat
                         timer -= gameTime.ElapsedGameTime.TotalSeconds;
-                        intro.PlayIntro(.5f);
+                        //intro.PlayIntro(.5f);
+                        intro.IsPlayed = true;
                         if (intro.IsPlayed == true)
                         {
-                            music.PlayAsMusic(.5f);
+                            //music.PlayAsMusic(.5f);
+                            music2.PlayAsMusic(.5f);
                         }
                         // Caleb - game timer code
                         if (timerMode)
@@ -573,6 +576,7 @@ namespace GamePrototype
             // NOTE: Here is where i will load every god damn texture and sound so that the main stops looking like garb and we cont have to pass in ContentManagers *Looks at Kat*
             intro = new GameSound("spook3-thebegining", content);
             music = new GameSound("spook3-theloop ", content);
+            music2 = new GameSound("Spook4-Spidershuffle", content);
             beeboop = new GameSound("phone-beep", content);
 
             font = Content.Load<SpriteFont>("Arial");
