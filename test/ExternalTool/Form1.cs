@@ -13,16 +13,26 @@ namespace ExternalTool
 {
     public partial class Form1 : Form
     {
-        const string PATH = "..\\..\\..\\GamePrototype\\bin\\DesktopGL\\x86\\Debug\\Settings"; 
+        const string PATH = "..\\..\\..\\GamePrototype\\bin\\DesktopGL\\x86\\Debug\\Settings";
+        const string D_PATH = "Settings"; // If opened by the game
+        Boolean standalone;
         //"C:\\Users\\Caleb\\My Documents\\Visual Studio 2015\\Projects\\InteractionAttempt\\InteractionAttempt\\bin\\DesktopGL\\x86\\Debug\\Settings";
         //"C:\\Users\\Caleb\\Source\\Repos\\Game-Squad\\test\\GamePrototype\\bin\\DesktopGL\\x86\\Debug\\SaveFile"
         // writes values the user enters
         BinaryWriter writer;
         // writes default values if the user does not enter any values
         BinaryWriter defaultWriter;
-        public Form1()
+        public Form1(Boolean stnd)
         {
-            defaultWriter = new BinaryWriter(File.Open(PATH, FileMode.OpenOrCreate));
+            standalone = stnd;
+            if (standalone)
+            {
+                defaultWriter = new BinaryWriter(File.Open(PATH, FileMode.OpenOrCreate));
+            }
+            else
+            {
+                defaultWriter = new BinaryWriter(File.Open(D_PATH, FileMode.OpenOrCreate));
+            }
             defaultWriter.Write(false);
             defaultWriter.Write(false);
             defaultWriter.Close();
@@ -36,7 +46,15 @@ namespace ExternalTool
 
         private void runGame_Click(object sender, EventArgs e)
         {
-            writer = new BinaryWriter(File.Open(PATH, FileMode.OpenOrCreate));
+            if (standalone)
+            {
+                writer = new BinaryWriter(File.Open(PATH, FileMode.OpenOrCreate));
+            }
+            else
+            {
+                Console.WriteLine("Saved dependently");
+                writer = new BinaryWriter(File.Open(D_PATH, FileMode.OpenOrCreate));
+            }
             if (timerBox.Checked)
             {
                 int minutes = 0;
