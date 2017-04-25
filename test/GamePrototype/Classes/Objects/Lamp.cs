@@ -26,6 +26,7 @@ namespace GamePrototype.Classes.Tools
                 Game1.LightsOn = true;
             }
         }
+
         
 
     }

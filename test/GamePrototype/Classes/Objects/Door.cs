@@ -41,6 +41,16 @@ namespace GamePrototype.Classes.Objects
             origin = new Vector2(1728 / 2, 972 / 2);
 
         }
+        //clRct
+        public Door(Texture2D txtr, Rectangle psRct, CurrentRoom targetRoom, Rectangle clRct) : base(txtr, psRct,clRct)
+        {
+            doorText = txtr;
+            doorRect = psRct;
+            destination = targetRoom;
+            requiredClue = null;
+            origin = new Vector2(1728 / 2, 972 / 2);
+
+        }
 
         // TODO: Class needs fleshing out, but its primary difference is that interacting
         // with it should somehow prompt the game to switch to another room. Tom's recommendation - custom event handlers. If someone wants to tackle that verbally raise your hand to me,
