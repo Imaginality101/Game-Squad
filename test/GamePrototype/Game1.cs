@@ -508,7 +508,18 @@ namespace GamePrototype
             */
             if (gameState == GameState.GMenu)
             {
-                bedRoom.Draw(uSpriteBatch);
+                switch (activeRoom)
+                {
+                    case CurrentRoom.Bedroom:
+                        bedRoom.Draw(uSpriteBatch);
+                        break;
+                    case CurrentRoom.Closet:
+                        closetRoom.Draw(uSpriteBatch);
+                        break;
+                    case CurrentRoom.Bathroom:
+                        // TODO: Draw bathroom
+                        break;
+                }
                 menu.Draw(uSpriteBatch);
                 
             }
