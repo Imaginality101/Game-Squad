@@ -73,6 +73,7 @@ namespace GamePrototype
         // any rooms will be defined here as we get them added
         Room bedRoom;
         Room closetRoom;
+        Room bathRoom;
         
         ObjectSetup furnitureSet;
 
@@ -177,6 +178,9 @@ namespace GamePrototype
             closetRoom.Objects = furnitureSet.ClosetSetup();
             closetRoom.DisableSavedClueObjects();
 
+            bathRoom = new Room(bathBG);
+            bathRoom.Objects = furnitureSet.BathroomSetup();
+            bathRoom.DisableSavedClueObjects();
 
         }
 
@@ -269,11 +273,12 @@ namespace GamePrototype
             }
 
             // win state - kat
+            /*
             if (activeRoom == CurrentRoom.Bathroom)
             {
                 winLose = 2; 
             }
-
+            */
             if (winLose == 1) // kat
             {
                 Thread.Sleep(5000);
@@ -332,6 +337,8 @@ namespace GamePrototype
                                 break;
                             case CurrentRoom.Bathroom:
                                 // TODO: update bathroom
+                                bathRoom.Update(gameTime);
+                                player.Update(gameTime, closetRoom.Objects);
                                 break;
                         }
                         if (kbState.IsKeyDown(Keys.Tab))// && !prevKbState.IsKeyDown(Keys.Tab))
@@ -475,6 +482,16 @@ namespace GamePrototype
                         
                         break;
                     case CurrentRoom.Bathroom:
+                        if (player.PlayerRect.Y < GraphicsDevice.Viewport.Bounds.Height / 2)
+                        {
+                            bathRoom.Draw(uSpriteBatch);
+                            player.Draw(uSpriteBatch);
+                        }
+                        else
+                        {
+                            bathRoom.Draw(uSpriteBatch);
+                            player.Draw(uSpriteBatch);
+                        }
                         // TODO: update bathroom
                         break;
                 }
@@ -625,6 +642,7 @@ namespace GamePrototype
 
             bedBG = content.Load<Texture2D>("backgroundFULL");
             closetBG = content.Load<Texture2D>("theclosetFULL");
+            bathBG = content.Load<Texture2D>("thebathroomFULL");
 
 
         }

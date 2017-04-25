@@ -224,6 +224,9 @@
     <Content Include="Content\sidetableFULL.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\sinkFULL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\stickynoteFULL.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
