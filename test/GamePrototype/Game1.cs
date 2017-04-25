@@ -134,7 +134,7 @@ namespace GamePrototype
         SpriteFont font;
         SpriteFont menuFont;
         bool drawInteractText = false;
-        
+        bool easyMode;
 
         public Game1()
         {
@@ -191,39 +191,7 @@ namespace GamePrototype
             gameState = GameState.MainMenu;
             activeRoom = CurrentRoom.Bedroom;
             //menuState = MenuState.Main; // kat
-
-            //data = new SaveData();
-            // initializes the bedroom
-            // Caleb - writes appropriate data to file, will save later
-            //data.WriteBedroom();
-            // Caleb - reads GameObjects from the file, stores it in objects
-            //objects = data.ReadBedroom();
-            settingsData = SaveData.ReadSettings();
-            timerMode = (bool)settingsData[0];
-            if (timerMode)
-            {
-                gameTimerSeconds = (int)settingsData[1] * 60;
-            }
-            bool easyMode = (bool)settingsData[2];
-            bobRossMode = (bool)settingsData[3];
-            fullscreen = (Boolean)settingsData[4]; // Tom - Get whether or not the window is fullscreen
-            if(fullscreen)
-            {
-                graphics.IsFullScreen = true;
-                windowWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-                windowHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            }
-            else
-            {
-                windowWidth = (int)settingsData[5];
-                windowHeight = (int)settingsData[6];
-            }
-            graphics.PreferredBackBufferWidth = windowWidth;
-            graphics.PreferredBackBufferHeight = windowHeight;
-            drawRatio.X = (float)windowWidth / NORM_WIDTH;
-            drawRatio.Y = (float)windowHeight / NORM_HEIGHT;
-            graphics.ApplyChanges();
-
+            GetSettings(true); // get settings, yes this is the first time calling it
             winLose = 0;
 
             Console.WriteLine("Timer mode: " + timerMode + " Bob Ross mode: " + bobRossMode + " Easy mode: " + easyMode);
@@ -640,7 +608,47 @@ namespace GamePrototype
         public static bool LightsOn { get { return lightsOn; } set { lightsOn = value; } }
 
 
+        public void GetSettings(Boolean firstTime)
+        {
+            if (!firstTime)
+            {
+                System.Diagnostics.Process.Start("..\\..\\..\\..\\..\\ExternalTool\\bin\\Debug\\ExternalTool", "dependent");
+                Process extTool = Process.GetProcessesByName("ExternalTool")[0];
+                extTool.WaitForExit();
+            }
+            //data = new SaveData();
+            // initializes the bedroom
+            // Caleb - writes appropriate data to file, will save later
+            //data.WriteBedroom();
+            // Caleb - reads GameObjects from the file, stores it in objects
+            //objects = data.ReadBedroom();
+            settingsData = SaveData.ReadSettings();
+            timerMode = (bool)settingsData[0];
+            if (timerMode)
+            {
+                gameTimerSeconds = (int)settingsData[1] * 60;
+            }
+            easyMode = (bool)settingsData[2];
+            bobRossMode = (bool)settingsData[3];
+            fullscreen = (Boolean)settingsData[4]; // Tom - Get whether or not the window is fullscreen
+            if (fullscreen)
+            {
+                graphics.IsFullScreen = true;
+                windowWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+                windowHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            }
+            else
+            {
+                windowWidth = (int)settingsData[5];
+                windowHeight = (int)settingsData[6];
+            }
+            graphics.PreferredBackBufferWidth = windowWidth;
+            graphics.PreferredBackBufferHeight = windowHeight;
+            drawRatio.X = (float)windowWidth / NORM_WIDTH;
+            drawRatio.Y = (float)windowHeight / NORM_HEIGHT;
+            graphics.ApplyChanges();
 
+        }
 
         public void Restart()
         {
