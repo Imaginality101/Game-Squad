@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+// Tom - Popup manager to be worked on for milestone 4. Will accomplish the migration of messages to the player ("you can't use this," "found a clue," etc) away from a console output to a proper ingame display.
 namespace GamePrototype.Classes.Tools
 {
     class PopUpManager
@@ -24,7 +25,7 @@ namespace GamePrototype.Classes.Tools
 
         public void Draw(SpriteBatch sprtBtch)
         {
-
+            
         }
     }
 }
