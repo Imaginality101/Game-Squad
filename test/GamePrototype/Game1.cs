@@ -279,6 +279,7 @@ namespace GamePrototype
                 winLose = 2; 
             }
             */
+
             if (winLose == 1) // kat
             {
                 Thread.Sleep(5000);
