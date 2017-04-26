@@ -37,6 +37,8 @@ namespace GamePrototype
 
     public class Game1 : Game
     {
+        private PopUpManager messageDisplay;
+
         // Tom - Setting variables for scaling draw
         Boolean fullscreen;
         const int NORM_WIDTH = 1728;
@@ -170,6 +172,8 @@ namespace GamePrototype
             bedRoom.DisableSavedClueObjects();
             player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds);
             // TODO: fill in the nulls in the parameters list once we have more textures
+
+            player.PopUp += messageDisplay.GetMessage;
             Clue.LoadContent(Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("Photo1"), null, Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"), null, null, null, null, null, null, null, Content.Load<Texture2D>("stickynoteFULL"), Content.Load<Texture2D>("New1Full"), Content.Load<Texture2D>("New2Full"), Content.Load<Texture2D>("New3Full"), Content.Load<Texture2D>("New4Full"));
             Clue.LoadInventory();
             menu.LoadContent(startingPhoneState, imagePhoneState, textPhoneState, menuFont, Content.Load<Texture2D>("BlueGuy"));
@@ -330,6 +334,11 @@ namespace GamePrototype
                         {
                             Clue.PrintInventory();
                         }
+
+                        if(messageDisplay.IsDrawing)
+                        {
+                            messageDisplay.Update(gameTime);
+                        }
                         break;
                     }
                 case GameState.GMenu:
@@ -464,6 +473,10 @@ namespace GamePrototype
                         // TODO: update bathroom
                         break;
                 }
+                if(messageDisplay.IsDrawing)
+                {
+                    messageDisplay.Draw(uSpriteBatch);
+                }
                 
             }
 
@@ -578,6 +591,9 @@ namespace GamePrototype
 
             font = Content.Load<SpriteFont>("Arial");
             menuFont = Content.Load<SpriteFont>("Courier12");
+
+            messageDisplay = new PopUpManager(font);
+            
 
             // main menu - kat
             if (bobRossMode == true)

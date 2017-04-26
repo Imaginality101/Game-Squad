@@ -48,12 +48,10 @@ namespace GamePrototype.Classes.Objects
         public override void Interact(Player user)
         {
             // if there is a required clue
-            
             if (requiredClue != null)
             {
                 if (Enabled && Clue.Inventory.Contains(requiredClue))
                 {
-
                     Game1.activeRoom = destination;
                     Translocate(user, destination, prevRoom);
 
@@ -61,6 +59,7 @@ namespace GamePrototype.Classes.Objects
                 else
                 {
                     Console.WriteLine("You don't have the right key.");
+                    user.SendMessage("The door won't budge, and you don't have a key.");
                 }
             }
             else
