@@ -11,6 +11,7 @@ namespace GamePrototype.Classes.Tools
 {
     class PopUpManager
     {
+        const float MSG_SCALE = 1.5f;
         const double DISPLAY_TIME = 3000;
         private SpriteFont font;
         private Rectangle drawRect;
@@ -29,7 +30,7 @@ namespace GamePrototype.Classes.Tools
         {
             Vector2 textSize = font.MeasureString(str);
             int rectX = (1728 / 2) - (int)(textSize.X / 2);
-            int rectY = 950 - (int)textSize.Y;
+            int rectY = 950 - (int)textSize.Y / 2;
             return Game1.FormatDraw(new Rectangle(rectX, rectY, (int)textSize.X, (int)textSize.Y));
         }
 
@@ -46,7 +47,7 @@ namespace GamePrototype.Classes.Tools
         }
         public void Draw(SpriteBatch sprtBtch)
         {
-            sprtBtch.DrawString(font, message, new Vector2(drawRect.X, drawRect.Y), Color.White, 0f, font.MeasureString(message) / 2, Game1.drawRatio, SpriteEffects.None, 0);
+            sprtBtch.DrawString(font, message, new Vector2(drawRect.X, drawRect.Y), Color.White, 0f, Vector2.Zero, Game1.drawRatio * MSG_SCALE, SpriteEffects.None, 0);
         }
 
         public void GetMessage(string msg)

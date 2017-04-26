@@ -116,6 +116,7 @@ namespace GamePrototype.Classes.Objects
                     Console.WriteLine(givenClue.ToString());
                     Clue.Inventory.Add(givenClue);
                     Menu.Menu.AddClue(givenClue);
+                    user.SendMessage("You found a clue.");
                     pickedUp = true;
                 }
                 if (onetimeUse)
