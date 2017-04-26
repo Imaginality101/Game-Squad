@@ -311,7 +311,7 @@ namespace GamePrototype
                             case CurrentRoom.Bathroom:
                                 // TODO: update bathroom
                                 bathRoom.Update(gameTime);
-                                player.Update(gameTime, closetRoom.Objects);
+                                player.Update(gameTime, bathRoom.Objects);
                                 break;
                         }
                         if (kbState.IsKeyDown(Keys.Tab))// && !prevKbState.IsKeyDown(Keys.Tab))

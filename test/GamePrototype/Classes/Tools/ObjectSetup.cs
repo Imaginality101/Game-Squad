@@ -212,22 +212,31 @@ namespace GamePrototype.Classes.Tools
             List<GameObject> objs = new List<GameObject>();
             //Declare what and where each item is 
             tub = content.Load<Texture2D>("tubberwareFULL");
-            tubRect = new Rectangle((int)origin.X - 560, (int)origin.Y - 200, 346, 172);
+            tubRect = new Rectangle((int)origin.X - 100, (int)origin.Y - 300, 346, 172);
             toilet = content.Load<Texture2D>("toiletFULL");
-            toiletRect = new Rectangle((int)origin.X - 0, (int)origin.Y - 0, 172, 172);
+            toiletRect = new Rectangle((int)origin.X - 315, (int)origin.Y - 280, 172, 172);
             sink = content.Load<Texture2D>("sinkFULL");
-            sinkRect = new Rectangle((int)origin.X - 0, (int)origin.Y - 0, 172, 172);
+            sinkRect = new Rectangle((int)origin.X - 315, (int)origin.Y - 0, 172, 172);
             wastebin = content.Load<Texture2D>("wastebinFULL");
-            wastebinRect = new Rectangle((int)origin.X - 0, (int)origin.Y - 0, 96, 96);
+            wastebinRect = new Rectangle((int)origin.X - 250, (int)origin.Y + 160, 64, 64);
             medcab = content.Load<Texture2D>("medicinecabFULL");
-            medcabRect = new Rectangle((int)origin.X - 0, (int)origin.Y - 0, 172, 172);
+            medcabRect = new Rectangle((int)origin.X - 395, (int)origin.Y - 50, 172, 172);
             bathtable = content.Load<Texture2D>("bathtableFULL");
-            bathtableRect = new Rectangle((int)origin.X - 0, (int)origin.Y - 0, 172, 346);
+            bathtableRect = new Rectangle((int)origin.X + 130, (int)origin.Y - 100, 172, 346);
             bathtobeddoor = content.Load<Texture2D>("bathtobeddoorFULL");
-            bathtobeddoorRect = new Rectangle((int)origin.X - 0, (int)origin.Y - 0, 172, 172);
+            bathtobeddoorRect = new Rectangle((int)origin.X + 00, (int)origin.Y + 300, 172, 172);
 
 
             //Add items to the room here
+            objs.Add(new GameObject(tub, tubRect));
+            objs.Add(new GameObject(toilet, toiletRect));
+            objs.Add(new GameObject(sink, sinkRect, new Rectangle(0, 60, 172, 122)));
+            objs.Add(new GameObject(wastebin, wastebinRect));
+            objs.Add(new GameObject(medcab, medcabRect,new Rectangle(0, 60, 60, 172)));
+            objs.Add(new GameObject(bathtable, bathtableRect, new Rectangle(0, 100, 172, 250)));
+            objs.Add(new Door(bathtobeddoor, bathtobeddoorRect,CurrentRoom.Bedroom,new Rectangle(0,60,172,60)));
+
+
 
             //Interaction overrides
 
