@@ -41,6 +41,16 @@ namespace GamePrototype.Classes.Objects
             origin = new Vector2(1728 / 2, 972 / 2);
 
         }
+        //clRct
+        public Door(Texture2D txtr, Rectangle psRct, CurrentRoom targetRoom, Rectangle clRct) : base(txtr, psRct,clRct)
+        {
+            doorText = txtr;
+            doorRect = psRct;
+            destination = targetRoom;
+            requiredClue = null;
+            origin = new Vector2(1728 / 2, 972 / 2);
+
+        }
 
         // TODO: Class needs fleshing out, but its primary difference is that interacting
         // with it should somehow prompt the game to switch to another room. Tom's recommendation - custom event handlers. If someone wants to tackle that verbally raise your hand to me,
@@ -48,12 +58,10 @@ namespace GamePrototype.Classes.Objects
         public override void Interact(Player user)
         {
             // if there is a required clue
-            
             if (requiredClue != null)
             {
                 if (Enabled && Clue.Inventory.Contains(requiredClue))
                 {
-
                     Game1.activeRoom = destination;
                     Translocate(user, destination, prevRoom);
 
@@ -61,6 +69,7 @@ namespace GamePrototype.Classes.Objects
                 else
                 {
                     Console.WriteLine("You don't have the right key.");
+                    user.SendMessage("The door won't budge, and you don't have a key.");
                 }
             }
             else

@@ -17,6 +17,7 @@ namespace GamePrototype.Classes.Tools
         }
         public override void Interact(Player user)
         {
+            user.SendMessage("Used the lamp.");
             if (Game1.LightsOn == true)
             {
                 Game1.LightsOn = false;
@@ -26,6 +27,7 @@ namespace GamePrototype.Classes.Tools
                 Game1.LightsOn = true;
             }
         }
+
         
 
     }
