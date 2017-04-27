@@ -33,6 +33,7 @@ namespace GamePrototype
     // enums for use in program, we need a GameState and a CurrentRoom
     enum GameState { MainMenu, Game, GMenu, Win}
     enum MenuState { Main, Journal, Photos, Settings, Power} // kat
+    enum MainMenuState { NewGame, Continue}
     public enum CurrentRoom { Bedroom, Closet, Bathroom } // We'll start with just Bedroom for now, when we expand to more rooms add them to the end of the state list
 
     public class Game1 : Game
@@ -52,6 +53,7 @@ namespace GamePrototype
         // define enums
         GameState gameState;
         public static CurrentRoom activeRoom;
+        MainMenuState mainState;
         
         // Caleb - first menu object, non static for now
         Menu menu;
@@ -109,7 +111,11 @@ namespace GamePrototype
         // mainmenu - kat
         Texture2D mainMenu;
         Rectangle mainMenuRect;
-
+        // textboxes in the main menu
+        TextBox newGame;
+        TextBox continueGame;
+        Texture2D mainMenuCursor;
+        Vector2 mainMenuCursorLoc;
         Texture2D blacklight;
         static bool lightsOn;
         Texture2D bedBG;
@@ -137,6 +143,7 @@ namespace GamePrototype
         // Caleb - used for displaying text: is temporary
         SpriteFont font;
         SpriteFont menuFont;
+        SpriteFont courier36;
         bool drawInteractText = false;
         bool easyMode;
         private Vector2 origin;
@@ -181,6 +188,10 @@ namespace GamePrototype
             Clue.LoadContent(Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("Photo1"), null, Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"), null, null, null, null, null, null, null, Content.Load<Texture2D>("stickynoteFULL"), Content.Load<Texture2D>("New1Full"), Content.Load<Texture2D>("New2Full"), Content.Load<Texture2D>("New3Full"), Content.Load<Texture2D>("New4Full"));
             Clue.LoadInventory();
             menu.LoadContent(startingPhoneState, imagePhoneState, textPhoneState, menuFont, Content.Load<Texture2D>("BlueGuy"));
+            // initialize textboxes in the main menu
+            newGame = new TextBox(new Vector2(200, 700), "New game", 100, 100, courier36, new Rectangle());
+            continueGame = new TextBox(new Vector2(200, 600), "Continue Game", 100, 1, courier36, new Rectangle());
+            
 
             closetRoom = new Room(closetBG,new Rectangle(((int)origin.X - (1382 / 2)) + 150, ((int)origin.Y - (972 / 4)) + 0, 1382 - 220, (972/2) - 15));
             closetRoom.Objects = furnitureSet.ClosetSetup();
@@ -203,6 +214,7 @@ namespace GamePrototype
             // initialize enums
             gameState = GameState.MainMenu;
             activeRoom = CurrentRoom.Bedroom;
+            mainState = MainMenuState.Continue;
             //menuState = MenuState.Main; // kat
             GetSettings(true); // get settings, yes this is the first time calling it
             winLose = 0;
@@ -273,9 +285,27 @@ namespace GamePrototype
                 case GameState.MainMenu:
                     {
                         // TODO: May have buttons in main menu, the Enter key is just temporary
+                        if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S) && mainState == MainMenuState.Continue)
+                        {
+                            mainState = MainMenuState.NewGame;
+                            mainMenuCursorLoc.Y += 80;
+                        }
+                        if (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W) && mainState == MainMenuState.NewGame)
+                        {
+                            mainState = MainMenuState.Continue;
+                            mainMenuCursorLoc.Y -= 80;
+                        }
                         if (kbState.IsKeyDown(Keys.Enter) && !prevKbState.IsKeyDown(Keys.Enter))
                         {
-                            gameState = GameState.Game;
+                            if (mainState == MainMenuState.Continue)
+                            {
+                                gameState = GameState.Game;
+                            }
+                            else if (mainState == MainMenuState.NewGame)
+                            {
+                                Restart();
+                                gameState = GameState.Game;
+                            }
                         }
                         break;
                     }
@@ -428,6 +458,9 @@ namespace GamePrototype
             if (gameState == GameState.MainMenu)
             {
                 uSpriteBatch.Draw(mainMenu, mainMenuRect, Color.White);
+                newGame.Draw(uSpriteBatch);
+                continueGame.Draw(uSpriteBatch);
+                uSpriteBatch.Draw(mainMenuCursor, mainMenuCursorLoc, Color.White);
             }
 
             // calls the bedroom draw command - kat
@@ -595,6 +628,7 @@ namespace GamePrototype
 
             font = Content.Load<SpriteFont>("Arial");
             menuFont = Content.Load<SpriteFont>("Courier12");
+            courier36 = Content.Load<SpriteFont>("Courier36");
 
             messageDisplay = new PopUpManager(font);
             
@@ -609,7 +643,8 @@ namespace GamePrototype
                 mainMenu = Content.Load<Texture2D>("GameMenuFULL");
             }
             mainMenuRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-
+            mainMenuCursor = Content.Load<Texture2D>("MainMenuCursor");
+            mainMenuCursorLoc = new Vector2(100, 478);
             // phone menu - kat
             startingPhoneState = Content.Load<Texture2D>("phoneMain0");
             imagePhoneState = Content.Load<Texture2D>("phoneMain5");

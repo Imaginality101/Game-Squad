@@ -59,8 +59,6 @@ namespace GamePrototype.Classes.Menu
         // textboxes
         TextBox settingsTextBox;
         TextBox clueTextBox;
-        TextBox newGame;
-        TextBox continueGame;
         // highlights the selected clue icon in the clue menu
         Texture2D clueCursor;
         // list of clues caleb says is useless
@@ -110,7 +108,6 @@ namespace GamePrototype.Classes.Menu
             textPhoneMenu = text;
             menuFont = mFont;
             settingsTextBox = new TextBox(new Vector2(760, 220), "Phone Settings: Controls and Information on the game will go here~", 15, 15, mFont, new Rectangle(0, 0, 0, 0));
-            //newGame = new TextBox()
             clueCursor = cursor;
         }
         public void Update()
