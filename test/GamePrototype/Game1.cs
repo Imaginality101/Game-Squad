@@ -79,7 +79,10 @@ namespace GamePrototype
         Room closetRoom;
         Room bathRoom;
         
-        ObjectSetup furnitureSet;
+        ObjectSetup bedSet;
+        ObjectSetup closetSet;
+        ObjectSetup bathSet;
+
 
         // phone menu - kat
         Texture2D startingPhoneState;
@@ -177,8 +180,16 @@ namespace GamePrototype
 
 
             bedRoom = new Room(bedBG, new Rectangle(((int)origin.X - (1382 / 2)) + 150, ((int)origin.Y - (972 / 2)) + 0, 1382 - 220, 972 - 15));//Perf room bounds);
-            furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
-            bedRoom.Objects = furnitureSet.BedroomSetup();
+            closetRoom = new Room(closetBG, new Rectangle(((int)origin.X - (1382 / 2)) + 150, ((int)origin.Y - (270)) + 0, 1382 - 220, (972 / 2) + 40));
+            bathRoom = new Room(bathBG, new Rectangle(((int)origin.X - (404)) + 150, ((int)origin.Y - (334)) + 0, 768 - 170, 768 - 80));
+
+
+            bedSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice,closetRoom,bathRoom);
+            closetSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice, bedRoom,null);
+            bathSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice, bedRoom,null);
+
+            bedRoom.Objects = bedSet.BedroomSetup();
+
             // TODO: call bathroom's DisableSavedClueObjects() when bathroom is created
             bedRoom.DisableSavedClueObjects();
             player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds);
@@ -193,12 +204,10 @@ namespace GamePrototype
             continueGame = new TextBox(new Vector2(200, 600), "Continue Game", 100, 1, courier36, new Rectangle());
             
 
-            closetRoom = new Room(closetBG,new Rectangle(((int)origin.X - (1382 / 2)) + 150, ((int)origin.Y - (972 / 4)) + 0, 1382 - 220, (972/2) - 15));
-            closetRoom.Objects = furnitureSet.ClosetSetup();
+            closetRoom.Objects = closetSet.ClosetSetup();
             closetRoom.DisableSavedClueObjects();
 
-            bathRoom = new Room(bathBG,new Rectangle(((int)origin.X - (384)) + 150, ((int)origin.Y - (384)) + 0, 768 - 220, 768 - 15));
-            bathRoom.Objects = furnitureSet.BathroomSetup();
+            bathRoom.Objects = bathSet.BathroomSetup();
             bathRoom.DisableSavedClueObjects();
 
         }

@@ -58,6 +58,10 @@ namespace GamePrototype.Classes.Tools
         SpriteBatch spriteBatch;
         GraphicsDevice graphics;
 
+        Room doorDestination;
+        Room doorDestination2;
+
+
         //draw origin
         Vector2 origin;
 
@@ -94,12 +98,14 @@ namespace GamePrototype.Classes.Tools
         private Rectangle bathtobeddoorRect;
 
         // constructor to take content manager, spritebatch and a graphic device to handle local contect assignments
-        public ObjectSetup(ContentManager ctm, SpriteBatch sbt, GraphicsDevice gd)
+        public ObjectSetup(ContentManager ctm, SpriteBatch sbt, GraphicsDevice gd,Room doorDest,Room doorDest2)
         {
             content = ctm;
             spriteBatch = sbt;
             graphics = gd;
             origin = new Vector2(1728 / 2, 972 / 2);
+            doorDestination = doorDest;
+            doorDestination2 = doorDest2;
             buttonPrompt = content.Load<Texture2D>("ebut64x64");
         }
         //method to setup the objects int the bedroom it returns a list of gameobjects
@@ -140,8 +146,8 @@ namespace GamePrototype.Classes.Tools
             //adding them all to the gameobjectlist
             // Caleb - adding a temporary name string to the constructor which is to demo interaction
             objs.Add(new GameObject(outdoor, outdoorRect, "End door"));
-            objs.Add(new Door(bathdoor, bathdoorRect, CurrentRoom.Bathroom, Clue.Clues["BathroomKey"]));
-            objs.Add(new Door(closetdoor, closetdoorRect, CurrentRoom.Closet,Clue.Clues["ClosetKey"]));
+            objs.Add(new Door(bathdoor, bathdoorRect, CurrentRoom.Bathroom, doorDestination2,Clue.Clues["BathroomKey"]));
+            objs.Add(new Door(closetdoor, closetdoorRect, CurrentRoom.Closet,doorDestination,Clue.Clues["ClosetKey"]));
             objs.Add(new GameObject(tv, tvRect, new Rectangle(0, 100, 172, 250)));
             objs.Add(new GameObject(sidetab2, sidetab2Rect, new Rectangle(5, 50, 172, 102)));
             objs.Add(new ClueObject(bed, bedRect, new Rectangle(0, 100, 512, 226), Clue.Clues["TenantDiary2"], false));//Clue.Clues["TenantDiary2"], "Bed"
@@ -152,7 +158,7 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new ClueObject(dress, dressRect, Clue.Clues["ClosetKey"], false, Clue.Clues["TenantDiary2"]));
             objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false, "Sticky Note",true));
             objs.Add(new Lamp(lamp, lampRect));
-            objs.Add(new Door(closetdoor, new Rectangle((int)origin.X - 685, (int)origin.Y - 310, 172, 172), CurrentRoom.Closet));//Cheatdoor
+            objs.Add(new Door(closetdoor, new Rectangle((int)origin.X - 685, (int)origin.Y - 310, 172, 172), CurrentRoom.Closet, doorDestination));//Cheatdoor
 
 
             // Setting up interaction points, this is an example on how
@@ -194,7 +200,7 @@ namespace GamePrototype.Classes.Tools
             //Add items to the room here
             objs.Add(new ClueObject(cardbord, cardboardRect, new Rectangle(0, 0, 172, 172),Clue.Clues["News3"],false));
             objs.Add(new GameObject(mirror, mirrorRect, "Mirror"));
-            objs.Add(new Door(bedroondoorside, bedroomdoorsideRect, CurrentRoom.Bedroom));
+            objs.Add(new Door(bedroondoorside, bedroomdoorsideRect, CurrentRoom.Bedroom,doorDestination));
             objs.Add(new Lamp(lampfloor, lampfloorRect));
             objs.Add(new GameObject(wardrobeopen, wardrobeopenRect, "WardrobeOpen"));
             objs.Add(new ClueObject(wardrobe, wardrobeRect, new Rectangle(0, 0, 346, 346), Clue.Clues["TenantDiary3"], false));
@@ -234,7 +240,7 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new GameObject(wastebin, wastebinRect));
             objs.Add(new GameObject(medcab, medcabRect,new Rectangle(0, 60, 60, 172)));
             objs.Add(new GameObject(bathtable, bathtableRect, new Rectangle(0, 100, 172, 250)));
-            objs.Add(new Door(bathtobeddoor, bathtobeddoorRect,CurrentRoom.Bedroom,new Rectangle(0,60,172,60)));
+            objs.Add(new Door(bathtobeddoor, bathtobeddoorRect,CurrentRoom.Bedroom,doorDestination,new Rectangle(0,60,172,60)));
 
 
 
