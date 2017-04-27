@@ -139,6 +139,7 @@ namespace GamePrototype
         SpriteFont menuFont;
         bool drawInteractText = false;
         bool easyMode;
+        private Vector2 origin;
 
         public Game1()
         {
@@ -165,7 +166,10 @@ namespace GamePrototype
             playerCenter = new Vector2(faceUp.Width / 2, faceUp.Height / 2);
             timer = .1;
 
-            bedRoom = new Room(bedBG);
+            origin = new Vector2(1728 / 2, 972 / 2);
+
+
+            bedRoom = new Room(bedBG, new Rectangle(((int)origin.X - (1382 / 2)) + 150, ((int)origin.Y - (972 / 2)) + 0, 1382 - 220, 972 - 15));//Perf room bounds);
             furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
             bedRoom.Objects = furnitureSet.BedroomSetup();
             // TODO: call bathroom's DisableSavedClueObjects() when bathroom is created
@@ -178,11 +182,11 @@ namespace GamePrototype
             Clue.LoadInventory();
             menu.LoadContent(startingPhoneState, imagePhoneState, textPhoneState, menuFont, Content.Load<Texture2D>("BlueGuy"));
 
-            closetRoom = new Room(closetBG);
+            closetRoom = new Room(closetBG,new Rectangle(((int)origin.X - (1382 / 2)) + 150, ((int)origin.Y - (972 / 4)) + 0, 1382 - 220, (972/2) - 15));
             closetRoom.Objects = furnitureSet.ClosetSetup();
             closetRoom.DisableSavedClueObjects();
 
-            bathRoom = new Room(bathBG);
+            bathRoom = new Room(bathBG,new Rectangle(((int)origin.X - (384)) + 150, ((int)origin.Y - (384)) + 0, 768 - 220, 768 - 15));
             bathRoom.Objects = furnitureSet.BathroomSetup();
             bathRoom.DisableSavedClueObjects();
 
