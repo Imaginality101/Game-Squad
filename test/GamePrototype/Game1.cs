@@ -118,7 +118,7 @@ namespace GamePrototype
         TextBox newGame;
         TextBox continueGame;
         Texture2D mainMenuCursor;
-        Vector2 mainMenuCursorLoc;
+        Rectangle mainMenuCursorLoc;
         Texture2D blacklight;
         static bool lightsOn;
         Texture2D bedBG;
@@ -297,12 +297,12 @@ namespace GamePrototype
                         if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S) && mainState == MainMenuState.Continue)
                         {
                             mainState = MainMenuState.NewGame;
-                            mainMenuCursorLoc.Y += 80;
+                            mainMenuCursorLoc.Y += 100;
                         }
                         if (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W) && mainState == MainMenuState.NewGame)
                         {
                             mainState = MainMenuState.Continue;
-                            mainMenuCursorLoc.Y -= 80;
+                            mainMenuCursorLoc.Y -= 100;
                         }
                         if (kbState.IsKeyDown(Keys.Enter) && !prevKbState.IsKeyDown(Keys.Enter))
                         {
@@ -469,7 +469,7 @@ namespace GamePrototype
                 uSpriteBatch.Draw(mainMenu, mainMenuRect, Color.White);
                 newGame.Draw(uSpriteBatch);
                 continueGame.Draw(uSpriteBatch);
-                uSpriteBatch.Draw(mainMenuCursor, mainMenuCursorLoc, Color.White);
+                uSpriteBatch.Draw(mainMenuCursor, FormatDraw(mainMenuCursorLoc), Color.White);
             }
 
             // calls the bedroom draw command - kat
@@ -653,7 +653,7 @@ namespace GamePrototype
             }
             mainMenuRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             mainMenuCursor = Content.Load<Texture2D>("MainMenuCursor");
-            mainMenuCursorLoc = new Vector2(100, 478);
+            mainMenuCursorLoc = new Rectangle(150, 610, mainMenuCursor.Width, mainMenuCursor.Height);
             // phone menu - kat
             startingPhoneState = Content.Load<Texture2D>("phoneMain0");
             imagePhoneState = Content.Load<Texture2D>("phoneMain5");
