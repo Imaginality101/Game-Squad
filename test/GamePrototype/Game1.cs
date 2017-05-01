@@ -79,7 +79,10 @@ namespace GamePrototype
         Room closetRoom;
         Room bathRoom;
         
-        ObjectSetup furnitureSet;
+        ObjectSetup bedSet;
+        ObjectSetup closetSet;
+        ObjectSetup bathSet;
+
 
         // phone menu - kat
         Texture2D startingPhoneState;
@@ -115,7 +118,7 @@ namespace GamePrototype
         TextBox newGame;
         TextBox continueGame;
         Texture2D mainMenuCursor;
-        Vector2 mainMenuCursorLoc;
+        Rectangle mainMenuCursorLoc;
         Texture2D blacklight;
         static bool lightsOn;
         Texture2D bedBG;
@@ -146,6 +149,7 @@ namespace GamePrototype
         SpriteFont courier36;
         bool drawInteractText = false;
         bool easyMode;
+        private Vector2 origin;
 
         public Game1()
         {
@@ -172,9 +176,20 @@ namespace GamePrototype
             playerCenter = new Vector2(faceUp.Width / 2, faceUp.Height / 2);
             timer = .1;
 
-            bedRoom = new Room(bedBG);
-            furnitureSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice);
-            bedRoom.Objects = furnitureSet.BedroomSetup();
+            origin = new Vector2(1728 / 2, 972 / 2);
+
+
+            bedRoom = new Room(bedBG, new Rectangle(((int)origin.X - (1382 / 2)) + 150, ((int)origin.Y - (972 / 2)) + 0, 1382 - 220, 972 - 15));//Perf room bounds);
+            closetRoom = new Room(closetBG, new Rectangle(((int)origin.X - (1382 / 2)) + 150, ((int)origin.Y - (270)) + 0, 1382 - 220, (972 / 2) + 40));
+            bathRoom = new Room(bathBG, new Rectangle(((int)origin.X - (404)) + 150, ((int)origin.Y - (334)) + 0, 768 - 170, 768 - 80));
+
+
+            bedSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice,closetRoom,bathRoom);
+            closetSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice, bedRoom,null);
+            bathSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice, bedRoom,null);
+
+            bedRoom.Objects = bedSet.BedroomSetup();
+
             // TODO: call bathroom's DisableSavedClueObjects() when bathroom is created
             bedRoom.DisableSavedClueObjects();
             player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds);
@@ -187,12 +202,12 @@ namespace GamePrototype
             // initialize textboxes in the main menu
             newGame = new TextBox(new Vector2(200, 700), "New game", 100, 100, courier36, new Rectangle());
             continueGame = new TextBox(new Vector2(200, 600), "Continue Game", 100, 1, courier36, new Rectangle());
-            closetRoom = new Room(closetBG);
-            closetRoom.Objects = furnitureSet.ClosetSetup();
+            
+
+            closetRoom.Objects = closetSet.ClosetSetup();
             closetRoom.DisableSavedClueObjects();
 
-            bathRoom = new Room(bathBG);
-            bathRoom.Objects = furnitureSet.BathroomSetup();
+            bathRoom.Objects = bathSet.BathroomSetup();
             bathRoom.DisableSavedClueObjects();
 
         }
@@ -282,12 +297,12 @@ namespace GamePrototype
                         if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S) && mainState == MainMenuState.Continue)
                         {
                             mainState = MainMenuState.NewGame;
-                            mainMenuCursorLoc.Y += 80;
+                            mainMenuCursorLoc.Y += 100;
                         }
                         if (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyUp(Keys.W) && mainState == MainMenuState.NewGame)
                         {
                             mainState = MainMenuState.Continue;
-                            mainMenuCursorLoc.Y -= 80;
+                            mainMenuCursorLoc.Y -= 100;
                         }
                         if (kbState.IsKeyDown(Keys.Enter) && !prevKbState.IsKeyDown(Keys.Enter))
                         {
@@ -454,7 +469,7 @@ namespace GamePrototype
                 uSpriteBatch.Draw(mainMenu, mainMenuRect, Color.White);
                 newGame.Draw(uSpriteBatch);
                 continueGame.Draw(uSpriteBatch);
-                uSpriteBatch.Draw(mainMenuCursor, mainMenuCursorLoc, Color.White);
+                uSpriteBatch.Draw(mainMenuCursor, FormatDraw(mainMenuCursorLoc), Color.White);
             }
 
             // calls the bedroom draw command - kat
@@ -638,7 +653,7 @@ namespace GamePrototype
             }
             mainMenuRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             mainMenuCursor = Content.Load<Texture2D>("MainMenuCursor");
-            mainMenuCursorLoc = new Vector2(100, 478);
+            mainMenuCursorLoc = new Rectangle(150, 610, mainMenuCursor.Width, mainMenuCursor.Height);
             // phone menu - kat
             startingPhoneState = Content.Load<Texture2D>("phoneMain0");
             imagePhoneState = Content.Load<Texture2D>("phoneMain5");
