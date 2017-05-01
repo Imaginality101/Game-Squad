@@ -181,7 +181,7 @@ namespace GamePrototype
             // TODO: fill in the nulls in the parameters list once we have more textures
 
             player.PopUp += messageDisplay.GetMessage;
-            Clue.LoadContent(Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("Photo1"), null, Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"), null, null, null, null, null, null, null, Content.Load<Texture2D>("stickynoteFULL"), Content.Load<Texture2D>("New1Full"), Content.Load<Texture2D>("New2Full"), Content.Load<Texture2D>("New3Full"), Content.Load<Texture2D>("New4Full"));
+            Clue.LoadContent( Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("Photo1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("stickynoteFULL"), Content.Load<Texture2D>("New1Full"), Content.Load<Texture2D>("New2Full"), Content.Load<Texture2D>("New3Full"), Content.Load<Texture2D>("New4Full"));
             Clue.LoadInventory();
             menu.LoadContent(startingPhoneState, imagePhoneState, textPhoneState, menuFont, Content.Load<Texture2D>("BlueGuy"));
             // initialize textboxes in the main menu
@@ -746,6 +746,7 @@ namespace GamePrototype
             // TODO: restart more rooms when we get them
             bedRoom.ReenableClueObjects();
             closetRoom.ReenableClueObjects();
+            bathRoom.ReenableClueObjects();
             SaveData.Restart();
             // TODO: reconfigure so that it assigns the custom timer value
             if (timerMode)

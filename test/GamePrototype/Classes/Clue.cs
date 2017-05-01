@@ -120,7 +120,7 @@ namespace GamePrototype.Classes
             {"Bones", new Clue("Bones", "Unidentified bones found in the wastebin in the bathroom") },
             {"JaggedKnife", new Clue("JaggedKnife", "Stained knife found in the bathtub. It's seems like a modified kitchen knife") },
             {"SpaCoupon", new Clue("SpaCoupon", "It's an expired spa coupon... too bad.") },
-            {"MedicineBottle", new Clue("MedicineBottle", "It's a prescription for something called ”ARIPIPRAZOLE” the rest of the sicker is ripped.") },
+            {"MedicineBottle", new Clue("MedicineBottle", "It's a prescription for something called \"ARIPIPRAZOLE\". The rest of the sicker is ripped.") },
             {"StickyNote", new Clue("StickyNote", "It has some phone numbers on it. Some are scribbled out.") }
         };
 
@@ -185,12 +185,6 @@ namespace GamePrototype.Classes
             clues["SpaCoupon"].ClueImage = spaCoupon;
             clues["MedicineBottle"].ClueImage = medicineBottle;
             clues["StickyNote"].ClueImage = stickyNote;
-            // Caleb - load blown up images for image clues
-            /*clues["News1"]. = news;
-            clues["News2"].ClueImage = news;
-            clues["News3"].ClueImage = news;
-            clues["News4"].ClueImage = news;
-            clues["News5"].ClueImage = news;*/
         }
 
     }
