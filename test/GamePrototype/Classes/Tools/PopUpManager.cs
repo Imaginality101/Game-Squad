@@ -30,7 +30,7 @@ namespace GamePrototype.Classes.Tools
         {
             Vector2 textSize = font.MeasureString(str);
             int rectX = (1728 / 2) - (int)(textSize.X / 2);
-            int rectY = 950 - (int)textSize.Y / 2;
+            int rectY = 500 - (int)textSize.Y / 2;
             return Game1.FormatDraw(new Rectangle(rectX, rectY, (int)textSize.X, (int)textSize.Y));
         }
 

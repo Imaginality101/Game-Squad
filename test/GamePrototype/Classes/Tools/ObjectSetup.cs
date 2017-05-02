@@ -247,9 +247,8 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new ClueObject(medcab, medcabRect, Clue.Clues["MedicineBottle"]));
             //objs.Add(new GameObject(bathtable, bathtableRect, new Rectangle(0, 100, 172, 250)));
             objs.Add(new ClueObject(bathtable, bathtableRect, Clue.Clues["News5"]));
-            objs.Add(new Door(bathtobeddoor, bathtobeddoorRect,CurrentRoom.Bedroom, doorDestination, new Clue()));
+            objs.Add(new Door(bathtobeddoor, bathtobeddoorRect,CurrentRoom.Bedroom, doorDestination, new Rectangle(0,60,172,60)));
             objs.Add(new ClueObject(crazyDiary, crazyDiaryRect, Clue.Clues["CrazyDiary3"], false, true));
-
 
             //Interaction overrides
             ((ClueObject)objs[4]).InteractionPoint = new Vector2(medcabRect.Width + sinkRect.Width / 4, medcabRect.Height / 2);
