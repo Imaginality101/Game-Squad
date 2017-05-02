@@ -198,7 +198,7 @@ namespace GamePrototype
             player.PopUp += messageDisplay.GetMessage;
             Clue.LoadContent( Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("Photo1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("stickynoteFULL"), Content.Load<Texture2D>("New1Full"), Content.Load<Texture2D>("New2Full"), Content.Load<Texture2D>("New3Full"), Content.Load<Texture2D>("New4Full"));
             Clue.LoadInventory();
-            menu.LoadContent(startingPhoneState, imagePhoneState, textPhoneState, menuFont, Content.Load<Texture2D>("BlueGuy"));
+            menu.LoadContent(startingPhoneState, imagePhoneState, textPhoneState, menuFont, Content.Load<Texture2D>("BlueGuy"), settingsData);
             // initialize textboxes in the main menu
             newGame = new TextBox(new Vector2(200, 700), "New game", 100, 100, courier36, new Rectangle());
             continueGame = new TextBox(new Vector2(200, 600), "Continue Game", 100, 1, courier36, new Rectangle());
