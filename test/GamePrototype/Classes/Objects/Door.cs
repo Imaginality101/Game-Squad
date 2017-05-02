@@ -20,33 +20,39 @@ namespace GamePrototype.Classes.Objects
         Clue requiredClue;
         CurrentRoom destination;
         CurrentRoom prevRoom;
+        Room destintionRoom;
         Vector2 origin;
 
-        public Door(Texture2D txtr, Rectangle psRct,CurrentRoom targetRoom, Clue rqClue) : base(txtr, psRct)
+        public Door(Texture2D txtr, Rectangle psRct,CurrentRoom targetRoom,Room destRoom, Clue rqClue) : base(txtr, psRct)
         {
             doorText = txtr;
             doorRect = psRct;
             requiredClue = rqClue;
+            destintionRoom = destRoom;
+
             destination = targetRoom;
             origin = new Vector2(1728 / 2, 972 / 2);
 
         }
         //cheatdoor
-        public Door(Texture2D txtr, Rectangle psRct, CurrentRoom targetRoom) : base(txtr, psRct)
+        public Door(Texture2D txtr, Rectangle psRct, CurrentRoom targetRoom, Room destRoom) : base(txtr, psRct)
         {
             doorText = txtr;
             doorRect = psRct;
             destination = targetRoom;
+            destintionRoom = destRoom;
             requiredClue = null;
             origin = new Vector2(1728 / 2, 972 / 2);
 
         }
         //clRct
-        public Door(Texture2D txtr, Rectangle psRct, CurrentRoom targetRoom, Rectangle clRct) : base(txtr, psRct,clRct)
+        public Door(Texture2D txtr, Rectangle psRct, CurrentRoom targetRoom, Room destRoom, Rectangle clRct) : base(txtr, psRct,clRct)
         {
             doorText = txtr;
             doorRect = psRct;
             destination = targetRoom;
+            destintionRoom = destRoom;
+
             requiredClue = null;
             origin = new Vector2(1728 / 2, 972 / 2);
 
@@ -63,7 +69,7 @@ namespace GamePrototype.Classes.Objects
                 if (Enabled && Clue.Inventory.Contains(requiredClue))
                 {
                     Game1.activeRoom = destination;
-                    Translocate(user, destination, prevRoom);
+                    Translocate(user, destination, prevRoom,destintionRoom);
 
                 }
                 else
@@ -75,13 +81,15 @@ namespace GamePrototype.Classes.Objects
             else
             {
                 Game1.activeRoom = destination;
-                Translocate(user, destination, prevRoom);
+                Translocate(user, destination, prevRoom, destintionRoom);
             }
             prevRoom = destination;
 
         }
-        public void Translocate(Player user,CurrentRoom destination, CurrentRoom prevRoom)
+        public void Translocate(Player user,CurrentRoom destination, CurrentRoom prevRoom, Room destRoom)
         {
+            user.MoveBounds = destRoom.CollisionBounds;
+
             if (destination == CurrentRoom.Closet)
             {
                 user.X = (int)origin.X + 470;
