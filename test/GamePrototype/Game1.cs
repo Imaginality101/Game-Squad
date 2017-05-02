@@ -309,11 +309,13 @@ namespace GamePrototype
                             if (mainState == MainMenuState.Continue)
                             {
                                 gameState = GameState.Game;
+                                player.SendMessage("Move using W, A, S, and D.");
                             }
                             else if (mainState == MainMenuState.NewGame)
                             {
                                 Restart();
                                 gameState = GameState.Game;
+                                player.SendMessage("Move using W, A, S, and D.");
                             }
                         }
                         break;
