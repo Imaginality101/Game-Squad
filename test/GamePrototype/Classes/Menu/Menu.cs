@@ -94,7 +94,7 @@ namespace GamePrototype.Classes.Menu
         }
         // TODO: Load icons in Game1, pass them here in an array
         // possibly deprecated, will get images from clues when added to the inventory
-        public void LoadContent(Texture2D main, Texture2D clues, Texture2D text, SpriteFont mFont, Texture2D cursor)
+        public void LoadContent(Texture2D main, Texture2D clues, Texture2D text, SpriteFont mFont, Texture2D cursor, List<object> settingsParam)
         {
             //clues = Clue.Inventory;
             //newsPaper = new Icon(nws, new Rectangle(755, 230, 70, 100)); // box 1 location
@@ -107,7 +107,20 @@ namespace GamePrototype.Classes.Menu
             cluesPhoneMenu = clues;
             textPhoneMenu = text;
             menuFont = mFont;
-            settingsTextBox = new TextBox(new Vector2(760, 220), "Phone Settings: Controls and Information on the game will go here~", 15, 15, mFont, new Rectangle(0, 0, 0, 0));
+            List<object> settings = settingsParam;
+            string settingsString = "";
+            settingsString += "Timer mode: " + settings[0].ToString() + " ";
+            settingsString += "Easy Mode: " + settings[2].ToString() + " ";
+            settingsString += "Bob Ross mode: " + settings[3].ToString() + " ";
+            if ((bool)settings[4])
+            {
+                settingsString += "Fullscreen enabled" + " ";
+            }
+            else
+            {
+                settingsString += "Resolution: " + settings[5].ToString() + " by " + settings[6].ToString() + " ";
+            }
+            settingsTextBox = new TextBox(new Vector2(760, 220), settingsString, 15, 15, mFont, new Rectangle(0, 0, 0, 0));
             clueCursor = cursor;
         }
         public void Update()
