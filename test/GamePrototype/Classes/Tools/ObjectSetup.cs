@@ -33,7 +33,6 @@ namespace GamePrototype.Classes.Tools
         private Texture2D stickynote;
         private Texture2D news1;
         private Texture2D lamp;
-        private Texture2D crazyDiary;
 
         //Rectangles;
         private Rectangle bedRect;
@@ -49,9 +48,10 @@ namespace GamePrototype.Classes.Tools
         private Rectangle news1Rect;
         private Rectangle news2Rect;
         private Rectangle lampRect;
-        private Rectangle crazyDiaryRect;
         
-        
+
+
+
         // Texture for display above interactables
         public static Texture2D buttonPrompt;
 
@@ -82,6 +82,15 @@ namespace GamePrototype.Classes.Tools
         private Rectangle mirrorRect;
         private Texture2D bedroondoorside;
         private Rectangle bedroomdoorsideRect;
+        private Rectangle crazyDiary1Rect;
+        private Rectangle crazyDiary2Rect;
+        private Texture2D recept;
+        private Rectangle receptRect;
+        private Texture2D jewelrybox;
+        private Rectangle jewelryboxRect;
+        private Texture2D ring;
+        private Rectangle ringRect;
+
 
         //Bathroom objects
         private Texture2D tub;
@@ -98,6 +107,10 @@ namespace GamePrototype.Classes.Tools
         private Rectangle bathtableRect;
         private Texture2D bathtobeddoor;
         private Rectangle bathtobeddoorRect;
+        private Texture2D crazyDiary;
+        private Rectangle crazyDiary3Rect;
+        private Texture2D knife;
+        private Rectangle knifeRect;
 
         // constructor to take content manager, spritebatch and a graphic device to handle local contect assignments
         public ObjectSetup(ContentManager ctm, SpriteBatch sbt, GraphicsDevice gd,Room doorDest,Room doorDest2)
@@ -179,7 +192,7 @@ namespace GamePrototype.Classes.Tools
             cardboardRect = new Rectangle((int)origin.X - 560, (int)origin.Y - 200, 172, 172);
 
             mirror = content.Load<Texture2D>("mirrorFULL");
-            mirrorRect = new Rectangle((int)origin.X - 570, (int)origin.Y -26, 172, 172);
+            mirrorRect = new Rectangle((int)origin.X - 570, (int)origin.Y -50, 172, 172);
 
             bedroondoorside = content.Load<Texture2D>("bedroomdoorSideFULL");
             bedroomdoorsideRect = new Rectangle((int)origin.X + 495, (int)origin.Y + 50, 172, 172);
@@ -195,7 +208,20 @@ namespace GamePrototype.Classes.Tools
 
             bathkey = content.Load<Texture2D>("key1");
             bathkeyRect  = new Rectangle((int)origin.X - 170, (int)origin.Y - 110, 56, 56);
+            
+            crazyDiary = content.Load<Texture2D>("Crazy1");
+            crazyDiary1Rect = new Rectangle((int)origin.X + 80, (int)origin.Y + 20, 128, 128);
+            crazyDiary2Rect = new Rectangle((int)origin.X + 180, (int)origin.Y - 120, 128, 128);
 
+            recept = content.Load<Texture2D>("recept");
+            receptRect = new Rectangle((int)origin.X - 350, (int)origin.Y - 120, 50, 50);
+
+            //
+            jewelrybox = content.Load<Texture2D>("jewelryboxFULL");
+            jewelryboxRect = new Rectangle((int)origin.X - 580, (int)origin.Y + 80, 172, 172);
+
+            ring = content.Load<Texture2D>("Ring1");
+            ringRect = new Rectangle((int)origin.X - 510, (int)origin.Y + 100, 50, 50);
 
             List<GameObject> objs = new List<GameObject>();
 
@@ -204,13 +230,22 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new GameObject(mirror, mirrorRect, "Mirror"));
             objs.Add(new Door(bedroondoorside, bedroomdoorsideRect, CurrentRoom.Bedroom,doorDestination));
             objs.Add(new Lamp(lampfloor, lampfloorRect));
+            objs.Add(new ClueObject(crazyDiary, crazyDiary2Rect, Clue.Clues["CrazyDiary2"], false, "Sticky Note", true));
             objs.Add(new GameObject(wardrobeopen, wardrobeopenRect, "WardrobeOpen"));
             objs.Add(new ClueObject(wardrobe, wardrobeRect, new Rectangle(0, 0, 346, 346), Clue.Clues["TenantDiary3"], false));
             objs.Add(new ClueObject(bathkey, bathkeyRect, Clue.Clues["BathroomKey"], false, "Bathroom Key", true));
+            objs.Add(new ClueObject(crazyDiary, crazyDiary1Rect, Clue.Clues["CrazyDiary1"], false, "Sticky Note", true));
+            objs.Add(new ClueObject(recept, receptRect, Clue.Clues["Receipt"], false, "Sticky Note", true));
+            objs.Add(new GameObject(jewelrybox, jewelryboxRect, "JewelryBoxOpen"));
+            objs.Add(new ClueObject(ring, ringRect, Clue.Clues["Ring"], false, "Sticky Note", true));
+
+
+
+
 
             //Interaction overrides
             ((Lamp)objs[3]).InteractionPoint = new Vector2(lampfloorRect.Width / 2, lampfloorRect.Height); // Lamp
-            ((ClueObject)objs[5]).InteractionPoint = new Vector2(wardrobeRect.Width / 2, 3*(wardrobeRect.Height/4)); // wardrobe
+            ((ClueObject)objs[6]).InteractionPoint = new Vector2(wardrobeRect.Width / 2, 3*(wardrobeRect.Height/4)); // wardrobe
 
 
             return objs;
@@ -234,7 +269,7 @@ namespace GamePrototype.Classes.Tools
             bathtobeddoor = content.Load<Texture2D>("bathtobeddoorFULL");
             bathtobeddoorRect = new Rectangle((int)origin.X + 00, (int)origin.Y + 300, 172, 172);
             crazyDiary = content.Load<Texture2D>("Crazy1");
-            crazyDiaryRect = new Rectangle((int)origin.X + 130 + 40, (int)origin.Y - 100 + 120, 72, 72);
+            crazyDiary3Rect = new Rectangle((int)origin.X + 130 + 40, (int)origin.Y - 100 + 120, 128, 128);
 
             //Add items to the room here
             //objs.Add(new GameObject(tub, tubRect));
@@ -248,7 +283,7 @@ namespace GamePrototype.Classes.Tools
             //objs.Add(new GameObject(bathtable, bathtableRect, new Rectangle(0, 100, 172, 250)));
             objs.Add(new ClueObject(bathtable, bathtableRect, Clue.Clues["News5"]));
             objs.Add(new Door(bathtobeddoor, bathtobeddoorRect,CurrentRoom.Bedroom, doorDestination, new Rectangle(0,60,172,60)));
-            objs.Add(new ClueObject(crazyDiary, crazyDiaryRect, Clue.Clues["CrazyDiary3"], false, true));
+            objs.Add(new ClueObject(crazyDiary, crazyDiary3Rect, Clue.Clues["CrazyDiary3"], false, true));
 
             //Interaction overrides
             ((ClueObject)objs[4]).InteractionPoint = new Vector2(medcabRect.Width + sinkRect.Width / 4, medcabRect.Height / 2);
