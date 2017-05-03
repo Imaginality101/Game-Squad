@@ -287,7 +287,7 @@ namespace GamePrototype.Classes.Tools
 
             //Interaction overrides
             ((ClueObject)objs[4]).InteractionPoint = new Vector2(medcabRect.Width + sinkRect.Width / 4, medcabRect.Height / 2);
-            ((ClueObject)objs[5]).InteractionPoint = new Vector2(0, medcabRect.Height / 2);
+            ((ClueObject)objs[5]).InteractionPoint = new Vector2(0, bathtableRect.Height / 2);
             return objs;
 
         }
