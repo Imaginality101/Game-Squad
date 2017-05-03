@@ -293,6 +293,8 @@ namespace GamePrototype
             {
                 case GameState.MainMenu:
                     {
+                        player.SendMessage("Move using W, A, S, and D.");
+
                         // TODO: May have buttons in main menu, the Enter key is just temporary
                         if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S) && mainState == MainMenuState.Continue)
                         {
@@ -315,7 +317,6 @@ namespace GamePrototype
                             {
                                 Restart();
                                 gameState = GameState.Game;
-                                player.SendMessage("Move using W, A, S, and D.");
                             }
                         }
                         break;
@@ -521,10 +522,6 @@ namespace GamePrototype
                         // TODO: update bathroom
                         break;
                 }
-                if(messageDisplay.IsDrawing)
-                {
-                    messageDisplay.Draw(uSpriteBatch);
-                }
                 
             }
 
@@ -611,6 +608,11 @@ namespace GamePrototype
             if (winLose == 2) // win
             {
                 uSpriteBatch.Draw(winScreen, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+            }
+
+            if (messageDisplay.IsDrawing)
+            {
+                messageDisplay.Draw(uSpriteBatch);
             }
 
             uSpriteBatch.End();
