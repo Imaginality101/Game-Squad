@@ -111,6 +111,7 @@ namespace GamePrototype.Classes.Objects
             // if there isn't a required clue
             else
             {
+                user.SendMessage("fuck a duck");
                 if (Enabled && !pickedUp)
                 {
                     Console.WriteLine(givenClue.ToString());
