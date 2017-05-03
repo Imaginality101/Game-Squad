@@ -138,17 +138,17 @@ namespace GamePrototype
         // path to the external tool
         const string PATH = "..\\..\\..\\..\\..\\ExternalTool\\bin\\Debug\\ExternalTool.exe";
         List<object> settingsData;
-        bool bobRossMode;
+        static bool bobRossMode;
         // this is for timed mode
-        bool timerMode;
+        static bool timerMode;
         int gameTimerSeconds = 15 * 60;
         float elapsedTime = 0;
         // Caleb - used for displaying text: is temporary
         SpriteFont font;
         SpriteFont menuFont;
         SpriteFont courier36;
-        bool drawInteractText = false;
-        bool easyMode;
+        static bool drawInteractText = false;
+        static bool easyMode;
         private Vector2 origin;
 
         public Game1()
