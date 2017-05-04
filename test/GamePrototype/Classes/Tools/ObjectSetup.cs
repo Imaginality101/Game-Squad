@@ -90,6 +90,8 @@ namespace GamePrototype.Classes.Tools
         private Rectangle jewelryboxRect;
         private Texture2D ring;
         private Rectangle ringRect;
+        private Texture2D oldPhoto;
+        private Rectangle oldPhotoRect;
 
 
         //Bathroom objects
@@ -223,23 +225,29 @@ namespace GamePrototype.Classes.Tools
             ring = content.Load<Texture2D>("Ring1");
             ringRect = new Rectangle((int)origin.X - 510, (int)origin.Y + 100, 50, 50);
 
+            news1 = content.Load<Texture2D>("NewspaperFULL");
+            news1Rect = new Rectangle((int)origin.X - 170, (int)origin.Y - 110, 72, 72);
+
+            oldPhoto = content.Load<Texture2D>("Photo1");
+            oldPhotoRect = new Rectangle(news1Rect.Location + new Point(110, 0), new Point(56, 56));
             List<GameObject> objs = new List<GameObject>();
 
             //Add items to the room here
             objs.Add(new ClueObject(cardbord, cardboardRect, new Rectangle(0, 0, 172, 172),Clue.Clues["News3"],false));
-            objs.Add(new GameObject(mirror, mirrorRect, "Mirror"));
+            //objs.Add(new GameObject(mirror, mirrorRect, "Mirror"));
+            objs.Add(new ClueObject(mirror, mirrorRect, Clue.Clues["BathroomKey"], false, Clue.Clues["CrazyDiary2"]));
             objs.Add(new Door(bedroondoorside, bedroomdoorsideRect, CurrentRoom.Bedroom,doorDestination));
             objs.Add(new Lamp(lampfloor, lampfloorRect));
             objs.Add(new ClueObject(crazyDiary, crazyDiary2Rect, Clue.Clues["CrazyDiary2"], false, "Sticky Note", true));
             objs.Add(new GameObject(wardrobeopen, wardrobeopenRect, "WardrobeOpen"));
             objs.Add(new ClueObject(wardrobe, wardrobeRect, new Rectangle(0, 0, 346, 346), Clue.Clues["TenantDiary3"], false));
-            objs.Add(new ClueObject(bathkey, bathkeyRect, Clue.Clues["BathroomKey"], false, "Bathroom Key", true));
+            //objs.Add(new ClueObject(bathkey, bathkeyRect, Clue.Clues["BathroomKey"], false, "Bathroom Key", true));
             objs.Add(new ClueObject(crazyDiary, crazyDiary1Rect, Clue.Clues["CrazyDiary1"], false, "Sticky Note", true));
             objs.Add(new ClueObject(recept, receptRect, Clue.Clues["Receipt"], false, "Sticky Note", true));
             objs.Add(new GameObject(jewelrybox, jewelryboxRect, "JewelryBoxOpen"));
             objs.Add(new ClueObject(ring, ringRect, Clue.Clues["Ring"], false, "Sticky Note", true));
-
-
+            objs.Add(new ClueObject(news1, news1Rect, Clue.Clues["News4"], true));
+            objs.Add(new ClueObject(oldPhoto, oldPhotoRect, Clue.Clues["OldPhoto2"], true));
 
 
 
@@ -269,25 +277,29 @@ namespace GamePrototype.Classes.Tools
             bathtobeddoor = content.Load<Texture2D>("bathtobeddoorFULL");
             bathtobeddoorRect = new Rectangle((int)origin.X + 00, (int)origin.Y + 300, 172, 172);
             crazyDiary = content.Load<Texture2D>("Crazy1");
-            crazyDiary3Rect = new Rectangle((int)origin.X + 130 + 40, (int)origin.Y - 100 + 120, 128, 128);
-
+            crazyDiary3Rect = new Rectangle(bathtableRect.Left, bathtableRect.Top + crazyDiary3Rect.Height / 2, 128, 128);
+            knife = content.Load<Texture2D>("knife");
+            knifeRect = new Rectangle(origin.ToPoint(), new Point(100, 100));
             //Add items to the room here
             //objs.Add(new GameObject(tub, tubRect));
             objs.Add(new ClueObject(tub, tubRect, Clue.Clues["Bones"]));
             //objs.Add(new GameObject(toilet, toiletRect));
-            objs.Add(new ClueObject(toilet, toiletRect, Clue.Clues["Pendant"]));
-            objs.Add(new GameObject(sink, sinkRect, new Rectangle(0, 60, 172, 122)));
-            objs.Add(new GameObject(wastebin, wastebinRect));
+            objs.Add(new ClueObject(toilet, toiletRect, Clue.Clues["News5"]));
+            //objs.Add(new GameObject(sink, sinkRect, new Rectangle(0, 60, 172, 122)));
+            objs.Add(new ClueObject(sink, sinkRect, new Rectangle(0, 60, 172, 122), Clue.Clues["Pendant"], false));
+            //objs.Add(new GameObject(wastebin, wastebinRect));
+            objs.Add(new ClueObject(wastebin, wastebinRect, Clue.Clues["OldPhoto3"]));
             //objs.Add(new GameObject(medcab, medcabRect,new Rectangle(0, 60, 60, 172)));
             objs.Add(new ClueObject(medcab, medcabRect, Clue.Clues["MedicineBottle"]));
             //objs.Add(new GameObject(bathtable, bathtableRect, new Rectangle(0, 100, 172, 250)));
-            objs.Add(new ClueObject(bathtable, bathtableRect, Clue.Clues["News5"]));
+            objs.Add(new GameObject(bathtable, bathtableRect));
             objs.Add(new Door(bathtobeddoor, bathtobeddoorRect,CurrentRoom.Bedroom, doorDestination, new Rectangle(0,60,172,60)));
             objs.Add(new ClueObject(crazyDiary, crazyDiary3Rect, Clue.Clues["CrazyDiary3"], false, true));
-
+            objs.Add(new ClueObject(knife, knifeRect, Clue.Clues["JaggedKnife"], false, true));
             //Interaction overrides
+            ((ClueObject)objs[2]).InteractionPoint = new Vector2(sinkRect.Width, sinkRect.Height / 2);
             ((ClueObject)objs[4]).InteractionPoint = new Vector2(medcabRect.Width + sinkRect.Width / 4, medcabRect.Height / 2);
-            ((ClueObject)objs[5]).InteractionPoint = new Vector2(0, bathtableRect.Height / 2);
+            //((ClueObject)objs[5]).InteractionPoint = new Vector2(0, bathtableRect.Height / 2);
             return objs;
 
         }

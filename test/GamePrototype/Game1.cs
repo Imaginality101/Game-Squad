@@ -196,7 +196,7 @@ namespace GamePrototype
             // TODO: fill in the nulls in the parameters list once we have more textures
 
             player.PopUp += messageDisplay.GetMessage;
-            Clue.LoadContent( Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("Photo1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("stickynoteFULL"), Content.Load<Texture2D>("New1Full"), Content.Load<Texture2D>("New2Full"), Content.Load<Texture2D>("New3Full"), Content.Load<Texture2D>("New4Full"));
+            Clue.LoadContent( Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("Photo1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"), Content.Load<Texture2D>("recept"), Content.Load<Texture2D>("Ring1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("knife"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("pillshere"), Content.Load<Texture2D>("stickynoteFULL"), Content.Load<Texture2D>("New1Full"), Content.Load<Texture2D>("New2Full"), Content.Load<Texture2D>("New3Full"), Content.Load<Texture2D>("New4Full"));
             Clue.LoadInventory();
             menu.LoadContent(startingPhoneState, imagePhoneState, textPhoneState, menuFont, Content.Load<Texture2D>("BlueGuy"), settingsData);
             // initialize textboxes in the main menu
@@ -770,8 +770,7 @@ namespace GamePrototype
             {
                 gameTimerSeconds = (int)settingsData[1] * 60;
             }
-            //gameTimerSeconds = 15 * 60;
-
+            player.MoveBounds = bedRoom.Bounds;
         }
     }
 }
