@@ -211,7 +211,7 @@ namespace GamePrototype.Classes.Objects
 
             foreach (GameObject obj in targets)
             {
-                if (obj is Interactable) // if the object is usable check its proximity
+                if (obj is Interactable && obj.Enabled == true) // if the object is usable check its proximity
                 {
                     if (minDistance >= CheckProximity(obj)) // looping through this will find which interactable is the closest to the player
                     {
