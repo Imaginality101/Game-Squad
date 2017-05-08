@@ -87,6 +87,12 @@ namespace GamePrototype.Classes.Objects
                 return givenClue;
             }
         }
+
+        public override void Draw(SpriteBatch sprtBtch)
+        {
+            base.RequiredClue = requiredClue;
+            base.Draw(sprtBtch);
+        }
         // TODO: Interaction method
         public override void Interact(Player user)
         {

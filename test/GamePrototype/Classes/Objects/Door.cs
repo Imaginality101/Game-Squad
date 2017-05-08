@@ -57,7 +57,11 @@ namespace GamePrototype.Classes.Objects
             origin = new Vector2(1728 / 2, 972 / 2);
 
         }
-
+        public override void Draw(SpriteBatch sprtBtch)
+        {
+            base.RequiredClue = requiredClue;
+            base.Draw(sprtBtch);
+        }
         // TODO: Class needs fleshing out, but its primary difference is that interacting
         // with it should somehow prompt the game to switch to another room. Tom's recommendation - custom event handlers. If someone wants to tackle that verbally raise your hand to me,
         // otherwise I'll do it when we get to Milestone 3 and have multiple rooms.

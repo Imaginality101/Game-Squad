@@ -66,9 +66,30 @@ namespace GamePrototype.Classes.Objects
 
         public override void Draw(SpriteBatch sprtBtch)
         {
-            if (flaggedForUse)
+            if (Game1.easyMode)
             {
-                base.Draw(sprtBtch, Color.LightGreen);
+                if (flaggedForUse)
+                {
+                    if ( keyRequired == null || (keyRequired != null && Clue.Inventory.Contains(keyRequired)))
+                    {
+                        base.Draw(sprtBtch, Color.LightGreen);
+                    }
+                    else
+                    {
+                        base.Draw(sprtBtch, Color.Red);
+                    }
+                }
+                else
+                {
+                    if (keyRequired == null || (keyRequired != null && Clue.Inventory.Contains(keyRequired)))
+                    {
+                        base.Draw(sprtBtch, Color.SkyBlue);
+                    }
+                    else
+                    {
+                        base.Draw(sprtBtch, Color.DarkRed);
+                    }
+                }
             }
             else
             {

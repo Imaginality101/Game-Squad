@@ -148,7 +148,7 @@ namespace GamePrototype
         SpriteFont menuFont;
         SpriteFont courier36;
         static bool drawInteractText = false;
-        static bool easyMode;
+        public static bool easyMode;
         private Vector2 origin;
 
         public Game1()
