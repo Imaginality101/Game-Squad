@@ -62,8 +62,18 @@ namespace ExternalTool
                 bool parseSuccessful = int.TryParse(timeLimit.Text, out minutes);
                 if (parseSuccessful)
                 {
-                    writer.Write(true);
-                    writer.Write(minutes);
+                    // if a valid value was entered
+                    if (minutes > 0)
+                    {
+                        writer.Write(true);
+                        writer.Write(minutes);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bad timer value. Timer is turned off");
+                        writer.Write(false);
+                        writer.Write(-1);
+                    }
                 }
                 else
                 {
@@ -122,8 +132,19 @@ namespace ExternalTool
                 {
                     int width = int.Parse(resBoxWidth.Text);
                     int height = int.Parse(resBoxHeight.Text);
-                    writer.Write(width);
-                    writer.Write(height);
+                    // if resolution values are valid
+                    if (width > 0 || height > 0)
+                    {
+                        writer.Write(width);
+                        writer.Write(height);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bad resolution values. Default resolution is 800 by 600");
+                        // have 800 x 600 as default value
+                        writer.Write(800);
+                        writer.Write(600);
+                    }
                 }
             }
             writer.Close();

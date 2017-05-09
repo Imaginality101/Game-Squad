@@ -128,6 +128,9 @@
     <Content Include="Content\CrazyDiary3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\cutlery.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\d6twRar.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
