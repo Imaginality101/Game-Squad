@@ -161,6 +161,9 @@
     <Content Include="Content\key1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\key2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\knife.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -452,9 +455,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Content\phoneMain0.xnb" />
-    <None Include="Content\phoneMain5.xnb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="Content\phoneMain5.xnb" />
     <Content Include="Content\spook3-thebegining.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
