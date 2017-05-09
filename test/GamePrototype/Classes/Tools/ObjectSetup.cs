@@ -33,6 +33,7 @@ namespace GamePrototype.Classes.Tools
         private Texture2D stickynote;
         private Texture2D news1;
         private Texture2D lamp;
+        private Texture2D brokenWall;
 
         //Rectangles;
         private Rectangle bedRect;
@@ -48,7 +49,7 @@ namespace GamePrototype.Classes.Tools
         private Rectangle news1Rect;
         private Rectangle news2Rect;
         private Rectangle lampRect;
-        
+        private Rectangle brokenWallRect;
 
 
 
@@ -144,6 +145,7 @@ namespace GamePrototype.Classes.Tools
             stickynote = content.Load<Texture2D>("stickynoteFull");
             news1 = content.Load<Texture2D>("NewspaperFULL"); 
             lamp = content.Load<Texture2D>("LampFULL");
+            brokenWall = content.Load<Texture2D>("NewspaperFULL");
 
             //Bounds assignments
             bedRect = new Rectangle((int)origin.X + 100, (int)origin.Y - 40, 518, 346);
@@ -152,17 +154,19 @@ namespace GamePrototype.Classes.Tools
             sidetab2Rect = new Rectangle((int)origin.X + 380, (int)origin.Y - 140, 172, 172);
             bookRect = new Rectangle((int)origin.X + 55, (int)origin.Y - 470, 346, 172);
             dressRect = new Rectangle((int)origin.X - 440, (int)origin.Y - 470, 346, 172);
-            outdoorRect = new Rectangle((int)origin.X - 96, (int)origin.Y - 530, 172, 172);
+            outdoorRect = new Rectangle((int)origin.X - 96, (int)origin.Y - 515, 172, 172);
             bathdoorRect = new Rectangle((int)origin.X + 370, (int)origin.Y - 530, 172, 172);
             closetdoorRect = new Rectangle((int)origin.X - 685, (int)origin.Y + 230, 172, 172);
             stickynoteRect = new Rectangle((int)origin.X - 490, (int)origin.Y + 130, 56, 56);
             news1Rect = new Rectangle((int)origin.X - 300, (int)origin.Y - 350, 72, 72);
             news2Rect = new Rectangle((int)origin.X + 440, (int)origin.Y - 120, 72, 72);
             lampRect = new Rectangle((int)origin.X - 440, (int)origin.Y - 475, 128, 128);
-
+            //brokenWallRect = new Rectangle((int)origin.X - 512, (int)origin.Y - 547, 72, 72);
+            brokenWallRect = new Rectangle((int)origin.X - 512, (int)origin.Y - 465, 72, 72);
             //adding them all to the gameobjectlist
             // Caleb - adding a temporary name string to the constructor which is to demo interaction
-            objs.Add(new GameObject(outdoor, outdoorRect, "End door"));
+            //objs.Add(new GameObject(outdoor, outdoorRect, "End door"));
+            objs.Add(new Door(outdoor, outdoorRect, CurrentRoom.WinRoom, new Room(new Texture2D(graphics, 1, 1), new Rectangle(((int)origin.X - (404)) + 150, ((int)origin.Y - (334)) + 0, 768 - 170, 768 - 80)), Clue.Clues["VeryCrazyDiary"]));
             objs.Add(new Door(bathdoor, bathdoorRect, CurrentRoom.Bathroom, doorDestination2,Clue.Clues["BathroomKey"]));
             objs.Add(new Door(closetdoor, closetdoorRect, CurrentRoom.Closet,doorDestination,Clue.Clues["ClosetKey"]));
             objs.Add(new GameObject(tv, tvRect, new Rectangle(0, 100, 172, 250)));
@@ -176,7 +180,7 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false, "Sticky Note",true));
             objs.Add(new Lamp(lamp, lampRect));
             objs.Add(new Door(closetdoor, new Rectangle((int)origin.X - 685, (int)origin.Y - 310, 172, 172), CurrentRoom.Closet, doorDestination));//Cheatdoor
-
+            objs.Add(new ClueObject(brokenWall, brokenWallRect, Clue.Clues["VeryCrazyDiary"], false, Clue.Clues["CrazyDiary3"]));
 
             // Setting up interaction points, this is an example on how
             ((ClueObject)objs[5]).InteractionPoint = new Vector2(30, bedRect.Height / 2); // bed

@@ -20,7 +20,7 @@ namespace GamePrototype.Classes.Objects
         Clue requiredClue;
         CurrentRoom destination;
         CurrentRoom prevRoom;
-        Room destintionRoom;
+        Room destinationRoom;
         Vector2 origin;
 
         public Door(Texture2D txtr, Rectangle psRct,CurrentRoom targetRoom,Room destRoom, Clue rqClue) : base(txtr, psRct)
@@ -28,7 +28,7 @@ namespace GamePrototype.Classes.Objects
             doorText = txtr;
             doorRect = psRct;
             requiredClue = rqClue;
-            destintionRoom = destRoom;
+            destinationRoom = destRoom;
 
             destination = targetRoom;
             origin = new Vector2(1728 / 2, 972 / 2);
@@ -40,7 +40,7 @@ namespace GamePrototype.Classes.Objects
             doorText = txtr;
             doorRect = psRct;
             destination = targetRoom;
-            destintionRoom = destRoom;
+            destinationRoom = destRoom;
             requiredClue = null;
             origin = new Vector2(1728 / 2, 972 / 2);
 
@@ -51,7 +51,7 @@ namespace GamePrototype.Classes.Objects
             doorText = txtr;
             doorRect = psRct;
             destination = targetRoom;
-            destintionRoom = destRoom;
+            destinationRoom = destRoom;
 
             requiredClue = null;
             origin = new Vector2(1728 / 2, 972 / 2);
@@ -73,7 +73,7 @@ namespace GamePrototype.Classes.Objects
                 if (Enabled && Clue.Inventory.Contains(requiredClue))
                 {
                     Game1.activeRoom = destination;
-                    Translocate(user, destination, prevRoom,destintionRoom);
+                    Translocate(user, destination, prevRoom,destinationRoom);
 
                 }
                 else
@@ -85,7 +85,7 @@ namespace GamePrototype.Classes.Objects
             else
             {
                 Game1.activeRoom = destination;
-                Translocate(user, destination, prevRoom, destintionRoom);
+                Translocate(user, destination, prevRoom, destinationRoom);
             }
             prevRoom = destination;
 

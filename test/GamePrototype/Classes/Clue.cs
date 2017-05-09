@@ -121,7 +121,9 @@ namespace GamePrototype.Classes
             {"JaggedKnife", new Clue("JaggedKnife", "Stained knife found in the bathtub. It's seems like a modified kitchen knife") },
             {"SpaCoupon", new Clue("SpaCoupon", "It's an expired spa coupon... too bad.") },
             {"MedicineBottle", new Clue("MedicineBottle", "It's a prescription for something called \"ARIPIPRAZOLE\". The rest of the sicker is ripped.") },
-            {"StickyNote", new Clue("StickyNote", "It has some phone numbers on it. Some are scribbled out.") }
+            {"StickyNote", new Clue("StickyNote", "It has some phone numbers on it. Some are scribbled out.") },
+            // final clue
+            {"VeryCrazyDiary", new Clue("VeryCrazyDiary", "Reveals the mystery and how to escape") }
         };
 
         public override string ToString()
@@ -154,7 +156,7 @@ namespace GamePrototype.Classes
             return;
         }
 
-        public static void LoadContent(Texture2D news, Texture2D bathroomKey, Texture2D closetKey, Texture2D oldPhoto, Texture2D newPhoto, Texture2D tenantDir, Texture2D crazyDir, Texture2D receipt, Texture2D ring, Texture2D pendant, Texture2D bones, Texture2D jaggedKnife, Texture2D spaCoupon, Texture2D medicineBottle, Texture2D stickyNote, Texture2D new1full, Texture2D new2full, Texture2D new3full, Texture2D new4full)
+        public static void LoadContent(Texture2D news, Texture2D bathroomKey, Texture2D closetKey, Texture2D oldPhoto, Texture2D newPhoto, Texture2D tenantDir, Texture2D crazyDir, Texture2D receipt, Texture2D ring, Texture2D pendant, Texture2D bones, Texture2D jaggedKnife, Texture2D spaCoupon, Texture2D medicineBottle, Texture2D stickyNote, Texture2D new1full, Texture2D new2full, Texture2D new3full, Texture2D new4full, Texture2D veryCrazy)
         {
             clues["News1"].ClueImage = news;
             clues["News1"].BlownClueImage = new1full;
@@ -185,6 +187,7 @@ namespace GamePrototype.Classes
             clues["SpaCoupon"].ClueImage = spaCoupon;
             clues["MedicineBottle"].ClueImage = medicineBottle;
             clues["StickyNote"].ClueImage = stickyNote;
+            clues["VeryCrazyDiary"].ClueImage = veryCrazy;
         }
 
     }

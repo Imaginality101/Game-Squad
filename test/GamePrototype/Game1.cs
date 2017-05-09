@@ -34,7 +34,7 @@ namespace GamePrototype
     enum GameState { MainMenu, Game, GMenu, Win}
     enum MenuState { Main, Journal, Photos, Settings, Power} // kat
     enum MainMenuState { NewGame, Continue}
-    public enum CurrentRoom { Bedroom, Closet, Bathroom } // We'll start with just Bedroom for now, when we expand to more rooms add them to the end of the state list
+    public enum CurrentRoom { Bedroom, Closet, Bathroom, WinRoom } // We'll start with just Bedroom for now, when we expand to more rooms add them to the end of the state list
 
     public class Game1 : Game
     {
@@ -78,11 +78,12 @@ namespace GamePrototype
         Room bedRoom;
         Room closetRoom;
         Room bathRoom;
-        
+        Room winRoom;
+
         ObjectSetup bedSet;
         ObjectSetup closetSet;
         ObjectSetup bathSet;
-
+        ObjectSetup winRoomSet;
 
         // phone menu - kat
         Texture2D startingPhoneState;
@@ -182,11 +183,13 @@ namespace GamePrototype
             bedRoom = new Room(bedBG, new Rectangle(((int)origin.X - (1382 / 2)) + 150, ((int)origin.Y - (972 / 2)) + 0, 1382 - 220, 972 - 15));//Perf room bounds);
             closetRoom = new Room(closetBG, new Rectangle(((int)origin.X - (1382 / 2)) + 150, ((int)origin.Y - (270)) + 0, 1382 - 220, (972 / 2) + 40));
             bathRoom = new Room(bathBG, new Rectangle(((int)origin.X - (404)) + 150, ((int)origin.Y - (334)) + 0, 768 - 170, 768 - 80));
-
+            // Caleb - winRoom is blank
+            winRoom = new Room(new Texture2D(GraphicsDevice, 1, 1), new Rectangle(((int)origin.X - (404)) + 150, ((int)origin.Y - (334)) + 0, 768 - 170, 768 - 80));
 
             bedSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice,closetRoom,bathRoom);
             closetSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice, bedRoom,null);
             bathSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice, bedRoom,null);
+            winRoomSet = new ObjectSetup(Content, uSpriteBatch, GraphicsDevice, winRoom, null);
 
             bedRoom.Objects = bedSet.BedroomSetup();
 
@@ -196,7 +199,7 @@ namespace GamePrototype
             // TODO: fill in the nulls in the parameters list once we have more textures
 
             player.PopUp += messageDisplay.GetMessage;
-            Clue.LoadContent( Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("Photo1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"), Content.Load<Texture2D>("recept"), Content.Load<Texture2D>("Ring1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("knife"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("pillshere"), Content.Load<Texture2D>("stickynoteFULL"), Content.Load<Texture2D>("New1Full"), Content.Load<Texture2D>("New2Full"), Content.Load<Texture2D>("New3Full"), Content.Load<Texture2D>("New4Full"));
+            Clue.LoadContent( Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("Photo1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"), Content.Load<Texture2D>("recept"), Content.Load<Texture2D>("Ring1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("knife"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("pillshere"), Content.Load<Texture2D>("stickynoteFULL"), Content.Load<Texture2D>("New1Full"), Content.Load<Texture2D>("New2Full"), Content.Load<Texture2D>("New3Full"), Content.Load<Texture2D>("New4Full"), Content.Load<Texture2D>("NewspaperFULL"));
             Clue.LoadInventory();
             menu.LoadContent(startingPhoneState, imagePhoneState, textPhoneState, menuFont, Content.Load<Texture2D>("BlueGuy"), settingsData);
             // initialize textboxes in the main menu
@@ -358,6 +361,10 @@ namespace GamePrototype
                                 // TODO: update bathroom
                                 bathRoom.Update(gameTime);
                                 player.Update(gameTime, bathRoom.Objects);
+                                break;
+                            // win condition
+                            case CurrentRoom.WinRoom:
+                                winLose = 2;
                                 break;
                         }
                         if (kbState.IsKeyDown(Keys.Tab))// && !prevKbState.IsKeyDown(Keys.Tab))
