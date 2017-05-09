@@ -84,7 +84,8 @@ namespace GamePrototype.Classes.Tools
         private Texture2D bedroondoorside;
         private Rectangle bedroomdoorsideRect;
         private Rectangle crazyDiary1Rect;
-        private Rectangle crazyDiary2Rect;
+        private Texture2D tdiardy;
+        private Rectangle tdiaryRect;
         private Texture2D recept;
         private Rectangle receptRect;
         private Texture2D jewelrybox;
@@ -217,7 +218,9 @@ namespace GamePrototype.Classes.Tools
             
             crazyDiary = content.Load<Texture2D>("Crazy1");
             crazyDiary1Rect = new Rectangle((int)origin.X + 80, (int)origin.Y + 20, 128, 128);
-            crazyDiary2Rect = new Rectangle((int)origin.X + 180, (int)origin.Y - 120, 128, 128);
+
+            tdiardy = content.Load<Texture2D>("Diary1");
+            tdiaryRect = new Rectangle((int)origin.X + 180, (int)origin.Y - 120, 128, 128);
 
             recept = content.Load<Texture2D>("recept");
             receptRect = new Rectangle((int)origin.X - 350, (int)origin.Y - 120, 50, 50);
@@ -242,9 +245,9 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new ClueObject(mirror, mirrorRect, Clue.Clues["BathroomKey"], false, Clue.Clues["CrazyDiary2"]));
             objs.Add(new Door(bedroondoorside, bedroomdoorsideRect, CurrentRoom.Bedroom,doorDestination));
             objs.Add(new Lamp(lampfloor, lampfloorRect));
-            objs.Add(new ClueObject(crazyDiary, crazyDiary2Rect, Clue.Clues["CrazyDiary2"], false, "Sticky Note", true));
+            objs.Add(new ClueObject(tdiardy, tdiaryRect, Clue.Clues["TenantDiary3"], false, "Sticky Note", true));
             objs.Add(new GameObject(wardrobeopen, wardrobeopenRect, "WardrobeOpen"));
-            objs.Add(new ClueObject(wardrobe, wardrobeRect, new Rectangle(0, 0, 346, 346), Clue.Clues["TenantDiary3"], false));
+            objs.Add(new ClueObject(wardrobe, wardrobeRect, new Rectangle(0, 0, 346, 346), Clue.Clues["CrazyDiary2"], false));
             //objs.Add(new ClueObject(bathkey, bathkeyRect, Clue.Clues["BathroomKey"], false, "Bathroom Key", true));
             objs.Add(new ClueObject(crazyDiary, crazyDiary1Rect, Clue.Clues["CrazyDiary1"], false, "Sticky Note", true));
             objs.Add(new ClueObject(recept, receptRect, Clue.Clues["Receipt"], false, "Sticky Note", true));
