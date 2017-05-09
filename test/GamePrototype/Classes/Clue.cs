@@ -156,7 +156,7 @@ namespace GamePrototype.Classes
             return;
         }
 
-        public static void LoadContent(Texture2D news, Texture2D bathroomKey, Texture2D closetKey, Texture2D oldPhoto, Texture2D newPhoto, Texture2D tenantDir, Texture2D crazyDir, Texture2D receipt, Texture2D ring, Texture2D pendant, Texture2D bones, Texture2D jaggedKnife, Texture2D spaCoupon, Texture2D medicineBottle, Texture2D stickyNote, Texture2D new1full, Texture2D new2full, Texture2D new3full, Texture2D new4full, Texture2D veryCrazy)
+        public static void LoadContent(Texture2D news, Texture2D bathroomKey, Texture2D closetKey, Texture2D oldPhoto, Texture2D newPhoto, Texture2D tenantDir, Texture2D crazyDir, Texture2D receipt, Texture2D ring, Texture2D pendant, Texture2D bones, Texture2D jaggedKnife, Texture2D spaCoupon, Texture2D medicineBottle, Texture2D stickyNote, Texture2D new1full, Texture2D new2full, Texture2D new3full, Texture2D new4full, Texture2D new5full, Texture2D veryCrazy, Texture2D veryCrazyFull, Texture2D tenant1Full, Texture2D tenant2Full, Texture2D tenant3Full, Texture2D oldPhoto1Full, Texture2D oldPhoto2Full, Texture2D oldPhoto3Full, Texture2D crazy1Full, Texture2D crazy2Full, Texture2D crazy3Full)
         {
             clues["News1"].ClueImage = news;
             clues["News1"].BlownClueImage = new1full;
@@ -167,18 +167,28 @@ namespace GamePrototype.Classes
             clues["News4"].ClueImage = news;
             clues["News4"].BlownClueImage = new4full;
             clues["News5"].ClueImage = news;
+            clues["News5"].BlownClueImage = new5full;
             clues["BathroomKey"].ClueImage = bathroomKey;
             clues["ClosetKey"].ClueImage = closetKey;
             clues["OldPhoto1"].ClueImage = oldPhoto;
             clues["OldPhoto2"].ClueImage = oldPhoto;
             clues["OldPhoto3"].ClueImage = oldPhoto;
+            clues["OldPhoto1"].BlownClueImage = oldPhoto1Full;
+            clues["OldPhoto2"].BlownClueImage = oldPhoto2Full;
+            clues["OldPhoto3"].BlownClueImage = oldPhoto3Full;
             clues["NewPhoto"].ClueImage = newPhoto;
             clues["TenantDiary1"].ClueImage = tenantDir;
             clues["TenantDiary2"].ClueImage = tenantDir;
             clues["TenantDiary3"].ClueImage = tenantDir;
+            clues["TenantDiary1"].BlownClueImage = tenant1Full;
+            clues["TenantDiary2"].BlownClueImage = tenant2Full;
+            clues["TenantDiary3"].BlownClueImage = tenant3Full;
             clues["CrazyDiary1"].ClueImage = crazyDir;
             clues["CrazyDiary2"].ClueImage = crazyDir;
             clues["CrazyDiary3"].ClueImage = crazyDir;
+            clues["CrazyDiary1"].BlownClueImage = crazy1Full;
+            clues["CrazyDiary2"].BlownClueImage = crazy2Full;
+            clues["CrazyDiary3"].BlownClueImage = crazy3Full;
             clues["Receipt"].ClueImage = receipt;
             clues["Ring"].ClueImage = ring;
             clues["Pendant"].ClueImage = pendant;
