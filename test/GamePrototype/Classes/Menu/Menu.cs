@@ -171,7 +171,7 @@ namespace GamePrototype.Classes.Menu
             //}
 
             // NOT WORKING RIGHT NOW --- Fixed it, you just needed a set of parenthesis around the state checks here - Tom
-            if ((activeMenu == Category.Journal || activeMenu == Category.Photos || activeMenu == Category.Settings) && kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
+            if ((activeMenu == Category.Clues || activeMenu == Category.Photos || activeMenu == Category.Settings) && kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
             {
                 // back to main menu
                 activeMenu = Category.Main;
