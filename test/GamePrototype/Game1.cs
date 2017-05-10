@@ -231,7 +231,7 @@ namespace GamePrototype
             // TODO: fill in the nulls in the parameters list once we have more textures
 
             player.PopUp += messageDisplay.GetMessage;
-            Clue.LoadContent( Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("key2"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("Photo1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"), Content.Load<Texture2D>("recept1"), Content.Load<Texture2D>("Ring1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("rotatethebones"), Content.Load<Texture2D>("knife"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("pillshere"), Content.Load<Texture2D>("stickynoteFULL"), Content.Load<Texture2D>("New1Full"), Content.Load<Texture2D>("New2Full"), Content.Load<Texture2D>("New3Full"), Content.Load<Texture2D>("New4Full"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("VeryCrazy"), Content.Load<Texture2D>("VERYCrazyDiary"), Content.Load<Texture2D>("TD1FULL"), Content.Load<Texture2D>("TD2FULL"), Content.Load<Texture2D>("TD3FULL"), Content.Load<Texture2D>("oldphoto1"), Content.Load<Texture2D>("oldphoto2"), Content.Load<Texture2D>("oldphoto1"), Content.Load<Texture2D>("CrazyDiary1"), Content.Load<Texture2D>("CrazyDiary2"), Content.Load<Texture2D>("CrazyDiary3"));
+            Clue.LoadContent( Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("key2"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("Photo1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"), Content.Load<Texture2D>("recept1"), Content.Load<Texture2D>("Ring1"), Content.Load<Texture2D>("pandant"), Content.Load<Texture2D>("rotatethebones"), Content.Load<Texture2D>("knife"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("pillshere"), Content.Load<Texture2D>("stickynoteFULL"), Content.Load<Texture2D>("New1Full"), Content.Load<Texture2D>("New2Full"), Content.Load<Texture2D>("New3Full"), Content.Load<Texture2D>("New4Full"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("VeryCrazy"), Content.Load<Texture2D>("VERYCrazyDiary"), Content.Load<Texture2D>("TD1FULL"), Content.Load<Texture2D>("TD2FULL"), Content.Load<Texture2D>("TD3FULL"), Content.Load<Texture2D>("oldphoto1"), Content.Load<Texture2D>("oldphoto2"), Content.Load<Texture2D>("oldphoto3"), Content.Load<Texture2D>("CrazyDiary1"), Content.Load<Texture2D>("CrazyDiary2"), Content.Load<Texture2D>("CrazyDiary3"));
             Clue.LoadInventory();
             menu.LoadContent(startingPhoneState, imagePhoneState, textPhoneState, menuFont, Content.Load<Texture2D>("BlueGuy"), settingsData);
             // initialize textboxes in the main menu
@@ -285,8 +285,11 @@ namespace GamePrototype
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            prevKbState = kbState;
+            kbState = Keyboard.GetState();
+
             // NOTE: If we want to use Esc as the menu key this is pretty important to remove
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || /*Keyboard.GetState().IsKeyDown(Keys.Escape)*/ kbState.IsKeyDown(Keys.Escape) && prevKbState.IsKeyDown(Keys.Escape) && gameState != GameState.GMenu)
             {
                 SaveData.Save();
                 Exit();
@@ -294,9 +297,7 @@ namespace GamePrototype
 
             // TODO: The game's update function should primarily call the Update function of the active Room. That should run through inside the Room and update all the objects in it.
             // TODO: Check if menus are open or the open button has been pressed, and if so update them
-            prevKbState = kbState;
-            kbState = Keyboard.GetState();
-
+            
             if (winLose == 2)
             {
                 Thread.Sleep(5000);
@@ -457,11 +458,14 @@ namespace GamePrototype
                         }
                             
                         */
-                        if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4)) // would like to make tab later but wasnt working
+                        if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4)/* || kbState.IsKeyDown(Keys.Escape) && !prevKbState.IsKeyDown(Keys.Escape)*/) // would like to make tab later but wasnt working
                         {
                             // close menu
                             //menuState = MenuState.Main;
                             gameState = GameState.Game;
+                            prevKbState = kbState;
+                            kbState = Keyboard.GetState();
+
                         }
                         // Caleb - updates the menu instance; we might stick the above into this method?
                         menu.Update();
