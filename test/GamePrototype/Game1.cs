@@ -452,7 +452,7 @@ namespace GamePrototype
                         }
                             
                         */
-                        if (kbState.IsKeyDown(Keys.LeftShift) && !prevKbState.IsKeyDown(Keys.LeftShift)) // would like to make tab later but wasnt working
+                        if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4)) // would like to make tab later but wasnt working
                         {
                             // close menu
                             //menuState = MenuState.Main;
