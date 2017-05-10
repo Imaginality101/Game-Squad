@@ -295,7 +295,7 @@ namespace GamePrototype
             kbState = Keyboard.GetState();
 
             // NOTE: If we want to use Esc as the menu key this is pretty important to remove
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.OemTilde) /*kbState.IsKeyDown(Keys.Escape) && prevKbState.IsKeyDown(Keys.Escape)/* && gameState != GameState.GMenu*/)
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed) //|| Keyboard.GetState().IsKeyDown(Keys.D4) /*kbState.IsKeyDown(Keys.Escape) && prevKbState.IsKeyDown(Keys.Escape)/* && gameState != GameState.GMenu*/)
             {
                 SaveData.Save();
                 Exit();
@@ -352,11 +352,13 @@ namespace GamePrototype
                             {
                                 gameState = GameState.Game;
                                 player.SendMessage("Move using W, A, S, and D.");
+                                Thread.Sleep(500);
                             }
                             else if (mainState == MainMenuState.NewGame)
                             {
                                 Restart();
                                 gameState = GameState.Game;
+                                Thread.Sleep(500);
                             }
                         }
                         break;
@@ -464,14 +466,17 @@ namespace GamePrototype
                         }
                             
                         */
-                        if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4) || kbState.IsKeyDown(Keys.Escape) && !prevKbState.IsKeyDown(Keys.Escape)) // would like to make tab later but wasnt working
+                        if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4))// || kbState.IsKeyDown(Keys.Escape) && !prevKbState.IsKeyDown(Keys.Escape)) // would like to make tab later but wasnt working
                         {
                             // close menu
                             //menuState = MenuState.Main;
-                            gameState = GameState.Game;
+                            /*gameState = GameState.Game;
                             prevKbState = kbState;
                             kbState = Keyboard.GetState();
-
+                            */
+                            // close game
+                            SaveData.Save();
+                            Exit();
                         }
                         // Caleb - updates the menu instance; we might stick the above into this method?
                         menu.Update();
