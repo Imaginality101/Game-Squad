@@ -12,7 +12,7 @@ namespace GamePrototype.Classes.Tools
     class PopUpManager
     {
         const float MSG_SCALE = 1.5f;
-        const double DISPLAY_TIME = 3000;
+        const double DISPLAY_TIME = 2500;
         private SpriteFont font;
         private Rectangle drawRect;
         private Boolean drawing;

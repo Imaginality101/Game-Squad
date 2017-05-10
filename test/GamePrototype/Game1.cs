@@ -515,8 +515,8 @@ namespace GamePrototype
             // calls the bedroom draw command - kat
             if (gameState == GameState.Game)
             {
-                uSpriteBatch.Draw(instructionOpen, instructionOpenRect, Color.White);
-                uSpriteBatch.Draw(instructionClose, instructionCloseRect, Color.White);
+                uSpriteBatch.Draw(instructionOpen, FormatDraw(instructionOpenRect), Color.White);
+                uSpriteBatch.Draw(instructionClose, FormatDraw(instructionCloseRect), Color.White);
 
                 switch (activeRoom)
                 {
@@ -752,7 +752,7 @@ namespace GamePrototype
 
             instructionOpen = content.Load<Texture2D>("tabopen");
             instructionClose = content.Load<Texture2D>("fourclose");
-            instructionOpenRect = new Rectangle(0, (GraphicsDevice.Viewport.Height) - (2*64), 128,64);
+            instructionOpenRect = new Rectangle(0, (972) - (2*64), 128,64);
             instructionCloseRect = new Rectangle(instructionOpenRect.X, instructionOpenRect.Y + instructionOpenRect.Height, instructionOpenRect.Width, instructionOpenRect.Height);
 
             bedBG = content.Load<Texture2D>("backgroundFULL");
@@ -826,7 +826,7 @@ namespace GamePrototype
             //lights
             lightsOn = false;
             // restores the player position to what it was at the start of the game
-            player.PlayerRect = new Rectangle(1728 / 2 - 50, 972 / 2 - 50, 96, 192);
+            player.PlayerRect = new Rectangle(1728 / 2, 972 / 2 + 50, 96, 192);
             // clears the clue menu 
             Menu.pageClue = new Clue[7,4];
             // TODO: restart more rooms when we get them
