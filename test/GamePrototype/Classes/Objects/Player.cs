@@ -272,6 +272,14 @@ namespace GamePrototype.Classes.Objects
         {
             foreach (GameObject go in objects)
             {
+                if (go.GlobalBounds.Bottom > hitBox.Bottom && go.FixedDepth == false)
+                {
+                    go.Depth = .3f;
+                }
+                else if (go.FixedDepth == false)
+                {
+                    go.Depth = .7f;
+                }
                 Boolean collidingObj = isColliding(go);
                 if (collidingObj)
                 {
@@ -458,7 +466,7 @@ namespace GamePrototype.Classes.Objects
             //base.Draw(sprtBtch);
             if (playerDirection == PlayerDir.FaceUp)
             {
-                sprtBtch.Draw(faceUpSprite, Game1.FormatDraw(playerRect), Color.White);
+                sprtBtch.Draw(faceUpSprite, Game1.FormatDraw(playerRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .5f);
             }
             if (playerDirection == PlayerDir.WalkUp)
             {
@@ -471,11 +479,11 @@ namespace GamePrototype.Classes.Objects
                 {
                     currentFrame = 0;
                 }
-                sprtBtch.Draw(walkUpSprites[currentFrame], Game1.FormatDraw(playerRect), Color.White);
+                sprtBtch.Draw(walkUpSprites[currentFrame], Game1.FormatDraw(playerRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .5f);
             }
             if (playerDirection == PlayerDir.FaceLeft)
             {
-                sprtBtch.Draw(faceRightSprite, Game1.FormatDraw(playerRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
+                sprtBtch.Draw(faceRightSprite, Game1.FormatDraw(playerRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, .5f);
             }
             if (playerDirection == PlayerDir.WalkLeft)
             {
@@ -488,11 +496,11 @@ namespace GamePrototype.Classes.Objects
                 {
                     currentFrame = 0;
                 }
-                sprtBtch.Draw(walkRightSprites[currentFrame], Game1.FormatDraw(playerRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
+                sprtBtch.Draw(walkRightSprites[currentFrame], Game1.FormatDraw(playerRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, .5f);
             }
             if (playerDirection == PlayerDir.FaceDown)
             {
-                sprtBtch.Draw(faceDownSprite, Game1.FormatDraw(playerRect), Color.White);
+                sprtBtch.Draw(faceDownSprite, Game1.FormatDraw(playerRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .5f);
             }
             if (playerDirection == PlayerDir.WalkDown)
             {
@@ -505,11 +513,11 @@ namespace GamePrototype.Classes.Objects
                 {
                     currentFrame = 0;
                 }
-                sprtBtch.Draw(walkDownSprites[currentFrame], Game1.FormatDraw(playerRect), Color.White);
+                sprtBtch.Draw(walkDownSprites[currentFrame], Game1.FormatDraw(playerRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .5f);
             }
             if (playerDirection == PlayerDir.FaceRight)
             {
-                sprtBtch.Draw(faceRightSprite, Game1.FormatDraw(playerRect), Color.White);
+                sprtBtch.Draw(faceRightSprite, Game1.FormatDraw(playerRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .5f);
             }
             if (playerDirection == PlayerDir.WalkRight)
             {
@@ -522,16 +530,16 @@ namespace GamePrototype.Classes.Objects
                 {
                     currentFrame = 0;
                 }
-                sprtBtch.Draw(walkRightSprites[currentFrame], Game1.FormatDraw(playerRect), Color.White);
+                sprtBtch.Draw(walkRightSprites[currentFrame], Game1.FormatDraw(playerRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .5f);
             }
             if (Game1.bobRossMode)
             {
-                sprtBtch.Draw(rossHead, Game1.FormatDraw(rossRect), Color.White);
+                sprtBtch.Draw(rossHead, Game1.FormatDraw(rossRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .15f);
             }
             if (flaggedInteractable != null)
             {
                 Vector2 basePoint = new Vector2(playerRect.X + (playerRect.Width / 2), playerRect.Y);
-                sprtBtch.Draw(promptTexture, Game1.FormatDraw(new Rectangle((int)(basePoint.X - 16), (int)(basePoint.Y - 40), 32, 32)), Color.White);
+                sprtBtch.Draw(promptTexture, Game1.FormatDraw(new Rectangle((int)(basePoint.X - 16), (int)(basePoint.Y - 40), 32, 32)), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .5f);
             }
         }
         public Rectangle MoveBounds { get { return moveBounds; } set { moveBounds = value; } }

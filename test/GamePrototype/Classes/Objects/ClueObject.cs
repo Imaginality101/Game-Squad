@@ -19,54 +19,89 @@ namespace GamePrototype.Classes.Objects
         Clue requiredClue;
 
 
-        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn) : base(txtr, psRct)
+        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, float depth = -1) : base(txtr, psRct)
         {
             givenClue = clGvn;
             onetimeUse = false;
             pickedUp = false;
+            if (depth >= 0)
+            {
+                Depth = depth;
+                FixedDepth = true;
+            }
         }
         // Caleb - temporary constructor for demoing interaction for milestone 2
-        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean oneTime) : base(txtr, psRct)
+        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean oneTime, float depth = -1) : base(txtr, psRct)
         {
             givenClue = clGvn;
             onetimeUse = oneTime;
             pickedUp = false;
+            if (depth >= 0)
+            {
+                Depth = depth;
+                FixedDepth = true;
+            }
         }
         // same as above but with requiredClue
-        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean oneTime, Clue rqClue) : base(txtr, psRct)
+        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean oneTime, Clue rqClue, float depth = -1) : base(txtr, psRct)
         {
             givenClue = clGvn;
             onetimeUse = oneTime;
             requiredClue = rqClue;
             pickedUp = false;
+            if (depth >= 0)
+            {
+                Depth = depth;
+                FixedDepth = true;
+            }
         }
-        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean collision, Boolean oneTime, Clue rqClue) : base(txtr, psRct, collision)
+        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean collision, Boolean oneTime, Clue rqClue, float depth = -1) : base(txtr, psRct, collision)
         {
             givenClue = clGvn;
             onetimeUse = oneTime;
             requiredClue = rqClue;
             pickedUp = false;
+            if (depth >= 0)
+            {
+                Depth = depth;
+                FixedDepth = true;
+            }
         }
-        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean collision, Boolean oneTime) : base(txtr, psRct, collision)
+        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean collision, Boolean oneTime, float depth = -1) : base(txtr, psRct, collision)
         {
             givenClue = clGvn;
             onetimeUse = oneTime;
             pickedUp = false;
+            if (depth >= 0)
+            {
+                Depth = depth;
+                FixedDepth = true;
+            }
         }
 
         // Constructor overload for objects whose hitbox is sized differently from the sprite
-        public ClueObject(Texture2D txtr, Rectangle psRct, Rectangle clRct, Clue clGvn, Boolean oneTime) : base(txtr, psRct, clRct)
+        public ClueObject(Texture2D txtr, Rectangle psRct, Rectangle clRct, Clue clGvn, Boolean oneTime, float depth = -1) : base(txtr, psRct, clRct)
         {
             givenClue = clGvn;
             onetimeUse = oneTime;
             pickedUp = false;
+            if(depth >= 0)
+            {
+                Depth = depth;
+                FixedDepth = true;
+            }
         }
         // Caleb - Another temporary constructor for interaction
-        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean collision, string nm, Boolean oneTime) : base(txtr, psRct, collision, nm)
+        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean collision, string nm, Boolean oneTime, float depth = -1) : base(txtr, psRct, collision, nm)
         {
             givenClue = clGvn;
             onetimeUse = oneTime;
             pickedUp = false;
+            if (depth >= 0)
+            {
+                Depth = depth;
+                FixedDepth = true;
+            }
         }
 
 
