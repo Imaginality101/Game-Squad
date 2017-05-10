@@ -40,6 +40,13 @@ namespace GamePrototype.Classes.Objects
             requiredClue = rqClue;
             pickedUp = false;
         }
+        public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean collision, Boolean oneTime, Clue rqClue) : base(txtr, psRct, collision)
+        {
+            givenClue = clGvn;
+            onetimeUse = oneTime;
+            requiredClue = rqClue;
+            pickedUp = false;
+        }
         public ClueObject(Texture2D txtr, Rectangle psRct, Clue clGvn, Boolean collision, Boolean oneTime) : base(txtr, psRct, collision)
         {
             givenClue = clGvn;
