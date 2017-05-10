@@ -161,14 +161,14 @@ namespace GamePrototype.Classes.Menu
                 activeMenu = Category.Settings;
             }
 
-            if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4))
-            {
+            //if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4))
+            //{
                 // exit game code
                 // ADD SAVE CODE FOR EXTERNAL TOOL HERE PLEASEEEE<3
-                activeMenu = Category.Power;
-                SaveData.Save();
-                Environment.Exit(0);
-            }
+                // activeMenu = Category.Power;
+                // SaveData.Save();
+                // Environment.Exit(0);
+            //}
 
             // NOT WORKING RIGHT NOW --- Fixed it, you just needed a set of parenthesis around the state checks here - Tom
             if ((activeMenu == Category.Journal || activeMenu == Category.Photos || activeMenu == Category.Settings) && kbState.IsKeyDown(Keys.Tab) && !prevKbState.IsKeyDown(Keys.Tab))
@@ -342,7 +342,7 @@ namespace GamePrototype.Classes.Menu
                     }
                 }
                 // stops drawing the image clue when exiting the clues menu
-                if ((kbState.IsKeyDown(Keys.D2) && prevKbState.IsKeyUp(Keys.D2)) || (kbState.IsKeyDown(Keys.D3) && prevKbState.IsKeyUp(Keys.D3)) || (kbState.IsKeyDown(Keys.LeftShift) && prevKbState.IsKeyUp(Keys.LeftShift)))
+                if ((kbState.IsKeyDown(Keys.D2) && prevKbState.IsKeyUp(Keys.D2)) || (kbState.IsKeyDown(Keys.D3) && prevKbState.IsKeyUp(Keys.D3)) || (kbState.IsKeyDown(Keys.D4) && prevKbState.IsKeyUp(Keys.D4)))
                 {
                     imageClueDraw = 0;
                 }
