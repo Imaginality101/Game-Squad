@@ -155,8 +155,14 @@ namespace GamePrototype
         //instuctions
         Texture2D instructionOpen;
         Texture2D instructionClose;
+        Texture2D instructionMove;
+        Texture2D instructionNuke;
+        Texture2D instructionInteract;
         Rectangle instructionOpenRect;
         Rectangle instructionCloseRect;
+        Rectangle instructionMoveRect;
+        Rectangle instructionNukeRect;
+        Rectangle instructionInteractRect;
 
         // win/lose variable - kat
         int winLose; // 0 is nothing, 1 is lost, 2 is win
@@ -230,7 +236,7 @@ namespace GamePrototype
             // TODO: fill in the nulls in the parameters list once we have more textures
 
             player.PopUp += messageDisplay.GetMessage;
-            Clue.LoadContent( Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("key2"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("Photo1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"), Content.Load<Texture2D>("recept1"), Content.Load<Texture2D>("Ring1"), Content.Load<Texture2D>("pandant"), Content.Load<Texture2D>("rotatethebones"), Content.Load<Texture2D>("knife"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("pillshere"), Content.Load<Texture2D>("stickynoteFULL"), Content.Load<Texture2D>("New1Full"), Content.Load<Texture2D>("New2Full"), Content.Load<Texture2D>("New3Full"), Content.Load<Texture2D>("New4Full"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("VeryCrazy"), Content.Load<Texture2D>("VERYCrazyDiary"), Content.Load<Texture2D>("TD1FULL"), Content.Load<Texture2D>("TD2FULL"), Content.Load<Texture2D>("TD3FULL"), Content.Load<Texture2D>("oldphoto1"), Content.Load<Texture2D>("oldphoto2"), Content.Load<Texture2D>("oldphoto3"), Content.Load<Texture2D>("CrazyDiary1"), Content.Load<Texture2D>("CrazyDiary2"), Content.Load<Texture2D>("CrazyDiary3"));
+            Clue.LoadContent( Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("key2"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("Photo1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"), Content.Load<Texture2D>("recept1"), Content.Load<Texture2D>("Ring1"), Content.Load<Texture2D>("pandant"), Content.Load<Texture2D>("rotatethebones"), Content.Load<Texture2D>("knife"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("pillshere"), Content.Load<Texture2D>("stickynoteFULL"), Content.Load<Texture2D>("New1Full"), Content.Load<Texture2D>("New2Full"), Content.Load<Texture2D>("New3Full"), Content.Load<Texture2D>("New4Full"), Content.Load<Texture2D>("New5FULL"), Content.Load<Texture2D>("VeryCrazy"), Content.Load<Texture2D>("VERYCrazyDiary"), Content.Load<Texture2D>("TD1FULL-NEW"), Content.Load<Texture2D>("TD2FULL"), Content.Load<Texture2D>("TD3FULL"), Content.Load<Texture2D>("oldphoto1"), Content.Load<Texture2D>("oldphoto2"), Content.Load<Texture2D>("oldphoto3"), Content.Load<Texture2D>("CrazyDiary1"), Content.Load<Texture2D>("CrazyDiary2"), Content.Load<Texture2D>("CrazyDiary3"), Content.Load<Texture2D>("receptimageFULL"));
             Clue.LoadInventory();
             menu.LoadContent(startingPhoneState, imagePhoneState, textPhoneState, menuFont, Content.Load<Texture2D>("BlueGuy"), settingsData);
             // initialize textboxes in the main menu
@@ -288,7 +294,7 @@ namespace GamePrototype
             kbState = Keyboard.GetState();
 
             // NOTE: If we want to use Esc as the menu key this is pretty important to remove
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || /*Keyboard.GetState().IsKeyDown(Keys.Escape)*/ kbState.IsKeyDown(Keys.Escape) && prevKbState.IsKeyDown(Keys.Escape) && gameState != GameState.GMenu)
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.OemTilde) /*kbState.IsKeyDown(Keys.Escape) && prevKbState.IsKeyDown(Keys.Escape)/* && gameState != GameState.GMenu*/)
             {
                 SaveData.Save();
                 Exit();
@@ -326,7 +332,7 @@ namespace GamePrototype
             {
                 case GameState.MainMenu:
                     {
-                        player.SendMessage("Move using W, A, S, and D.");
+                        player.SendMessage("Move using W, and S. Confirm using E.");
 
                         // TODO: May have buttons in main menu, the Enter key is just temporary
                         if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S) && mainState == MainMenuState.Continue)
@@ -339,7 +345,7 @@ namespace GamePrototype
                             mainState = MainMenuState.Continue;
                             mainMenuCursorLoc.Y -= 100;
                         }
-                        if (kbState.IsKeyDown(Keys.Enter) && !prevKbState.IsKeyDown(Keys.Enter))
+                        if (kbState.IsKeyDown(Keys.E) && !prevKbState.IsKeyDown(Keys.E))
                         {
                             if (mainState == MainMenuState.Continue)
                             {
@@ -457,7 +463,7 @@ namespace GamePrototype
                         }
                             
                         */
-                        if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4)/* || kbState.IsKeyDown(Keys.Escape) && !prevKbState.IsKeyDown(Keys.Escape)*/) // would like to make tab later but wasnt working
+                        if (kbState.IsKeyDown(Keys.D4) && !prevKbState.IsKeyDown(Keys.D4) || kbState.IsKeyDown(Keys.Escape) && !prevKbState.IsKeyDown(Keys.Escape)) // would like to make tab later but wasnt working
                         {
                             // close menu
                             //menuState = MenuState.Main;
@@ -518,8 +524,15 @@ namespace GamePrototype
             // calls the bedroom draw command - kat
             if (gameState == GameState.Game)
             {
+                //draw the instructions
+                uSpriteBatch.Draw(instructionOpen, FormatDraw(instructionOpenRect), Color.White);
+                uSpriteBatch.Draw(instructionClose, FormatDraw(instructionCloseRect), Color.White);
+                uSpriteBatch.Draw(instructionMove, FormatDraw(instructionMoveRect), Color.White);
+                uSpriteBatch.Draw(instructionInteract, FormatDraw(instructionInteractRect), Color.White);
+                uSpriteBatch.Draw(instructionNuke, FormatDraw(instructionNukeRect), Color.White);
                 uSpriteBatch.Draw(instructionOpen, FormatDraw(instructionOpenRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
                 uSpriteBatch.Draw(instructionClose, FormatDraw(instructionCloseRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
+
 
                 switch (activeRoom)
                 {
@@ -570,6 +583,13 @@ namespace GamePrototype
             
             if (gameState == GameState.GMenu)
             {
+                //draw the instructions
+                uSpriteBatch.Draw(instructionOpen, FormatDraw(instructionOpenRect), Color.White);
+                uSpriteBatch.Draw(instructionClose, FormatDraw(instructionCloseRect), Color.White);
+                uSpriteBatch.Draw(instructionMove, FormatDraw(instructionMoveRect), Color.White);
+                uSpriteBatch.Draw(instructionInteract, FormatDraw(instructionInteractRect), Color.White);
+                uSpriteBatch.Draw(instructionNuke, FormatDraw(instructionNukeRect), Color.White);
+
                 switch (activeRoom)
                 {
                     case CurrentRoom.Bedroom:
@@ -580,7 +600,6 @@ namespace GamePrototype
                         break;
                     case CurrentRoom.Bathroom:
                         bathRoom.Draw(uSpriteBatch);
-                        // TODO: Draw bathroom
                         break;
                 }
                 menu.Draw(uSpriteBatch);
@@ -753,10 +772,17 @@ namespace GamePrototype
 
             blacklight = content.Load<Texture2D>("black light overlay");
 
-            instructionOpen = content.Load<Texture2D>("tabopen");
-            instructionClose = content.Load<Texture2D>("fourclose");
-            instructionOpenRect = new Rectangle(0, (972) - (2*64), 128,64);
+            instructionOpen = content.Load<Texture2D>("INSTopen");
+            instructionClose = content.Load<Texture2D>("INSTclose");
+            instructionMove = content.Load<Texture2D>("INSTmove");
+            instructionInteract = content.Load<Texture2D>("INSTinteract");
+            instructionNuke = content.Load<Texture2D>("INSTnuke");
+
+            instructionOpenRect = new Rectangle(0, (972) - ((int)(5*1.75)*64), (int)(1.5*128),(int)(1.5*64));
             instructionCloseRect = new Rectangle(instructionOpenRect.X, instructionOpenRect.Y + instructionOpenRect.Height, instructionOpenRect.Width, instructionOpenRect.Height);
+            instructionMoveRect = new Rectangle(instructionCloseRect.X, instructionCloseRect.Y + instructionCloseRect.Height, instructionCloseRect.Width, instructionCloseRect.Height);
+            instructionInteractRect = new Rectangle(instructionMoveRect.X, instructionMoveRect.Y + instructionMoveRect.Height, instructionMoveRect.Width, instructionMoveRect.Height);
+            instructionNukeRect = new Rectangle(instructionInteractRect.X, instructionInteractRect.Y + instructionInteractRect.Height, instructionInteractRect.Width, instructionInteractRect.Height);
 
             bedBG = content.Load<Texture2D>("backgroundFULL");
             closetBG = content.Load<Texture2D>("theclosetFULL");
@@ -832,6 +858,7 @@ namespace GamePrototype
             player.PlayerRect = new Rectangle(1728 / 2, 972 / 2 + 50, 96, 192);
             // clears the clue menu 
             Menu.pageClue = new Clue[7,4];
+            Menu.cluesNum = 0;
             // TODO: restart more rooms when we get them
             bedRoom.ReenableClueObjects();
             closetRoom.ReenableClueObjects();

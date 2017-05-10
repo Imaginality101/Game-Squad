@@ -32,7 +32,8 @@ namespace GamePrototype.Classes.Menu
         // first index is the page on the menu, second index is which space it is on: 0 is top left, 1 is top right, 2 is bottom left, 3 is bottom right 
         public static Clue[,] pageClue = new Clue[7, 4];
         int cluePageIndex = 0;
-
+        // how many clues are in pageClue
+        public static int cluesNum = 0;
 
         // icons
         /*
@@ -122,6 +123,15 @@ namespace GamePrototype.Classes.Menu
             }
             settingsTextBox = new TextBox(new Vector2(760, 220), settingsString, 15, 15, mFont, new Rectangle(0, 0, 0, 0));
             clueCursor = cursor;
+            // initialize clues num
+            cluesNum = 0;
+            foreach (Clue c in pageClue)
+            {
+                if (c != null)
+                {
+                    cluesNum++;
+                }
+            }
         }
 
         public Category ActiveMenu
@@ -247,7 +257,7 @@ namespace GamePrototype.Classes.Menu
                                     blep.PlayAsSoundEffect(.9f);
                                 }
                                 // handles scrolling
-                                else if (cluePageIndex != 6 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
+                                else if (cluePageIndex < 6 && cluePageIndex < cluesNum / 4 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
                                 {
                                     selectedEntry = SelectedEntry.TopLeft;
                                     blep.PlayAsSoundEffect(.9f);
@@ -269,7 +279,7 @@ namespace GamePrototype.Classes.Menu
                                     blep.PlayAsSoundEffect(.9f);
                                 }
                                 // handles scrolling
-                                else if (cluePageIndex != 6 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
+                                else if (cluePageIndex < 6 && cluePageIndex < cluesNum / 4 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
                                 {
                                     selectedEntry = SelectedEntry.TopRight;
                                     blep.PlayAsSoundEffect(.9f);
@@ -400,6 +410,7 @@ namespace GamePrototype.Classes.Menu
                         //{
 
                         pageClue[i, j] = addedClue;
+                        cluesNum++;
                         //}
                         return;
                     }
