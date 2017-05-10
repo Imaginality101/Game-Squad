@@ -424,12 +424,12 @@ namespace GamePrototype.Classes.Menu
             if (activeMenu == Category.Main)
             {
                 //bedRoom.Draw(uSpriteBatch);
-                spriteBatch.Draw(mainPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
+                spriteBatch.Draw(mainPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .09f);
             }
             if (activeMenu == Category.Journal)
             {
                 //bedRoom.Draw(uSpriteBatch);
-                spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
+                spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .09f);
                 if (clueTextBox != null)
                 {
                     clueTextBox.Draw(spriteBatch);
@@ -438,27 +438,27 @@ namespace GamePrototype.Classes.Menu
             if (activeMenu == Category.Settings)
             {
                 //bedRoom.Draw(uSpriteBatch);
-                spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
+                spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .09f);
                 // Draw textbox
                 settingsTextBox.Draw(spriteBatch);
             }
             if (activeMenu == Category.Clues)
             {
-                spriteBatch.Draw(cluesPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), Color.White);
+                spriteBatch.Draw(cluesPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .09f);
                 // draw the clue cursor based on the selected entry
                 switch (selectedEntry)
                 {
                     case SelectedEntry.TopLeft:
-                        spriteBatch.Draw(clueCursor, Game1.FormatDraw(box1), new Color(Color.Black, 50f));
+                        spriteBatch.Draw(clueCursor, Game1.FormatDraw(box1), null, new Color(Color.Black, 50f), 0f, Vector2.Zero, SpriteEffects.None, .05f);
                         break;
                     case SelectedEntry.TopRight:
-                        spriteBatch.Draw(clueCursor, Game1.FormatDraw(box2), new Color(Color.Black, 50f));
+                        spriteBatch.Draw(clueCursor, Game1.FormatDraw(box2), null, new Color(Color.Black, 50f), 0f, Vector2.Zero, SpriteEffects.None, .05f);
                         break;
                     case SelectedEntry.BotLeft:
-                        spriteBatch.Draw(clueCursor, Game1.FormatDraw(box3), new Color(Color.Black, 50f));
+                        spriteBatch.Draw(clueCursor, Game1.FormatDraw(box3), null, new Color(Color.Black, 50f), 0f, Vector2.Zero, SpriteEffects.None, .05f);
                         break;
                     case SelectedEntry.BotRight:
-                        spriteBatch.Draw(clueCursor, Game1.FormatDraw(box4), new Color(Color.Black, 50f));
+                        spriteBatch.Draw(clueCursor, Game1.FormatDraw(box4), null, new Color(Color.Black, 50f), 0f, Vector2.Zero, SpriteEffects.None, .05f);
                         break;
                 }
                 // will draw the clue icons
@@ -471,16 +471,16 @@ namespace GamePrototype.Classes.Menu
                         switch (j) // why in god's name is this where we decide to use switch statements - Tom
                         {
                             case 0:
-                                spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box1), Color.White);
+                                spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box1), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .03f);
                                 break;
                             case 1:
-                                spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box2), Color.White);
+                                spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box2), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .03f);
                                 break;
                             case 2:
-                                spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box3), Color.White);
+                                spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box3), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .03f);
                                 break;
                             case 3:
-                                spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box4), Color.White);
+                                spriteBatch.Draw(curr.ClueImage, Game1.FormatDraw(box4), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .03f);
                                 break;
                         }
                     }
@@ -489,7 +489,7 @@ namespace GamePrototype.Classes.Menu
 
                 if (imageClueDraw > 0)
                 {
-                    spriteBatch.Draw(pageClue[cluePageIndex, imageClueDraw - 1].BlownClueImage, Game1.FormatDraw(blownUpImage), Color.White);
+                    spriteBatch.Draw(pageClue[cluePageIndex, imageClueDraw - 1].BlownClueImage, Game1.FormatDraw(blownUpImage), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
                 }
 
                 /*if (Clue.Inventory.Contains(Clue.Clues["News1"]) || Clue.Inventory.Contains(Clue.Clues["News2"]) || Clue.Inventory.Contains(Clue.Clues["News3"]) || Clue.Inventory.Contains(Clue.Clues["News4"]) || Clue.Inventory.Contains(Clue.Clues["News5"]))

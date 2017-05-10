@@ -21,6 +21,8 @@ namespace GamePrototype.Classes.Objects
         private Rectangle drawRect;
         private Boolean drawMatchesCol;
         private Boolean collides;
+        private float drawDepth;
+        private Boolean fixedDepth;
         //private enum Direction { North, South, East, West };
         //Direction dir;
         Point pos;
@@ -32,6 +34,8 @@ namespace GamePrototype.Classes.Objects
         {
             sprite = null;
             positionRect = new Rectangle();
+            drawDepth = .3f;
+            fixedDepth = false;
         }
 
         public GameObject(Texture2D txtr, Rectangle psRct)
@@ -42,6 +46,8 @@ namespace GamePrototype.Classes.Objects
             enabled = true;
             collides = true;
             drawMatchesCol = true;
+            drawDepth = .3f;
+            fixedDepth = false;
         }
         // Caleb - temporary constructor. It is like the above constructor, but with a string param for interacting with objects for the Milestone 2
         public GameObject(Texture2D txtr, Rectangle psRct, string nm)
@@ -53,6 +59,8 @@ namespace GamePrototype.Classes.Objects
             collides = true;
             name = nm;
             drawMatchesCol = true;
+            drawDepth = .3f;
+            fixedDepth = false;
         }
         public GameObject(Texture2D txtr, Rectangle psRct, Boolean cl)
         {
@@ -62,6 +70,8 @@ namespace GamePrototype.Classes.Objects
             enabled = true;
             collides = cl;
             drawMatchesCol = true;
+            drawDepth = .3f;
+            fixedDepth = false;
         }
 
         public GameObject(Texture2D txtr, Rectangle psRct, Rectangle clRct)
@@ -72,6 +82,8 @@ namespace GamePrototype.Classes.Objects
             enabled = true;
             collides = true;
             drawMatchesCol = false;
+            drawDepth = .3f;
+            fixedDepth = false;
         }
         public GameObject(Texture2D txtr, Rectangle psRct, Boolean cl, String nm)
         {
@@ -82,6 +94,8 @@ namespace GamePrototype.Classes.Objects
             collides = cl;
             name = nm;
             drawMatchesCol = true;
+            drawDepth = .3f;
+            fixedDepth = false;
         }
         public GameObject(Texture2D txtr, Point posParam)
         {
@@ -91,6 +105,8 @@ namespace GamePrototype.Classes.Objects
             enabled = true;
             collides = true;
             drawMatchesCol = true;
+            drawDepth = .3f;
+            fixedDepth = false;
         }
         // Caleb - GameObject constructor with boolean "enabled"
         public GameObject(bool isEnabled, string txtrName, Point posParam)
@@ -99,6 +115,8 @@ namespace GamePrototype.Classes.Objects
             spriteName = txtrName;
             pos = posParam;
             collides = true;
+            drawDepth = .3f;
+            fixedDepth = false;
             //positionRect = new Rectangle(posParam.X, posParam.Y, sprite.Width, sprite.Height); // removed because sprite is null at this point
         }
 
@@ -121,11 +139,20 @@ namespace GamePrototype.Classes.Objects
             get { return enabled; }
             set { enabled = value; }
         }
+        public Boolean FixedDepth
+        {
+            get { return fixedDepth; }
+            set { fixedDepth = value; }
+        }
         public Texture2D Sprite
         {
             get { return sprite; }
         }
-        
+        public float Depth
+        {
+            get { return drawDepth; }
+            set { drawDepth = value; }
+        }
         // Position properties
         public virtual int X
         {
@@ -169,11 +196,11 @@ namespace GamePrototype.Classes.Objects
             {
                 if (!drawMatchesCol)
                 {
-                    sprtBtch.Draw(sprite, Game1.FormatDraw(drawRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                    sprtBtch.Draw(sprite, Game1.FormatDraw(drawRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, drawDepth);
                 }
                 else
                 {
-                    sprtBtch.Draw(sprite, Game1.FormatDraw(positionRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                    sprtBtch.Draw(sprite, Game1.FormatDraw(positionRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, drawDepth);
                 }
 
             }
@@ -190,11 +217,11 @@ namespace GamePrototype.Classes.Objects
             {
                 if (!drawMatchesCol)
                 {
-                    sprtBtch.Draw(sprite, Game1.FormatDraw(drawRect), null, color, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                    sprtBtch.Draw(sprite, Game1.FormatDraw(drawRect), null, color, 0f, Vector2.Zero, SpriteEffects.None, drawDepth);
                 }
                 else
                 {
-                    sprtBtch.Draw(sprite, Game1.FormatDraw(positionRect), null, color, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                    sprtBtch.Draw(sprite, Game1.FormatDraw(positionRect), null, color, 0f, Vector2.Zero, SpriteEffects.None, drawDepth);
                 }
             }
         }
