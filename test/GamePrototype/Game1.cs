@@ -155,8 +155,14 @@ namespace GamePrototype
         //instuctions
         Texture2D instructionOpen;
         Texture2D instructionClose;
+        Texture2D instructionMove;
+        Texture2D instructionNuke;
+        Texture2D instructionInteract;
         Rectangle instructionOpenRect;
         Rectangle instructionCloseRect;
+        Rectangle instructionMoveRect;
+        Rectangle instructionNukeRect;
+        Rectangle instructionInteractRect;
 
         // win/lose variable - kat
         int winLose; // 0 is nothing, 1 is lost, 2 is win
@@ -519,8 +525,13 @@ namespace GamePrototype
             // calls the bedroom draw command - kat
             if (gameState == GameState.Game)
             {
+                //draw the instructions
                 uSpriteBatch.Draw(instructionOpen, FormatDraw(instructionOpenRect), Color.White);
                 uSpriteBatch.Draw(instructionClose, FormatDraw(instructionCloseRect), Color.White);
+                uSpriteBatch.Draw(instructionMove, FormatDraw(instructionMoveRect), Color.White);
+                uSpriteBatch.Draw(instructionInteract, FormatDraw(instructionInteractRect), Color.White);
+                uSpriteBatch.Draw(instructionNuke, FormatDraw(instructionNukeRect), Color.White);
+
 
                 switch (activeRoom)
                 {
@@ -571,6 +582,13 @@ namespace GamePrototype
             
             if (gameState == GameState.GMenu)
             {
+                //draw the instructions
+                uSpriteBatch.Draw(instructionOpen, FormatDraw(instructionOpenRect), Color.White);
+                uSpriteBatch.Draw(instructionClose, FormatDraw(instructionCloseRect), Color.White);
+                uSpriteBatch.Draw(instructionMove, FormatDraw(instructionMoveRect), Color.White);
+                uSpriteBatch.Draw(instructionInteract, FormatDraw(instructionInteractRect), Color.White);
+                uSpriteBatch.Draw(instructionNuke, FormatDraw(instructionNukeRect), Color.White);
+
                 switch (activeRoom)
                 {
                     case CurrentRoom.Bedroom:
@@ -580,7 +598,7 @@ namespace GamePrototype
                         closetRoom.Draw(uSpriteBatch);
                         break;
                     case CurrentRoom.Bathroom:
-                        // TODO: Draw bathroom
+                        bathRoom.Draw(uSpriteBatch);
                         break;
                 }
                 menu.Draw(uSpriteBatch);
@@ -753,10 +771,17 @@ namespace GamePrototype
 
             blacklight = content.Load<Texture2D>("black light overlay");
 
-            instructionOpen = content.Load<Texture2D>("tabopen");
-            instructionClose = content.Load<Texture2D>("fourclose");
-            instructionOpenRect = new Rectangle(0, (972) - (2*64), 128,64);
+            instructionOpen = content.Load<Texture2D>("INSTopen");
+            instructionClose = content.Load<Texture2D>("INSTclose");
+            instructionMove = content.Load<Texture2D>("INSTmove");
+            instructionInteract = content.Load<Texture2D>("INSTinteract");
+            instructionNuke = content.Load<Texture2D>("INSTnuke");
+
+            instructionOpenRect = new Rectangle(0, (972) - ((int)(5*1.75)*64), (int)(1.5*128),(int)(1.5*64));
             instructionCloseRect = new Rectangle(instructionOpenRect.X, instructionOpenRect.Y + instructionOpenRect.Height, instructionOpenRect.Width, instructionOpenRect.Height);
+            instructionMoveRect = new Rectangle(instructionCloseRect.X, instructionCloseRect.Y + instructionCloseRect.Height, instructionCloseRect.Width, instructionCloseRect.Height);
+            instructionInteractRect = new Rectangle(instructionMoveRect.X, instructionMoveRect.Y + instructionMoveRect.Height, instructionMoveRect.Width, instructionMoveRect.Height);
+            instructionNukeRect = new Rectangle(instructionInteractRect.X, instructionInteractRect.Y + instructionInteractRect.Height, instructionInteractRect.Width, instructionInteractRect.Height);
 
             bedBG = content.Load<Texture2D>("backgroundFULL");
             closetBG = content.Load<Texture2D>("theclosetFULL");
