@@ -123,6 +123,12 @@ namespace GamePrototype.Classes.Menu
             settingsTextBox = new TextBox(new Vector2(760, 220), settingsString, 15, 15, mFont, new Rectangle(0, 0, 0, 0));
             clueCursor = cursor;
         }
+
+        public Category ActiveMenu
+        {
+            get { return activeMenu; }
+            set { activeMenu = value; }
+        }
         public void Update()
         {
             CheckInput();
@@ -171,11 +177,12 @@ namespace GamePrototype.Classes.Menu
             //}
 
             // NOT WORKING RIGHT NOW --- Fixed it, you just needed a set of parenthesis around the state checks here - Tom
-            if ((activeMenu == Category.Clues || activeMenu == Category.Photos || activeMenu == Category.Settings) && kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
+            if (kbState.IsKeyDown(Keys.D1) && !prevKbState.IsKeyDown(Keys.D1))
             {
                 // back to main menu
                 activeMenu = Category.Main;
             }
+            
             if (activeMenu == Category.Clues)
             {
                 if (imageClueDraw == 0)

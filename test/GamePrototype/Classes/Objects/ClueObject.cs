@@ -114,6 +114,7 @@ namespace GamePrototype.Classes.Objects
                     Menu.Menu.AddClue(givenClue);
                     user.SendMessage("You found a clue.");
                     pickedUp = true;
+                    
                 }
                 else
                 {
