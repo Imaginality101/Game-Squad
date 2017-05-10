@@ -287,7 +287,9 @@
     <Content Include="Content\tabopen.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\TD1FULL-NEW.png" />
+    <Content Include="Content\TD1FULL-NEW.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\TD1FULL.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

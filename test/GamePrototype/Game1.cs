@@ -231,7 +231,7 @@ namespace GamePrototype
             // TODO: fill in the nulls in the parameters list once we have more textures
 
             player.PopUp += messageDisplay.GetMessage;
-            Clue.LoadContent( Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("key2"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("Photo1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"), Content.Load<Texture2D>("recept1"), Content.Load<Texture2D>("Ring1"), Content.Load<Texture2D>("pandant"), Content.Load<Texture2D>("rotatethebones"), Content.Load<Texture2D>("knife"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("pillshere"), Content.Load<Texture2D>("stickynoteFULL"), Content.Load<Texture2D>("New1Full"), Content.Load<Texture2D>("New2Full"), Content.Load<Texture2D>("New3Full"), Content.Load<Texture2D>("New4Full"), Content.Load<Texture2D>("New5FULL"), Content.Load<Texture2D>("VeryCrazy"), Content.Load<Texture2D>("VERYCrazyDiary"), Content.Load<Texture2D>("TD1FULL"), Content.Load<Texture2D>("TD2FULL"), Content.Load<Texture2D>("TD3FULL"), Content.Load<Texture2D>("oldphoto1"), Content.Load<Texture2D>("oldphoto2"), Content.Load<Texture2D>("oldphoto3"), Content.Load<Texture2D>("CrazyDiary1"), Content.Load<Texture2D>("CrazyDiary2"), Content.Load<Texture2D>("CrazyDiary3"), Content.Load<Texture2D>("receptimageFULL"));
+            Clue.LoadContent( Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("key2"), Content.Load<Texture2D>("key1"), Content.Load<Texture2D>("Photo1"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("Diary1"), Content.Load<Texture2D>("Crazy1"), Content.Load<Texture2D>("recept1"), Content.Load<Texture2D>("Ring1"), Content.Load<Texture2D>("pandant"), Content.Load<Texture2D>("rotatethebones"), Content.Load<Texture2D>("knife"), Content.Load<Texture2D>("NewspaperFULL"), Content.Load<Texture2D>("pillshere"), Content.Load<Texture2D>("stickynoteFULL"), Content.Load<Texture2D>("New1Full"), Content.Load<Texture2D>("New2Full"), Content.Load<Texture2D>("New3Full"), Content.Load<Texture2D>("New4Full"), Content.Load<Texture2D>("New5FULL"), Content.Load<Texture2D>("VeryCrazy"), Content.Load<Texture2D>("VERYCrazyDiary"), Content.Load<Texture2D>("TD1FULL-NEW"), Content.Load<Texture2D>("TD2FULL"), Content.Load<Texture2D>("TD3FULL"), Content.Load<Texture2D>("oldphoto1"), Content.Load<Texture2D>("oldphoto2"), Content.Load<Texture2D>("oldphoto3"), Content.Load<Texture2D>("CrazyDiary1"), Content.Load<Texture2D>("CrazyDiary2"), Content.Load<Texture2D>("CrazyDiary3"), Content.Load<Texture2D>("receptimageFULL"));
             Clue.LoadInventory();
             menu.LoadContent(startingPhoneState, imagePhoneState, textPhoneState, menuFont, Content.Load<Texture2D>("BlueGuy"), settingsData);
             // initialize textboxes in the main menu
@@ -327,7 +327,7 @@ namespace GamePrototype
             {
                 case GameState.MainMenu:
                     {
-                        player.SendMessage("Move using W, A, S, and D.");
+                        player.SendMessage("Move using W, and S. Confirm using E.");
 
                         // TODO: May have buttons in main menu, the Enter key is just temporary
                         if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S) && mainState == MainMenuState.Continue)
@@ -581,6 +581,7 @@ namespace GamePrototype
                         break;
                     case CurrentRoom.Bathroom:
                         // TODO: Draw bathroom
+                        bathRoom.Draw(uSpriteBatch);
                         break;
                 }
                 menu.Draw(uSpriteBatch);
