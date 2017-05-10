@@ -83,7 +83,21 @@ namespace GamePrototype.Classes.Objects
                 {
                     if (keyRequired == null || (keyRequired != null && Clue.Inventory.Contains(keyRequired)))
                     {
-                        base.Draw(sprtBtch, Color.SkyBlue);
+                        if(this is ClueObject)
+                        {
+                            if(!((ClueObject)this).Found)
+                            {
+                                base.Draw(sprtBtch, Color.SkyBlue);
+                            }
+                            else
+                            {
+                                base.Draw(sprtBtch);
+                            }
+                        }
+                        else
+                        {
+                            base.Draw(sprtBtch, Color.SkyBlue);
+                        }
                     }
                     else
                     {

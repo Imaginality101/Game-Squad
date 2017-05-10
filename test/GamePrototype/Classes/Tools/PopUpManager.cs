@@ -29,8 +29,8 @@ namespace GamePrototype.Classes.Tools
         private Rectangle CalcRect(string str)
         {
             Vector2 textSize = font.MeasureString(str);
-            int rectX = (1728 / 2) - (int)(textSize.X / 2);
-            int rectY = 500 - (int)textSize.Y / 2;
+            int rectX = (1728 / 2) - (int)(textSize.X / 1.25);
+            int rectY = 900 - (int)textSize.Y / 2;//was500
             return Game1.FormatDraw(new Rectangle(rectX, rectY, (int)textSize.X, (int)textSize.Y));
         }
 

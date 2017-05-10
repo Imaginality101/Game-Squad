@@ -33,7 +33,7 @@ namespace GamePrototype.Classes.Tools
         private Texture2D stickynote;
         private Texture2D news1;
         private Texture2D lamp;
-        private Texture2D brokenWall;
+        private Texture2D brokenFloor;
 
         //Rectangles;
         private Rectangle bedRect;
@@ -49,7 +49,7 @@ namespace GamePrototype.Classes.Tools
         private Rectangle news1Rect;
         private Rectangle news2Rect;
         private Rectangle lampRect;
-        private Rectangle brokenWallRect;
+        private Rectangle brokenFloorRect;
 
 
 
@@ -146,7 +146,7 @@ namespace GamePrototype.Classes.Tools
             stickynote = content.Load<Texture2D>("stickynoteFull");
             news1 = content.Load<Texture2D>("NewspaperFULL"); 
             lamp = content.Load<Texture2D>("LampFULL");
-            brokenWall = content.Load<Texture2D>("NewspaperFULL");
+            brokenFloor = content.Load<Texture2D>("floorboard");
 
             //Bounds assignments
             bedRect = new Rectangle((int)origin.X + 100, (int)origin.Y - 40, 518, 346);
@@ -163,7 +163,7 @@ namespace GamePrototype.Classes.Tools
             news2Rect = new Rectangle((int)origin.X + 440, (int)origin.Y - 120, 72, 72);
             lampRect = new Rectangle((int)origin.X - 440, (int)origin.Y - 475, 128, 128);
             //brokenWallRect = new Rectangle((int)origin.X - 512, (int)origin.Y - 547, 72, 72);
-            brokenWallRect = new Rectangle((int)origin.X - 512, (int)origin.Y - 465, 72, 72);
+            brokenFloorRect = new Rectangle((int)origin.X -323, (int)origin.Y  +316, 172, 172);
             //adding them all to the gameobjectlist
             // Caleb - adding a temporary name string to the constructor which is to demo interaction
             //objs.Add(new GameObject(outdoor, outdoorRect, "End door"));
@@ -180,8 +180,8 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new ClueObject(dress, dressRect, Clue.Clues["ClosetKey"], false, Clue.Clues["TenantDiary2"]));
             objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false, "Sticky Note",true));
             objs.Add(new Lamp(lamp, lampRect));
-            objs.Add(new Door(closetdoor, new Rectangle((int)origin.X - 685, (int)origin.Y - 310, 172, 172), CurrentRoom.Closet, doorDestination));//Cheatdoor
-            objs.Add(new ClueObject(brokenWall, brokenWallRect, Clue.Clues["VeryCrazyDiary"], false, Clue.Clues["CrazyDiary3"]));
+            //objs.Add(new Door(closetdoor, new Rectangle((int)origin.X - 685, (int)origin.Y - 310, 172, 172), CurrentRoom.Closet, doorDestination));//Cheatdoor
+            objs.Add(new ClueObject(brokenFloor, brokenFloorRect,Clue.Clues["VeryCrazyDiary"],false, false, Clue.Clues["CrazyDiary3"]));
 
             // Setting up interaction points, this is an example on how
             ((ClueObject)objs[5]).InteractionPoint = new Vector2(30, bedRect.Height / 2); // bed
@@ -222,7 +222,7 @@ namespace GamePrototype.Classes.Tools
             tdiardy = content.Load<Texture2D>("Diary1");
             tdiaryRect = new Rectangle((int)origin.X + 180, (int)origin.Y - 120, 128, 128);
 
-            recept = content.Load<Texture2D>("recept");
+            recept = content.Load<Texture2D>("recept1");
             receptRect = new Rectangle((int)origin.X - 350, (int)origin.Y - 120, 50, 50);
 
             //
@@ -243,7 +243,7 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new ClueObject(cardbord, cardboardRect, new Rectangle(0, 0, 172, 172),Clue.Clues["News3"],false));
             //objs.Add(new GameObject(mirror, mirrorRect, "Mirror"));
             objs.Add(new ClueObject(mirror, mirrorRect, Clue.Clues["BathroomKey"], false, Clue.Clues["CrazyDiary2"]));
-            objs.Add(new Door(bedroondoorside, bedroomdoorsideRect, CurrentRoom.Bedroom,doorDestination));
+            objs.Add(new Door(bedroondoorside, bedroomdoorsideRect, CurrentRoom.Bedroom, CurrentRoom.Closet, doorDestination));
             objs.Add(new Lamp(lampfloor, lampfloorRect));
             objs.Add(new ClueObject(tdiardy, tdiaryRect, Clue.Clues["TenantDiary3"], false, "Sticky Note", true));
             objs.Add(new GameObject(wardrobeopen, wardrobeopenRect, "WardrobeOpen"));
@@ -300,7 +300,7 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new ClueObject(medcab, medcabRect, Clue.Clues["MedicineBottle"]));
             //objs.Add(new GameObject(bathtable, bathtableRect, new Rectangle(0, 100, 172, 250)));
             objs.Add(new GameObject(bathtable, bathtableRect));
-            objs.Add(new Door(bathtobeddoor, bathtobeddoorRect,CurrentRoom.Bedroom, doorDestination, new Rectangle(0,60,172,60)));
+            objs.Add(new Door(bathtobeddoor, bathtobeddoorRect,CurrentRoom.Bedroom, CurrentRoom.Bathroom, doorDestination, new Rectangle(0,60,172,60)));
             objs.Add(new ClueObject(crazyDiary, crazyDiary3Rect, Clue.Clues["CrazyDiary3"], false, true));
             objs.Add(new ClueObject(knife, knifeRect, Clue.Clues["JaggedKnife"], false, true));
             //Interaction overrides
