@@ -11,9 +11,13 @@ namespace GamePrototype.Classes.Tools
 {
     class Lamp : Interactable
     {
-        public Lamp(Texture2D txtr, Rectangle psRct) : base(txtr, psRct)
+        public Lamp(Texture2D txtr, Rectangle psRct, float depth = -1f) : base(txtr, psRct)
         {
-
+            if (depth >= 0)
+            {
+                Depth = depth;
+                FixedDepth = true;
+            }
         }
         public override void Interact(Player user)
         {

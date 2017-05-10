@@ -69,7 +69,7 @@ namespace GamePrototype.Classes
         public void Draw(SpriteBatch sprtBtch)
         {
             // draws the room texture image/background
-            sprtBtch.Draw(roomBG, Game1.FormatDraw(roomBounds), Color.White);
+            sprtBtch.Draw(roomBG, Game1.FormatDraw(roomBounds), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 1f);
 
             // foreach gameobject in the list of the objects in the room
             if (objectsInRoom != null)

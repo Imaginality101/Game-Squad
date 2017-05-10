@@ -200,7 +200,6 @@ namespace GamePrototype
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             uSpriteBatch = new SpriteBatch(GraphicsDevice);
-
             loseScreen = content.Load<Texture2D>("death_screen");
             winScreen = content.Load<Texture2D>("win_screen");
             
@@ -505,7 +504,7 @@ namespace GamePrototype
             //activeRoom.Draw(); // this will blow up until we have the rooms initializing property, so be careful
 
             // begin spritebatch
-            uSpriteBatch.Begin();
+            uSpriteBatch.Begin(SpriteSortMode.BackToFront);
 
             // draws the mainmenu - kat
             if (gameState == GameState.MainMenu)
@@ -519,8 +518,8 @@ namespace GamePrototype
             // calls the bedroom draw command - kat
             if (gameState == GameState.Game)
             {
-                uSpriteBatch.Draw(instructionOpen, FormatDraw(instructionOpenRect), Color.White);
-                uSpriteBatch.Draw(instructionClose, FormatDraw(instructionCloseRect), Color.White);
+                uSpriteBatch.Draw(instructionOpen, FormatDraw(instructionOpenRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
+                uSpriteBatch.Draw(instructionClose, FormatDraw(instructionCloseRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
 
                 switch (activeRoom)
                 {
@@ -580,6 +579,7 @@ namespace GamePrototype
                         closetRoom.Draw(uSpriteBatch);
                         break;
                     case CurrentRoom.Bathroom:
+                        bathRoom.Draw(uSpriteBatch);
                         // TODO: Draw bathroom
                         break;
                 }
@@ -603,7 +603,7 @@ namespace GamePrototype
             // draw timer if enabled
             if (timerMode)
             {
-                uSpriteBatch.DrawString(font, string.Format("{0}:{1}", gameTimerSeconds / 60, gameTimerSeconds % 60), new Vector2(0, 50), Color.White);
+                uSpriteBatch.DrawString(font, string.Format("{0}:{1}", gameTimerSeconds / 60, gameTimerSeconds % 60), new Vector2(0, 50), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
             }
             // Draw textbox
             //box.Draw(uSpriteBatch);
@@ -611,19 +611,19 @@ namespace GamePrototype
             // end spritebatch
             if (LightsOn == false && gameState != GameState.MainMenu)
             {
-                uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+                uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .05f);
             }
 
             // draw lose things - kat
             if (winLose == 1) // lost
             {
-                uSpriteBatch.Draw(loseScreen, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+                uSpriteBatch.Draw(loseScreen, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
             }
 
             // draw win things - kat
             if (winLose == 2) // win
             {
-                uSpriteBatch.Draw(winScreen, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+                uSpriteBatch.Draw(winScreen, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
             }
 
             if (messageDisplay.IsDrawing)
