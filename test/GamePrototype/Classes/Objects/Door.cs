@@ -35,21 +35,23 @@ namespace GamePrototype.Classes.Objects
 
         }
         //cheatdoor
-        public Door(Texture2D txtr, Rectangle psRct, CurrentRoom targetRoom, Room destRoom) : base(txtr, psRct)
+        public Door(Texture2D txtr, Rectangle psRct, CurrentRoom targetRoom, CurrentRoom prev, Room destRoom) : base(txtr, psRct)
         {
             doorText = txtr;
             doorRect = psRct;
             destination = targetRoom;
             destinationRoom = destRoom;
+            prevRoom = prev;
             requiredClue = null;
             origin = new Vector2(1728 / 2, 972 / 2);
 
         }
         //clRct
-        public Door(Texture2D txtr, Rectangle psRct, CurrentRoom targetRoom, Room destRoom, Rectangle clRct) : base(txtr, psRct,clRct)
+        public Door(Texture2D txtr, Rectangle psRct, CurrentRoom targetRoom, CurrentRoom prev, Room destRoom, Rectangle clRct) : base(txtr, psRct,clRct)
         {
             doorText = txtr;
             doorRect = psRct;
+            prevRoom = prev;
             destination = targetRoom;
             destinationRoom = destRoom;
 
@@ -87,7 +89,6 @@ namespace GamePrototype.Classes.Objects
                 Game1.activeRoom = destination;
                 Translocate(user, destination, prevRoom, destinationRoom);
             }
-            prevRoom = destination;
 
         }
         public void Translocate(Player user,CurrentRoom destination, CurrentRoom prevRoom, Room destRoom)
@@ -106,8 +107,16 @@ namespace GamePrototype.Classes.Objects
             }
             if (destination == CurrentRoom.Bedroom)// && prevRoom == CurrentRoom.Closet)
             {
-                user.X = (int)origin.X - 620;
-                user.Y = (int)origin.Y + 200;
+                if (prevRoom == CurrentRoom.Closet)
+                {
+                    user.X = (int)origin.X - 620;
+                    user.Y = (int)origin.Y + 200;
+                }
+                else if (prevRoom == CurrentRoom.Bathroom)
+                {
+                    user.X = (int)origin.X + 370;
+                    user.Y = (int)origin.Y - 500;
+                }
             }/*
             if (destination == CurrentRoom.Bedroom && prevRoom == CurrentRoom.Bathroom)
             {

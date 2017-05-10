@@ -243,7 +243,7 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new ClueObject(cardbord, cardboardRect, new Rectangle(0, 0, 172, 172),Clue.Clues["News3"],false));
             //objs.Add(new GameObject(mirror, mirrorRect, "Mirror"));
             objs.Add(new ClueObject(mirror, mirrorRect, Clue.Clues["BathroomKey"], false, Clue.Clues["CrazyDiary2"]));
-            objs.Add(new Door(bedroondoorside, bedroomdoorsideRect, CurrentRoom.Bedroom,doorDestination));
+            objs.Add(new Door(bedroondoorside, bedroomdoorsideRect, CurrentRoom.Bedroom, CurrentRoom.Closet, doorDestination));
             objs.Add(new Lamp(lampfloor, lampfloorRect));
             objs.Add(new ClueObject(tdiardy, tdiaryRect, Clue.Clues["TenantDiary3"], false, "Sticky Note", true));
             objs.Add(new GameObject(wardrobeopen, wardrobeopenRect, "WardrobeOpen"));
@@ -300,7 +300,7 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new ClueObject(medcab, medcabRect, Clue.Clues["MedicineBottle"]));
             //objs.Add(new GameObject(bathtable, bathtableRect, new Rectangle(0, 100, 172, 250)));
             objs.Add(new GameObject(bathtable, bathtableRect));
-            objs.Add(new Door(bathtobeddoor, bathtobeddoorRect,CurrentRoom.Bedroom, doorDestination, new Rectangle(0,60,172,60)));
+            objs.Add(new Door(bathtobeddoor, bathtobeddoorRect,CurrentRoom.Bedroom, CurrentRoom.Bathroom, doorDestination, new Rectangle(0,60,172,60)));
             objs.Add(new ClueObject(crazyDiary, crazyDiary3Rect, Clue.Clues["CrazyDiary3"], false, true));
             objs.Add(new ClueObject(knife, knifeRect, Clue.Clues["JaggedKnife"], false, true));
             //Interaction overrides
