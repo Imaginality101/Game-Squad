@@ -413,10 +413,6 @@ namespace GamePrototype
                             Clue.PrintInventory();
                         }
 
-                        if(messageDisplay.IsDrawing)
-                        {
-                            messageDisplay.Update(gameTime);
-                        }
                         break;
                     }
                 case GameState.GMenu:
@@ -480,6 +476,10 @@ namespace GamePrototype
             if (kbState.IsKeyDown(Keys.R) && prevKbState.IsKeyUp(Keys.R))
             {
                 Restart();
+            }
+            if (messageDisplay.IsDrawing)
+            {
+                messageDisplay.Update(gameTime);
             }
             base.Update(gameTime);
         }
