@@ -152,6 +152,11 @@ namespace GamePrototype
         Texture2D bedBG;
         Texture2D closetBG;
         Texture2D bathBG;
+        //instuctions
+        Texture2D instructionOpen;
+        Texture2D instructionClose;
+        Rectangle instructionOpenRect;
+        Rectangle instructionCloseRect;
 
         // win/lose variable - kat
         int winLose; // 0 is nothing, 1 is lost, 2 is win
@@ -510,6 +515,9 @@ namespace GamePrototype
             // calls the bedroom draw command - kat
             if (gameState == GameState.Game)
             {
+                uSpriteBatch.Draw(instructionOpen, instructionOpenRect, Color.White);
+                uSpriteBatch.Draw(instructionClose, instructionCloseRect, Color.White);
+
                 switch (activeRoom)
                 {
                     case CurrentRoom.Bedroom:
@@ -556,35 +564,7 @@ namespace GamePrototype
                 }
                 
             }
-
-            // menu stuff kat  --- move to menu draw >??????????????????????????????????????????????????????????????????????????????
-            /*if (gameState == GameState.GMenu && menuState == MenuState.Main)
-            {
-                bedRoom.Draw(uSpriteBatch);
-                uSpriteBatch.Draw(startingPhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
-            }
-            if (gameState == GameState.GMenu &&  menuState == MenuState.Journal)
-            {
-                bedRoom.Draw(uSpriteBatch);
-                uSpriteBatch.Draw(textPhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
-            }
-            if (gameState == GameState.GMenu && menuState == MenuState.Photos)
-            {
-                bedRoom.Draw(uSpriteBatch);
-                uSpriteBatch.Draw(imagePhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
-            }
-            if (gameState == GameState.GMenu && menuState == MenuState.Settings)
-            {
-                bedRoom.Draw(uSpriteBatch);
-                uSpriteBatch.Draw(textPhoneState, new Rectangle(300, 0, 1200, 1000), Color.White);
-                // Draw textbox
-                settingsTextBox.Draw(uSpriteBatch);
-            }
-            if (gameState == GameState.GMenu && menuState == MenuState.Power)
-            {
-                bedRoom.Draw(uSpriteBatch);
-            }
-            */
+            
             if (gameState == GameState.GMenu)
             {
                 switch (activeRoom)
@@ -691,7 +671,7 @@ namespace GamePrototype
             mainMenuCursor = Content.Load<Texture2D>("MainMenuCursor");
             mainMenuCursorLoc = new Rectangle(150, 610, mainMenuCursor.Width, mainMenuCursor.Height);
             // phone menu - kat
-            startingPhoneState = Content.Load<Texture2D>("phoneMain0");
+            startingPhoneState = Content.Load<Texture2D>("phoneMain0NEW");
             imagePhoneState = Content.Load<Texture2D>("phoneMain5");
             textPhoneState = Content.Load<Texture2D>("phoneMain7");
 
@@ -769,6 +749,11 @@ namespace GamePrototype
             protagTextureRight.Add(faceRight16);
 
             blacklight = content.Load<Texture2D>("black light overlay");
+
+            instructionOpen = content.Load<Texture2D>("tabopen");
+            instructionClose = content.Load<Texture2D>("fourclose");
+            instructionOpenRect = new Rectangle(0, (GraphicsDevice.Viewport.Height) - (2*64), 128,64);
+            instructionCloseRect = new Rectangle(instructionOpenRect.X, instructionOpenRect.Y + instructionOpenRect.Height, instructionOpenRect.Width, instructionOpenRect.Height);
 
             bedBG = content.Load<Texture2D>("backgroundFULL");
             closetBG = content.Load<Texture2D>("theclosetFULL");
