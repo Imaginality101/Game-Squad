@@ -176,6 +176,9 @@
     <Content Include="Content\INSTnuke.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\INSTnuke4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\INSTopen.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

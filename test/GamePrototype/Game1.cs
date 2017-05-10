@@ -530,7 +530,7 @@ namespace GamePrototype
                 uSpriteBatch.Draw(instructionClose, FormatDraw(instructionCloseRect), Color.White);
                 uSpriteBatch.Draw(instructionMove, FormatDraw(instructionMoveRect), Color.White);
                 uSpriteBatch.Draw(instructionInteract, FormatDraw(instructionInteractRect), Color.White);
-                uSpriteBatch.Draw(instructionNuke, FormatDraw(instructionNukeRect), Color.White);
+                //uSpriteBatch.Draw(instructionNuke, FormatDraw(instructionNukeRect), Color.White);
 
 
                 switch (activeRoom)
@@ -775,7 +775,7 @@ namespace GamePrototype
             instructionClose = content.Load<Texture2D>("INSTclose");
             instructionMove = content.Load<Texture2D>("INSTmove");
             instructionInteract = content.Load<Texture2D>("INSTinteract");
-            instructionNuke = content.Load<Texture2D>("INSTnuke");
+            instructionNuke = content.Load<Texture2D>("INSTnuke4");
 
             instructionOpenRect = new Rectangle(0, (972) - ((int)(5*1.75)*64), (int)(1.5*128),(int)(1.5*64));
             instructionCloseRect = new Rectangle(instructionOpenRect.X, instructionOpenRect.Y + instructionOpenRect.Height, instructionOpenRect.Width, instructionOpenRect.Height);

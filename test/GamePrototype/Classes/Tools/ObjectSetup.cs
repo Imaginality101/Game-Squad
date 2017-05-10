@@ -152,7 +152,7 @@ namespace GamePrototype.Classes.Tools
             bedRect = new Rectangle((int)origin.X + 100, (int)origin.Y - 40, 518, 346);
             tvRect = new Rectangle((int)origin.X - 570, (int)origin.Y - 110, 172, 346);
             sidetab1Rect = new Rectangle((int)origin.X + 380, (int)origin.Y + 260, 172, 172);
-            sidetab2Rect = new Rectangle((int)origin.X + 380, (int)origin.Y - 140, 172, 172);
+            sidetab2Rect = new Rectangle((int)origin.X + 380, (int)origin.Y - 165, 172, 172);
             bookRect = new Rectangle((int)origin.X + 55, (int)origin.Y - 470, 346, 172);
             dressRect = new Rectangle((int)origin.X - 440, (int)origin.Y - 470, 346, 172);
             outdoorRect = new Rectangle((int)origin.X - 96, (int)origin.Y - 515, 172, 172);
@@ -160,7 +160,7 @@ namespace GamePrototype.Classes.Tools
             closetdoorRect = new Rectangle((int)origin.X - 685, (int)origin.Y + 230, 172, 172);
             stickynoteRect = new Rectangle((int)origin.X - 490, (int)origin.Y + 130, 56, 56);
             news1Rect = new Rectangle((int)origin.X - 300, (int)origin.Y - 350, 72, 72);
-            news2Rect = new Rectangle((int)origin.X + 440, (int)origin.Y - 120, 72, 72);
+            news2Rect = new Rectangle((int)origin.X + 430, (int)origin.Y - 150, 72, 72);
             lampRect = new Rectangle((int)origin.X - 440, (int)origin.Y - 475, 128, 128);
             //brokenWallRect = new Rectangle((int)origin.X - 512, (int)origin.Y - 547, 72, 72);
             brokenFloorRect = new Rectangle((int)origin.X -323, (int)origin.Y  +316, 172, 172);
@@ -185,9 +185,11 @@ namespace GamePrototype.Classes.Tools
 
             // Setting up interaction points, this is an example on how
             ((ClueObject)objs[5]).InteractionPoint = new Vector2(30, bedRect.Height / 2); // bed
-            ((ClueObject)objs[10]).InteractionPoint = new Vector2(330, dressRect.Height / 2); // dresser
+            ((ClueObject)objs[10]).InteractionPoint = new Vector2(3*dressRect.Width/4, dressRect.Height / 2); // dresser
             ((Lamp)objs[12]).InteractionPoint = new Vector2(lampRect.Width/2,lampRect.Height); // Lamp
-            ((Door)objs[1]).InteractionPoint = new Vector2((lampRect.Width / 2)+50, lampRect.Height); // Lamp
+            ((Door)objs[1]).InteractionPoint = new Vector2((lampRect.Width / 2)+50, lampRect.Height); // door
+            ((ClueObject)objs[9]).InteractionPoint = new Vector2(-10, (news2Rect.Height)); // news1
+
 
 
             return objs;
@@ -284,7 +286,7 @@ namespace GamePrototype.Classes.Tools
             bathtobeddoor = content.Load<Texture2D>("bathtobeddoorFULL");
             bathtobeddoorRect = new Rectangle((int)origin.X + 00, (int)origin.Y + 300, 172, 172);
             crazyDiary = content.Load<Texture2D>("Crazy1");
-            crazyDiary3Rect = new Rectangle(bathtableRect.Left, bathtableRect.Top + crazyDiary3Rect.Height / 2, 128, 128);
+            crazyDiary3Rect = new Rectangle(bathtableRect.Left, bathtableRect.Top + crazyDiary3Rect.Height + 50/ 2, 128, 128);
             knife = content.Load<Texture2D>("knife");
             knifeRect = new Rectangle(origin.ToPoint(), new Point(100, 100));
             //Add items to the room here
@@ -298,8 +300,8 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new ClueObject(wastebin, wastebinRect, Clue.Clues["OldPhoto3"]));
             //objs.Add(new GameObject(medcab, medcabRect,new Rectangle(0, 60, 60, 172)));
             objs.Add(new ClueObject(medcab, medcabRect, Clue.Clues["MedicineBottle"]));
-            //objs.Add(new GameObject(bathtable, bathtableRect, new Rectangle(0, 100, 172, 250)));
-            objs.Add(new GameObject(bathtable, bathtableRect));
+            objs.Add(new GameObject(bathtable, bathtableRect, new Rectangle(0, 105, 172, 220)));
+            //objs.Add(new GameObject(bathtable, bathtableRect));
             objs.Add(new Door(bathtobeddoor, bathtobeddoorRect,CurrentRoom.Bedroom, CurrentRoom.Bathroom, doorDestination, new Rectangle(0,60,172,60)));
             objs.Add(new ClueObject(crazyDiary, crazyDiary3Rect, Clue.Clues["CrazyDiary3"], false, true));
             objs.Add(new ClueObject(knife, knifeRect, Clue.Clues["JaggedKnife"], false, true));
