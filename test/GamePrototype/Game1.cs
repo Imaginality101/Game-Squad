@@ -645,7 +645,6 @@ namespace GamePrototype
 
         }
 
-        
         // TODO: Load method, needs to read the binary files from the Save command and read them in. Should then use that info to set up stuff
         public void MasterContentLoader()
         {
