@@ -163,7 +163,7 @@ namespace GamePrototype.Classes.Tools
             news2Rect = new Rectangle((int)origin.X + 440, (int)origin.Y - 120, 72, 72);
             lampRect = new Rectangle((int)origin.X - 440, (int)origin.Y - 475, 128, 128);
             //brokenWallRect = new Rectangle((int)origin.X - 512, (int)origin.Y - 547, 72, 72);
-            brokenFloorRect = new Rectangle((int)origin.X -323, (int)origin.Y  +312, 172, 172);
+            brokenFloorRect = new Rectangle((int)origin.X -323, (int)origin.Y  +316, 172, 172);
             //adding them all to the gameobjectlist
             // Caleb - adding a temporary name string to the constructor which is to demo interaction
             //objs.Add(new GameObject(outdoor, outdoorRect, "End door"));
