@@ -525,11 +525,11 @@ namespace GamePrototype
             if (gameState == GameState.Game)
             {
                 //draw the instructions
-                uSpriteBatch.Draw(instructionOpen, FormatDraw(instructionOpenRect), Color.White);
-                uSpriteBatch.Draw(instructionClose, FormatDraw(instructionCloseRect), Color.White);
-                uSpriteBatch.Draw(instructionMove, FormatDraw(instructionMoveRect), Color.White);
-                uSpriteBatch.Draw(instructionInteract, FormatDraw(instructionInteractRect), Color.White);
-                uSpriteBatch.Draw(instructionNuke, FormatDraw(instructionNukeRect), Color.White);
+                uSpriteBatch.Draw(instructionOpen, FormatDraw(instructionOpenRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
+                uSpriteBatch.Draw(instructionClose, FormatDraw(instructionCloseRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
+                uSpriteBatch.Draw(instructionMove, FormatDraw(instructionMoveRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
+                uSpriteBatch.Draw(instructionInteract, FormatDraw(instructionInteractRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
+                uSpriteBatch.Draw(instructionNuke, FormatDraw(instructionNukeRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
                 uSpriteBatch.Draw(instructionOpen, FormatDraw(instructionOpenRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
                 uSpriteBatch.Draw(instructionClose, FormatDraw(instructionCloseRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
 
@@ -584,11 +584,11 @@ namespace GamePrototype
             if (gameState == GameState.GMenu)
             {
                 //draw the instructions
-                uSpriteBatch.Draw(instructionOpen, FormatDraw(instructionOpenRect), Color.White);
-                uSpriteBatch.Draw(instructionClose, FormatDraw(instructionCloseRect), Color.White);
-                uSpriteBatch.Draw(instructionMove, FormatDraw(instructionMoveRect), Color.White);
-                uSpriteBatch.Draw(instructionInteract, FormatDraw(instructionInteractRect), Color.White);
-                uSpriteBatch.Draw(instructionNuke, FormatDraw(instructionNukeRect), Color.White);
+                uSpriteBatch.Draw(instructionOpen, FormatDraw(instructionOpenRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
+                uSpriteBatch.Draw(instructionClose, FormatDraw(instructionCloseRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
+                uSpriteBatch.Draw(instructionMove, FormatDraw(instructionMoveRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
+                uSpriteBatch.Draw(instructionInteract, FormatDraw(instructionInteractRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
+                uSpriteBatch.Draw(instructionNuke, FormatDraw(instructionNukeRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
 
                 switch (activeRoom)
                 {
