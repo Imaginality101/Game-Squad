@@ -198,6 +198,7 @@ namespace GamePrototype.Classes
             clues["MedicineBottle"].ClueImage = medicineBottle;
             clues["StickyNote"].ClueImage = stickyNote;
             clues["VeryCrazyDiary"].ClueImage = veryCrazy;
+            clues["VeryCrazyDiary"].BlownClueImage = veryCrazyFull;
         }
 
     }
