@@ -43,6 +43,8 @@ namespace GamePrototype.Classes.Objects
         private Texture2D faceDownSprite;
         private List<Texture2D> walkDownSprites;
         private Texture2D promptTexture;
+        private Texture2D rossHead;
+        private Rectangle rossRect;
         private const int MOVE_SPEED = 4;
 
         // attributes for sounds - kat
@@ -70,6 +72,8 @@ namespace GamePrototype.Classes.Objects
             content = contentParam;
             promptTexture = Tools.ObjectSetup.buttonPrompt;
             // footstep sound effect - kat
+            rossHead = content.Load<Texture2D>("bobross");
+            rossRect = new Rectangle(playerRect.X - 20, playerRect.Y - 5, 116, 116);
             footsteps = new GameSound("Footsteps", content);
         }
         // TODO: Update method override, should check player input and movement
@@ -83,7 +87,10 @@ namespace GamePrototype.Classes.Objects
             CheckBounds(moveBounds);
             ChangeDirection();
             BlockCollisions(objects);
-
+            if(Game1.bobRossMode)
+            {
+                rossRect = new Rectangle(playerRect.X - 10, playerRect.Y - 5, 126, 116);
+            }
 
             base.Update(gameTime);
         }
@@ -517,8 +524,11 @@ namespace GamePrototype.Classes.Objects
                 }
                 sprtBtch.Draw(walkRightSprites[currentFrame], Game1.FormatDraw(playerRect), Color.White);
             }
-
-            if(flaggedInteractable != null)
+            if (Game1.bobRossMode)
+            {
+                sprtBtch.Draw(rossHead, Game1.FormatDraw(rossRect), Color.White);
+            }
+            if (flaggedInteractable != null)
             {
                 Vector2 basePoint = new Vector2(playerRect.X + (playerRect.Width / 2), playerRect.Y);
                 sprtBtch.Draw(promptTexture, Game1.FormatDraw(new Rectangle((int)(basePoint.X - 16), (int)(basePoint.Y - 40), 32, 32)), Color.White);
