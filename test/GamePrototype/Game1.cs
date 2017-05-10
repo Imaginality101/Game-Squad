@@ -171,7 +171,7 @@ namespace GamePrototype
         // path to the external tool
         const string PATH = "..\\..\\..\\..\\..\\ExternalTool\\bin\\Debug\\ExternalTool.exe";
         List<object> settingsData;
-        static bool bobRossMode;
+        public static bool bobRossMode;
         // this is for timed mode
         static bool timerMode;
         int gameTimerSeconds = 15 * 60;
