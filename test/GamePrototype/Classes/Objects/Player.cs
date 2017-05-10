@@ -305,10 +305,7 @@ namespace GamePrototype.Classes.Objects
             {
                 playerDirection = PlayerDir.FaceUp;
             }
-            if (playerDirection == PlayerDir.WalkUp && kbState.IsKeyUp(Keys.W))
-            {
-                playerDirection = PlayerDir.FaceUp;
-            }
+
             if (kbState.IsKeyDown(Keys.S) && !prevKbState.IsKeyDown(Keys.S))
             {
                 playerDirection = PlayerDir.FaceDown;
@@ -323,10 +320,7 @@ namespace GamePrototype.Classes.Objects
             {
                 playerDirection = PlayerDir.FaceDown;
             }
-            if (playerDirection == PlayerDir.WalkDown && kbState.IsKeyUp(Keys.S))
-            {
-                playerDirection = PlayerDir.FaceDown;
-            }
+
             if (kbState.IsKeyDown(Keys.D) && !prevKbState.IsKeyDown(Keys.D))
             {
                 playerDirection = PlayerDir.FaceRight;
@@ -341,14 +335,7 @@ namespace GamePrototype.Classes.Objects
             {
                 playerDirection = PlayerDir.FaceRight;
             }
-            if (playerDirection == PlayerDir.WalkRight && kbState.IsKeyUp(Keys.D))
-            {
-                playerDirection = PlayerDir.FaceRight;
-            }
-            if (playerDirection == PlayerDir.WalkLeft && kbState.IsKeyUp(Keys.A))
-            {
-                playerDirection = PlayerDir.FaceLeft;
-            }
+
             if (kbState.IsKeyDown(Keys.A) && !prevKbState.IsKeyDown(Keys.A))
             {
                 playerDirection = PlayerDir.FaceLeft;
@@ -360,6 +347,22 @@ namespace GamePrototype.Classes.Objects
                 //moveBounds = new Rectangle(moveBounds.X - 2, moveBounds.Y, faceUpSprite.Width, faceUpSprite.Height);
             }
             if (!kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyDown(Keys.A))
+            {
+                playerDirection = PlayerDir.FaceLeft;
+            }
+            if (playerDirection == PlayerDir.WalkUp && moveQueue == Vector2.Zero)
+            {
+                playerDirection = PlayerDir.FaceUp;
+            }
+            if (playerDirection == PlayerDir.WalkDown && moveQueue == Vector2.Zero)
+            {
+                playerDirection = PlayerDir.FaceDown;
+            }
+            if (playerDirection == PlayerDir.WalkRight && moveQueue == Vector2.Zero)
+            {
+                playerDirection = PlayerDir.FaceRight;
+            }
+            if (playerDirection == PlayerDir.WalkLeft && moveQueue == Vector2.Zero)
             {
                 playerDirection = PlayerDir.FaceLeft;
             }
