@@ -279,7 +279,7 @@ namespace GamePrototype.Classes.Menu
                             }
                     }
                 }
-                if (kbState.IsKeyDown(Keys.Enter) && prevKbState.IsKeyUp(Keys.Enter))
+                if (kbState.IsKeyDown(Keys.E) && prevKbState.IsKeyUp(Keys.E))
                 {
                     if (imageClueDraw > 0)
                     {
@@ -300,6 +300,9 @@ namespace GamePrototype.Classes.Menu
                                     {
                                         clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 0].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
                                         activeMenu = Category.Journal;
+                                        // added by Caleb
+                                        prevKbState = kbState;
+                                        kbState = Keyboard.GetState();
                                     }
                                 }
                                 break;
@@ -314,6 +317,9 @@ namespace GamePrototype.Classes.Menu
                                     {
                                         clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 1].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
                                         activeMenu = Category.Journal;
+                                        // added by Caleb
+                                        prevKbState = kbState;
+                                        kbState = Keyboard.GetState();
                                     }
                                 }
                                 break;
@@ -328,6 +334,9 @@ namespace GamePrototype.Classes.Menu
                                     {
                                         clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 2].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
                                         activeMenu = Category.Journal;
+                                        // added by Caleb
+                                        prevKbState = kbState;
+                                        kbState = Keyboard.GetState();
                                     }
                                 }
                                 break;
@@ -342,6 +351,9 @@ namespace GamePrototype.Classes.Menu
                                     {
                                         clueTextBox = new TextBox(new Vector2(760, 220), pageClue[cluePageIndex, 3].ToString(), 15, 15, menuFont, new Rectangle(0, 0, 0, 0));
                                         activeMenu = Category.Journal;
+                                        // added by Caleb
+                                        prevKbState = kbState;
+                                        kbState = Keyboard.GetState();
                                     }
                                 }
                                 break;
@@ -352,6 +364,13 @@ namespace GamePrototype.Classes.Menu
                 if ((kbState.IsKeyDown(Keys.D2) && prevKbState.IsKeyUp(Keys.D2)) || (kbState.IsKeyDown(Keys.D3) && prevKbState.IsKeyUp(Keys.D3)) || (kbState.IsKeyDown(Keys.D4) && prevKbState.IsKeyUp(Keys.D4)))
                 {
                     imageClueDraw = 0;
+                }
+            }
+            if (activeMenu == Category.Journal)
+            {
+                if (kbState.IsKeyDown(Keys.E) && prevKbState.IsKeyUp(Keys.E))
+                {
+                    activeMenu = Category.Clues;
                 }
             }
             prevKbState = kbState;
