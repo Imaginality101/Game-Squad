@@ -39,7 +39,9 @@ namespace GamePrototype.Classes.Objects
         private List<Texture2D> walkRightSprites;
         private Texture2D faceRightSprite;
         private Texture2D faceUpSprite;
+        private List<Texture2D> walkUpSprites;
         private Texture2D faceDownSprite;
+        private List<Texture2D> walkDownSprites;
         private Texture2D promptTexture;
         private const int MOVE_SPEED = 4;
 
@@ -52,7 +54,7 @@ namespace GamePrototype.Classes.Objects
         int currentFrame = 0;
 
         // TODO: Player constructor, should take the same sort of information as well as potentially a Menu object. We'd feed the overall Game's Menu into that.
-        public Player(GraphicsDevice graphics, ContentManager contentParam, Texture2D faceRight, List<Texture2D> walkRight, Texture2D faceUp, Texture2D faceDown, Rectangle bounds) : base()
+        public Player(GraphicsDevice graphics, ContentManager contentParam, Texture2D faceRight, List<Texture2D> walkRight, Texture2D faceUp, Texture2D faceDown, Rectangle bounds, List<Texture2D> walkUp, List<Texture2D> walkDown) : base()
         {
             moveQueue = Vector2.Zero; // initialize moveQueue to a zero vector
             playerDirection = PlayerDir.FaceDown; // start out facing downwards for now
@@ -61,6 +63,8 @@ namespace GamePrototype.Classes.Objects
             hitBox = new Rectangle(PlayerRect.X + 24, PlayerRect.Y + 144, 48, 48);
             faceRightSprite = faceRight;
             walkRightSprites = walkRight;
+            walkUpSprites = walkUp;
+            walkDownSprites = walkDown;
             faceUpSprite = faceUp;
             faceDownSprite = faceDown;
             content = contentParam;
@@ -290,6 +294,7 @@ namespace GamePrototype.Classes.Objects
             if (kbState.IsKeyDown(Keys.W) && !prevKbState.IsKeyDown(Keys.W))
             {
                 playerDirection = PlayerDir.FaceUp;
+                currentFrame = 0;
             }
             if (kbState.IsKeyDown(Keys.W) && prevKbState.IsKeyDown(Keys.W))
             {
@@ -300,22 +305,14 @@ namespace GamePrototype.Classes.Objects
             {
                 playerDirection = PlayerDir.FaceUp;
             }
-            if (kbState.IsKeyDown(Keys.A) && !prevKbState.IsKeyDown(Keys.A))
+            if (playerDirection == PlayerDir.WalkUp && kbState.IsKeyUp(Keys.W))
             {
-                playerDirection = PlayerDir.FaceLeft;
-            }
-            if (kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyDown(Keys.A))
-            {
-                playerDirection = PlayerDir.WalkLeft;
-                //moveBounds = new Rectangle(moveBounds.X - 2, moveBounds.Y, faceUpSprite.Width, faceUpSprite.Height);
-            }
-            if (!kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyDown(Keys.A))
-            {
-                playerDirection = PlayerDir.FaceLeft;
+                playerDirection = PlayerDir.FaceUp;
             }
             if (kbState.IsKeyDown(Keys.S) && !prevKbState.IsKeyDown(Keys.S))
             {
                 playerDirection = PlayerDir.FaceDown;
+                currentFrame = 0;
             }
             if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyDown(Keys.S))
             {
@@ -326,9 +323,14 @@ namespace GamePrototype.Classes.Objects
             {
                 playerDirection = PlayerDir.FaceDown;
             }
+            if (playerDirection == PlayerDir.WalkDown && kbState.IsKeyUp(Keys.S))
+            {
+                playerDirection = PlayerDir.FaceDown;
+            }
             if (kbState.IsKeyDown(Keys.D) && !prevKbState.IsKeyDown(Keys.D))
             {
                 playerDirection = PlayerDir.FaceRight;
+                currentFrame = 0;
             }
             if (kbState.IsKeyDown(Keys.D) && prevKbState.IsKeyDown(Keys.D))
             {
@@ -344,6 +346,20 @@ namespace GamePrototype.Classes.Objects
                 playerDirection = PlayerDir.FaceRight;
             }
             if (playerDirection == PlayerDir.WalkLeft && kbState.IsKeyUp(Keys.A))
+            {
+                playerDirection = PlayerDir.FaceLeft;
+            }
+            if (kbState.IsKeyDown(Keys.A) && !prevKbState.IsKeyDown(Keys.A))
+            {
+                playerDirection = PlayerDir.FaceLeft;
+                currentFrame = 0;
+            }
+            if (kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyDown(Keys.A))
+            {
+                playerDirection = PlayerDir.WalkLeft;
+                //moveBounds = new Rectangle(moveBounds.X - 2, moveBounds.Y, faceUpSprite.Width, faceUpSprite.Height);
+            }
+            if (!kbState.IsKeyDown(Keys.A) && prevKbState.IsKeyDown(Keys.A))
             {
                 playerDirection = PlayerDir.FaceLeft;
             }
@@ -436,7 +452,16 @@ namespace GamePrototype.Classes.Objects
             }
             if (playerDirection == PlayerDir.WalkUp)
             {
-                sprtBtch.Draw(faceUpSprite, Game1.FormatDraw(playerRect), Color.White);
+                if (timer == 0 || timer < 0)
+                {
+                    currentFrame++;
+                    timer = .1;
+                }
+                if (currentFrame >= walkUpSprites.Count)
+                {
+                    currentFrame = 0;
+                }
+                sprtBtch.Draw(walkUpSprites[currentFrame], Game1.FormatDraw(playerRect), Color.White);
             }
             if (playerDirection == PlayerDir.FaceLeft)
             {
@@ -448,10 +473,10 @@ namespace GamePrototype.Classes.Objects
                 {
                     currentFrame++;
                     timer = .1;
-                    if (currentFrame >= walkRightSprites.Count)
-                    {
-                        currentFrame = 0;
-                    }
+                }
+                if (currentFrame >= walkRightSprites.Count)
+                {
+                    currentFrame = 0;
                 }
                 sprtBtch.Draw(walkRightSprites[currentFrame], Game1.FormatDraw(playerRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
             }
@@ -461,7 +486,16 @@ namespace GamePrototype.Classes.Objects
             }
             if (playerDirection == PlayerDir.WalkDown)
             {
-                sprtBtch.Draw(faceDownSprite, Game1.FormatDraw(playerRect), Color.White);
+                if (timer == 0 || timer < 0)
+                {
+                    currentFrame++;
+                    timer = .1;
+                }
+                if (currentFrame >= walkDownSprites.Count)
+                {
+                    currentFrame = 0;
+                }
+                sprtBtch.Draw(walkDownSprites[currentFrame], Game1.FormatDraw(playerRect), Color.White);
             }
             if (playerDirection == PlayerDir.FaceRight)
             {
@@ -473,10 +507,10 @@ namespace GamePrototype.Classes.Objects
                 {
                     currentFrame++;
                     timer = .1;
-                    if (currentFrame >= walkRightSprites.Count)
-                    {
-                        currentFrame = 0;
-                    }
+                }
+                if (currentFrame >= walkRightSprites.Count)
+                {
+                    currentFrame = 0;
                 }
                 sprtBtch.Draw(walkRightSprites[currentFrame], Game1.FormatDraw(playerRect), Color.White);
             }

@@ -166,7 +166,7 @@ namespace GamePrototype.Classes
             clues["News3"].BlownClueImage = new3full;
             clues["News4"].ClueImage = news;
             clues["News4"].BlownClueImage = new4full;
-            clues["News5"].ClueImage = news;
+            clues["News5"].ClueImage = new5full;
             clues["News5"].BlownClueImage = new5full;
             clues["BathroomKey"].ClueImage = bathroomKey;
             clues["ClosetKey"].ClueImage = closetKey;

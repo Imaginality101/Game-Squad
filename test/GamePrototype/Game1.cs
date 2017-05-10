@@ -106,9 +106,36 @@ namespace GamePrototype
         Texture2D faceRight6;
         Texture2D faceRight7;
         Texture2D faceRight8;
+        Texture2D faceRight9;
+        Texture2D faceRight10;
+        Texture2D faceRight11;
+        Texture2D faceRight12;
+        Texture2D faceRight13;
+        Texture2D faceRight14;
+        Texture2D faceRight15;
+        Texture2D faceRight16;
+        Texture2D faceDown1;
+        Texture2D faceDown2;
+        Texture2D faceDown3;
+        Texture2D faceDown4;
+        Texture2D faceDown5;
+        Texture2D faceDown6;
+        Texture2D faceDown7;
+        Texture2D faceDown8;
+        Texture2D faceUp1;
+        Texture2D faceUp2;
+        Texture2D faceUp3;
+        Texture2D faceUp4;
+        Texture2D faceUp5;
+        Texture2D faceUp6;
+        Texture2D faceUp7;
+        Texture2D faceUp8;
+
         Rectangle protagRect;
         Vector2 playerCenter;
         List<Texture2D> protagTextureRight;
+        List<Texture2D> protagTextureDown;
+        List<Texture2D> protagTextureUp;
         double timer;
         int i;
 
@@ -195,7 +222,7 @@ namespace GamePrototype
 
             // TODO: call bathroom's DisableSavedClueObjects() when bathroom is created
             bedRoom.DisableSavedClueObjects();
-            player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds);
+            player = new Player(GraphicsDevice, content, faceRight, protagTextureRight, faceUp, faceDown, bedRoom.CollisionBounds, protagTextureUp, protagTextureDown);
             // TODO: fill in the nulls in the parameters list once we have more textures
 
             player.PopUp += messageDisplay.GetMessage;
@@ -273,12 +300,10 @@ namespace GamePrototype
             }
 
             // win state - kat
-            /*
-            if (activeRoom == CurrentRoom.Bathroom)
+            if (activeRoom == CurrentRoom.WinRoom)
             {
                 winLose = 2; 
             }
-            */
 
             if (winLose == 1) // kat
             {
@@ -672,17 +697,59 @@ namespace GamePrototype
 
             // protag - kat
 
-            faceUp = content.Load<Texture2D>("backStationary");
-            faceDown = content.Load<Texture2D>("frontStationary");
-            faceRight = content.Load<Texture2D>("profileStationary");
-            faceRight1 = content.Load<Texture2D>("profile1");
-            faceRight2 = content.Load<Texture2D>("profile2");
-            faceRight3 = content.Load<Texture2D>("profile3");
-            faceRight4 = content.Load<Texture2D>("profile4");
-            faceRight5 = content.Load<Texture2D>("profile5");
-            faceRight6 = content.Load<Texture2D>("profile6");
-            faceRight7 = content.Load<Texture2D>("profile7");
-            faceRight8 = content.Load<Texture2D>("profile8");
+            faceUp = content.Load<Texture2D>("WalkCycleBack_00000");
+            faceDown = content.Load<Texture2D>("WalkCycleFront_00000");
+            faceRight = content.Load<Texture2D>("WalkCycleSide_Standing");
+            faceRight1 = content.Load<Texture2D>("WalkCycleSide_00000");
+            faceRight2 = content.Load<Texture2D>("WalkCycleSide_00001");
+            faceRight3 = content.Load<Texture2D>("WalkCycleSide_00002");
+            faceRight4 = content.Load<Texture2D>("WalkCycleSide_00003");
+            faceRight5 = content.Load<Texture2D>("WalkCycleSide_00004");
+            faceRight6 = content.Load<Texture2D>("WalkCycleSide_00005");
+            faceRight7 = content.Load<Texture2D>("WalkCycleSide_00006");
+            faceRight8 = content.Load<Texture2D>("WalkCycleSide_00007");
+            faceRight9 = content.Load<Texture2D>("WalkCycleSide_00008");
+            faceRight10 = content.Load<Texture2D>("WalkCycleSide_00009");
+            faceRight11 = content.Load<Texture2D>("WalkCycleSide_00010");
+            faceRight12 = content.Load<Texture2D>("WalkCycleSide_00011");
+            faceRight13 = content.Load<Texture2D>("WalkCycleSide_00012");
+            faceRight14 = content.Load<Texture2D>("WalkCycleSide_00013");
+            faceRight15 = content.Load<Texture2D>("WalkCycleSide_00014");
+            faceRight16 = content.Load<Texture2D>("WalkCycleSide_00015");
+            faceDown1 = content.Load<Texture2D>("WalkCycleFront_00000");
+            faceDown2 = content.Load<Texture2D>("WalkCycleFront_00001");
+            faceDown3 = content.Load<Texture2D>("WalkCycleFront_00002");
+            faceDown4 = content.Load<Texture2D>("WalkCycleFront_00003");
+            faceDown5 = content.Load<Texture2D>("WalkCycleFront_00004");
+            faceDown6 = content.Load<Texture2D>("WalkCycleFront_00005");
+            faceDown7 = content.Load<Texture2D>("WalkCycleFront_00006");
+            faceDown8 = content.Load<Texture2D>("WalkCycleFront_00007");
+            faceUp1 = content.Load<Texture2D>("WalkCycleBack_00000");
+            faceUp2 = content.Load<Texture2D>("WalkCycleBack_00001");
+            faceUp3 = content.Load<Texture2D>("WalkCycleBack_00002");
+            faceUp4 = content.Load<Texture2D>("WalkCycleBack_00003");
+            faceUp5 = content.Load<Texture2D>("WalkCycleBack_00004");
+            faceUp6 = content.Load<Texture2D>("WalkCycleBack_00005");
+            faceUp7 = content.Load<Texture2D>("WalkCycleBack_00006");
+            faceUp8 = content.Load<Texture2D>("WalkCycleBack_00007");
+            protagTextureUp = new List<Texture2D>();
+            protagTextureUp.Add(faceUp1);
+            protagTextureUp.Add(faceUp2);
+            protagTextureUp.Add(faceUp3);
+            protagTextureUp.Add(faceUp4);
+            protagTextureUp.Add(faceUp5);
+            protagTextureUp.Add(faceUp6);
+            protagTextureUp.Add(faceUp7);
+            protagTextureUp.Add(faceUp8);
+            protagTextureDown = new List<Texture2D>();
+            protagTextureDown.Add(faceDown1);
+            protagTextureDown.Add(faceDown2);
+            protagTextureDown.Add(faceDown3);
+            protagTextureDown.Add(faceDown4);
+            protagTextureDown.Add(faceDown5);
+            protagTextureDown.Add(faceDown6);
+            protagTextureDown.Add(faceDown7);
+            protagTextureDown.Add(faceDown8);
             protagTextureRight = new List<Texture2D>();
             protagTextureRight.Add(faceRight1);
             protagTextureRight.Add(faceRight2);
@@ -692,6 +759,14 @@ namespace GamePrototype
             protagTextureRight.Add(faceRight6);
             protagTextureRight.Add(faceRight7);
             protagTextureRight.Add(faceRight8);
+            protagTextureRight.Add(faceRight9);
+            protagTextureRight.Add(faceRight10);
+            protagTextureRight.Add(faceRight11);
+            protagTextureRight.Add(faceRight12);
+            protagTextureRight.Add(faceRight13);
+            protagTextureRight.Add(faceRight14);
+            protagTextureRight.Add(faceRight15);
+            protagTextureRight.Add(faceRight16);
 
             blacklight = content.Load<Texture2D>("black light overlay");
 
