@@ -477,6 +477,10 @@ namespace GamePrototype
                             SaveData.Save();
                             Exit();
                         }
+                        if (kbState.IsKeyDown(Keys.Escape) && prevKbState.IsKeyUp(Keys.Escape))
+                        {
+                            gameState = GameState.Game;
+                        }
                         // Caleb - updates the menu instance; we might stick the above into this method?
                         menu.Update();
                         break;
