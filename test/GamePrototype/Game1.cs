@@ -335,7 +335,7 @@ namespace GamePrototype
             {
                 case GameState.MainMenu:
                     {
-                        player.SendMessage("Move using W, and S. Confirm using E.");
+                        player.SendMessage("Select using W and S, then press E to confirm");
 
                         // TODO: May have buttons in main menu, the Enter key is just temporary
                         if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S) && mainState == MainMenuState.Continue)
