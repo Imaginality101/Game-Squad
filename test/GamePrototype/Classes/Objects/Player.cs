@@ -59,7 +59,7 @@ namespace GamePrototype.Classes.Objects
             moveQueue = Vector2.Zero; // initialize moveQueue to a zero vector
             playerDirection = PlayerDir.FaceDown; // start out facing downwards for now
             moveBounds = bounds;
-            playerRect = new Rectangle(1728 / 2 - 50, 972 / 2 - 50, 96, 192); //<------------------------THIS IS WHERE THE PLAYER RECT SIZE IS-------------------------
+            playerRect = new Rectangle(1728 / 2, 972 / 2 + 50, 96, 192); //<------------------------THIS IS WHERE THE PLAYER RECT SIZE IS-------------------------
             hitBox = new Rectangle(PlayerRect.X + 24, PlayerRect.Y + 144, 48, 48);
             faceRightSprite = faceRight;
             walkRightSprites = walkRight;
