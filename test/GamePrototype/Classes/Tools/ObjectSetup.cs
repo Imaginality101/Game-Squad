@@ -299,7 +299,7 @@ namespace GamePrototype.Classes.Tools
             //objs.Add(new GameObject(wastebin, wastebinRect));
             objs.Add(new ClueObject(wastebin, wastebinRect, Clue.Clues["OldPhoto3"]));
             //objs.Add(new GameObject(medcab, medcabRect,new Rectangle(0, 60, 60, 172)));
-            objs.Add(new ClueObject(medcab, medcabRect, Clue.Clues["MedicineBottle"]));
+            objs.Add(new ClueObject(medcab, medcabRect, Clue.Clues["MedicineBottle"], .25f));
             objs.Add(new GameObject(bathtable, bathtableRect, new Rectangle(0, 105, 172, 220)));
             //objs.Add(new GameObject(bathtable, bathtableRect));
             objs.Add(new Door(bathtobeddoor, bathtobeddoorRect,CurrentRoom.Bedroom, CurrentRoom.Bathroom, doorDestination, new Rectangle(0,60,172,60)));

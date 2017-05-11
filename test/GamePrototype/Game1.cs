@@ -322,6 +322,8 @@ namespace GamePrototype
             if (winLose == 1) // kat
             {
                 Thread.Sleep(5000);
+                Restart();
+                SaveData.Save();
                 Environment.Exit(0);
             }
 
@@ -335,7 +337,7 @@ namespace GamePrototype
             {
                 case GameState.MainMenu:
                     {
-                        player.SendMessage("Move using W, and S. Confirm using E.");
+                        player.SendMessage("Use W and S to make a selection, and press E to confirm.");
 
                         // TODO: May have buttons in main menu, the Enter key is just temporary
                         if (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S) && mainState == MainMenuState.Continue)
@@ -632,7 +634,7 @@ namespace GamePrototype
             // end spritebatch
             if (LightsOn == false && gameState != GameState.MainMenu)
             {
-                uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .05f);
+                uSpriteBatch.Draw(blacklight, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .07f);
             }
 
             // draw lose things - kat
@@ -871,7 +873,7 @@ namespace GamePrototype
             {
                 gameTimerSeconds = (int)settingsData[1] * 60;
             }
-            player.MoveBounds = bedRoom.Bounds;
+            player.MoveBounds = bedRoom.CollisionBounds;
         }
     }
 }

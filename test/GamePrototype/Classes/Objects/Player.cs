@@ -45,6 +45,7 @@ namespace GamePrototype.Classes.Objects
         private Texture2D promptTexture;
         private Texture2D rossHead;
         private Rectangle rossRect;
+        private Color drawColor;
         private const int MOVE_SPEED = 4;
 
         // attributes for sounds - kat
@@ -299,6 +300,7 @@ namespace GamePrototype.Classes.Objects
                     {
                         KeepPlayerFromGoingRight();
                     }
+                    
                 }
             }
         }
@@ -539,7 +541,11 @@ namespace GamePrototype.Classes.Objects
             if (flaggedInteractable != null)
             {
                 Vector2 basePoint = new Vector2(playerRect.X + (playerRect.Width / 2), playerRect.Y);
-                sprtBtch.Draw(promptTexture, Game1.FormatDraw(new Rectangle((int)(basePoint.X - 16), (int)(basePoint.Y - 40), 32, 32)), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .5f);
+                if(basePoint.Y - 40 < 0)
+                {
+                    basePoint.Y = 44;
+                }
+                sprtBtch.Draw(promptTexture, Game1.FormatDraw(new Rectangle((int)(basePoint.X - 16), (int)(basePoint.Y - 40), 32, 32)), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .05f);
             }
         }
         public Rectangle MoveBounds { get { return moveBounds; } set { moveBounds = value; } }

@@ -110,16 +110,16 @@ namespace GamePrototype.Classes.Menu
             menuFont = mFont;
             List<object> settings = settingsParam;
             string settingsString = "";
-            settingsString += "Timer mode: " + settings[0].ToString() + " ";
-            settingsString += "Easy Mode: " + settings[2].ToString() + " ";
-            settingsString += "Bob Ross mode: " + settings[3].ToString() + " ";
+            settingsString += "Timer mode: " + settings[0].ToString() + "\n";
+            settingsString += "Easy Mode: " + settings[2].ToString() + "\n";
+            settingsString += "Bob Ross mode: " + settings[3].ToString() + "\n";
             if ((bool)settings[4])
             {
-                settingsString += "Fullscreen enabled" + " ";
+                settingsString += "Fullscreen enabled" + "\n";
             }
             else
             {
-                settingsString += "Resolution: " + settings[5].ToString() + " by " + settings[6].ToString() + " ";
+                settingsString += "Resolution: " + settings[5].ToString() + " by " + settings[6].ToString() + "\n";
             }
             settingsTextBox = new TextBox(new Vector2(760, 220), settingsString, 15, 15, mFont, new Rectangle(0, 0, 0, 0));
             clueCursor = cursor;
@@ -424,12 +424,12 @@ namespace GamePrototype.Classes.Menu
             if (activeMenu == Category.Main)
             {
                 //bedRoom.Draw(uSpriteBatch);
-                spriteBatch.Draw(mainPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .09f);
+                spriteBatch.Draw(mainPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .06f);
             }
             if (activeMenu == Category.Journal)
             {
                 //bedRoom.Draw(uSpriteBatch);
-                spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .09f);
+                spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .06f);
                 if (clueTextBox != null)
                 {
                     clueTextBox.Draw(spriteBatch);
@@ -438,13 +438,13 @@ namespace GamePrototype.Classes.Menu
             if (activeMenu == Category.Settings)
             {
                 //bedRoom.Draw(uSpriteBatch);
-                spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .09f);
+                spriteBatch.Draw(textPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .06f);
                 // Draw textbox
                 settingsTextBox.Draw(spriteBatch);
             }
             if (activeMenu == Category.Clues)
             {
-                spriteBatch.Draw(cluesPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .09f);
+                spriteBatch.Draw(cluesPhoneMenu, Game1.FormatDraw(new Rectangle(300, 0, 1200, 1000)), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .06f);
                 // draw the clue cursor based on the selected entry
                 switch (selectedEntry)
                 {
