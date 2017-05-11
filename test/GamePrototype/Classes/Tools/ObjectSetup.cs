@@ -185,10 +185,11 @@ namespace GamePrototype.Classes.Tools
 
             // Setting up interaction points, this is an example on how
             ((ClueObject)objs[5]).InteractionPoint = new Vector2(30, bedRect.Height / 2); // bed
-            ((ClueObject)objs[10]).InteractionPoint = new Vector2(3*dressRect.Width/4, dressRect.Height / 2); // dresser
+            ((ClueObject)objs[10]).InteractionPoint = new Vector2(2 * dressRect.Width/4, dressRect.Height / 2); // dresser
             ((Lamp)objs[12]).InteractionPoint = new Vector2(lampRect.Width/2,lampRect.Height); // Lamp
             ((Door)objs[1]).InteractionPoint = new Vector2((lampRect.Width / 2)+50, lampRect.Height); // door
             ((ClueObject)objs[9]).InteractionPoint = new Vector2(-10, (news2Rect.Height)); // news1
+            ((Door)objs[0]).InteractionPoint = new Vector2((outdoorRect.Width / 2), outdoorRect.Height); // door
 
 
 
