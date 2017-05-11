@@ -257,7 +257,7 @@ namespace GamePrototype.Classes.Menu
                                     blep.PlayAsSoundEffect(.9f);
                                 }
                                 // handles scrolling
-                                else if (cluePageIndex < 6 && cluePageIndex < cluesNum / 4 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
+                                else if (cluePageIndex < 6 && cluePageIndex < (cluesNum - 1) / 4 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
                                 {
                                     selectedEntry = SelectedEntry.TopLeft;
                                     blep.PlayAsSoundEffect(.9f);
@@ -279,7 +279,7 @@ namespace GamePrototype.Classes.Menu
                                     blep.PlayAsSoundEffect(.9f);
                                 }
                                 // handles scrolling
-                                else if (cluePageIndex < 6 && cluePageIndex < cluesNum / 4 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
+                                else if (cluePageIndex < 6 && cluePageIndex < (cluesNum - 1) / 4 && (kbState.IsKeyDown(Keys.S) && prevKbState.IsKeyUp(Keys.S)))
                                 {
                                     selectedEntry = SelectedEntry.TopRight;
                                     blep.PlayAsSoundEffect(.9f);
