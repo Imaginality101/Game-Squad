@@ -179,7 +179,7 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new ClueObject(news1, news2Rect, Clue.Clues["News2"], false, "News 2", true, .2f));
             objs.Add(new ClueObject(dress, dressRect, Clue.Clues["ClosetKey"], false, Clue.Clues["TenantDiary2"]));
             objs.Add(new ClueObject(stickynote, stickynoteRect, Clue.Clues["StickyNote"], false, "Sticky Note",true, .2f));
-            objs.Add(new Lamp(lamp, lampRect, .2f));
+            objs.Add(new Lamp(lamp, lampRect, .55f));
             //objs.Add(new Door(closetdoor, new Rectangle((int)origin.X - 685, (int)origin.Y - 310, 172, 172), CurrentRoom.Closet, doorDestination));//Cheatdoor
             objs.Add(new ClueObject(brokenFloor, brokenFloorRect,Clue.Clues["VeryCrazyDiary"],false, false, Clue.Clues["CrazyDiary3"], .98f));
 
@@ -256,7 +256,7 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new GameObject(jewelrybox, jewelryboxRect, "JewelryBoxOpen"));
             objs.Add(new ClueObject(ring, ringRect, Clue.Clues["Ring"], false, "Sticky Note", true, .2f));
             objs.Add(new ClueObject(news1, news1Rect, Clue.Clues["News4"], true, .55f));
-            objs.Add(new ClueObject(oldPhoto, oldPhotoRect, Clue.Clues["OldPhoto2"], true, .2f));
+            objs.Add(new ClueObject(oldPhoto, oldPhotoRect, Clue.Clues["OldPhoto2"], true, .55f));
 
 
 
