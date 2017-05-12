@@ -150,6 +150,7 @@ namespace GamePrototype
         Texture2D blacklight;
         static bool lightsOn;
         Texture2D bedBG;
+        Texture2D blood;
         Texture2D closetBG;
         Texture2D bathBG;
         //instuctions
@@ -545,19 +546,15 @@ namespace GamePrototype
                 switch (activeRoom)
                 {
                     case CurrentRoom.Bedroom:
-                        if (player.PlayerRect.Y < GraphicsDevice.Viewport.Bounds.Height / 2)
                         {
                             bedRoom.Draw(uSpriteBatch);
                             player.Draw(uSpriteBatch);
+                            if (Clue.Inventory.Contains(Clue.Clues["CrazyDiary3"]))
+                            {
+                                uSpriteBatch.Draw(blood, Game1.FormatDraw(bedRoom.Bounds), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.9f);
+                            }
+                            break;
                         }
-                        else
-                        {
-                            bedRoom.Draw(uSpriteBatch);
-                            player.Draw(uSpriteBatch);
-                        }
-
-                        
-                        break;
                     case CurrentRoom.Closet:
                         // TODO: Draw closet
                         if (player.PlayerRect.Y < GraphicsDevice.Viewport.Bounds.Height / 2)
@@ -601,8 +598,15 @@ namespace GamePrototype
                 switch (activeRoom)
                 {
                     case CurrentRoom.Bedroom:
-                        bedRoom.Draw(uSpriteBatch);
-                        break;
+                        {
+                            bedRoom.Draw(uSpriteBatch);
+                            if (Clue.Inventory.Contains(Clue.Clues["CrazyDiary3"]))
+                            {
+                                uSpriteBatch.Draw(blood, Game1.FormatDraw(bedRoom.Bounds), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.9f);
+                                
+                            }
+                            break;
+                        }
                     case CurrentRoom.Closet:
                         closetRoom.Draw(uSpriteBatch);
                         break;
@@ -793,6 +797,7 @@ namespace GamePrototype
             instructionNukeRect = new Rectangle(instructionInteractRect.X, instructionInteractRect.Y + instructionInteractRect.Height, instructionInteractRect.Width, instructionInteractRect.Height);
 
             bedBG = content.Load<Texture2D>("backgroundFULL");
+            blood = content.Load<Texture2D>("BLOOD");
             closetBG = content.Load<Texture2D>("theclosetFULL");
             bathBG = content.Load<Texture2D>("thebathroomFULL");
 
