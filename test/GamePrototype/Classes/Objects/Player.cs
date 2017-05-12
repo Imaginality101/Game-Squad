@@ -45,7 +45,9 @@ namespace GamePrototype.Classes.Objects
         private Texture2D promptTexture;
         private Texture2D rossHead;
         private Rectangle rossRect;
-        private Color drawColor;
+        private Color[] drawColor;
+        private float colorTimerMs;
+        private const float COLOR_INTERVAL = (1000f / 7);
         private const int MOVE_SPEED = 4;
 
         // attributes for sounds - kat
@@ -75,6 +77,8 @@ namespace GamePrototype.Classes.Objects
             // footstep sound effect - kat
             rossHead = content.Load<Texture2D>("bobross");
             rossRect = new Rectangle(playerRect.X - 20, playerRect.Y - 5, 116, 116);
+            drawColor = new Color[] { Color.Violet, Color.Indigo, Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Red };
+            colorTimerMs = 0;
             footsteps = new GameSound("Footsteps", content);
         }
         // TODO: Update method override, should check player input and movement
@@ -91,6 +95,11 @@ namespace GamePrototype.Classes.Objects
             if(Game1.bobRossMode)
             {
                 rossRect = new Rectangle(playerRect.X - 10, playerRect.Y - 5, 126, 116);
+                colorTimerMs += gameTime.ElapsedGameTime.Milliseconds;
+                if(colorTimerMs > 1000f)
+                {
+                    colorTimerMs = colorTimerMs % 1000f;
+                }
             }
 
             base.Update(gameTime);
@@ -536,7 +545,14 @@ namespace GamePrototype.Classes.Objects
             }
             if (Game1.bobRossMode)
             {
-                sprtBtch.Draw(rossHead, Game1.FormatDraw(rossRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .15f);
+                if (!Game1.LightsOn)
+                {
+                    sprtBtch.Draw(rossHead, Game1.FormatDraw(rossRect), null, drawColor[(int)(colorTimerMs / COLOR_INTERVAL)], 0f, Vector2.Zero, SpriteEffects.None, .15f);
+                }
+                else
+                {
+                    sprtBtch.Draw(rossHead, Game1.FormatDraw(rossRect), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, .15f);
+                }
             }
             if (flaggedInteractable != null)
             {
