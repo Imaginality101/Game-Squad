@@ -107,6 +107,9 @@
     <Content Include="Content\black light overlay.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\BLOOD.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\bobross.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
