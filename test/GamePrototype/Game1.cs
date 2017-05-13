@@ -498,10 +498,10 @@ namespace GamePrototype
                     }
             }
             // restarts the game if R is pressed
-            if (kbState.IsKeyDown(Keys.R) && prevKbState.IsKeyUp(Keys.R))
+            /*if (kbState.IsKeyDown(Keys.R) && prevKbState.IsKeyUp(Keys.R))
             {
                 Restart();
-            }
+            }*/
             if (messageDisplay.IsDrawing)
             {
                 messageDisplay.Update(gameTime);
