@@ -174,7 +174,7 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new GameObject(sidetab2, sidetab2Rect, new Rectangle(5, 50, 172, 102)));
             objs.Add(new ClueObject(bed, bedRect, new Rectangle(0, 100, 512, 226), Clue.Clues["TenantDiary2"], false));//Clue.Clues["TenantDiary2"], "Bed"
             objs.Add(new ClueObject(sidetab1, sidetab1Rect, new Rectangle(0, 0, 172, 172), Clue.Clues["OldPhoto1"], false, .2f));
-            objs.Add(new ClueObject(book, bookRect, Clue.Clues["TenantDiary1"], false, Clue.Clues["StickyNote"], .55f));
+            objs.Add(new ClueObject(book, bookRect, Clue.Clues["TenantDiary1"], false, /*Clue.Clues["StickyNote"],*/ .55f));
             objs.Add(new ClueObject(news1, news1Rect, Clue.Clues["News1"], false, "News 1", true, .95f));
             objs.Add(new ClueObject(news1, news2Rect, Clue.Clues["News2"], false, "News 2", true, .2f));
             objs.Add(new ClueObject(dress, dressRect, Clue.Clues["ClosetKey"], false, Clue.Clues["TenantDiary2"]));
