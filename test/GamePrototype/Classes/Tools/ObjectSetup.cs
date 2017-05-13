@@ -250,6 +250,8 @@ namespace GamePrototype.Classes.Tools
             objs.Add(new Lamp(lampfloor, lampfloorRect, .55f));
             objs.Add(new ClueObject(tdiardy, tdiaryRect, Clue.Clues["TenantDiary3"], false, "Sticky Note", true, .98f));
             objs.Add(new GameObject(wardrobeopen, wardrobeopenRect, "WardrobeOpen"));
+            objs[objs.Count - 1].Depth = .6f;
+            objs[objs.Count - 1].FixedDepth = true;
             objs.Add(new ClueObject(wardrobe, wardrobeRect, new Rectangle(0, 0, 346, 346), Clue.Clues["CrazyDiary2"], false, .55f));
             //objs.Add(new ClueObject(bathkey, bathkeyRect, Clue.Clues["BathroomKey"], false, "Bathroom Key", true));
             objs.Add(new ClueObject(crazyDiary, crazyDiary1Rect, Clue.Clues["CrazyDiary1"], false, "Sticky Note", true, .9f));
