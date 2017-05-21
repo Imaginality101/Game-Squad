@@ -110,16 +110,16 @@ namespace GamePrototype.Classes.Menu
             menuFont = mFont;
             List<object> settings = settingsParam;
             string settingsString = "";
-            settingsString += "Timer mode: " + settings[0].ToString() + "\n";
-            settingsString += "Easy Mode: " + settings[2].ToString() + "\n";
-            settingsString += "Bob Ross mode: " + settings[3].ToString() + "\n";
+            settingsString += "Timer mode: " + settings[0].ToString() + " ";
+            settingsString += "Easy Mode: " + settings[2].ToString() + " ";
+            settingsString += "Bob Ross mode: " + settings[3].ToString() + " ";
             if ((bool)settings[4])
             {
-                settingsString += "Fullscreen enabled" + "\n";
+                settingsString += "Fullscreen enabled" + " ";
             }
             else
             {
-                settingsString += "Resolution: " + settings[5].ToString() + " by " + settings[6].ToString() + "\n";
+                settingsString += "Resolution: " + settings[5].ToString() + " by " + settings[6].ToString() + " ";
             }
             settingsTextBox = new TextBox(new Vector2(760, 220), settingsString, 15, 15, mFont, new Rectangle(0, 0, 0, 0));
             clueCursor = cursor;
